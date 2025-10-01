@@ -11,8 +11,11 @@ Uma cidade acessível começa contigo!
 ### Relatório - 1ª Entrega 
 ### Autores
 Maria Camila Zamorano Vargas - 20240999 
+
 Cássia Nair Alexandre Baptista - 20231704 
+
 Daniel Alexandre Mbeya Paulo - 20240992 
+
 José Santana Manuel Paim - 20231013 
 
 # Palavras-Chave
