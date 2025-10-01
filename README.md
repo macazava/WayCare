@@ -62,3 +62,43 @@ Já a +Acesso Para Todos permite aos cidadãos denunciar barreiras arquitetónic
 Por outro lado, WayCare atua diretamente no espaço público urbano como ruas, passeios, passadeiras e zonas em obras, permitindo que qualquer cidadão possa reportar obstáculos à mobilidade de forma intuitiva e colaborativa. A aplicação não se destina apenas a pessoas com mobilidade reduzida, mas também a familiares, cuidadores e cidadãos solidários, promovendo uma rede de empatia urbana e envolvimento comunitário. 
 
 Entre as suas funcionalidades inovadoras destaca-se o sistema de notificações de proximidade, que alerta os utilizadores quando se encontram perto de zonas reportadas como inacessíveis, permitindo-lhes planear rotas alternativas e circular com maior segurança e autonomia. Ao disponibilizar dados geolocalizados e organizados por categoria, o WayCare apoia os serviços municipais na tomada de decisões mais eficazes e orientadas para a inclusão. 
+## Casos de Utilização
+### Core Case 
+#### Caso 1 - Reporte de obra sem aviso e desvio de rota 
+Maria, utilizadora de cadeira de rodas elétrica, sai de casa cedo todas as manhãs para ir trabalhar. O seu percurso habitual já está bem definido: ruas largas, passeios acessíveis e rampas que lhe permitem circular com segurança. No entanto, numa terça-feira, ao chegar ao cruzamento da Rua Central, depara-se com uma situação inesperada: uma obra tinha começado sem qualquer aviso prévio.  
+
+O passeio estava totalmente bloqueado. Para continuar, a Maria teria de descer para a estrada, mas o trânsito intenso tornava essa opção perigosa e praticamente impossível.  
+
+Então, pegou no telemóvel e abriu a aplicação WayCare; Selecionou a opção “Reportar Anomalia”; A app identificou de imediato a geolocalização da obra.  
+
+Maria tirou uma fotografia clara ao bloqueio e escreveu a descrição: “Obra iniciada sem aviso. Passeio totalmente bloqueado, sem alternativa para cadeiras de rodas”. 
+
+Submeteu o alerta, e classificou-o como alta prioridade, por se tratar de um risco direto para a mobilidade. Ao terminar o reporte, Maria abriu o mapa da app para tentar perceber como poderia contornar o problema. O sistema sugeriu rotas alternativas baseadas nos relatórios de outros utilizadores.  
+
+A opção sugerida foi: Um caminho mais longo, cerca de 10 minutos extra, mas totalmente acessível e já validado por outros cidadãos. 
+### Outros Casos
+#### Caso 2 - Notificação de anomalia próxima e planeamento de rota  
+João, um jovem que recuperava de uma fratura na perna e usava muletas, saiu de casa para apanhar o autocarro. No entanto, ao caminhar pela Rua da Liberdade, o seu telemóvel vibrou. A WayCare tinha enviado uma notificação: “Atenção! Foi reportada uma anomalia a 150 metros: entulho de obra a bloquear totalmente o passeio.”  
+
+João abriu a app e, no mapa interativo, viu o local exato do obstáculo, acompanhado da foto enviada por outro utilizador. A App sugeriu-lhe de imediato rotas alternativas seguras, com destaque para caminhos livres de obstáculos já reportados. Havia duas opções: 
+1. Um desvio de 5 minutos por ruas paralelas mais largas.  
+2. Um percurso um pouco mais longo, mas com acessibilidade garantida e rampas certificadas.  
+João escolheu a segunda opção. Ao chegar ao ponto de autocarro, pensou no quanto aquela pequena notificação tinha feito diferença: evitara riscos, perda de tempo e até uma possível queda. 
+#### Caso 3 - Pedro reporta os efeitos de um temporal através da WayCare 
+Na manhã seguinte a uma forte tempestade, Pedro precisava chegar ao trabalho, mas logo na rua de casa deparou-se com diversos transtornos: passeios inundados, pequenas árvores caídas e entulho espalhado, tornando a circulação extremamente perigosa, especialmente para pessoas com mobilidade reduzida, idosos ou quem tivesse carrinhos de bebé.  
+
+Pedro sabia que qualquer descuido poderia causar acidentes graves. Pegou no telemóvel e abriu a WayCare, selecionando a opção “Reportar anomalia”. Seguiu os passos técnicos: Fotografou cuidadosamente cada obstáculo, incluindo uma árvore caída junto à passadeira e buracos inundados no passeio. A geolocalização automática registou a localização exata das ocorrências. Acrescentou uma descrição detalhada, alertando que a situação representava risco elevado para pedestres e exigia intervenção urgente.  
+
+Desta maneira Pedro contribuiu para que os outros utilizadores recebam notificações sobre situações prioritárias devido ao risco imediato à segurança. 
+## Enquadramento nas diversas Unidades Curriculares e Tecnologias Utilizadas 
+O desenvolvimento do projeto WayCare articula conhecimentos adquiridos em várias UC, permitindo aplicar competências técnicas, analíticas e comunicacionais de forma integrada: 
+- **Programação Orientada a Objetos**: Tratamos dos requisitos e arquitetura (MVC e REST) do código garantindo modularidade, reutilização e manutenção eficiente. Utilização da linguagem de programação Java, da tecnologia Spring Boot e VScode como editor de código.
+- **Bases de Dados**: Modelação e implementação da base de dados que armazena os reportes dos utilizadores, incluindo localização, tipo de obstáculo e fotografia. Utilização de SQL, MAMP e MySQL Workbench e conceitos de normalização para garantir integridade e desempenho. 
+- **Programação de Dispositivos Móveis**: Desenvolvimento da interface da aplicação para dispositivos móveis, com foco na navegação intuitiva e integração com funcionalidades como GPS, câmara e notificações. Recorrendo a Android Studio 2025 1.3.7 utilizando Kotlin e Jetpack Compose. 
+- **Competências Comunicacionais**: Elaboração de conteúdos claros e acessíveis para o público-alvo, incluindo textos informativos na app, apresentação do projeto e comunicação visual no poster e nos materiais de divulgação. Utilizando tecnologias como Canva, PowerPoint e Word. 
+- **Matemática Discreta**: Aplicação de conceitos como lógica para o planeamento de rotas alternativas e para a estruturação eficiente dos dados geográficos e relacionais. 
+- **Desenvolvimento de Projeto**: Planeamento, execução e validação do projeto em todas as suas fases, desde a definição dos requisitos até à apresentação final, com foco na gestão de tempo, trabalho em equipa e resolução de problemas, utilizando plataformas como ClickUp, Discord, GitHub e Figma. 
+## Arquitetura da Solução
+A solução tem como base uma arquitetura em três camadas (frontend, backend e base de dados).  
+
+A camada de frontend (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O backend (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a base de dados. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
