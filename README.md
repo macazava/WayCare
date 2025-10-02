@@ -102,3 +102,62 @@ O desenvolvimento do projeto WayCare articula conhecimentos adquiridos em vária
 A solução tem como base uma arquitetura em três camadas (frontend, backend e base de dados).  
 
 A camada de frontend (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O backend (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a base de dados. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
+## Plano de Trabalho: Project Charter and WBS (Gráfico de Gantt) 
+...inserir imagem...
+## Requisitos Funcionais e Não Funcionais 
+### Requisitos Funcionais
+Dentro dos requisitos funcionais da WayCare encontra-se:
+- Permitir que qualquer cidadão reporte obstáculos urbanos (Ex: rampas inexistentes, passeios danificados);
+- Capturar e anexar fotografias ao reporte;
+- Registar a localização automática do obstáculo via GPS;
+- (opcional) Permitir ajustar manualmente a localização no mapa;
+- Categorizar o tipo de obstáculo (ex: obras, acessos, sinalização);
+- Enviar o reporte para uma base de dados acessível;  
+- Visualizar os obstáculos reportados num mapa interativo;
+- Receber notificações quando o utilizador se aproxima de uma zona reportada;
+- Permitir que os utilizadores filtrem os obstáculos por tipo ou gravidade; 
+- (opcional) Sugestão de rotas com boa acessibilidade. 
+### Requisitos Não Funcionais 
+Dentro dos requisitos funcionais da WayCare tem-se:
+- A aplicação deve ser intuitiva e fácil de usar por qualquer cidadão; 
+- Devem ser implementadas características como localização e utilização de mapas; 
+- Os dados devem ser armazenados de forma segura e protegida, respeitando o RGPD; 
+- A aplicação deve estar disponível 24/7, com alta fiabilidade; 
+- Deve permitir atualizações regulares sem comprometer a experiência do utilizador; 
+- O sistema deve ser escalável para suportar um número crescente de utilizadores e reportes. 
+# Mockups
+Foram escolhidas as três telas principais da App: 
+1. Tela de Reporte de Anomalia.
+2. Tela de Notificação de Proximidade.
+3. Tela da visualização do mapa interativo.
+![Mockups 3 telas](Images/MOCKUPS.jpg)
+# Conclusão
+O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
+
+A WayCare surge, assim, como uma resposta a esse problema, assumindo-se como uma aplicação móvel. Através da geolocalização, do registo fotográfico e da categorização de anomalias, qualquer cidadão pode reportar situações que afetam a mobilidade urbana. A solução reside na sua dimensão colaborativa: mais do que um sistema de denúncia, trata-se de uma rede de participação ativa, que incentiva a empatia e o envolvimento comunitário. 
+
+Pretende-se que os objetivos traçados no início do projeto sejam atingidos de forma consistente: Disponibilizar uma ferramenta intuitiva que permita reportar obstáculos urbanos de forma rápida e acessível; dar visibilidade a problemas críticos que impactam diretamente pessoas com mobilidade reduzida, grávidas, idosos ou cidadãos em recuperação temporária; fornecer dados organizados e geolocalizados que possam apoiar as autarquias e serviços municipais na tomada de decisões; fomentar a participação cívica e a consciencialização coletiva, incentivando todos os cidadãos a colaborar; aumentar a segurança e a autonomia dos utilizadores através de alertas de proximidade e planeamento de rotas alternativas.  
+
+Para além dos aspetos funcionais, este projeto permitiu-nos articular e aplicar conhecimentos adquiridos em várias unidades curriculares, desde a programação orientada a objetos e o desenvolvimento mobile até ao trabalho com bases de dados, planeamento de projeto e competências comunicacionais. Essa integração mostrou-se essencial para construir uma solução coerente, funcional e fundamentada. 
+
+Outro aspeto relevante foi a experiência de trabalho em equipa, que exigiu gestão de tempo, divisão de responsabilidades, coordenação e capacidade de resolver problemas de forma colaborativa. Estas competências, importantes quanto a componente técnica, reforçaram o caráter multidisciplinar do projeto e mostraram-nos a importância de alinhar diferentes perspetivas em torno de um objetivo comum. 
+
+Em suma, a WayCare não deve ser vista apenas como uma aplicação tecnológica, mas como uma ferramenta de transformação social. Ao unir inovação, empatia e responsabilidade coletiva, o projeto contribui para a construção de cidades mais humanas, inclusivas e seguras, onde todos têm o direito de se mover com dignidade. 
+# Bibliografia
+AccessNow. (2023). Accessibility mapping and reporting tools for inclusive cities. AccessNow. 
+
+Associação Nacional de Municípios Portugueses. (2023). Relatório sobre acessibilidade e mobilidade urbana. ANMP. 
+
+European Commission. (2021). European disability strategy 2021–2030. Publications Office of the European Union. 
+
+Gehl, J. (2010). Cities for people. Island Press. 
+
+Instituto Nacional de Estatística. (2022). Relatório sobre infraestruturas urbanas em Portugal. INE. 
+
+United Nations. (2015). Transforming our world: The 2030 agenda for sustainable development. United Nations. 
+
+World Health Organization. (2018). Global report on urban health: Equitable, healthier cities for sustainable development. WHO. 
+
+Instituto Nacional de Estatística. (2022). Relatório de Contas e Informação de Projetos 2022 (RCIP). Infraestruturas de Portugal.  
+
+Associação Nacional de Municípios Portugueses. (2023). Relatório de consulta – Ferrovia 2023. Autoridade da Mobilidade e dos Transportes. 
