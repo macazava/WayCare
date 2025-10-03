@@ -104,9 +104,27 @@ Pedro sabia que qualquer descuido poderia causar acidentes graves. Pegou no tele
  A solução tem como base uma arquitetura em três camadas (frontend, backend e base de dados).  
 
 A camada de **frontend** (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O **backend** (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a **base de dados**. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
-## Plano de Trabalho: Project Charter and WBS (Gráfico de Gantt) 
-...inserir imagem...
-## Requisitos Funcionais e Não Funcionais 
+## Plano de Trabalho, Project Charter e WBS (Gráfico de Gantt) 
+Plano de trabalho, WBS e Project Charter 
+1. Levantamento de necessidades e delimitação do projeto
+ - 1.1 Análise e Planeamento
+  1.1.1 Identificação de problemas de acessibilidade
+  1.1.2 Definição do público-alvo
+  1.1.3 Estudo de apps concorrentes
+  1.1.4 Definição de funcionalidades principais
+  1.1.5 Estruturação do Plano de Trabalho e delegação de responsabilidades
+2. Criação de mockups e estrutura visual da app	
+ - 2.2 Design da Solução e Estrutura
+  2.2.1 Criação de mockups principais (três telas principais que definem o nosso projeto)
+  2.2.2 Organização das categorias de dados
+  2.2.3 Planeamento da navegação da app e core cases
+  2.2.4 Planeamento da Arquitetura da App
+  2.2.5 Criação do Poster
+3. Documentação e Entrega
+ - 3.3 Realização da documentação a ser entregue 
+  3.3.1 Estruturação do README.md
+  3.3.2 Preparação da apresentação em PowerPoint## Requisitos Funcionais e Não Funcionais 
+  ...inserir imagem do gráfico...
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare encontra-se:
 - Permitir que qualquer cidadão reporte obstáculos urbanos (Ex: rampas inexistentes, passeios danificados);
@@ -133,7 +151,7 @@ A camada de **frontend** (Camada de Apresentação) corresponde à interface da 
 2. Tela de Notificação de Proximidade.
 3. Tela da visualização do mapa interativo.
 
-![Mockups 3 telas](Images/MOCKUPS.jpg)
+![Mockups 3 telas principais](Images/MOCKUPS%20WayCare%20-%20VersãoFinal.png)
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
 
