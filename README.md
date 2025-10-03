@@ -1,4 +1,4 @@
-Licenciatura em Engenharia Informática | LEIFD02| 25/26
+**Licenciatura em Engenharia Informática | LEIFD02| 25/26**
 
 **UC** | Projeto de Desenvolvimento Móvel - Projeto Multidisciplinar
 
@@ -55,13 +55,13 @@ WayCare posiciona-se como uma solução de Civic Tech, onde a inovação tecnol�
 - Cidadãos solidários que querem ajudar 
 - Autarquias e serviços municipais 
 ### Aplicações semelhantes no Mercado e o Valor Acrescentado da WayCare 
- Embora existam aplicações que abordam a temática da acessibilidade, como a Accessibility 360 App e +Acesso Para Todos, desenvolvida pelo Instituto Nacional para a Reabilitação (INR) e a Associação Salvador, respetivamente, o projeto WayCare apresenta uma abordagem mais abrangente, participativa e centrada na realidade urbana. 
+ Embora existam aplicações que abordam a temática da acessibilidade, como a **Accessibility 360 App** e **+Acesso Para Todos**, desenvolvida pelo Instituto Nacional para a Reabilitação (INR) e a Associação Salvador, respetivamente, o projeto **WayCare** apresenta uma abordagem mais abrangente, participativa e centrada na realidade urbana. 
 
- A Accessibility 360 App foca-se essencialmente na consulta da acessibilidade de edifícios públicos, como hospitais, escolas ou lojas do cidadão. A sua funcionalidade principal é informar os utilizadores sobre as condições de acesso a serviços públicos, com destaque para lugares de estacionamento reservados e acessos internos. Trata-se de uma ferramenta útil, mas com um alcance limitado ao espaço institucional. 
+ A **Accessibility 360 App** foca-se essencialmente na consulta da acessibilidade de edifícios públicos, como hospitais, escolas ou lojas do cidadão. A sua funcionalidade principal é informar os utilizadores sobre as condições de acesso a serviços públicos, com destaque para lugares de estacionamento reservados e acessos internos. Trata-se de uma ferramenta útil, mas com um alcance limitado ao espaço institucional. 
 
- Já a +Acesso Para Todos permite aos cidadãos denunciar barreiras arquitetónicas em espaços públicos e privados, promovendo boas práticas e enviando automaticamente reclamações para o INR ou para os municípios. Apesar de ser uma iniciativa relevante, o seu foco está na denúncia formal e na classificação de espaços, sem funcionalidades interativas como mapa em tempo real ou alertas de proximidade, opções que realmente ajudam aos utilizadores no dia a dia, realmente no momento que eles precisam. 
+ Já a **+Acesso Para Todos** permite aos cidadãos denunciar barreiras arquitetónicas em espaços públicos e privados, promovendo boas práticas e enviando automaticamente reclamações para o INR ou para os municípios. Apesar de ser uma iniciativa relevante, o seu foco está na denúncia formal e na classificação de espaços, sem funcionalidades interativas como mapa em tempo real ou alertas de proximidade, opções que realmente ajudam aos utilizadores no dia a dia, realmente no momento que eles precisam. 
 
- Por outro lado, WayCare atua diretamente no espaço público urbano como ruas, passeios, passadeiras e zonas em obras, permitindo que qualquer cidadão possa reportar obstáculos à mobilidade de forma intuitiva e colaborativa. A aplicação não se destina apenas a pessoas com mobilidade reduzida, mas também a familiares, cuidadores e cidadãos solidários, promovendo uma rede de empatia urbana e envolvimento comunitário. 
+ Por outro lado, **WayCare** atua diretamente no espaço público urbano como ruas, passeios, passadeiras e zonas em obras, permitindo que qualquer cidadão possa reportar obstáculos à mobilidade de forma intuitiva e colaborativa. A aplicação não se destina apenas a pessoas com mobilidade reduzida, mas também a familiares, cuidadores e cidadãos solidários, promovendo uma rede de empatia urbana e envolvimento comunitário. 
 
 Entre as suas funcionalidades inovadoras destaca-se o sistema de notificações de proximidade, que alerta os utilizadores quando se encontram perto de zonas reportadas como inacessíveis, permitindo-lhes planear rotas alternativas e circular com maior segurança e autonomia. Ao disponibilizar dados geolocalizados e organizados por categoria, o WayCare apoia os serviços municipais na tomada de decisões mais eficazes e orientadas para a inclusão. 
 ## Casos de Utilização
