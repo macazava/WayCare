@@ -140,7 +140,7 @@ Plano de trabalho, WBS e Project Charter
 
   3.3.1 Estruturação do README.md
 
-  3.3.2 Preparação da apresentação em PowerPoint## Requisitos Funcionais e Não Funcionais 
+  3.3.2 Preparação da apresentação em PowerPoint
 
   ...inserir imagem do gráfico...
 ### Requisitos Funcionais
