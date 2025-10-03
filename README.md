@@ -107,23 +107,41 @@ A camada de **frontend** (Camada de Apresentação) corresponde à interface da 
 ## Plano de Trabalho, Project Charter e WBS (Gráfico de Gantt) 
 Plano de trabalho, WBS e Project Charter 
 1. Levantamento de necessidades e delimitação do projeto
+
  - 1.1 Análise e Planeamento
+
   1.1.1 Identificação de problemas de acessibilidade
+
   1.1.2 Definição do público-alvo
+
   1.1.3 Estudo de apps concorrentes
+
   1.1.4 Definição de funcionalidades principais
+
   1.1.5 Estruturação do Plano de Trabalho e delegação de responsabilidades
+
 2. Criação de mockups e estrutura visual da app	
+
  - 2.2 Design da Solução e Estrutura
+
   2.2.1 Criação de mockups principais (três telas principais que definem o nosso projeto)
+
   2.2.2 Organização das categorias de dados
+
   2.2.3 Planeamento da navegação da app e core cases
+
   2.2.4 Planeamento da Arquitetura da App
+
   2.2.5 Criação do Poster
+
 3. Documentação e Entrega
+
  - 3.3 Realização da documentação a ser entregue 
+
   3.3.1 Estruturação do README.md
+
   3.3.2 Preparação da apresentação em PowerPoint## Requisitos Funcionais e Não Funcionais 
+
   ...inserir imagem do gráfico...
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare encontra-se:
