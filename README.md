@@ -1,4 +1,4 @@
-**Licenciatura em Engenharia Informática | LEIFD02| 25/26**
+**Licenciatura em Engenharia Informática | Universidade Europeia - IADE | LEIFD02 | 25/26**
 
 **UC** | Projeto de Desenvolvimento Móvel - Projeto Multidisciplinar
 
