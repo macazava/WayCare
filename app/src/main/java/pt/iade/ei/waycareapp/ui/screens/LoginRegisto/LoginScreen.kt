@@ -16,7 +16,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import pt.iade.ei.waycareapp.R
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -38,7 +41,7 @@ fun LoginScreen(navController: NavController) {
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Flecha de voltar
+        // Voltar atrás (ícone)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
@@ -55,35 +58,46 @@ fun LoginScreen(navController: NavController) {
             )
         }
 
-        // Logótipo e título
+        Spacer(modifier = Modifier.height(20.dp))
+
+        // Logótipo
         Row(verticalAlignment = Alignment.CenterVertically) {
             Image(
-                painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.logo),
+                painter = painterResource(id = R.drawable.logo),
                 contentDescription = "Logo",
-                modifier = Modifier.size(48.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(145.dp),
+                contentScale = ContentScale.FillWidth
             )
-            Spacer(modifier = Modifier.width(8.dp))
-            Text("WayCare", fontSize = 28.sp, color = Color(0xFF2196F3))
         }
 
-        Spacer(modifier = Modifier.height(16.dp))
-        Text("Bem-vindo!", fontSize = 24.sp, color = Color(0xFFE91E63))
+        Spacer(modifier = Modifier.height(25.dp))
+        Text(
+            text = "Bem-vindo!",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFFF7A2CC),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Start)
+        )
 
-        Spacer(modifier = Modifier.height(32.dp))
+        Spacer(modifier = Modifier.height(15.dp))
 
-        // Campo de email
-        OutlinedTextField(
-            value = email,
-            onValueChange = { email = it },
-            label = { Text("Email") },
-            placeholder = { Text("Maria123@gmail.com") },
+        // Espaço para o Email
+        OutlinedTextField( //componente de input com borda visivel
+            value = email, //esta variavel guarda o texto que o utilizador escreve
+            onValueChange = { email = it }, //Define o que acontece quando o utilizador escreve algo. Sempre que o texto muda, atualiza a variável email com o novo valor (it).
+            label = { Text("E-mail") },
+            placeholder = { Text("Maria123@gmail.com") }, //texto de exemplo
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         )
 
         Spacer(modifier = Modifier.height(16.dp))
 
-        // Campo de password
+        // Espaço para a password
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
@@ -96,6 +110,17 @@ fun LoginScreen(navController: NavController) {
                     Icon(imageVector = icon, contentDescription = "Mostrar/Esconder")
                 }
             },
+            /*
+Este bloco de cima permite alternar entre mostrar e esconder a palavra-passe:
+- visualTransformation: define como o texto é exibido.
+    - Se passwordVisible for true → mostra o texto normalmente.
+    - Se for false → oculta o texto com bolinhas (PasswordVisualTransformation).
+- trailingIcon: adiciona um ícone à direita do campo.
+    - O ícone muda entre Visibility (👁️) e VisibilityOff (🚫👁️) conforme o estado.
+    - IconButton permite que o utilizador clique para alternar o estado de visibilidade.
+    - O estado é guardado na variável passwordVisible, que é invertida ao clicar.
+Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
+*/
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         )
@@ -103,14 +128,14 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             text = "Esqueceu a sua palavra passe?",
-            color = Color(0xFF2196F3),
+            color = Color(0xFF125FDB),
             fontSize = 14.sp,
             modifier = Modifier
                 .align(Alignment.End)
-                .clickable { /* ação futura */ }
+                .clickable { /*pode levar a uma tela para recuperar a palavra passe - pode não ser implementado*/ }
         )
 
-        Spacer(modifier = Modifier.height(24.dp))
+        Spacer(modifier = Modifier.height(32.dp))
 
         // Botão de login com gradiente
         Button(
@@ -144,8 +169,36 @@ fun LoginScreen(navController: NavController) {
             Text("Não tem uma conta? ")
             Text(
                 text = "Faça o registo agora",
-                color = Color(0xFF2196F3),
+                color = Color(0xFF1160DB),
                 modifier = Modifier.clickable { navController.navigate("register") }
+            )
+        }
+
+        Spacer(modifier = Modifier.height(32.dp))
+        Text("Ou continue com", color = Color.Gray)
+
+        Spacer(modifier = Modifier.height(16.dp))
+        Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+            Image(
+                painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_google),
+                contentDescription = "Google",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(8.dp),
+            )
+            Image(
+                painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_apple),
+                contentDescription = "Apple",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(8.dp)
+            )
+            Image(
+                painter = painterResource(id = R.drawable.ic_facebook),
+                contentDescription = "Facebook",
+                modifier = Modifier
+                    .size(40.dp)
+                    .padding(8.dp)
             )
         }
     }
