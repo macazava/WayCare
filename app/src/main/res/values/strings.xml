@@ -4,7 +4,21 @@
     <string name="start_button">Comece agora</string>
     <string name="password_text">Palavra-passe</string>
     <string name="forgot_password_button">Esqueceu a sua palavra passe?</string>
-    <string name="login_button" translatable="false">Login</string>
-    <string name="register_button">Não tem uma conta? Faça o registo agora</string>
+    <string name="login_button_loginScreen" translatable="false">Login</string>
+    <string name="register_button_loginScreen">Não tem uma conta? Faça o registo agora</string>
     <string name="or_continue_with_text">Ou continue com</string>
+    <string name="registration_title">Faça o seu registo!</string>
+    <string name="write_name">Digite o seu nome</string>
+    <string name="write_user_name">Digite o seu Nome de Utilizador</string>
+    <string name="write_email">Digite o seu E-mail</string>
+    <string name="write_password">Escreva a sua Palavra-passe</string>
+    <string name="is_reduced_mobility_user">É um utilizador com mobilidade reduzida?</string>
+    <string name="register_button_registerScreen">registar-me</string>
+    <string name="or_register_with">Ou registe-se com</string>
+    <string name="login_button_registerScreen">Já tem uma conta? Faça Login agora</string>
+    <string name="make_report_button">Fazer reporte</string>
+    <string name="map_view_button">Visualização em mapa</string>
+    <string name="route_planning_button">Planeamento de rota</string>
+
+
 </resources>

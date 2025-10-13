@@ -1,99 +1,215 @@
 package pt.iade.ei.waycareapp.screens
 
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.Visibility
+import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
+import pt.iade.ei.waycareapp.R
 
 @Composable
 fun RegisterScreen(navController: NavController) {
-    var name by remember { mutableStateOf("") }
+    var nome by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") }
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var passwordVisible by remember { mutableStateOf(false) }
+    var isReducedMobility by remember { mutableStateOf(false) }
 
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = MaterialTheme.colorScheme.background
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(start = 24.dp, end = 24.dp, bottom = 24.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Column(
+        Spacer(modifier = Modifier.height(15.dp))
+        //arrowback para login screen
+        Row(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(24.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxWidth()
+                .padding(bottom = 16.dp),
+            verticalAlignment = Alignment.CenterVertically
         ) {
-            Text("Crie a sua conta", fontSize = 28.sp, color = MaterialTheme.colorScheme.primary)
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text("Nome") },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp)
+            Icon(
+                imageVector = Icons.Default.ArrowBack,
+                contentDescription = "Voltar",
+                modifier = Modifier
+                    .clickable { navController.navigate("login") }
+                    .size(32.dp),
+                tint = Color(0xFF2196F3)
             )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = email,
-                onValueChange = { email = it },
-                label = { Text("Email") },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp)
-            )
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            OutlinedTextField(
-                value = password,
-                onValueChange = { password = it },
-                label = { Text("Palavra-passe") },
-                visualTransformation = PasswordVisualTransformation(),
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(12.dp)
-            )
-
-            Spacer(modifier = Modifier.height(24.dp))
-
-            Button(
-                onClick = { navController.navigate("home") },
+            Image(
+                painter = painterResource(id = R.drawable.logo),
+                contentDescription = "Logo",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(50.dp),
-                shape = RoundedCornerShape(50)
-            ) {
-                Text("Registar", fontSize = 16.sp)
+                    .height(160.dp),
+                contentScale = ContentScale.FillWidth
+            )
+        }
+        Text(
+            text = "Faça o seu registo!",
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFFF7A2CC),
+            modifier = Modifier
+                .fillMaxWidth()
+                .align(Alignment.Start)
+        )
+        OutlinedTextField(
+            value = nome,
+            onValueChange = { nome = it },
+            label = { Text("Digite o seu Nome") },
+            placeholder = { Text("Maria Carvalho") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp)
+        )
+
+        OutlinedTextField(
+            value = username,
+            onValueChange = { username = it },
+            label = { Text("Digite o seu Nome de Utilizador") },
+            placeholder = { Text("Maria123") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp)
+        )
+
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Digite o seu E-mail") },
+            placeholder = { Text("Maria123@gmail.com") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp)
+        )
+
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Escreva a sua Palavra-passe") },
+            placeholder = { Text("••••••••") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(12.dp),
+            visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val icon = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                IconButton(onClick = { passwordVisible = !passwordVisible }) {
+                    Icon(imageVector = icon, contentDescription = "Mostrar/Esconder")
+                }
             }
+        )
 
-            Spacer(modifier = Modifier.height(16.dp))
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            modifier = Modifier.fillMaxWidth()
+        ) {
+            Text("É um utilizador com mobilidade reduzida?")
+            Spacer(modifier = Modifier.weight(1f))
+            Switch(
+                checked = isReducedMobility,
+                onCheckedChange = { isReducedMobility = it }
+            )
+        }
 
-            Row {
-                Text("Já tem uma conta? ")
-                Text(
-                    text = "Faça login",
-                    color = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.clickable { navController.navigate("login") }
+        // Botão de registo com gradiente
+        Button(
+            onClick = { navController.navigate("home") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(50.dp),
+            shape = RoundedCornerShape(50),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = Color.Transparent
+            ),
+            contentPadding = PaddingValues()
+        ) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(
+                        brush = Brush.horizontalGradient(
+                            colors = listOf(Color(0xFFE91E63), Color(0xFF2196F3))
+                        ),
+                        shape = RoundedCornerShape(50)
+                    ),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("registar-me", color = Color.White, fontSize = 16.sp)
+            }
+        }
+
+        Column (
+            horizontalAlignment = Alignment.CenterHorizontally
+        ){
+            Text("Ou registe-se com", color = Color.Gray)
+            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                Image(
+                    painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_google),
+                    contentDescription = "Google",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .padding(8.dp),
+                )
+                Image(
+                    painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_apple),
+                    contentDescription = "Apple",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .padding(8.dp)
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.ic_facebook),
+                    contentDescription = "Facebook",
+                    modifier = Modifier
+                        .size(40.dp)
+                        .padding(8.dp)
                 )
             }
+        }
+        Divider(
+            color = Color.LightGray,
+            thickness = 1.dp
+        )
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.Center
+        ) {
+            Text("Já tem uma conta? ")
+            Text(
+                text = "Faça Login agora",
+                color = Color.Blue,
+                modifier = Modifier.clickable {
+                    navController.navigate("login")
+                }
+            )
         }
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun RegisterScreenPreview() {
-    pt.iade.ei.waycareapp.ui.theme.WayCareTheme {
-        RegisterScreen(navController = rememberNavController())
-    }
+    val fakeNavController = rememberNavController()
+    RegisterScreen(navController = fakeNavController)
 }
