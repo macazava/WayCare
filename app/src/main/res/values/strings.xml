@@ -19,6 +19,25 @@
     <string name="make_report_button">Fazer reporte</string>
     <string name="map_view_button">Visualização em mapa</string>
     <string name="route_planning_button">Planeamento de rota</string>
+    <string name="profile_title">Perfil</string>
+    <string name="info_user_type">Tipo de Utilizador: Pessoa com mobilidade reduzida</string>
+    <string name="amount_of_reports">(numero de reportes)Reportes</string>
+    <string name="change_user_info">Editar Nome, Nome de Utilizador, E-mail ou Password</string>
+    <string name="email_notifications_button">Receber alertas por E-mail</string>
+    <string name="alerts_notifications_button">Receber notificações de Proximidade</string>
+    <string name="location_permission_button">Permitir Acesso à sua Localização</string>
+    <string name="user_type_button">Tipo de Utilizador: Pessoa com Mobilidade Reduzida</string>
+    <string name="delete_account_button">Apagar conta</string>
+    <string name="report_anomaly_title">Reportar Anomalia</string>
+    <string name="select_anomaly_type_menu">Selecione o tipo de Anomalia</string>
+    <string name="select_priority_menu">Selecione a prioridade</string>
+    <string name="anomaly_description_box">Descreva o problema</string>
+    <string name="photo_box">Clique aqui para tirar ou carregar uma fotografia</string>
+    <string name="automatic_location_title">Localização Automática</string>
+    <string name="detail_location_box">Detalhes adicionais da Localização</string>
+    <string name="send_report_button">Enviar Reporte</string>
+
+
 
 
 </resources>

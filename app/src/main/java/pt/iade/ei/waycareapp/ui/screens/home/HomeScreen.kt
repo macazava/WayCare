@@ -64,7 +64,7 @@ fun HomeScreen(navController: NavController) {
         // Botão: Fazer Reporte
         GradientButton(
             text = "Fazer Reporte",
-            onClick = { navController.navigate("createReport") }
+            onClick = { navController.navigate("report") }
         )
 
         // Botão: Visualização em Mapa

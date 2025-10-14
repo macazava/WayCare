@@ -4,10 +4,13 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import pt.iade.ei.waycareapp.screens.LoginScreen
 import pt.iade.ei.waycareapp.screens.WelcomeScreen
 import pt.iade.ei.waycareapp.screens.HomeScreen
-import pt.iade.ei.waycareapp.screens.RegisterScreen
+import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.LoginScreen
+import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.ProfileScreen
+import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.RegisterScreen
+import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
+import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreenSuccess
 
 
 @Composable
@@ -20,7 +23,12 @@ fun AppNavHost(navController: NavHostController) {
         composable("login") { LoginScreen(navController) }
         composable("home") { HomeScreen(navController) }
         composable("register") { RegisterScreen(navController) }
+        composable("profile") { ProfileScreen (navController) }
+        composable("report") { ReportScreen(navController) }
+        composable("reportSuccess") { ReportScreenSuccess(navController) }
         // Depois adicionar mais rotas aqui: login, home, reportar, mapa, etc.
     }
 }
+
+
 

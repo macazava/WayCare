@@ -1,4 +1,4 @@
-package pt.iade.ei.waycareapp.screens
+package pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import org.w3c.dom.Text
 import pt.iade.ei.waycareapp.R
 
 @Composable
@@ -124,7 +125,10 @@ fun RegisterScreen(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier.fillMaxWidth()
         ) {
-            Text("É um utilizador com mobilidade reduzida?")
+            Text(
+                text = "É um utilizador com Mobilidade Reduzida?",
+                fontSize = 15.sp,
+            )
             Spacer(modifier = Modifier.weight(1f))
             Switch(
                 checked = isReducedMobility,

@@ -1,4 +1,4 @@
-package pt.iade.ei.waycareapp.screens
+package pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
