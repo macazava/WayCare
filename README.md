@@ -20,6 +20,8 @@ José Santana Manuel Paim - 20231013
 
 # Link para Repositório no GitHub
  https://github.com/macazava/ProjetoMobile-G06.git
+# Link para Mockups no Figma
+https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0-1&t=DExGPdhOVwYb2qfH-1
 # Palavras-Chave
  Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo.
 # Proposta Inicial do Projeto 
