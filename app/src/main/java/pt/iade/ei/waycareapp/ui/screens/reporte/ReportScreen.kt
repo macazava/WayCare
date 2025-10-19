@@ -122,7 +122,7 @@ fun ReportScreen(navController: NavController) {
                 .height(120.dp)
                 .background(
                     brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0x803F51B5), Color(0x80E91E63))
+                        colors = listOf(Color(0x663F51B5), Color(0x66E91E63))
                     ),
                     shape = RoundedCornerShape(12.dp)
                 )
