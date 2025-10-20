@@ -1,4 +1,5 @@
-package models;
+package com.example.waycare.models;
+
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Obstaculo {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "obs_id")
@@ -23,3 +25,4 @@ public class Obstaculo {
     @Column(name = "obs_grau_perigo")
     private String grauPerigo;
 }
+

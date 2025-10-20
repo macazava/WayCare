@@ -1,4 +1,4 @@
-package models;
+package com.example.waycare.models;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,6 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Localizacao {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loc_id")
@@ -20,6 +21,7 @@ public class Localizacao {
     @Column(name = "loc_longitude")
     private Double longitude;
 
-    @Column(name = "loc_endereco")
-    private String endereco;
+    @OneToOne(mappedBy = "localizacao")
+    private Reporte reporte;
 }
+

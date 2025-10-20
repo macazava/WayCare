@@ -1,13 +1,16 @@
-package models;
+package com.example.waycare.models;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Table(name = "reporte")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reporte {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rep_id")
@@ -21,16 +24,17 @@ public class Reporte {
     @JoinColumn(name = "rep_obs_id")
     private Obstaculo obstaculo;
 
-    @ManyToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rep_loc_id")
     private Localizacao localizacao;
 
+    @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL)
+    private List<Fotografia> fotografias;
+
     @Column(name = "rep_data")
-    private LocalDateTime data;
+    private String data;
 
     @Column(name = "rep_estado")
     private String estado;
-
-    @Column(name = "rep_comentario")
-    private String comentario;
 }
+

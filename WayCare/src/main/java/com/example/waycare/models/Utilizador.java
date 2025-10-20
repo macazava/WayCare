@@ -1,7 +1,8 @@
-package models;
+package com.example.waycare.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.List;
 
 @Entity
 @Table(name = "utilizador")
@@ -9,6 +10,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Utilizador {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "uti_id")
@@ -17,12 +19,12 @@ public class Utilizador {
     @Column(name = "uti_nome")
     private String nome;
 
-    @Column(name = "uti_email")
+    @Column(name = "uti_email", unique = true)
     private String email;
 
     @Column(name = "uti_password")
     private String password;
 
-    @Column(name = "uti_telefone")
-    private String telefone;
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL)
+    private List<Reporte> reportes;
 }

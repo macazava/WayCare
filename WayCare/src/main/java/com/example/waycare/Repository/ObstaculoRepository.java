@@ -1,5 +1,5 @@
-package repository;
-import models.Obstaculo;
+package com.example.waycare.Repository;
+import com.example.waycare.models.Obstaculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 

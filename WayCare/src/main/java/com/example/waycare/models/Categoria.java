@@ -1,7 +1,10 @@
-package models;
+package com.example.waycare.models;
 
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.math.BigInteger;
+import java.util.List;
 
 @Entity
 @Table(name = "categoria")
@@ -9,6 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Categoria {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cat_id")
@@ -17,7 +21,8 @@ public class Categoria {
     @Column(name = "cat_nome")
     private String nome;
 
-    @Column(name = "cat_descricao")
-    private String descricao;
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    private List<Obstaculo> obstaculos;
 }
+
 
