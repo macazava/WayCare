@@ -1,4 +1,4 @@
-# 👥 Personas e Guiões — Projeto WayCare
+# Personas e Guiões — Projeto WayCare
 
 Esta secção apresenta as **personas** (perfis de utilizadores) e os **guiões** (cenários de utilização) da aplicação **WayCare**.  
 A WayCare é colaborativa e permite aos cidadãos **partilhar e visualizar obstáculos urbanos** que dificultam a mobilidade — sem contacto direto com autoridades.  
@@ -6,7 +6,7 @@ O objetivo é **promover empatia, prevenção e planeamento de trajetos seguros*
 
 ---
 
-## 👤 Personas
+##  Personas
 
 ### 👩‍🦽 Maria Vargas
 
@@ -65,9 +65,9 @@ O objetivo é **promover empatia, prevenção e planeamento de trajetos seguros*
 
 ---
 
-## 🎬 Guiões (Cenários de Utilização)
+##  Guiões (Cenários de Utilização)
 
-### 🧩 Maria evita um obstáculo graças a um alerta
+### Maria evita um obstáculo graças a um alerta
 
 **Persona:** Maria Vargas  
 **Contexto:**  
@@ -84,7 +84,7 @@ Maria chega em segurança, e outros utilizadores beneficiam da atualização.
 
 ---
 
-### 🧩 Cássia planeia um trajeto seguro para a mãe
+### Cássia planeia um trajeto seguro para a mãe
 
 **Persona:** Cássia Baptista  
 **Contexto:**  
@@ -101,7 +101,7 @@ A mãe de Cássia chega ao destino sem dificuldades, e ambas sentem-se mais segu
 
 ---
 
-### 🧩 Daniel contribui para a comunidade
+### Daniel contribui para a comunidade
 
 **Persona:** Daniel Paulo  
 **Contexto:**  
@@ -118,7 +118,7 @@ Outros utilizadores recebem o alerta e desviam-se em segurança, evitando riscos
 
 ---
 
-### 🧩 Consulta colaborativa do mapa urbano
+###  Consulta colaborativa do mapa urbano
 
 **Contexto geral:**  
 Vários utilizadores abrem o mapa da WayCare e veem os pontos reportados pela comunidade.  
