@@ -8,23 +8,13 @@ classDiagram
         +id: Long
         +nome: String
         +email: String
-        +senha: String
-        +tipo: String
     }
 
-    class Ocorrencia {
+    class Reporte {
         +id: Long
         +descricao: String
         +data: Date
-        +estado: String
-        +prioridade: String
-    }
-
-    class Localizacao {
-        +id: Long
-        +latitude: Double
-        +longitude: Double
-        +endereco: String
+        +foto: String
     }
 
     class Comentario {
@@ -33,13 +23,29 @@ classDiagram
         +data: Date
     }
 
-    class Admin {
+    class Categoria {
         +id: Long
-        +nivelPermissao: Int
+        +nome: String
+        +descricao: String
     }
 
-    Utilizador "1" --> "0..*" Ocorrencia : reporta
-    Ocorrencia "1" --> "1" Localizacao : ocorre_em
-    Ocorrencia "1" --> "0..*" Comentario : tem
-    Admin --> Utilizador : herda
-```
+    class Obstaculo {
+        +id: Long
+        +localizacao: String
+        +tipo: String
+    }
+
+    class Notificacao {
+        +id: Long
+        +mensagem: String
+        +dataEnvio: Date
+    }
+
+    %% RELAÇÕES (iguais às do teu diagrama desenhado)
+
+    Utilizador "1" --> "0..*" Reporte : cria
+    Utilizador "1" --> "0..*" Comentario : escreve
+    Reporte "1" --> "1" Obstaculo : descreve
+    Reporte "1" --> "0..*" Comentario : recebe
+    Reporte "1" --> "0..*" Notificacao : gera
+    Obstaculo "1" --> "1" Categoria : pertence
