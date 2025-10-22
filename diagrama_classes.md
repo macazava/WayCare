@@ -13,11 +13,18 @@ direction LR
     class Categoria {}
     class Notificacao {}
 
-    %% Relações principais (iguais ao teu diagrama)
+    Relações principais 
     Utilizador "1" --> "0..*" Reporte : cria
     Utilizador "1" --> "0..*" Comentario : escreve
     Reporte "1" --> "1" Obstaculo : descreve
     Reporte "1" --> "0..*" Comentario : recebe
     Reporte "1" --> "0..*" Notificacao : gera
     Obstaculo "1" --> "1" Categoria : pertence
-
+```
+# Relações principais
+    Utilizador "1" --> "0..*" Reporte : cria
+    Utilizador "1" --> "0..*" Comentario : escreve
+    Reporte "1" --> "1" Obstaculo : descreve
+    Reporte "1" --> "0..*" Comentario : recebe
+    Reporte "1" --> "0..*" Notificacao : gera
+    Obstaculo "1" --> "1" Categoria : pertence
