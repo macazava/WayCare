@@ -10,6 +10,7 @@ import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.LoginScreen
 import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.ProfileScreen
 import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.RegisterScreen
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
+import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreenSuccess
 
 
 @Composable
@@ -24,6 +25,7 @@ fun AppNavHost(navController: NavHostController) {
         composable("register") { RegisterScreen(navController) }
         composable("profile") { ProfileScreen (navController) }
         composable("report") { ReportScreen(navController) }
+        composable("reportSuccess"){ ReportScreenSuccess(navController) }
         // Depois adicionar mais rotas aqui: login, home, reportar, mapa, etc.
     }
 }
