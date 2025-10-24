@@ -1,5 +1,5 @@
 package com.example.waycare.models;
-
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -22,6 +22,7 @@ public class Localizacao {
     private Double longitude;
 
     @OneToOne(mappedBy = "localizacao")
+    @JsonBackReference
     private Reporte reporte;
 }
 

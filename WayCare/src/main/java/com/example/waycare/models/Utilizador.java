@@ -3,6 +3,8 @@ package com.example.waycare.models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 
 @Entity
 @Table(name = "utilizador")
@@ -26,5 +28,7 @@ public class Utilizador {
     private String password;
 
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Reporte> reportes;
 }
+
