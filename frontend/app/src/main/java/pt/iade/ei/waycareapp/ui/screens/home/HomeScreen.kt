@@ -22,7 +22,10 @@ import pt.iade.ei.waycareapp.R
 import androidx.compose.material3.Text
 import androidx.compose.material3.Button
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.MainActivity
+import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
 
 
 @Composable
@@ -116,3 +119,4 @@ fun GradientButton(text: String, onClick: () -> Unit) {
         }
     }
 }
+
