@@ -2,25 +2,28 @@ package pt.iade.ei.waycareapp.ui.screens.mapa
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.os.Bundle
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-
 
 @SuppressLint("MissingPermission")
 @Composable
@@ -29,52 +32,94 @@ fun MapaScreen() {
 
     // Configuração inicial do OSMDroid
     LaunchedEffect(Unit) {
-        Configuration.getInstance().load(context, context.getSharedPreferences("osmdroid", Context.MODE_PRIVATE))
+        Configuration.getInstance().load(
+            context,
+            context.getSharedPreferences("osmdroid", Context.MODE_PRIVATE)
+        )
     }
 
+    // Mapa real com marcador
     AndroidView(
         modifier = Modifier.fillMaxSize(),
-        factory = {
-            val mapView = MapView(it)
-            mapView.setTileSource(TileSourceFactory.MAPNIK)
-            mapView.setMultiTouchControls(true)
+        factory = { ctx ->
+            val mapView = MapView(ctx).apply {
+                setTileSource(TileSourceFactory.MAPNIK)
+                setMultiTouchControls(true)
 
-            // Ponto inicial: Lisboa
-            val startPoint = GeoPoint(38.7169, -9.1399)
-            mapView.controller.setZoom(15.0)
-            mapView.controller.setCenter(startPoint)
+                val startPoint = GeoPoint(38.7169, -9.1399)
+                controller.setZoom(15.0)
+                controller.setCenter(startPoint)
 
-            // Marcador
-            val marker = Marker(mapView)
-            marker.position = startPoint
-            marker.setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-            marker.title = "Estás aqui"
-            mapView.overlays.add(marker)
-
+                val marker = Marker(this).apply {
+                    position = startPoint
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                    title = "Estás aqui"
+                }
+                overlays.add(marker)
+            }
             mapView
         }
     )
 }
 
 
-/*criar um Preview simulado
-criar uma versão visual falsa da MapaScreen,
-só para mostrar no Preview, sem o mapa real.
-Assim se mantem a consistência visual e da para testar layout.*/
+// Preview simulado para layout e consistência visual
 @Composable
 fun MapaScreenPreviewFake() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = "Mapa aqui (simulação)",
-            color = Color.Gray
-        )
+    Column(modifier = Modifier.fillMaxSize()) {
+        Spacer(modifier = Modifier.height(25.dp))
+
+        // Topo com gradiente e título
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(80.dp)
+                .background(
+                    brush = Brush.horizontalGradient(
+                        colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
+                    ),
+                    shape = RoundedCornerShape(12.dp)
+                ),
+            contentAlignment = Alignment.CenterStart
+        ) {
+            Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+
+                Spacer(modifier = Modifier.width(8.dp))
+                Column {
+                    Text(
+                        text = "WayCare",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFF8F8F8),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    )
+                    Text(
+                        text = "Mapa",
+                        fontSize = 20.sp,
+                        color = Color.White
+                    )
+
+                }
+
+            }
+        }
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFFDDDDDD)),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Mapa aqui (simulação)", color = Color.Gray)
+        }
     }
 }
+
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MapaScreenPreview() {
