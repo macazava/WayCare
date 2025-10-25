@@ -11,7 +11,6 @@ import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.navigation.AppNavHost
 import pt.iade.ei.waycareapp.ui.theme.WayCareTheme
 
-
 class MainActivity : ComponentActivity() {
     var devePedirPermissao = false
     fun pedirPermissaoSeNecessario() {
@@ -20,6 +19,7 @@ class MainActivity : ComponentActivity() {
                 Manifest.permission.ACCESS_FINE_LOCATION,
                 Manifest.permission.ACCESS_COARSE_LOCATION
             )
+
             val missing = permissions.filter {
                 ContextCompat.checkSelfPermission(this, it) != PackageManager.PERMISSION_GRANTED
             }
@@ -27,6 +27,7 @@ class MainActivity : ComponentActivity() {
             if (missing.isNotEmpty()) {
                 ActivityCompat.requestPermissions(this, missing.toTypedArray(), 1001)
             }
+
             devePedirPermissao = false
         }
     }
@@ -38,5 +39,7 @@ class MainActivity : ComponentActivity() {
                 AppNavHost(navController = navController, activity = this)
             }
         }
+
     }
 }
+

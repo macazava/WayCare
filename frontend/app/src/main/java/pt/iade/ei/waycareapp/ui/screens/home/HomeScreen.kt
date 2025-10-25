@@ -15,18 +15,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.R
 import androidx.compose.material3.Text
 import androidx.compose.material3.Button
+import androidx.compose.runtime.LaunchedEffect
+import pt.iade.ei.waycareapp.MainActivity
 
 
 @Composable
-fun HomeScreen(navController: NavController) {
+fun HomeScreen(navController: NavController, activity: MainActivity) {
+    LaunchedEffect(Unit) {
+        activity.devePedirPermissao = true
+        activity.pedirPermissaoSeNecessario()
+    }
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -111,11 +115,4 @@ fun GradientButton(text: String, onClick: () -> Unit) {
             Text(text = text, color = Color.White, fontSize = 16.sp)
         }
     }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun HomeScreenPreview() {
-    val fakeNavController = rememberNavController()
-    HomeScreen(navController = fakeNavController)
 }

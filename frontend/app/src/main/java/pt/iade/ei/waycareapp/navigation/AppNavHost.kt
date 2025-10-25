@@ -11,17 +11,18 @@ import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.ProfileScreen
 import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.RegisterScreen
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreenSuccess
+import pt.iade.ei.waycareapp.MainActivity
 
 
 @Composable
-fun AppNavHost(navController: NavHostController) {
+fun AppNavHost(navController: NavHostController, activity: MainActivity) {
     NavHost(
         navController = navController,
         startDestination = "welcome"
     ) {
         composable("welcome") { WelcomeScreen(navController) }
         composable("login") { LoginScreen(navController) }
-        composable("home") { HomeScreen(navController ) }
+        composable("home") { HomeScreen(navController = navController, activity = activity ) }
         composable("register") { RegisterScreen(navController) }
         composable("profile") { ProfileScreen (navController) }
         composable("report") { ReportScreen(navController) }
