@@ -21,7 +21,7 @@ fun AppNavHost(navController: NavHostController) {
     ) {
         composable("welcome") { WelcomeScreen(navController) }
         composable("login") { LoginScreen(navController) }
-        composable("home") { HomeScreen(navController) }
+        composable("home") { HomeScreen(navController ) }
         composable("register") { RegisterScreen(navController) }
         composable("profile") { ProfileScreen (navController) }
         composable("report") { ReportScreen(navController) }

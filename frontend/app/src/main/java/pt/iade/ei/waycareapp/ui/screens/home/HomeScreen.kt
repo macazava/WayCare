@@ -21,6 +21,9 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.R
+import androidx.compose.material3.Text
+import androidx.compose.material3.Button
+
 
 @Composable
 fun HomeScreen(navController: NavController) {
