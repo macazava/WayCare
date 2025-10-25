@@ -29,7 +29,6 @@ fun ProfileScreen(navController: NavController) {
     var locationAccess by remember { mutableStateOf(true) }
     var userType by remember { mutableStateOf("mobilidade") }
 
-
     Column(
         modifier = Modifier
             .fillMaxSize()
