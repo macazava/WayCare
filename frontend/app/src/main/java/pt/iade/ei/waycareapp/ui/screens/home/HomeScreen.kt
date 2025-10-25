@@ -77,16 +77,10 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
             onClick = { navController.navigate("report") }
         )
 
-        // Botão: Visualização em Mapa
+        // Botão: Mapa
         GradientButton(
-            text = "Visualização em Mapa",
+            text = "Mapa",
             onClick = { navController.navigate("mapView") }
-        )
-
-        // Botão: Planeamento de Rota
-        GradientButton(
-            text = "Planeamento de Rota",
-            onClick = { navController.navigate("routePlanner") }
         )
     }
 }
