@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material.icons.filled.FilterList
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -19,18 +20,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavController
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 
+@OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("MissingPermission")
 @Composable
-fun MapaScreen() {
+fun MapaScreen(navController: NavController) {
     val context = LocalContext.current
 
-    // Configuração inicial do OSMDroid
     LaunchedEffect(Unit) {
         Configuration.getInstance().load(
             context,
@@ -38,84 +40,178 @@ fun MapaScreen() {
         )
     }
 
-    // Mapa real com marcador
-    AndroidView(
-        modifier = Modifier.fillMaxSize(),
-        factory = { ctx ->
-            val mapView = MapView(ctx).apply {
-                setTileSource(TileSourceFactory.MAPNIK)
-                setMultiTouchControls(true)
+    Box(modifier = Modifier.fillMaxSize()) {
+        // 🗺️ Mapa real
+        AndroidView(
+            modifier = Modifier.fillMaxSize(),
+            factory = { ctx ->
+                MapView(ctx).apply {
+                    setTileSource(TileSourceFactory.MAPNIK)
+                    setMultiTouchControls(true)
 
-                val startPoint = GeoPoint(38.7169, -9.1399)
-                controller.setZoom(15.0)
-                controller.setCenter(startPoint)
+                    val startPoint = GeoPoint(38.7169, -9.1399)
+                    controller.setZoom(15.0)
+                    controller.setCenter(startPoint)
 
-                val marker = Marker(this).apply {
-                    position = startPoint
-                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                    title = "Estás aqui"
+                    val marker = Marker(this).apply {
+                        position = startPoint
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                        title = "Estás aqui"
+                    }
+                    overlays.add(marker)
                 }
-                overlays.add(marker)
             }
-            mapView
+        )
+
+        // 🎛️ Layout superior
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            MapaHeader(navController)
         }
-    )
+    }
 }
 
-
-// Preview simulado para layout e consistência visual
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MapaScreenPreviewFake() {
-    Column(modifier = Modifier.fillMaxSize()) {
-        Spacer(modifier = Modifier.height(25.dp))
-
-        // Topo com gradiente e título
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
-                    ),
-                    shape = RoundedCornerShape(12.dp)
+fun MapaHeader(navController: NavController) {
+    Spacer(modifier = Modifier.height(15.dp))
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .background(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
                 ),
-            contentAlignment = Alignment.CenterStart
+                shape = RoundedCornerShape(12.dp)
+            ),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-
-                Spacer(modifier = Modifier.width(8.dp))
+            // 🔙 Botão voltar + título
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                IconButton(onClick = { navController.navigate("home") }) {
+                    Icon(
+                        imageVector = Icons.Default.ArrowBack,
+                        contentDescription = "Voltar",
+                        tint = Color.White
+                    )
+                }
+                Spacer(modifier = Modifier.width(12.dp))
                 Column {
                     Text(
                         text = "WayCare",
                         fontSize = 28.sp,
                         fontWeight = FontWeight.Bold,
-                        color = Color(0xFFF8F8F8),
-                        modifier = Modifier
-                            .fillMaxWidth()
+                        color = Color(0xFFF8F8F8)
                     )
                     Text(
                         text = "Mapa",
                         fontSize = 20.sp,
                         color = Color.White
                     )
-
                 }
+            }
 
+            //Botão de filtro
+            FilterDropdown()
+        }
+    }
+}
+
+@Composable
+fun FilterDropdown() {
+    var expanded by remember { mutableStateOf(false) }
+    var selectedOption by remember { mutableStateOf("") }
+
+    Box {
+        // Botão filtro
+        TextButton(onClick = { expanded = true }) {
+            Icon(
+                imageVector = Icons.Default.FilterList,
+                contentDescription = null,
+                tint = Color.White,
+                modifier = Modifier.size(30.dp)
+            )
+        }
+
+        // Menu suspenso
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            listOf("Prioridade Baixa", "Prioridade Média", "Prioridade Alta", "Mostrar Tudo", "Mostrar Rampas Inexistentes", "Mostrar Passeios Danificados", "Mostrar passadeiras Mal sinalizadas", "Mostrar Zonas Perigosas").forEach { option ->
+                DropdownMenuItem(
+                    text = { Text(option) },
+                    onClick = {
+                        selectedOption = option
+                        expanded = false
+                        //aplicar lógica real de filtro
+                    }
+                )
             }
         }
-        Box(
+    }
+}
+
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun MapaHeaderPreview() {
+    Spacer(modifier = Modifier.height(15.dp))
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp)
+            .background(
+                brush = Brush.horizontalGradient(
+                    colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
+                ),
+                shape = RoundedCornerShape(12.dp)
+            ),
+        contentAlignment = Alignment.CenterStart
+    ) {
+        Row(
             modifier = Modifier
                 .fillMaxSize()
-                .background(Color(0xFFDDDDDD)),
-            contentAlignment = Alignment.Center
+                .padding(horizontal = 16.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text("Mapa aqui (simulação)", color = Color.Gray)
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Icon(
+                    imageVector = Icons.Default.ArrowBack,
+                    contentDescription = "Voltar",
+                    tint = Color.White
+                )
+                Spacer(modifier = Modifier.width(12.dp))
+                Column {
+                    Text(
+                        text = "WayCare",
+                        fontSize = 28.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFFF8F8F8)
+                    )
+                    Text(
+                        text = "Mapa",
+                        fontSize = 20.sp,
+                        color = Color.White
+                    )
+                }
+            }
+
+            FilterDropdown()
         }
     }
 }
@@ -123,8 +219,20 @@ fun MapaScreenPreviewFake() {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun MapaScreenPreview() {
-    MapaScreenPreviewFake()
+    Box(modifier = Modifier.fillMaxSize()) {
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color(0xFFDDDDDD))
+        )
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            MapaHeaderPreview()
+        }
+    }
 }
-
-
-
