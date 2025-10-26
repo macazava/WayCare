@@ -2,6 +2,7 @@ package pt.iade.ei.waycareapp.ui.screens.mapa
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.location.Location
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,6 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
+import com.google.android.gms.location.LocationServices
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
@@ -32,16 +34,27 @@ import org.osmdroid.views.overlay.Marker
 @Composable
 fun MapaScreen(navController: NavController) {
     val context = LocalContext.current
+    var userLocation by remember { mutableStateOf<GeoPoint?>(null) }
 
+    // Configuração do OSMDroid + localização
     LaunchedEffect(Unit) {
+        Configuration.getInstance().userAgentValue = context.packageName
         Configuration.getInstance().load(
             context,
             context.getSharedPreferences("osmdroid", Context.MODE_PRIVATE)
         )
+
+        val fusedLocationClient = LocationServices.getFusedLocationProviderClient(context)
+        fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
+            location?.let {
+                userLocation = GeoPoint(it.latitude, it.longitude)
+            } ?: run {
+                userLocation = GeoPoint(38.7169, -9.1399) // Fallback para Lisboa
+            }
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        // 🗺️ Mapa real
         AndroidView(
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
@@ -49,7 +62,7 @@ fun MapaScreen(navController: NavController) {
                     setTileSource(TileSourceFactory.MAPNIK)
                     setMultiTouchControls(true)
 
-                    val startPoint = GeoPoint(38.7169, -9.1399)
+                    val startPoint = userLocation ?: GeoPoint(38.7169, -9.1399)
                     controller.setZoom(15.0)
                     controller.setCenter(startPoint)
 
@@ -63,7 +76,6 @@ fun MapaScreen(navController: NavController) {
             }
         )
 
-        // 🎛️ Layout superior
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -99,7 +111,6 @@ fun MapaHeader(navController: NavController) {
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            // 🔙 Botão voltar + título
             Row(verticalAlignment = Alignment.CenterVertically) {
                 IconButton(onClick = { navController.navigate("home") }) {
                     Icon(
@@ -124,7 +135,6 @@ fun MapaHeader(navController: NavController) {
                 }
             }
 
-            //Botão de filtro
             FilterDropdown()
         }
     }
@@ -136,7 +146,6 @@ fun FilterDropdown() {
     var selectedOption by remember { mutableStateOf("") }
 
     Box {
-        // Botão filtro
         TextButton(onClick = { expanded = true }) {
             Icon(
                 imageVector = Icons.Default.FilterList,
@@ -146,25 +155,32 @@ fun FilterDropdown() {
             )
         }
 
-        // Menu suspenso
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false }
         ) {
-            listOf("Prioridade Baixa", "Prioridade Média", "Prioridade Alta", "Mostrar Tudo", "Mostrar Rampas Inexistentes", "Mostrar Passeios Danificados", "Mostrar passadeiras Mal sinalizadas", "Mostrar Zonas Perigosas").forEach { option ->
+            listOf(
+                "Prioridade Baixa",
+                "Prioridade Média",
+                "Prioridade Alta",
+                "Mostrar Tudo",
+                "Mostrar Rampas Inexistentes",
+                "Mostrar Passeios Danificados",
+                "Mostrar passadeiras Mal sinalizadas",
+                "Mostrar Zonas Perigosas"
+            ).forEach { option ->
                 DropdownMenuItem(
                     text = { Text(option) },
                     onClick = {
                         selectedOption = option
                         expanded = false
-                        //aplicar lógica real de filtro
+                        // aplicar lógica real de filtro
                     }
                 )
             }
         }
     }
 }
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -236,3 +252,4 @@ fun MapaScreenPreview() {
         }
     }
 }
+

@@ -54,6 +54,7 @@ dependencies {
     implementation("androidx.compose.material:material-icons-extended:1.6.0")
     implementation("androidx.compose.material3:material3:1.2.0")
     implementation("org.osmdroid:osmdroid-android:6.1.16")
+    implementation("com.google.android.gms:play-services-location:21.0.1")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
