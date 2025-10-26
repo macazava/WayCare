@@ -71,7 +71,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
             // Botão de ação
             BotaoGradiente(
                 texto = "Voltar ao Mapa",
-                onClick = {onClose}
+                onClick = onClose
             )
         }
     }
