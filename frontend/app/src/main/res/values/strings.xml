@@ -44,4 +44,15 @@
     <string name="report_detail_reference">- Referência: #REP-2025–0142</string>
     <string name="report_detail_timestamp">Enviado a 25/9/2025 - 10h40</string>
     <string name="report_success_button">Voltar ao início</string>
+    <string name="map_screen_title">Mapa</string>
+    <string name="filter_button_label">Filtro</string>
+    <string name="filter_priority_low">Prioridade Baixa</string>
+    <string name="filter_priority_medium">Prioridade Média</string>
+    <string name="filter_priority_high">Prioridade Alta</string>
+    <string name="filter_show_all">Mostrar Tudo</string>
+    <string name="filter_missing_ramps">Mostrar Rampas Inexistentes</string>
+    <string name="filter_damaged_sidewalks">Mostrar Passeios Danificados</string>
+    <string name="filter_bad_crosswalks">Mostrar passadeiras Mal sinalizadas</string>
+    <string name="filter_danger_zones">Mostrar Zonas Perigosas</string>
+    <string name="marker_title">Estás aqui</string>
 </resources>
