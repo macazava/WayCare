@@ -55,4 +55,7 @@
     <string name="filter_bad_crosswalks">Mostrar passadeiras Mal sinalizadas</string>
     <string name="filter_danger_zones">Mostrar Zonas Perigosas</string>
     <string name="marker_title">Estás aqui</string>
+    <string name="label_descricao">Descrição:</string>
+    <string name="label_reportado_por">Reportado por: %1$s - %2$d reporte(s)</string>
+    <string name="botao_voltar_mapa">Voltar ao Mapa</string>
 </resources>
