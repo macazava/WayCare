@@ -17,7 +17,6 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -39,6 +38,7 @@ fun MapaScreen(navController: NavController) {
     val context = LocalContext.current
     var userLocation by remember { mutableStateOf<GeoPoint?>(null) }
     var reporteSelecionado by remember { mutableStateOf<Reporte?>(null) }
+    var filtroSelecionado by remember { mutableStateOf("Mostrar Tudo") } //guarda a opção escolhida no dropdown. Por exemplo: "Prioridade Alta", esta como default com mostrar tudo
 
     // Configuração do OSMDroid + localização
     LaunchedEffect(Unit) {
@@ -77,7 +77,23 @@ fun MapaScreen(navController: NavController) {
                     }
                     overlays.add(marker)
 
-                    mockReportes.forEach { reporte ->
+                    //verifica o valor do filtro e seleciona apenas os reportes que correspondem à condição.
+                    val reportesFiltrados = mockReportes.filter { reporte ->
+                        when (filtroSelecionado) {
+                            "Mostrar Tudo" -> true
+                            "Prioridade Alta" -> reporte.obstaculo.grauPerigo == "Alto"
+                            "Prioridade Média" -> reporte.obstaculo.grauPerigo == "Médio"
+                            "Prioridade Baixa" -> reporte.obstaculo.grauPerigo == "Baixo"
+                            "Mostrar Rampas Inexistentes" -> reporte.obstaculo.categoria.nome.contains("Rampa", ignoreCase = true)
+                            "Mostrar Passeios Danificados" -> reporte.obstaculo.categoria.nome.contains("Passeio", ignoreCase = true)
+                            "Mostrar passadeiras Mal sinalizadas" -> reporte.obstaculo.categoria.nome.contains("Passadeira", ignoreCase = true)
+                            "Mostrar Zonas Perigosas" -> reporte.obstaculo.categoria.nome.contains("Zonas", ignoreCase = true)
+                            else -> true
+                        }
+                    }
+
+                    //adicionar os pins ao mapa com um forEach:
+                    reportesFiltrados.forEach { reporte ->
                         val pin = Marker(this).apply {
                             position = GeoPoint(reporte.localizacao.latitude, reporte.localizacao.longitude)
                             title = reporte.obstaculo.categoria.nome
@@ -101,7 +117,12 @@ fun MapaScreen(navController: NavController) {
             verticalArrangement = Arrangement.Top,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            MapaHeader(navController)
+            /*Comunicação entre componentes
+            Passamos esse estado para o MapaHeader, que por sua vez o passa para o FilterDropdown:
+            quando o utilizador escolhe uma opção no menu, o valor de filtroSelecionado é atualizado.*/
+            MapaHeader(navController, filtroSelecionado) { novoFiltro ->
+                filtroSelecionado = novoFiltro
+            }
         }
 
         reporteSelecionado?.let {
@@ -112,7 +133,7 @@ fun MapaScreen(navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MapaHeader(navController: NavController) {
+fun MapaHeader(navController: NavController, filtroSelecionado: String, onFiltroChange: (String) -> Unit) {
     Spacer(modifier = Modifier.height(15.dp))
     Box(
         modifier = Modifier
@@ -157,15 +178,14 @@ fun MapaHeader(navController: NavController) {
                 }
             }
 
-            FilterDropdown()
+            FilterDropdown(filtroSelecionado, onFiltroChange)
         }
     }
 }
 
 @Composable
-fun FilterDropdown() {
+fun FilterDropdown(filtroSelecionado: String, onFiltroChange: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
-    var selectedOption by remember { mutableStateOf("") }
 
     Box {
         TextButton(onClick = { expanded = true }) {
@@ -194,83 +214,11 @@ fun FilterDropdown() {
                 DropdownMenuItem(
                     text = { Text(option) },
                     onClick = {
-                        selectedOption = option
+                        onFiltroChange(option)
                         expanded = false
-                        // aplicar lógica real de filtro
                     }
                 )
             }
-        }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun MapaHeaderPreview() {
-    Spacer(modifier = Modifier.height(15.dp))
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(80.dp)
-            .background(
-                brush = Brush.horizontalGradient(
-                    colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
-                ),
-                shape = RoundedCornerShape(12.dp)
-            ),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        Row(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(horizontal = 16.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.SpaceBetween
-        ) {
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                Icon(
-                    imageVector = Icons.Default.ArrowBack,
-                    contentDescription = "Voltar",
-                    tint = Color.White
-                )
-                Spacer(modifier = Modifier.width(12.dp))
-                Column {
-                    Text(
-                        text = "WayCare",
-                        fontSize = 28.sp,
-                        fontWeight = FontWeight.Bold,
-                        color = Color(0xFFF8F8F8)
-                    )
-                    Text(
-                        text = "Mapa",
-                        fontSize = 20.sp,
-                        color = Color.White
-                    )
-                }
-            }
-
-            FilterDropdown()
-        }
-    }
-}
-
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun MapaScreenPreview() {
-    Box(modifier = Modifier.fillMaxSize()) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFFDDDDDD))
-        )
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            MapaHeaderPreview()
         }
     }
 }
