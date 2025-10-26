@@ -28,6 +28,9 @@ import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import pt.iade.ei.waycareapp.data.preview.mockReportes
+import pt.iade.ei.waycareapp.data.model.Reporte
+import pt.iade.ei.waycareapp.ui.component.CardObstaculo
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("MissingPermission")
@@ -35,6 +38,7 @@ import org.osmdroid.views.overlay.Marker
 fun MapaScreen(navController: NavController) {
     val context = LocalContext.current
     var userLocation by remember { mutableStateOf<GeoPoint?>(null) }
+    var reporteSelecionado by remember { mutableStateOf<Reporte?>(null) }
 
     // Configuração do OSMDroid + localização
     LaunchedEffect(Unit) {
@@ -72,6 +76,20 @@ fun MapaScreen(navController: NavController) {
                         title = "Estás aqui"
                     }
                     overlays.add(marker)
+
+                    mockReportes.forEach { reporte ->
+                        val pin = Marker(this).apply {
+                            position = GeoPoint(reporte.localizacao.latitude, reporte.localizacao.longitude)
+                            title = reporte.obstaculo.categoria.nome
+                            subDescription = reporte.comentario
+                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                            setOnMarkerClickListener { _, _ ->
+                                reporteSelecionado = reporte
+                                true
+                            }
+                        }
+                        overlays.add(pin)
+                    }
                 }
             }
         )
@@ -84,6 +102,10 @@ fun MapaScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             MapaHeader(navController)
+        }
+
+        reporteSelecionado?.let {
+            CardObstaculo(reporte = it, onClose = { reporteSelecionado = null })
         }
     }
 }
@@ -252,4 +274,3 @@ fun MapaScreenPreview() {
         }
     }
 }
-
