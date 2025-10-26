@@ -107,7 +107,7 @@ fun ReportScreenSuccess(navController: NavController) {
             Text("- Prioridade: Alta", fontSize = 16.sp, color = Color.DarkGray)
             Text("- Localização: Rua da Liberdade, 123 Lisboa", fontSize = 16.sp, color = Color.DarkGray)
             Text("- Referência: #REP-2025–0142", fontSize = 16.sp, color = Color.DarkGray)
-            Text("Enviado a 25/9/2025 - 10h40", fontSize = 14.sp, color = Color.Gray)
+            Text("Enviado a 25/9/2025 - 10h50", fontSize = 14.sp, color = Color.Gray)
         }
 
 
