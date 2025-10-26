@@ -73,7 +73,7 @@ fun MapaScreen(navController: NavController) {
                     val marker = Marker(this).apply {
                         position = startPoint
                         setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                        title = "Estás aqui"
+                        title = "Encontra-se aqui"
                     }
                     overlays.add(marker)
 

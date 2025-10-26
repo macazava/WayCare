@@ -21,19 +21,5 @@ val mockReportes = listOf(
         data = LocalDateTime.now(),
         estado = "Pendente",
         comentario = "Muito difícil para cadeiras de rodas"
-    ),
-    Reporte(
-        id = 2,
-        utilizador = Utilizador(2, "João", "joao@email.com", "1234", "912123456"),
-        obstaculo = Obstaculo(
-            id = 2,
-            categoria = Categoria(1, "Rampa Inexistente", "rampa inexistente"),
-            descricao = "Sem rampa na entrada",
-            grauPerigo = "Médio"
-        ),
-        localizacao = Localizacao(1, 38.717, -9.139, "Rua A"),
-        data = LocalDateTime.now(),
-        estado = "Pendente",
-        comentario = "Muito difícil para cadeiras de rodas"
     )
 )

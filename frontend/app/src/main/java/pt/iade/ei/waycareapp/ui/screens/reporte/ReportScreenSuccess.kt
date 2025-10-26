@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.tooling.preview.Preview
+import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 
 @Composable
 fun ReportScreenSuccess(navController: NavController) {
@@ -112,31 +113,10 @@ fun ReportScreenSuccess(navController: NavController) {
 
         Spacer(modifier = Modifier.height(70.dp))
 
-        Button(
-            onClick = { navController.navigate("home") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(50),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Transparent
-            ),
-            contentPadding = PaddingValues()
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFFE91E63), Color(0xFF2196F3))
-                        ),
-                        shape = RoundedCornerShape(50)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Voltar ao início", color = Color.White, fontSize = 16.sp)
-            }
-        }
+        BotaoGradiente(
+            texto = "Voltar ao início",
+            onClick = { navController.navigate("home") }
+        )
     }
 }
 

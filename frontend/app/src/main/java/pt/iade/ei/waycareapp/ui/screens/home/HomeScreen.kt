@@ -25,6 +25,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.MainActivity
+import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
 
 
@@ -72,45 +73,18 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
         Spacer(modifier = Modifier.height(55.dp))
 
         // Botão: Fazer Reporte
-        GradientButton(
-            text = "Fazer Reporte",
+        BotaoGradiente(
+            texto = "Fazer Reporte",
             onClick = { navController.navigate("report") }
         )
 
         // Botão: Mapa
-        GradientButton(
-            text = "Mapa",
+        BotaoGradiente(
+            texto = "Mapa",
             onClick = { navController.navigate("mapView") }
         )
     }
 }
 
-@Composable
-fun GradientButton(text: String, onClick: () -> Unit) {
-    Button(
-        onClick = onClick,
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(60.dp),
-        shape = RoundedCornerShape(12.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = Color.Transparent
-        ),
-        contentPadding = PaddingValues()
-    ) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
-                    ),
-                    shape = RoundedCornerShape(12.dp)
-                ),
-            contentAlignment = Alignment.Center
-        ) {
-            Text(text = text, color = Color.White, fontSize = 16.sp)
-        }
-    }
-}
+
 

@@ -27,6 +27,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import org.w3c.dom.Text
 import pt.iade.ei.waycareapp.R
+import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 
 @Composable
 fun RegisterScreen(navController: NavController) {
@@ -137,31 +138,10 @@ fun RegisterScreen(navController: NavController) {
         }
 
         // Botão de registo com gradiente
-        Button(
-            onClick = { navController.navigate("home") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(50),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Transparent
-            ),
-            contentPadding = PaddingValues()
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFFE91E63), Color(0xFF2196F3))
-                        ),
-                        shape = RoundedCornerShape(50)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("registar-me", color = Color.White, fontSize = 16.sp)
-            }
-        }
+        BotaoGradiente(
+            texto = "Registar-me",
+            onClick = { navController.navigate("home") }
+        )
 
         Column (
             horizontalAlignment = Alignment.CenterHorizontally

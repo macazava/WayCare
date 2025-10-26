@@ -26,6 +26,7 @@ import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.R
+import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 
 @Composable
 fun LoginScreen(navController: NavController) {
@@ -137,31 +138,10 @@ Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
         Spacer(modifier = Modifier.height(32.dp))
 
         // Botão de login com gradiente
-        Button(
-            onClick = { navController.navigate("home") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(50.dp),
-            shape = RoundedCornerShape(50),
-            colors = ButtonDefaults.buttonColors(
-                containerColor = Color.Transparent
-            ),
-            contentPadding = PaddingValues()
-        ) {
-            Box(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .background(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFFE91E63), Color(0xFF2196F3))
-                        ),
-                        shape = RoundedCornerShape(50)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Login", color = Color.White, fontSize = 16.sp)
-            }
-        }
+        BotaoGradiente(
+            texto = "Login",
+            onClick = { navController.navigate("home") }
+        )
 
         Spacer(modifier = Modifier.height(16.dp))
         Row {

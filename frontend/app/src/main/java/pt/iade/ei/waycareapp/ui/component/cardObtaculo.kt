@@ -72,26 +72,10 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
             Spacer(modifier = Modifier.height(20.dp))
 
             // Botão de ação
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(48.dp)
-                    .background(
-                        brush = Brush.horizontalGradient(
-                            colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
-                        ),
-                        shape = RoundedCornerShape(8.dp)
-                    ),
-                contentAlignment = Alignment.Center
-            ) {
-                TextButton(onClick = onClose) {
-                    Text(
-                        text = "Voltar ao Mapa",
-                        fontSize = 16.sp,
-                        color = Color.White
-                    )
-                }
-            }
+            BotaoGradiente(
+                texto = "Voltar ao Mapa",
+                onClick = {onClose}
+            )
         }
     }
 }
