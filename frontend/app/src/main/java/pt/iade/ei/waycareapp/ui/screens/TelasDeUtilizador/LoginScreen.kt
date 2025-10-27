@@ -24,12 +24,46 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.R
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
+
+
 
 @Composable
 fun LoginScreen(navController: NavController) {
+    val viewModel: LoginViewModel = viewModel()
+
+    TextField(
+        value = viewModel.email,
+        onValueChange = { viewModel.email = it },
+        label = { Text("Email") }
+    )
+
+    TextField(
+        value = viewModel.password,
+        onValueChange = { viewModel.password = it },
+        label = { Text("Password") }
+    )
+
+    Button(
+        onClick = { viewModel.fazerLogin() },
+        enabled = !viewModel.isLoading
+    ) {
+        Text("Entrar")
+    }
+
+    viewModel.erro?.let {
+        Text(text = it, color = Color.Red)
+    }
+
+    if (viewModel.loginSucesso) {
+        // Navegar para Home
+        navController.navigate("home")
+    }
+
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
