@@ -150,7 +150,7 @@ Este bloco de cima permite alternar entre mostrar e esconder a palavra-passe:
     - Se passwordVisible for true → mostra o texto normalmente.
     - Se for false → oculta o texto com bolinhas (PasswordVisualTransformation).
 - trailingIcon: adiciona um ícone à direita do campo.
-    - O ícone muda entre Visibility (👁️) e VisibilityOff (🚫👁️) conforme o estado.
+    - O ícone muda entre Visibility e VisibilityOff conforme o estado.
     - IconButton permite que o utilizador clique para alternar o estado de visibilidade.
     - O estado é guardado na variável passwordVisible, que é invertida ao clicar.
 Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
