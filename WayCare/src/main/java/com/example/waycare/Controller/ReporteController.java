@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/reportes")
@@ -22,7 +23,7 @@ public class ReporteController {
         return ResponseEntity.status(201).body(reporteService.criar(utiId, obsId, reporte));
     }
 
-    // Listar todos os reportes
+    // Lista todos os reportes
     @GetMapping
     public ResponseEntity<List<Reporte>> listarTodos() {
         return ResponseEntity.ok(reporteService.listarTodos());
@@ -44,14 +45,27 @@ public class ReporteController {
 
     // Atualizar estado (pendente, resolvido, etc.)
     @PutMapping("/{id}/estado")
-    public ResponseEntity<Reporte> atualizarEstado(@PathVariable Long id, @RequestParam String estado) {
+    public ResponseEntity<Reporte> atualizarEstado(@PathVariable Long id, @RequestBody Map<String, String> body) {
+        String estado = body.get("estado");
         return ResponseEntity.ok(reporteService.atualizarEstado(id, estado));
     }
+
+
 
     // Apagar reporte
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         reporteService.eliminar(id);
         return ResponseEntity.noContent().build();
+
+    }
+    @GetMapping("/mapa")
+    public ResponseEntity<List<Reporte>> listarParaMapa() {
+        return ResponseEntity.ok(reporteService.listarTodos());
+    }
+    @GetMapping("/mapa/tipo/{tipo}")
+    public ResponseEntity<List<Reporte>> listarPorTipo(@PathVariable String tipo) {
+        return ResponseEntity.ok(reporteService.listarPorTipo(tipo));
+
     }
 }

@@ -9,6 +9,7 @@ import com.example.waycare.models.Obstaculo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,6 +34,8 @@ public class ReporteService {
 
         reporte.setUtilizador(utilizador);
         reporte.setObstaculo(obstaculo);
+        reporte.setEstado("Pendente");
+        reporte.setData(LocalDate.now());
         return reporteRepository.save(reporte);
     }
 
@@ -54,6 +57,7 @@ public class ReporteService {
                 .orElseThrow(() -> new RuntimeException("Reporte não encontrado"));
         reporte.setEstado(novoEstado);
         return reporteRepository.save(reporte);
+
     }
 
     // Procurar por ID
@@ -68,5 +72,9 @@ public class ReporteService {
         }
         reporteRepository.deleteById(id);
     }
+    public List<Reporte> listarPorTipo(String tipo) {
+        return reporteRepository.findByObstaculoDescricaoContainingIgnoreCase(tipo);
+    }
+
 }
 

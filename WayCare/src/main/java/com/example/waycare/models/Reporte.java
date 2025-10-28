@@ -37,10 +37,11 @@ public class Reporte {
     private List<Fotografia> fotografias;
 
     @Column(name = "rep_estado")
-    private String estado;
+    private String estado = "Pendente"; //está pendente porque é o valor inicial
 
     @Column(name = "rep_data")
     private LocalDate data = LocalDate.now();
+    @Column String descricao; //descrição textual da imagem
 
 
 }
