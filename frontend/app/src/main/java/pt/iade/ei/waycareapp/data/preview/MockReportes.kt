@@ -18,7 +18,7 @@ val mockReportes = listOf(
             grauPerigo = "Médio"
         ),
         localizacao = Localizacao(1, 38.717, -9.139, "Rua A"),
-        data = LocalDateTime.now(),
+        data = LocalDateTime.now().toString(),
         estado = "Pendente",
         comentario = "Muito difícil para cadeiras de rodas"
     )
