@@ -23,8 +23,9 @@ import java.time.LocalDateTime
 @Composable
 fun ReportScreenSuccess(navController: NavController, reporte: Reporte) {
     val formatter = DateTimeFormatter.ofPattern("d/M/yyyy - HH:mm")
-    val dataFormatada = reporte.data.format(formatter)
-    val referencia = "#REP-${reporte.data.year}–${reporte.id.toString().padStart(4, '0')}"
+    val dataFormatada = LocalDateTime.parse(reporte.data).format(formatter)
+    val dataConvertida = LocalDateTime.parse(reporte.data)
+    val referencia = "#REP-${dataConvertida.year}–${reporte.id.toString().padStart(4, '0')}"
 
     Column(
         modifier = Modifier
@@ -138,7 +139,7 @@ fun ReportScreenSuccessPreview() {
             grauPerigo = "Alta"
         ),
         localizacao = Localizacao(1, 38.7169, -9.1399, "Rua da Liberdade, 123 Lisboa"),
-        data = LocalDateTime.now(),
+        data = LocalDateTime.now().toString(),
         estado = "Pendente",
         comentario = "Espaço insuficiente para cadeiras de rodas"
     )

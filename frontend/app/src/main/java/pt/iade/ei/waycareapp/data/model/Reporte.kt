@@ -8,7 +8,7 @@ data class Reporte(
     val utilizador: Utilizador,
     val obstaculo: Obstaculo,
     val localizacao: Localizacao,
-    val data: LocalDateTime,
+    val data: String,
     val estado: String,
     val comentario: String
 )

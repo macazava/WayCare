@@ -172,7 +172,6 @@ fun ReportScreen(navController: NavController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(5.dp))
 
         // Botão Enviar Reporte
         BotaoGradiente(
@@ -193,15 +192,19 @@ fun ReportScreen(navController: NavController) {
                         longitude = -9.1399,
                         endereco = "Rua da Liberdade, 123 Lisboa"
                     ),
-                    data = LocalDateTime.now(),
+                    data = LocalDateTime.now().toString(),
                     estado = "Pendente",
                     comentario = detalhesLocalizacao
                 )
 
-                navController.currentBackStackEntry?.savedStateHandle?.set("reporte", reporte)
+                navController.getBackStackEntry("reportSuccess")
+                    .savedStateHandle
+                    .set("reporte", reporte)
+
                 navController.navigate("reportSuccess")
             }
         )
+
     }
 }
 

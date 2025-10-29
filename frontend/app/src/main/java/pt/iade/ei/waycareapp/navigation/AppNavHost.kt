@@ -23,23 +23,28 @@ fun AppNavHost(navController: NavHostController, activity: MainActivity) {
     ) {
         composable("welcome") { WelcomeScreen(navController) }
         composable("login") { LoginScreen(navController) }
-        composable("home") { HomeScreen(navController = navController, activity = activity ) }
+        composable("home") { HomeScreen(navController = navController, activity = activity) }
         composable("register") { RegisterScreen(navController) }
-        composable("profile") { ProfileScreen (navController) }
+        composable("profile") { ProfileScreen(navController) }
         composable("report") { ReportScreen(navController) }
-        composable("mapView"){ MapaScreen(navController) }
+        composable("mapView") { MapaScreen(navController) }
 
         composable("reportSuccess") {
-            val reporte = navController.previousBackStackEntry
+            val reporte = navController
+                .previousBackStackEntry
                 ?.savedStateHandle
                 ?.get<Reporte>("reporte")
 
-            reporte?.let {
-                ReportScreenSuccess(navController = navController, reporte = it)
+            if (reporte != null) {
+                ReportScreenSuccess(navController = navController, reporte = reporte)
+            } else {
+                // Fallback: mostra mensagem ou redireciona
+                ReportScreen(navController = navController)
             }
         }
     }
 }
+
 
 
 
