@@ -1,82 +1,82 @@
 [
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_ic_apple.png.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/ic_apple.png"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-hdpi_ic_launcher.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-hdpi/ic_launcher.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-hdpi_ic_launcher_round.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-hdpi/ic_launcher_round.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xxhdpi_ic_launcher.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_ic_facebook.png.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/ic_facebook.png"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/xml_backup_rules.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/xml/backup_rules.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xxxhdpi/ic_launcher_round.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_ic_launcher_background.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/ic_launcher_background.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xhdpi_ic_launcher_round.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xhdpi/ic_launcher_round.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xxxhdpi_ic_launcher_round.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xxxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-anydpi_ic_launcher_round.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-anydpi/ic_launcher_round.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/xml_data_extraction_rules.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/xml/data_extraction_rules.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/ic_launcher_foreground.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xhdpi_ic_launcher_round.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xxxhdpi_ic_launcher.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xxxhdpi/ic_launcher.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/ic_launcher_foreground.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_ic_launcher_background.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/ic_launcher_background.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-mdpi_ic_launcher.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-mdpi/ic_launcher.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xhdpi_ic_launcher.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xhdpi/ic_launcher.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_logo.png.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/logo.png"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/xml_backup_rules.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/xml/backup_rules.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xxxhdpi_ic_launcher.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xxxhdpi/ic_launcher.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xxhdpi_ic_launcher.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xxhdpi/ic_launcher.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_ic_facebook.png.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/ic_facebook.png"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-hdpi_ic_launcher.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-hdpi/ic_launcher.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-anydpi_ic_launcher_round.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-anydpi/ic_launcher_round.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-anydpi_ic_launcher.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-anydpi/ic_launcher.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-hdpi_ic_launcher_round.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-hdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-xxhdpi/ic_launcher_round.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xxhdpi_ic_launcher_round.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xxhdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_logo.png.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/logo.png"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-xhdpi_ic_launcher.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-xhdpi/ic_launcher.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-mdpi_ic_launcher.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-mdpi/ic_launcher.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-anydpi_ic_launcher.xml.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-anydpi/ic_launcher.xml"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/mipmap-mdpi_ic_launcher_round.webp.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/mipmap-mdpi/ic_launcher_round.webp"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_ic_google.png.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/ic_google.png"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/xml_data_extraction_rules.xml.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/xml/data_extraction_rules.xml"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/mipmap-mdpi_ic_launcher_round.webp.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/mipmap-mdpi/ic_launcher_round.webp"
     },
     {
-        "merged": "pt.iade.ei.waycareapp-debug-49:/drawable_ic_google.png.flat",
-        "source": "pt.iade.ei.waycareapp-main-51:/drawable/ic_google.png"
+        "merged": "pt.iade.ei.waycareapp-debug-51:/drawable_ic_apple.png.flat",
+        "source": "pt.iade.ei.waycareapp-main-53:/drawable/ic_apple.png"
     }
 ]

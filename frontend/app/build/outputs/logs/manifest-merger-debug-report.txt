@@ -10,6 +10,9 @@ MERGED from [androidx.navigation:navigation-common-ktx:2.7.3] C:\Users\macaz\.gr
 MERGED from [androidx.navigation:navigation-runtime-ktx:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\e1b4b26d0828726ab30fe60ba0de2b5f\transformed\navigation-runtime-ktx-2.7.3\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.navigation:navigation-compose:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\6a8018392a9323bfd5ef53d41aaae51c\transformed\navigation-compose-2.7.3\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.material3:material3-android:1.3.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0e58935bdb25bf1c75586b139fec9824\transformed\material3-release\AndroidManifest.xml:17:1-22:12
+MERGED from [io.coil-kt:coil-compose:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\cc6aa38dd38ef7fbf3b59d8a3c19b00a\transformed\coil-compose-2.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt:coil-compose-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0437b6b4fa12607c33f078dae8aa8f9a\transformed\coil-compose-base-2.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.30.1] C:\Users\macaz\.gradle\caches\8.13\transforms\420334114cc32e4911ed260fbb5d984c\transformed\accompanist-drawablepainter-0.30.1\AndroidManifest.xml:17:1-25:12
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\macaz\.gradle\caches\8.13\transforms\45853e7fb45f40ef51fac866791eab42\transformed\play-services-location-21.0.1\AndroidManifest.xml:2:1-9:12
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ef8ab775b6742a4c455ec82a780c64aa\transformed\play-services-base-18.1.0\AndroidManifest.xml:16:1-24:12
 MERGED from [com.google.android.gms:play-services-tasks:18.0.2] C:\Users\macaz\.gradle\caches\8.13\transforms\e9c10b1450dfa878d1e2b106151d94d1\transformed\play-services-tasks-18.0.2\AndroidManifest.xml:2:1-6:12
@@ -18,6 +21,9 @@ MERGED from [androidx.fragment:fragment:1.0.0] C:\Users\macaz\.gradle\caches\8.1
 MERGED from [androidx.legacy:legacy-support-core-ui:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4b4c4dd6333165b56e7b1293d872647e\transformed\legacy-support-core-ui-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\8492a79e68b7c96efc68ae7dfabbab2f\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ed753ca9203888ed95fb93a029f44c23\transformed\loader-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [io.coil-kt:coil:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\13a26384b44d52df3099371b9b72a480\transformed\coil-2.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [io.coil-kt:coil-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\b679adb66ee5c7a3679d245e01dc94c3\transformed\coil-base-2.4.0\AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\macaz\.gradle\caches\8.13\transforms\b885746a70869fa994934d8feba73b03\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4faefff916539ced137295945fe110c2\transformed\viewpager-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\991daf106b4f5e8bf1a2ba0617061d55\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\64a8c15017e730c11becc8b54e60908d\transformed\drawerlayout-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -25,6 +31,8 @@ MERGED from [androidx.slidingpanelayout:slidingpanelayout:1.0.0] C:\Users\macaz\
 MERGED from [androidx.customview:customview:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\e2b8aa6fcecba30439a981e7f394b005\transformed\customview-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\28a2d55593e9c8f2f60e05ce329aac28\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\f5eca426582e930f5bd1a3de4ad4f94b\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\2f36264b34765fff991b43512aa3afc5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\3ad9c9e02b0114ec9c3d3955fd4c10a1\transformed\vectordrawable-1.1.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\00fed82abba7fc3ca8abbdfcd2823117\transformed\autofill-1.0.0\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.compose.ui:ui-tooling-data-android:1.9.0] C:\Users\macaz\.gradle\caches\8.13\transforms\6c9d2108059a861acc054f772ef89144\transformed\ui-tooling-data\AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.compose.ui:ui-tooling-preview-android:1.9.0] C:\Users\macaz\.gradle\caches\8.13\transforms\c939fb015813d487e9e072dfd9f3aa2e\transformed\ui-tooling-preview\AndroidManifest.xml:17:1-22:12
@@ -77,6 +85,7 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.4.0] C:\Users\macaz\.g
 MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\macaz\.gradle\caches\8.13\transforms\73adeed191a82b50a93f484c53de0a60\transformed\startup-runtime-1.1.1\AndroidManifest.xml:17:1-33:12
 MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\macaz\.gradle\caches\8.13\transforms\80f4f035a4facd0c1edf97ca5c2ccc61\transformed\tracing-1.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\macaz\.gradle\caches\8.13\transforms\1bb36761c2022f1875c358310ace6f5d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:17:1-27:12
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\macaz\.gradle\caches\8.13\transforms\e15e747366a3cb9e3d0249fe2c46f7d2\transformed\exifinterface-1.3.6\AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\macaz\.gradle\caches\8.13\transforms\411cd9bde4102a33a6583db66716e1d0\transformed\core-runtime-2.2.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4ac8517ab3870131b24961cb5c1e8352\transformed\cursoradapter-1.0.0\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.documentfile:documentfile:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\534360e099749377042c7d36866dfcc8\transformed\documentfile-1.0.0\AndroidManifest.xml:17:1-22:12
@@ -192,6 +201,12 @@ MERGED from [androidx.navigation:navigation-compose:2.7.3] C:\Users\macaz\.gradl
 MERGED from [androidx.navigation:navigation-compose:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\6a8018392a9323bfd5ef53d41aaae51c\transformed\navigation-compose-2.7.3\AndroidManifest.xml:5:5-44
 MERGED from [androidx.compose.material3:material3-android:1.3.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0e58935bdb25bf1c75586b139fec9824\transformed\material3-release\AndroidManifest.xml:20:5-44
 MERGED from [androidx.compose.material3:material3-android:1.3.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0e58935bdb25bf1c75586b139fec9824\transformed\material3-release\AndroidManifest.xml:20:5-44
+MERGED from [io.coil-kt:coil-compose:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\cc6aa38dd38ef7fbf3b59d8a3c19b00a\transformed\coil-compose-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-compose:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\cc6aa38dd38ef7fbf3b59d8a3c19b00a\transformed\coil-compose-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-compose-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0437b6b4fa12607c33f078dae8aa8f9a\transformed\coil-compose-base-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-compose-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\0437b6b4fa12607c33f078dae8aa8f9a\transformed\coil-compose-base-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.30.1] C:\Users\macaz\.gradle\caches\8.13\transforms\420334114cc32e4911ed260fbb5d984c\transformed\accompanist-drawablepainter-0.30.1\AndroidManifest.xml:21:5-23:42
+MERGED from [com.google.accompanist:accompanist-drawablepainter:0.30.1] C:\Users\macaz\.gradle\caches\8.13\transforms\420334114cc32e4911ed260fbb5d984c\transformed\accompanist-drawablepainter-0.30.1\AndroidManifest.xml:21:5-23:42
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\macaz\.gradle\caches\8.13\transforms\45853e7fb45f40ef51fac866791eab42\transformed\play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\macaz\.gradle\caches\8.13\transforms\45853e7fb45f40ef51fac866791eab42\transformed\play-services-location-21.0.1\AndroidManifest.xml:5:5-44
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ef8ab775b6742a4c455ec82a780c64aa\transformed\play-services-base-18.1.0\AndroidManifest.xml:18:5-43
@@ -208,6 +223,12 @@ MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\macaz\.gr
 MERGED from [androidx.legacy:legacy-support-core-utils:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\8492a79e68b7c96efc68ae7dfabbab2f\transformed\legacy-support-core-utils-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ed753ca9203888ed95fb93a029f44c23\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.loader:loader:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ed753ca9203888ed95fb93a029f44c23\transformed\loader-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [io.coil-kt:coil:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\13a26384b44d52df3099371b9b72a480\transformed\coil-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\13a26384b44d52df3099371b9b72a480\transformed\coil-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\b679adb66ee5c7a3679d245e01dc94c3\transformed\coil-base-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [io.coil-kt:coil-base:2.4.0] C:\Users\macaz\.gradle\caches\8.13\transforms\b679adb66ee5c7a3679d245e01dc94c3\transformed\coil-base-2.4.0\AndroidManifest.xml:5:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\macaz\.gradle\caches\8.13\transforms\b885746a70869fa994934d8feba73b03\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
+MERGED from [androidx.appcompat:appcompat-resources:1.6.1] C:\Users\macaz\.gradle\caches\8.13\transforms\b885746a70869fa994934d8feba73b03\transformed\appcompat-resources-1.6.1\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4faefff916539ced137295945fe110c2\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.viewpager:viewpager:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4faefff916539ced137295945fe110c2\transformed\viewpager-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.coordinatorlayout:coordinatorlayout:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\991daf106b4f5e8bf1a2ba0617061d55\transformed\coordinatorlayout-1.0.0\AndroidManifest.xml:20:5-44
@@ -222,6 +243,10 @@ MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\maca
 MERGED from [androidx.swiperefreshlayout:swiperefreshlayout:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\28a2d55593e9c8f2f60e05ce329aac28\transformed\swiperefreshlayout-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\f5eca426582e930f5bd1a3de4ad4f94b\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.asynclayoutinflater:asynclayoutinflater:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\f5eca426582e930f5bd1a3de4ad4f94b\transformed\asynclayoutinflater-1.0.0\AndroidManifest.xml:20:5-44
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\2f36264b34765fff991b43512aa3afc5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable-animated:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\2f36264b34765fff991b43512aa3afc5\transformed\vectordrawable-animated-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\3ad9c9e02b0114ec9c3d3955fd4c10a1\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.vectordrawable:vectordrawable:1.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\3ad9c9e02b0114ec9c3d3955fd4c10a1\transformed\vectordrawable-1.1.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\00fed82abba7fc3ca8abbdfcd2823117\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.autofill:autofill:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\00fed82abba7fc3ca8abbdfcd2823117\transformed\autofill-1.0.0\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.compose.ui:ui-tooling-data-android:1.9.0] C:\Users\macaz\.gradle\caches\8.13\transforms\6c9d2108059a861acc054f772ef89144\transformed\ui-tooling-data\AndroidManifest.xml:5:5-44
@@ -326,6 +351,8 @@ MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\macaz\.gradle\caches\8.13\
 MERGED from [androidx.tracing:tracing:1.2.0] C:\Users\macaz\.gradle\caches\8.13\transforms\80f4f035a4facd0c1edf97ca5c2ccc61\transformed\tracing-1.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\macaz\.gradle\caches\8.13\transforms\1bb36761c2022f1875c358310ace6f5d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\macaz\.gradle\caches\8.13\transforms\1bb36761c2022f1875c358310ace6f5d\transformed\versionedparcelable-1.1.1\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\macaz\.gradle\caches\8.13\transforms\e15e747366a3cb9e3d0249fe2c46f7d2\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.exifinterface:exifinterface:1.3.6] C:\Users\macaz\.gradle\caches\8.13\transforms\e15e747366a3cb9e3d0249fe2c46f7d2\transformed\exifinterface-1.3.6\AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\macaz\.gradle\caches\8.13\transforms\411cd9bde4102a33a6583db66716e1d0\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] C:\Users\macaz\.gradle\caches\8.13\transforms\411cd9bde4102a33a6583db66716e1d0\transformed\core-runtime-2.2.0\AndroidManifest.xml:20:5-44
 MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] C:\Users\macaz\.gradle\caches\8.13\transforms\4ac8517ab3870131b24961cb5c1e8352\transformed\cursoradapter-1.0.0\AndroidManifest.xml:20:5-44
@@ -340,6 +367,8 @@ MERGED from [org.osmdroid:osmdroid-android:6.1.16] C:\Users\macaz\.gradle\caches
 MERGED from [org.osmdroid:osmdroid-android:6.1.16] C:\Users\macaz\.gradle\caches\8.13\transforms\2e917f7db8fe5e7d2384d43ca2f3559f\transformed\osmdroid-android-6.1.16\AndroidManifest.xml:5:5-7:41
 	android:targetSdkVersion
 		INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml
+	tools:ignore
+		ADDED from [com.google.accompanist:accompanist-drawablepainter:0.30.1] C:\Users\macaz\.gradle\caches\8.13\transforms\420334114cc32e4911ed260fbb5d984c\transformed\accompanist-drawablepainter-0.30.1\AndroidManifest.xml:23:9-39
 	android:minSdkVersion
 		INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml
 activity#com.google.android.gms.common.api.GoogleApiActivity

@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "pt.iade.ei.waycareapp-mergeDebugResources-47:/values-cs/values-cs.xml",
+            "outputFile": "pt.iade.ei.waycareapp-mergeDebugResources-49:/values-cs/values-cs.xml",
             "map": [
                 {
                     "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\540aa7dfdf0b236e3d043b11875182bb\\transformed\\ui-release\\res\\values-cs\\values-cs.xml",
