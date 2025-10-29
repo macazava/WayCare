@@ -55,6 +55,8 @@ dependencies {
     implementation("androidx.compose.material3:material3:1.2.0")
     implementation("org.osmdroid:osmdroid-android:6.1.16")
     implementation("com.google.android.gms:play-services-location:21.0.1")
+    implementation("androidx.activity:activity-compose:1.8.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
