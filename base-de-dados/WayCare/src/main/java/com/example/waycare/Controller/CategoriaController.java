@@ -22,7 +22,7 @@ public class CategoriaController {
         return ResponseEntity.ok(categoriaService.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/findbyid/{id}")
     public ResponseEntity<Optional<Categoria>> procurarPorId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(categoriaService.procurarPorId(id));

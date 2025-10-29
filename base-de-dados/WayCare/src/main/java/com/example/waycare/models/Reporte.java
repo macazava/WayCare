@@ -3,6 +3,9 @@ package com.example.waycare.models;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.List;
+import java.time.LocalDate;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "reporte")
@@ -18,6 +21,7 @@ public class Reporte {
 
     @ManyToOne
     @JoinColumn(name = "rep_uti_id")
+    @JsonBackReference
     private Utilizador utilizador;
 
     @ManyToOne
@@ -26,15 +30,19 @@ public class Reporte {
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rep_loc_id")
+    @JsonManagedReference
     private Localizacao localizacao;
 
     @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL)
     private List<Fotografia> fotografias;
 
-    @Column(name = "rep_data")
-    private String data;
-
     @Column(name = "rep_estado")
-    private String estado;
+    private String estado = "Pendente"; //está pendente porque é o valor inicial
+
+    @Column(name = "rep_data")
+    private LocalDate data = LocalDate.now();
+    @Column String descricao; //descrição textual da imagem
+
+
 }
 
