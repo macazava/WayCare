@@ -91,7 +91,7 @@ fun CardObstaculoPreview() {
             grauPerigo = "Alto"
         ),
         localizacao = Localizacao(1, 38.7169, -9.1399, "Rua da Liberdade 123, Lisboa"),
-        data = java.time.LocalDateTime.now(),
+        data = java.time.LocalDateTime.now().toString(),
         estado = "Pendente",
         comentario = "Espaço insuficiente para cadeiras de rodas"
     )
