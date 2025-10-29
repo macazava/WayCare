@@ -13,7 +13,7 @@ import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreenSuccess
 import pt.iade.ei.waycareapp.MainActivity
 import pt.iade.ei.waycareapp.ui.screens.mapa.MapaScreen
-
+import pt.iade.ei.waycareapp.data.model.Reporte
 
 @Composable
 fun AppNavHost(navController: NavHostController, activity: MainActivity) {
@@ -27,9 +27,17 @@ fun AppNavHost(navController: NavHostController, activity: MainActivity) {
         composable("register") { RegisterScreen(navController) }
         composable("profile") { ProfileScreen (navController) }
         composable("report") { ReportScreen(navController) }
-        composable("reportSuccess"){ ReportScreenSuccess(navController) }
         composable("mapView"){ MapaScreen(navController) }
-        // Depois adicionar mais rotas aqui: login, home, reportar, mapa, etc.
+
+        composable("reportSuccess") {
+            val reporte = navController.previousBackStackEntry
+                ?.savedStateHandle
+                ?.get<Reporte>("reporte")
+
+            reporte?.let {
+                ReportScreenSuccess(navController = navController, reporte = it)
+            }
+        }
     }
 }
 

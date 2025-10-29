@@ -1,6 +1,5 @@
 package pt.iade.ei.waycareapp.ui.screens.reporte
 
-import android.widget.Space
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -21,7 +20,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import pt.iade.ei.waycareapp.data.model.Categoria
+import pt.iade.ei.waycareapp.data.model.Localizacao
+import pt.iade.ei.waycareapp.data.model.Obstaculo
+import pt.iade.ei.waycareapp.data.model.Reporte
+import pt.iade.ei.waycareapp.data.model.Utilizador
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import java.time.LocalDateTime
+
 
 @Composable
 fun ReportScreen(navController: NavController) {
@@ -170,7 +176,30 @@ fun ReportScreen(navController: NavController) {
         // Botão Enviar Reporte
         BotaoGradiente(
             texto = "Enviar Reporte",
-            onClick = { navController.navigate("reportSuccess") }
+            onClick = {
+                val reporte = Reporte(
+                    id = 142,
+                    utilizador = Utilizador(1, "Maria", "maria@email.com", "1234", "912345678"),
+                    obstaculo = Obstaculo(
+                        id = 1,
+                        categoria = Categoria(1, tipoAnomalia, "Descrição automática"),
+                        descricao = descricao,
+                        grauPerigo = prioridade
+                    ),
+                    localizacao = Localizacao(
+                        id = 1,
+                        latitude = 38.7169,
+                        longitude = -9.1399,
+                        endereco = "Rua da Liberdade, 123 Lisboa"
+                    ),
+                    data = LocalDateTime.now(),
+                    estado = "Pendente",
+                    comentario = detalhesLocalizacao
+                )
+
+                navController.currentBackStackEntry?.savedStateHandle?.set("reporte", reporte)
+                navController.navigate("reportSuccess")
+            }
         )
     }
 }

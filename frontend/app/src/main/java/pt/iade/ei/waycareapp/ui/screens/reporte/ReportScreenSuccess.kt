@@ -2,7 +2,6 @@ package pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -17,9 +16,16 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.tooling.preview.Preview
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.data.model.*
+import java.time.format.DateTimeFormatter
+import java.time.LocalDateTime
 
 @Composable
-fun ReportScreenSuccess(navController: NavController) {
+fun ReportScreenSuccess(navController: NavController, reporte: Reporte) {
+    val formatter = DateTimeFormatter.ofPattern("d/M/yyyy - HH:mm")
+    val dataFormatada = reporte.data.format(formatter)
+    val referencia = "#REP-${reporte.data.year}–${reporte.id.toString().padStart(4, '0')}"
+
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -76,14 +82,14 @@ fun ReportScreenSuccess(navController: NavController) {
                 text = "O seu reporte foi",
                 fontSize = 23.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF3F51B5) // azul escuro
+                color = Color(0xFF3F51B5)
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = "enviado com sucesso!",
                 fontSize = 23.sp,
                 fontWeight = FontWeight.Bold,
-                color = Color(0xFF3F51B5) // azul escuro
+                color = Color(0xFF3F51B5)
             )
         }
         Spacer(modifier = Modifier.height(8.dp))
@@ -103,13 +109,12 @@ fun ReportScreenSuccess(navController: NavController) {
                 .padding(16.dp),
             verticalArrangement = Arrangement.spacedBy(12.dp)
         ) {
-            Text("Passeio bloqueado por Obras", fontSize = 16.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
-            Text("- Prioridade: Alta", fontSize = 16.sp, color = Color.DarkGray)
-            Text("- Localização: Rua da Liberdade, 123 Lisboa", fontSize = 16.sp, color = Color.DarkGray)
-            Text("- Referência: #REP-2025–0142", fontSize = 16.sp, color = Color.DarkGray)
-            Text("Enviado a 25/9/2025 - 10h50", fontSize = 14.sp, color = Color.Gray)
+            Text(reporte.obstaculo.categoria.nome, fontSize = 16.sp, color = Color.DarkGray, fontWeight = FontWeight.Bold)
+            Text("- Prioridade: ${reporte.obstaculo.grauPerigo}", fontSize = 16.sp, color = Color.DarkGray)
+            Text("- Localização: ${reporte.localizacao.endereco}", fontSize = 16.sp, color = Color.DarkGray)
+            Text("- Referência: $referencia", fontSize = 16.sp, color = Color.DarkGray)
+            Text("Enviado a $dataFormatada", fontSize = 14.sp, color = Color.Gray)
         }
-
 
         Spacer(modifier = Modifier.height(70.dp))
 
@@ -123,8 +128,20 @@ fun ReportScreenSuccess(navController: NavController) {
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun ReportScreenSuccessPreview() {
-    ReportScreenSuccess(navController = rememberNavController())
+    val mockReporte = Reporte(
+        id = 142,
+        utilizador = Utilizador(1, "Maria", "maria@email.com", "1234", "912345678"),
+        obstaculo = Obstaculo(
+            id = 1,
+            categoria = Categoria(1, "Passeio bloqueado por Obras", "Obras na via"),
+            descricao = "Passeio totalmente obstruído",
+            grauPerigo = "Alta"
+        ),
+        localizacao = Localizacao(1, 38.7169, -9.1399, "Rua da Liberdade, 123 Lisboa"),
+        data = LocalDateTime.now(),
+        estado = "Pendente",
+        comentario = "Espaço insuficiente para cadeiras de rodas"
+    )
+
+    ReportScreenSuccess(navController = rememberNavController(), reporte = mockReporte)
 }
-
-
-
