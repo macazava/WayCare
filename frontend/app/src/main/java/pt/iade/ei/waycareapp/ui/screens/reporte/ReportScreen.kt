@@ -81,7 +81,7 @@ fun ReportScreen(navController: NavController) {
                     brush = Brush.horizontalGradient(
                         colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
                     ),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(13.dp)
                 ),
             contentAlignment = Alignment.CenterStart
         ) {
