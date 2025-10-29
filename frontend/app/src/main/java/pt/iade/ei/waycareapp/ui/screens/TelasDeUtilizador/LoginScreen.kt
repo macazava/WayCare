@@ -34,37 +34,7 @@ import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 
 @Composable
 fun LoginScreen(navController: NavController) {
-    val viewModel: LoginViewModel = viewModel()
-
-    TextField(
-        value = viewModel.email,
-        onValueChange = { viewModel.email = it },
-        label = { Text("Email") }
-    )
-
-    TextField(
-        value = viewModel.password,
-        onValueChange = { viewModel.password = it },
-        label = { Text("Password") }
-    )
-
-    Button(
-        onClick = { viewModel.fazerLogin() },
-        enabled = !viewModel.isLoading
-    ) {
-        Text("Entrar")
-    }
-
-    viewModel.erro?.let {
-        Text(text = it, color = Color.Red)
-    }
-
-    if (viewModel.loginSucesso) {
-        // Navegar para Home
-        navController.navigate("home")
-    }
-
-    var email by remember { mutableStateOf("") }
+        var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
 
@@ -198,20 +168,6 @@ Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
                 modifier = Modifier
                     .size(40.dp)
                     .padding(8.dp),
-            )
-            Image(
-                painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_apple),
-                contentDescription = "Apple",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(8.dp)
-            )
-            Image(
-                painter = painterResource(id = R.drawable.ic_facebook),
-                contentDescription = "Facebook",
-                modifier = Modifier
-                    .size(40.dp)
-                    .padding(8.dp)
             )
         }
     }

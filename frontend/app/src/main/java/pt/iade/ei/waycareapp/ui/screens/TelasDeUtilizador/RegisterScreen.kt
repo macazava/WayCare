@@ -89,15 +89,6 @@ fun RegisterScreen(navController: NavController) {
         )
 
         OutlinedTextField(
-            value = username,
-            onValueChange = { username = it },
-            label = { Text("Digite o seu Nome de Utilizador") },
-            placeholder = { Text("Maria123") },
-            modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
-        )
-
-        OutlinedTextField(
             value = email,
             onValueChange = { email = it },
             label = { Text("Digite o seu E-mail") },
@@ -154,20 +145,6 @@ fun RegisterScreen(navController: NavController) {
                     modifier = Modifier
                         .size(40.dp)
                         .padding(8.dp),
-                )
-                Image(
-                    painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_apple),
-                    contentDescription = "Apple",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .padding(8.dp)
-                )
-                Image(
-                    painter = painterResource(id = R.drawable.ic_facebook),
-                    contentDescription = "Facebook",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .padding(8.dp)
                 )
             }
         }
