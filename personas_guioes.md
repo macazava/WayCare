@@ -6,126 +6,110 @@ O objetivo é **promover empatia, prevenção e planeamento de trajetos seguros*
 
 ---
 
-##  Personas
-
-### 👩‍🦽 Maria Vargas
-
-- **Idade:** 32 anos  
-- **Profissão:** Enfermeira  
-- **Localização:** Lisboa  
-- **Competências digitais:** Médias  
-- **Contexto:** Utiliza cadeira de rodas elétrica para se deslocar diariamente entre casa e o trabalho.  
-- **Objetivos:**  
-  - Visualizar caminhos acessíveis e livres de obstáculos.  
-  - Reportar barreiras urbanas (ex: obras, buracos, passeios degradados).  
-  - Ajudar outros utilizadores que enfrentam os mesmos desafios.  
-- **Frustrações:**  
-  - Falta de informação sobre percursos acessíveis.  
-  - Obras inesperadas que bloqueiam o trajeto habitual.  
-- **Citação:**  
-  > "Nem sempre quero reclamar — só quero evitar os mesmos obstáculos amanhã."
+### Maria Silva
+- **Idade:** 34 anos  
+- **Profissão:** Técnica administrativa  
+- **Mobilidade:** Utiliza cadeira de rodas elétrica  
+- **Localização:** Lisboa 
+- **Motivação:** Circular pela cidade com segurança e autonomia, evitando obstáculos que comprometam a acessibilidade.  
+- **Necessidades principais:**  
+  - Percursos acessíveis e atualizados  
+  - Alertas de obstáculos que impeçam a passagem  
+  - Possibilidade de reportar anomalias de forma rápida e intuitiva  
 
 ---
 
-### 👩‍💼 Cássia Baptista
-
-- **Idade:** 45 anos  
-- **Profissão:** Professora  
-- **Localização:** Porto  
-- **Competências digitais:** Boas  
-- **Contexto:** Tem uma mãe idosa com dificuldades de locomoção e usa a WayCare para planear rotas seguras quando a acompanha às consultas.  
-- **Objetivos:**  
-  - Consultar relatórios recentes de obstáculos na zona.  
-  - Planear percursos mais seguros e cómodos.  
-  - Contribuir para uma base de dados colaborativa.  
-- **Frustrações:**  
-  - Informação desatualizada sobre as condições das ruas.  
-  - Percursos com barreiras inesperadas.  
-- **Citação:**  
-  > "Se todos partilharem o que veem, a cidade torna-se mais fácil para todos."
-
----
-
-### 👨‍🎓 Daniel Paulo
-
-- **Idade:** 24 anos  
+### João Ferreira
+- **Idade:** 28 anos  
 - **Profissão:** Estudante universitário  
-- **Localização:** Braga  
-- **Competências digitais:** Elevadas  
-- **Contexto:** Não tem limitações de mobilidade, mas é utilizador ativo da WayCare para ajudar a comunidade e aumentar a consciência sobre acessibilidade urbana.  
-- **Objetivos:**  
-  - Sinalizar obstáculos que possam dificultar o acesso de outros cidadãos.  
-  - Acompanhar as zonas mais problemáticas da cidade.  
-  - Partilhar informações em tempo real com empatia e civismo.  
-- **Frustrações:**  
-  - Falta de envolvimento cívico por parte de outros cidadãos.  
-  - Obstáculos recorrentes que não são resolvidos.  
-- **Citação:**  
-  > "Pequenos gestos criam grandes diferenças — partilhar um obstáculo é ajudar alguém."
+- **Mobilidade:** Temporariamente reduzida (uso de muletas devido a fratura)  
+- **Localização:** Porto  
+- **Motivação:** Deslocar-se de forma segura até transportes e locais de estudo, evitando riscos.  
+- **Necessidades principais:**  
+  - Receber notificações de obstáculos próximos  
+  - Obter rotas alternativas seguras em tempo real  
+  - Visualizar facilmente fotos e descrições de anomalias  
 
 ---
 
-##  Guiões (Cenários de Utilização)
-
-### Maria evita um obstáculo graças a um alerta
-
-**Persona:** Maria Vargas  
-**Contexto:**  
-Maria sai de casa para ir trabalhar e abre a app WayCare para verificar se há obstáculos no caminho habitual.
-
-**Fluxo:**  
-1. A app mostra no mapa que há uma obra recente na Rua Central, reportada por outro utilizador.  
-2. Maria vê a foto e descrição do obstáculo.  
-3. Escolhe um percurso alternativo sugerido no mapa.  
-4. Ao chegar ao trabalho, decide também adicionar uma foto da obra para atualizar a informação.  
- 
-**Resultado:**  
-Maria chega em segurança, e outros utilizadores beneficiam da atualização.
+### Pedro Costa
+- **Idade:** 41 anos  
+- **Profissão:** Técnico municipal de obras públicas  
+- **Mobilidade:** Sem restrições, mas sensível a questões de segurança urbana  
+- **Localização:** Braga    
+- **Motivação:** Alertar a comunidade sobre riscos urbanos e contribuir para a segurança coletiva.  
+- **Necessidades principais:**  
+  - Reportar rapidamente obstáculos com fotografias  
+  - Enviar alertas de situações perigosas (ex: entulhos, quedas de árvores)  
+  - Garantir que a informação chegue aos outros utilizadores em tempo real  
 
 ---
 
-### Cássia planeia um trajeto seguro para a mãe
-
-**Persona:** Cássia Baptista  
-**Contexto:**  
-Cássia vai levar a mãe, que usa bengala, ao centro de saúde. Quer garantir que o percurso é acessível.
-
-**Fluxo:**  
-1. Abre o mapa da WayCare e pesquisa a rota entre casa e o centro de saúde.  
-2. Ativa o filtro de “Acessibilidade Alta”.  
-3. A app mostra pontos reportados por outros utilizadores: rampas, buracos e zonas em obras.  
-4. Cássia escolhe o percurso mais seguro, evitando os obstáculos sinalizados.  
- 
-**Resultado:**  
-A mãe de Cássia chega ao destino sem dificuldades, e ambas sentem-se mais seguras.
+## Guiões de Utilização (Cenários)
 
 ---
 
-### Daniel contribui para a comunidade
+### Reporte de obra sem aviso e desvio de rota
+**Persona:** Maria Silva  
 
-**Persona:** Daniel Paulo  
-**Contexto:**  
-Durante o trajeto para a universidade, Daniel encontra uma árvore caída que bloqueia parcialmente o passeio.
+#### Contexto
+Maria utiliza cadeira de rodas elétrica e realiza todos os dias o mesmo percurso até ao trabalho, em ruas acessíveis e seguras.  
 
-**Fluxo:**  
-1. Abre a aplicação WayCare e seleciona “Adicionar Obstáculo”.  
-2. Tira uma foto da árvore e adiciona uma descrição curta: “Árvore caída bloqueia 50% do passeio”.  
-3. A localização é registada automaticamente via GPS.  
-4. Publica o reporte, visível imediatamente para todos os utilizadores na área.  
+#### Acontecimento
+Numa terça-feira de manhã, ao chegar ao cruzamento da Rua Central, encontra o passeio **bloqueado por uma obra** iniciada sem aviso. O único desvio possível é descer para a estrada, o que é perigoso devido ao trânsito intenso.
 
-**Resultado:**  
-Outros utilizadores recebem o alerta e desviam-se em segurança, evitando riscos.
+#### Ações na WayCare
+1. Abre a aplicação **WayCare** e seleciona “**Reportar Anomalia**”.  
+2. A app identifica automaticamente a **geolocalização** da obra.  
+3. Maria **tira uma fotografia** do bloqueio e adiciona a descrição:  
+   > “Obra iniciada sem aviso. Passeio totalmente bloqueado, sem alternativa para cadeiras de rodas.”  
+4. Classifica o reporte como **Alta Prioridade**.  
+5. Após submeter, consulta o **mapa de rotas alternativas** sugeridas pela aplicação.  
+
+O sistema sugere um **caminho alternativo seguro**, cerca de 10 minutos mais longo, mas totalmente acessível e validado por outros utilizadores.  
+Maria consegue chegar ao trabalho em segurança, sentindo que contribuiu para alertar outros cidadãos.
 
 ---
 
-###  Consulta colaborativa do mapa urbano
+### Notificação de anomalia próxima e planeamento de rota
+**Persona:** João Ferreira  
 
-**Contexto geral:**  
-Vários utilizadores abrem o mapa da WayCare e veem os pontos reportados pela comunidade.  
-Podem aplicar filtros por tipo de obstáculo (ex: obras, buracos, piso irregular, sem rampa).  
-Ao clicar num ponto, veem a **foto**, a **descrição** e a **data** do reporte.
+#### Contexto
+João está a recuperar de uma fratura na perna e desloca-se de muletas até à paragem de autocarro.  
 
-**Objetivo:**  
-Promover a empatia e o planeamento urbano consciente através de dados partilhados pela própria comunidade.
+#### Acontecimento
+Enquanto caminha pela Rua da Liberdade, o seu telemóvel **vibra** com uma notificação da WayCare:
+> “Atenção! Foi reportada uma anomalia a 150 metros: entulho de obra a bloquear totalmente o passeio.”
+
+#### Ações na WayCare
+1. João abre a notificação e visualiza o **mapa interativo** com o local exato do obstáculo.  
+2. A app mostra a **fotografia** enviada por outro utilizador.  
+3. O sistema sugere duas **rotas alternativas seguras**:
+   - Desvio de 5 minutos por ruas paralelas mais largas;  
+   - Percurso um pouco mais longo, mas com **rampas certificadas e acessibilidade garantida**.  
+4. João escolhe a segunda opção e segue o percurso sugerido.  
+
+Assim, o João evita um obstáculo perigoso e chega ao autocarro sem incidentes.  
+Reconhece a utilidade da WayCare como ferramenta preventiva de mobilidade segura.
+
+---
+
+### Reporte de obstáculos após tempestade
+**Persona:** Pedro Costa  
+
+#### Contexto
+Após uma tempestade noturna, Pedro precisa deslocar-se ao trabalho.  
+Nas ruas encontra **entulhos, árvores caídas e zonas inundadas**, o que representa risco para peões.
+
+#### Ações na WayCare
+1. Abre a app e seleciona “**Reportar Anomalia**”.  
+2. Tira **várias fotografias**: árvores caídas, buracos inundados, passeios bloqueados.  
+3. A **geolocalização automática** regista os locais exatos.  
+4. Escreve a descrição:
+   > “Passeios bloqueados por entulho e árvores caídas. Risco elevado para pedestres. Intervenção urgente necessária.”  
+5. Classifica o alerta como **Prioridade Alta** e submete.  
+
+Os reportes de Pedro ficam visíveis para outros utilizadores, que recebem **notificações automáticas** sobre os obstáculos próximos.  
+A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas pedonais.
 
 ---
