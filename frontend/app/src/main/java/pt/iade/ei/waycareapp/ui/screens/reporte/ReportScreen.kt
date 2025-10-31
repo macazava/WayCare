@@ -197,9 +197,7 @@ fun ReportScreen(navController: NavController) {
                     comentario = detalhesLocalizacao
                 )
 
-                navController.getBackStackEntry("reportSuccess")
-                    .savedStateHandle
-                    .set("reporte", reporte)
+                navController.currentBackStackEntry?.savedStateHandle?.set("reporte", reporte)
 
                 navController.navigate("reportSuccess")
             }

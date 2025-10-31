@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-31:12
-INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-31:12
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-32:12
+INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:2:1-32:12
 MERGED from [androidx.navigation:navigation-common:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\2cbccf7ec63ec63f512188e0722b2f31\transformed\navigation-common-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-runtime:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\241ea008b2698f2bf6f042442494c0d5\transformed\navigation-runtime-2.7.3\AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.navigation:navigation-common-ktx:2.7.3] C:\Users\macaz\.gradle\caches\8.13\transforms\9861a95fc600f380be836ab04d62288f\transformed\navigation-common-ktx-2.7.3\AndroidManifest.xml:2:1-7:12
@@ -119,8 +119,8 @@ ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main
 	android:name
 		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:7:22-76
 application
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:9:5-29:19
-INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:9:5-29:19
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:9:5-30:19
+INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:9:5-30:19
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\macaz\.gradle\caches\8.13\transforms\45853e7fb45f40ef51fac866791eab42\transformed\play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-location:21.0.1] C:\Users\macaz\.gradle\caches\8.13\transforms\45853e7fb45f40ef51fac866791eab42\transformed\play-services-location-21.0.1\AndroidManifest.xml:7:5-20
 MERGED from [com.google.android.gms:play-services-base:18.1.0] C:\Users\macaz\.gradle\caches\8.13\transforms\ef8ab775b6742a4c455ec82a780c64aa\transformed\play-services-base-18.1.0\AndroidManifest.xml:19:5-23:19
@@ -166,25 +166,25 @@ MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] C:\Users\ma
 	android:dataExtractionRules
 		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:11:9-65
 activity#pt.iade.ei.waycareapp.MainActivity
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:18:9-28:20
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:19:9-29:20
 	android:label
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:21:13-45
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:22:13-45
 	android:exported
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:20:13-36
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:21:13-36
 	android:theme
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:22:13-52
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:23:13-52
 	android:name
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:19:13-41
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:20:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:23:13-27:29
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:24:13-28:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:24:17-69
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:25:17-69
 	android:name
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:24:25-66
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:25:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:26:17-77
+ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:26:27-74
+		ADDED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml:27:27-74
 uses-sdk
 INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\macaz\AndroidStudioProjects\WayCareApp\frontend\app\src\main\AndroidManifest.xml

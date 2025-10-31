@@ -7,11 +7,14 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.navigation.AppNavHost
 import pt.iade.ei.waycareapp.ui.theme.WayCareTheme
+import pt.iade.ei.waycareapp.ui.viewmodel.ReporteViewModel
 
 class MainActivity : ComponentActivity() {
+    val reporteViewModel = viewModel<ReporteViewModel>()
     var devePedirPermissao = false
     fun pedirPermissaoSeNecessario() {
         if (devePedirPermissao) {
@@ -33,13 +36,17 @@ class MainActivity : ComponentActivity() {
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        devePedirPermissao = true
+        pedirPermissaoSeNecessario()
+
         setContent {
             WayCareTheme {
                 val navController = rememberNavController()
                 AppNavHost(navController = navController, activity = this)
             }
         }
-
     }
+
 }
 
