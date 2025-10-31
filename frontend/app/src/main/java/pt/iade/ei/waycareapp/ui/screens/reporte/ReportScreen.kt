@@ -174,6 +174,25 @@ fun ReportScreen(navController: NavController) {
             )
         }
 
+        var mostrarDialog by remember { mutableStateOf(false) }
+        if (mostrarDialog) {
+            AlertDialog(
+                onDismissRequest = { mostrarDialog = false },
+                title = { Text("Reporte enviado") },
+                text = { Text("O seu reporte foi enviado com sucesso!") },
+                confirmButton = {
+                    TextButton(onClick = {
+                        mostrarDialog = false
+                        navController.navigate("home")
+                    }) {
+                        Text("Voltar ao início")
+                    }
+                }
+            )
+        }
+
+
+
 
         val reporteViewModel: ReporteViewModel = viewModel()
         // Botão Enviar Reporte
@@ -201,8 +220,7 @@ fun ReportScreen(navController: NavController) {
                 )
 
                 reporteViewModel.guardarReporte(reporte) // opcional
-
-                navController.navigate("home")
+                mostrarDialog = true
             }
         )
 
