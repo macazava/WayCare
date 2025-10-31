@@ -14,9 +14,14 @@ import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreen
 import pt.iade.ei.waycareapp.MainActivity
 import pt.iade.ei.waycareapp.ui.screens.mapa.MapaScreen
 import pt.iade.ei.waycareapp.data.model.Reporte
+import pt.iade.ei.waycareapp.ui.viewmodel.ReporteViewModel
 
 @Composable
-fun AppNavHost(navController: NavHostController, activity: MainActivity) {
+fun AppNavHost(
+    navController: NavHostController,
+    activity: MainActivity,
+    reporteViewModel: ReporteViewModel
+    ) {
     NavHost(
         navController = navController,
         startDestination = "welcome"

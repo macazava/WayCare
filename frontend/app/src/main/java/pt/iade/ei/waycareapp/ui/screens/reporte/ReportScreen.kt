@@ -28,12 +28,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.graphics.drawable.toBitmap
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.ui.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 
 @Composable
@@ -173,6 +175,7 @@ fun ReportScreen(navController: NavController) {
         }
 
 
+        val reporteViewModel: ReporteViewModel = viewModel()
         // Botão Enviar Reporte
         BotaoGradiente(
             texto = "Enviar Reporte",
@@ -197,11 +200,14 @@ fun ReportScreen(navController: NavController) {
                     comentario = detalhesLocalizacao
                 )
 
-                navController.currentBackStackEntry?.savedStateHandle?.set("reporte", reporte)
+                // Guarda o reporte na ViewModel
+                reporteViewModel.guardarReporte(reporte)
 
-                navController.navigate("reportSuccess")
+                // Navega com o id
+                navController.navigate("reportSuccess/${reporte.id}")
             }
         )
+
 
     }
 }
