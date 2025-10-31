@@ -10,7 +10,6 @@ import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.LoginScreen
 import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.ProfileScreen
 import pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador.RegisterScreen
 import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
-import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreenSuccess.ReportScreenSuccess
 import pt.iade.ei.waycareapp.MainActivity
 import pt.iade.ei.waycareapp.ui.screens.mapa.MapaScreen
 import pt.iade.ei.waycareapp.data.model.Reporte
@@ -33,20 +32,6 @@ fun AppNavHost(
         composable("profile") { ProfileScreen(navController) }
         composable("report") { ReportScreen(navController) }
         composable("mapView") { MapaScreen(navController) }
-
-        composable("reportSuccess") {
-            val reporte = navController
-                .previousBackStackEntry
-                ?.savedStateHandle
-                ?.get<Reporte>("reporte")
-
-            if (reporte != null) {
-                ReportScreenSuccess(navController = navController, reporte = reporte)
-            } else {
-                // Fallback: mostra mensagem ou redireciona
-                ReportScreen(navController = navController)
-            }
-        }
     }
 }
 

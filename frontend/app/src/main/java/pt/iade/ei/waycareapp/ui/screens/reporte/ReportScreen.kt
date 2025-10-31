@@ -200,14 +200,11 @@ fun ReportScreen(navController: NavController) {
                     comentario = detalhesLocalizacao
                 )
 
-                // Guarda o reporte na ViewModel
-                reporteViewModel.guardarReporte(reporte)
+                reporteViewModel.guardarReporte(reporte) // opcional
 
-                // Navega com o id
-                navController.navigate("reportSuccess/${reporte.id}")
+                navController.navigate("home")
             }
         )
-
 
     }
 }
