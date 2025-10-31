@@ -178,18 +178,40 @@ fun ReportScreen(navController: NavController) {
         if (mostrarDialog) {
             AlertDialog(
                 onDismissRequest = { mostrarDialog = false },
-                title = { Text("Reporte enviado") },
-                text = { Text("O seu reporte foi enviado com sucesso!") },
                 confirmButton = {
-                    TextButton(onClick = {
-                        mostrarDialog = false
-                        navController.navigate("home")
-                    }) {
-                        Text("Voltar ao início")
+                    TextButton(
+                        onClick = {
+                            mostrarDialog = false
+                            navController.navigate("home")
+                        }
+                    ) {
+                        Text(
+                            text = "Voltar ao início",
+                            color = Color(0xFF000000),
+                            fontWeight = FontWeight.Bold
+                        )
                     }
-                }
+                },
+                title = {
+                    Text(
+                        text = "Reporte enviado com sucesso!",
+                        fontSize = 22.sp,
+                        fontWeight = FontWeight.Bold,
+                        color = Color(0xFF3F51B5)
+                    )
+                },
+                text = {
+                    Text(
+                        text = "Obrigado por contribuir para a melhoria da acessibilidade urbana.",
+                        fontSize = 16.sp,
+                        color = Color(0xFF444444)
+                    )
+                },
+                containerColor = Color(0xFFFFFFFF), // Fundo claro
+                shape = RoundedCornerShape(16.dp)
             )
         }
+
 
 
 
