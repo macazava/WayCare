@@ -45,7 +45,7 @@ public class TipoAnomaliaController {
 
     //Atualizar tipo anomalia
 
-    @PutMapping("/{id}")
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<TipoAnomalia> atualizar(@PathVariable Long id, @RequestBody TipoAnomalia tipoAnomalia) {
         try {
             TipoAnomalia atualizada = tipoAnomaliaService.atualizar(id, tipoAnomalia);
@@ -57,7 +57,7 @@ public class TipoAnomaliaController {
 
     //Eliaminar tipo anomalia
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             tipoAnomaliaService.eliminar(id);

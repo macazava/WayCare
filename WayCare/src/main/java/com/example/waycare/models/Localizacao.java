@@ -3,6 +3,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "localizacao")
 @Data
@@ -24,8 +26,8 @@ public class Localizacao {
     @Column(name="loc_endereco")
     private String endereco;
 
-    @OneToOne(mappedBy = "localizacao")
+    @OneToMany(mappedBy = "localizacao")
     @JsonBackReference
-    private Reporte reporte;
+    private List<Reporte> reporte;
 }
 

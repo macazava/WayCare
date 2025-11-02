@@ -8,7 +8,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
-@Table(name = "reporte")
+@Table(name = "reporte",
+        uniqueConstraints = {})
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -31,8 +32,8 @@ public class Reporte {
     @Column(name = "rep_tipo_personalizado")
     private String tipoPersonalizado; // usado apenas se o utilizador escolher "Outro"
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "rep_loc_id")
+    @ManyToOne
+    @JoinColumn(name = "rep_loc_id", nullable = true)
     @JsonManagedReference
     private Localizacao localizacao;
 

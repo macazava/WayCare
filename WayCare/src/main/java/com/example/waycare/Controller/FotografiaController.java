@@ -40,7 +40,7 @@ public class FotografiaController {
         return ResponseEntity.ok(fotografiaService.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("procurar/{id}")
     public ResponseEntity<Fotografia> procurarPorId(@PathVariable Long id) {
         Optional<Fotografia> foto = fotografiaService.procurarPorId(id);
         return foto.map(ResponseEntity::ok)
@@ -53,7 +53,7 @@ public class FotografiaController {
         return ResponseEntity.ok(nova);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<Fotografia> atualizar(
             @PathVariable Long id, @RequestBody Fotografia fotografia) {
         try {
@@ -64,7 +64,7 @@ public class FotografiaController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             fotografiaService.eliminar(id);

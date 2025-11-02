@@ -26,7 +26,7 @@ public class LocalizacaoController {
 
     //Procurar localizção por ID
 
-    @GetMapping("/{id}")
+    @GetMapping("procurar/{id}")
     public ResponseEntity<Optional<Localizacao>> procurarPorId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(localizacaoService.procurarPorId(id));
@@ -44,7 +44,7 @@ public class LocalizacaoController {
 
     //Atualizar localizção
 
-    @PutMapping("/{id}")
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<Localizacao> atualizar(@PathVariable Long id, @RequestBody Localizacao localizacao) {
         try {
             Localizacao atualizada = localizacaoService.atualizar(id, localizacao);
@@ -55,7 +55,7 @@ public class LocalizacaoController {
     }
     //Eliaminar localização
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             localizacaoService.eliminar(id);

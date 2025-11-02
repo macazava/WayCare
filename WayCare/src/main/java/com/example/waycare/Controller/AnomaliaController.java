@@ -10,23 +10,23 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/obstaculos")
+@RequestMapping("/api/anomalia")
 @CrossOrigin(origins = "*")
 public class AnomaliaController {
 
     @Autowired
     private AnomaliaService anomaliaService;
 
-    //Listar todos os obstaculos
+    //Listar todos as anomalias
 
     @GetMapping
     public ResponseEntity<List<Anomalia>> listarTodos() {
         return ResponseEntity.ok(anomaliaService.listarTodos());
     }
 
-    //Procurar obstaculo por id
+    //Procurar anomalia por id
 
-    @GetMapping("/{id}")
+    @GetMapping("procurar/{id}")
     public ResponseEntity<Optional<Anomalia>> procurarPorId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(anomaliaService.procurarPorId(id));
@@ -40,9 +40,9 @@ public class AnomaliaController {
         Anomalia novo = anomaliaService.criar(anomalia);
         return ResponseEntity.ok(novo);
     }
-    //Atualizar obstaculo
+    //Atualizar Anomalia
 
-    @PutMapping("/{id}")
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<Anomalia> atualizar(@PathVariable Long id, @RequestBody Anomalia anomalia) {
         try {
             Anomalia atualizado = anomaliaService.atualizar(id, anomalia);
@@ -51,9 +51,9 @@ public class AnomaliaController {
             return ResponseEntity.notFound().build();
         }
     }
-    //Eliminar obstaculo
+    //Eliminar Anomalia
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             anomaliaService.eliminar(id);
