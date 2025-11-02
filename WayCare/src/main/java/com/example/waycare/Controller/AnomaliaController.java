@@ -1,7 +1,7 @@
 package com.example.waycare.Controller;
 
-import com.example.waycare.Service.ObstaculoService;
-import com.example.waycare.models.Obstaculo;
+import com.example.waycare.Service.AnomaliaService;
+import com.example.waycare.models.Anomalia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,45 +12,51 @@ import java.util.Optional;
 @RestController
 @RequestMapping("/api/obstaculos")
 @CrossOrigin(origins = "*")
-public class ObstaculoController {
+public class AnomaliaController {
 
     @Autowired
-    private ObstaculoService obstaculoService;
+    private AnomaliaService anomaliaService;
+
+    //Listar todos os obstaculos
 
     @GetMapping
-    public ResponseEntity<List<Obstaculo>> listarTodos() {
-        return ResponseEntity.ok(obstaculoService.listarTodos());
+    public ResponseEntity<List<Anomalia>> listarTodos() {
+        return ResponseEntity.ok(anomaliaService.listarTodos());
     }
 
+    //Procurar obstaculo por id
+
     @GetMapping("/{id}")
-    public ResponseEntity<Optional<Obstaculo>> procurarPorId(@PathVariable Long id) {
+    public ResponseEntity<Optional<Anomalia>> procurarPorId(@PathVariable Long id) {
         try {
-            return ResponseEntity.ok(obstaculoService.procurarPorId(id));
+            return ResponseEntity.ok(anomaliaService.procurarPorId(id));
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
     @PostMapping
-    public ResponseEntity<Obstaculo> criar(@RequestBody Obstaculo obstaculo) {
-        Obstaculo novo = obstaculoService.criar(obstaculo);
+    public ResponseEntity<Anomalia> criar(@RequestBody Anomalia anomalia) {
+        Anomalia novo = anomaliaService.criar(anomalia);
         return ResponseEntity.ok(novo);
     }
+    //Atualizar obstaculo
 
     @PutMapping("/{id}")
-    public ResponseEntity<Obstaculo> atualizar(@PathVariable Long id, @RequestBody Obstaculo obstaculo) {
+    public ResponseEntity<Anomalia> atualizar(@PathVariable Long id, @RequestBody Anomalia anomalia) {
         try {
-            Obstaculo atualizado = obstaculoService.atualizar(id, obstaculo);
+            Anomalia atualizado = anomaliaService.atualizar(id, anomalia);
             return ResponseEntity.ok(atualizado);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
+    //Eliminar obstaculo
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
-            obstaculoService.eliminar(id);
+            anomaliaService.eliminar(id);
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();

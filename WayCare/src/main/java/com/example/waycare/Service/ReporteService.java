@@ -2,10 +2,12 @@ package com.example.waycare.Service;
 
 import com.example.waycare.Repository.ReporteRepository;
 import com.example.waycare.Repository.UtilizadorRepository;
-import com.example.waycare.Repository.ObstaculoRepository;
+import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.models.Reporte;
 import com.example.waycare.models.Utilizador;
-import com.example.waycare.models.Obstaculo;
+import com.example.waycare.models.Anomalia;
+import com.example.waycare.models.Localizacao;
+import com.example.waycare.utils.GoogleMapsUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,58 +25,95 @@ public class ReporteService {
     private UtilizadorRepository utilizadorRepository;
 
     @Autowired
-    private ObstaculoRepository obstaculoRepository;
+    private AnomaliaRepository anomaliaRepository;
 
-    // Criar um novo reporte
-    public Reporte criar(Long utiId, Long obsId, Reporte reporte) {
+    @Autowired
+    private GoogleMapsUtil googleMapsUtil;
+
+    public Reporte criar(Long utiId, Long anoId, Reporte reporte) {
+
         Utilizador utilizador = utilizadorRepository.findById(utiId)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
-        Obstaculo obstaculo = obstaculoRepository.findById(obsId)
-                .orElseThrow(() -> new RuntimeException("Obstáculo não encontrado"));
 
         reporte.setUtilizador(utilizador);
-        reporte.setObstaculo(obstaculo);
         reporte.setEstado("Pendente");
         reporte.setData(LocalDate.now());
+
+        if (anoId != null && anoId > 0) {
+            Anomalia anomalia = anomaliaRepository.findById(anoId)
+                    .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
+            reporte.setAnomalia(anomalia);
+            reporte.setTipoPersonalizado(null);
+        }
+        // "outro" isto ainda está em teste
+        else if (reporte.getTipoPersonalizado() != null && !reporte.getTipoPersonalizado().isEmpty()) {
+            reporte.setAnomalia(null);
+        }
+        else {
+            throw new RuntimeException("Tipo de anomalia não especificado");
+        }
+        // Localização via Google Maps API
+        if (reporte.getLocalizacao() != null) {
+            Localizacao loc = reporte.getLocalizacao();
+
+            // há coordenadas e queremos morada obter morada
+            if (loc.getLatitude() != null && loc.getLongitude() != null) {
+                try {
+                    String morada = googleMapsUtil.getAddressFromCoordinates(
+                            loc.getLatitude(),
+                            loc.getLongitude()
+                    );
+                    loc.setEndereco(morada);
+                } catch (Exception e) {
+                    System.out.println("Erro ao obter morada do Google Maps: " + e.getMessage());
+                }
+            }
+            // Temos a morada e queremos obter as coordenadas
+            else if (loc.getEndereco() != null) {
+                try {
+                    double[] coords = googleMapsUtil.getCoordinatesFromAddress(loc.getEndereco());
+                    loc.setLatitude(coords[0]);
+                    loc.setLongitude(coords[1]);
+                } catch (Exception e) {
+                    System.out.println("Erro ao obter coordenadas do Google Maps: " + e.getMessage());
+                }
+            }
+
+            reporte.setLocalizacao(loc);
+        }
+        // Guardar na base de dados
         return reporteRepository.save(reporte);
     }
-
     // Listar todos os reportes
     public List<Reporte> listarTodos() {
         return reporteRepository.findAll();
     }
-
-    // Listar reportes por utilizador
+    // LIistar por utilizadores
     public List<Reporte> listarPorUtilizador(Long utiId) {
         Utilizador utilizador = utilizadorRepository.findById(utiId)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
         return reporteRepository.findByUtilizador(utilizador);
     }
+    //Filtrar por texto (não está a dar certo)
+    public List<Reporte> listarPorTipo(String tipo) {
+        return reporteRepository.findByAnomaliaDescricaoContainingIgnoreCase(tipo);
+    }
 
-    // Atualizar estado
     public Reporte atualizarEstado(Long id, String novoEstado) {
         Reporte reporte = reporteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reporte não encontrado"));
         reporte.setEstado(novoEstado);
         return reporteRepository.save(reporte);
-
     }
 
-    // Procurar por ID
     public Optional<Reporte> procurarPorId(Long id) {
         return reporteRepository.findById(id);
     }
 
-    // Eliminar reporte
     public void eliminar(Long id) {
         if (!reporteRepository.existsById(id)) {
             throw new RuntimeException("Reporte não encontrado");
         }
         reporteRepository.deleteById(id);
     }
-    public List<Reporte> listarPorTipo(String tipo) {
-        return reporteRepository.findByObstaculoDescricaoContainingIgnoreCase(tipo);
-    }
-
 }
-

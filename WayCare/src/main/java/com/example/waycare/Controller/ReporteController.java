@@ -17,10 +17,10 @@ public class ReporteController {
     @Autowired
     private ReporteService reporteService;
 
-    // Criar novo reporte (associado a um utilizador e obstáculo)
-    @PostMapping("/utilizador/{utiId}/obstaculo/{obsId}")
-    public ResponseEntity<Reporte> criar(@PathVariable Long utiId, @PathVariable Long obsId, @RequestBody Reporte reporte) {
-        return ResponseEntity.status(201).body(reporteService.criar(utiId, obsId, reporte));
+    // Criar novo reporte
+    @PostMapping("/utilizador/{utiId}/{anoId}")
+    public ResponseEntity<Reporte> criar(@PathVariable Long utiId, @PathVariable Long anoId, @RequestBody Reporte reporte) {
+        return ResponseEntity.status(201).body(reporteService.criar(utiId, anoId, reporte));
     }
 
     // Lista todos os reportes
@@ -30,13 +30,13 @@ public class ReporteController {
     }
 
     // Listar reportes por utilizador
-    @GetMapping("/utilizador/{utiId}")
+    @GetMapping("listar/utilizador/{utiId}")
     public ResponseEntity<List<Reporte>> listarPorUtilizador(@PathVariable Long utiId) {
         return ResponseEntity.ok(reporteService.listarPorUtilizador(utiId));
     }
 
     // Procurar por ID
-    @GetMapping("/{id}")
+    @GetMapping("procurar/{id}")
     public ResponseEntity<Reporte> procurarPorId(@PathVariable Long id) {
         return reporteService.procurarPorId(id)
                 .map(ResponseEntity::ok)
@@ -44,7 +44,7 @@ public class ReporteController {
     }
 
     // Atualizar estado (pendente, resolvido, etc.)
-    @PutMapping("/{id}/estado")
+    @PutMapping("atualizar/{id}/estado")
     public ResponseEntity<Reporte> atualizarEstado(@PathVariable Long id, @RequestBody Map<String, String> body) {
         String estado = body.get("estado");
         return ResponseEntity.ok(reporteService.atualizarEstado(id, estado));
@@ -53,7 +53,7 @@ public class ReporteController {
 
 
     // Apagar reporte
-    @DeleteMapping("/{id}")
+    @DeleteMapping("apagar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         reporteService.eliminar(id);
         return ResponseEntity.noContent().build();
@@ -68,4 +68,18 @@ public class ReporteController {
         return ResponseEntity.ok(reporteService.listarPorTipo(tipo));
 
     }
+
+    @GetMapping("/{id}/localizacao")
+    public ResponseEntity<?> verificarLocalizacao(@PathVariable Long id) {
+        return reporteService.procurarPorId(id)
+                .map(reporte -> {
+                    if (reporte.getLocalizacao() != null) {
+                        return ResponseEntity.ok(reporte.getLocalizacao());
+                    } else {
+                        return ResponseEntity.badRequest().body("Este reporte não tem localização associada.");
+                    }
+                })
+                .orElse(ResponseEntity.notFound().build());
+    }
+
 }

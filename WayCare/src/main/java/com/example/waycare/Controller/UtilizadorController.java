@@ -18,12 +18,16 @@ public class UtilizadorController {
     @Autowired
     private UtilizadorService utilizadorService;
 
+    //Lista todos os utilizadores
+
     @GetMapping
     public ResponseEntity<List<Utilizador>> listarTodos() {
         return ResponseEntity.ok(utilizadorService.listarTodos());
     }
 
-    @GetMapping("/{id}")
+    //Procurar por ID
+
+    @GetMapping("procurar/{id}")
     public ResponseEntity<Optional<Utilizador>> procurarPorId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(utilizadorService.procurarPorId(id));
@@ -32,13 +36,17 @@ public class UtilizadorController {
         }
     }
 
+    //Criar utilizador
+
     @PostMapping
     public ResponseEntity<Utilizador> criar(@RequestBody Utilizador utilizador) {
         Utilizador novo = utilizadorService.criar(utilizador);
         return ResponseEntity.ok(novo);
     }
 
-    @PutMapping("/{id}")
+    //Atualizar utilizador
+
+    @PutMapping("atualizar/{id}")
     public ResponseEntity<Utilizador> atualizar(@PathVariable Long id, @RequestBody Utilizador utilizador) {
         try {
             Utilizador atualizado = utilizadorService.atualizar(id, utilizador);
@@ -47,8 +55,9 @@ public class UtilizadorController {
             return ResponseEntity.notFound().build();
         }
     }
+    //Eliminar Utilizador
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("apagar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {
             utilizadorService.eliminar(id);

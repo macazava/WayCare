@@ -21,6 +21,9 @@ public class Localizacao {
     @Column(name = "loc_longitude")
     private Double longitude;
 
+    @Column(name="loc_endereco")
+    private String endereco;
+
     @OneToOne(mappedBy = "localizacao")
     @JsonBackReference
     private Reporte reporte;

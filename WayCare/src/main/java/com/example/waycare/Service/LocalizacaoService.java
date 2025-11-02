@@ -37,4 +37,5 @@ public class LocalizacaoService {
     public void eliminar(Long id) {
         localizacaoRepository.deleteById(id);
     }
+
 }

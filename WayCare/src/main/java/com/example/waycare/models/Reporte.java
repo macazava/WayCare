@@ -25,15 +25,19 @@ public class Reporte {
     private Utilizador utilizador;
 
     @ManyToOne
-    @JoinColumn(name = "rep_obs_id")
-    private Obstaculo obstaculo;
+    @JoinColumn(name = "rep_ano_id", nullable = true)
+    private Anomalia anomalia;
+
+    @Column(name = "rep_tipo_personalizado")
+    private String tipoPersonalizado; // usado apenas se o utilizador escolher "Outro"
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rep_loc_id")
     @JsonManagedReference
     private Localizacao localizacao;
 
-    @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Fotografia> fotografias;
 
     @Column(name = "rep_estado")
@@ -41,7 +45,11 @@ public class Reporte {
 
     @Column(name = "rep_data")
     private LocalDate data = LocalDate.now();
-    @Column String descricao; //descrição textual da imagem
+
+    @Column( name = "rep_descricao" )
+    private String descricao2;
+
+
 
 
 }

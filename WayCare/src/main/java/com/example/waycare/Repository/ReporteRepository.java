@@ -10,7 +10,8 @@ import java.util.List;
 @Repository
 public interface ReporteRepository extends JpaRepository<Reporte, Long> {
     List<Reporte> findByUtilizador(Utilizador utilizador);
-    List<Reporte> findByObstaculoDescricaoContainingIgnoreCase(String descricao);
+    List<Reporte> findByAnomaliaDescricaoContainingIgnoreCase(String descricao);
+
 
 }
 
