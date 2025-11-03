@@ -1,6 +1,7 @@
 package com.waycare.waycare2.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,11 +22,13 @@ public class Utilizador {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
 
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank
     private String password;
 
     private String foto;
@@ -44,6 +47,9 @@ public class Utilizador {
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> comentarios;
 
+    public Utilizador(String nome, String email, String password) {
+    }
+
     // Define as datas automaticamente antes de criar/atualizar
     @PrePersist
     protected void onCreate() {
@@ -59,7 +65,7 @@ public class Utilizador {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof com.waycare.waycare2.Model.Utilizador that)) return false;
+        if (!(o instanceof Utilizador that)) return false;
         return Objects.equals(id, that.id) &&
                 Objects.equals(email, that.email);
     }
@@ -70,5 +76,39 @@ public class Utilizador {
 
     }
 
+    public Object getId() {
+        return null;
+    }
+
+
+
+    public Object getNome() {
+        return nome;
+    }
+
+    public void setNome(Object nome) {
+        this.nome = nome.toString();
+    }
+
+    public Object getEmail() {
+        return null;
+    }
+    public Object getPassword() {
+        return password;
+
+    }
+   public void setId(Long id){
+        this.id = id;
+   }
+   public void setNome( String nome){
+        this.nome = nome;
+   }
+   public void selEmail(String email){
+        this.email = email;
+   }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 }
 

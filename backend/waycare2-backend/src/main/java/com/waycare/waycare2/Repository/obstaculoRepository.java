@@ -6,6 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface obstaculoRepository {
+    List<obstaculo> findAll();
+
+    obstaculo save(obstaculo obstaculo);
+
     public interface ObstaculoRepository extends JpaRepository<obstaculo, Long> {
 
         // Podes criar métodos automáticos baseados em nomes

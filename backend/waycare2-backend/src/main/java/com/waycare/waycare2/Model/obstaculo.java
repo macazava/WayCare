@@ -1,6 +1,7 @@
 package com.waycare.waycare2.Model;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 
 import java.util.Objects;
@@ -19,7 +20,7 @@ public class obstaculo {
     @ManyToOne
     @JoinColumn(name = "obs_cat_id")
     private categoria categoria;
-
+    @NotBlank
     private String descricao;
 
     private GrauPerigo grauPerigo;
