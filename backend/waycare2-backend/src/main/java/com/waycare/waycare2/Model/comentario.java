@@ -7,9 +7,6 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class Comentario {
-
-
     @Entity
     @Table(name = "comentario")
     @Data
@@ -32,4 +29,5 @@ public class Comentario {
         @JoinColumn(name = "Utilizador_id")
         private Utilizador Utilizador; //id_Utilizador
     }
-}
+
+

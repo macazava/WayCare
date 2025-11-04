@@ -1,20 +1,23 @@
 package com.waycare.waycare2.Repository;
 
-import com.waycare.waycare2.Model.obstaculo;
+import com.waycare.waycare2.Model.Obstaculo;
+import com.waycare.waycare2.Model.Obstaculo;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
 public interface obstaculoRepository {
-    List<obstaculo> findAll();
+    List<Obstaculo> findAll();
 
-    obstaculo save(obstaculo obstaculo);
+    Obstaculo save(Obstaculo obstaculo);
 
-    public interface ObstaculoRepository extends JpaRepository<obstaculo, Long> {
+    void deleteById(Long id);
+
+    public interface ObstaculoRepository extends JpaRepository<Obstaculo, Long> {
 
         // Podes criar métodos automáticos baseados em nomes
-        List<obstaculo> findByGrauPerigo(String grauPerigo);
+        List<Obstaculo> findByGrauPerigo(String grauPerigo);
 
-        List<obstaculo> findByCategoria_Nome(String nomeCategoria);
+        List<Obstaculo> findByCategoria_Nome(String nomeCategoria);
     }
 }

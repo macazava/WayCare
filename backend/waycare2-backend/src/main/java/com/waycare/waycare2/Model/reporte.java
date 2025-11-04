@@ -12,8 +12,6 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 public class reporte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,17 +23,19 @@ public class reporte {
 
     @ManyToOne
     @JoinColumn(name = "rep_obs_id")
-    private obstaculo obstaculo;
+    private Obstaculo obstaculo;
 
     @ManyToOne
     @JoinColumn(name = "rep_loc_id")
-    private localizacao localizacao;
+    private Localizacao localizacao;
 
     private LocalDateTime data;
 
-    private String estado;
+    @Enumerated(EnumType.STRING)
+    private EstadoReporte estado;
 
     private String titulo; // novo campo
+
     @Column(length = 2000)
     private String descricao; // novo campo
 
@@ -43,7 +43,7 @@ public class reporte {
     private LocalDateTime atualizadoEm; // novo campo
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporte")
-    private List<Comentario> comentarios; // nova lista
+    private List<comentario> comentarios; // nova lista
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporte")
     private List<Notificacao> notificacoes; // nova lista
@@ -55,23 +55,24 @@ public class reporte {
         CANCELADO
     }
 
-    private String comentario; // mantém campo antigo
+    private String Comentario; // mantém campo antigo
 
     // Getters e setters existentes
     public Long getId() { return id; }
     public Utilizador getUtilizador() { return utilizador; }
-    public obstaculo getObstaculo() { return obstaculo; }
-    public localizacao getLocalizacao() { return localizacao; }
+    public Obstaculo getObstaculo() { return obstaculo; }
+    public Localizacao getLocalizacao() { return localizacao; }
     public LocalDateTime getData() { return data; }
-    public String getEstado() { return estado; }
-    public String getComentario() { return comentario; }
+    public EstadoReporte getEstado() { return estado; }
+    public String getComentario() { return Comentario; }
     public void setId(Long id) { this.id = id; }
     public void setUtilizador(Utilizador utilizador) { this.utilizador = utilizador; }
-    public void setObstaculo(obstaculo obstaculo) { this.obstaculo = obstaculo; }
-    public void setLocalizacao(localizacao localizacao) { this.localizacao = localizacao; }
+    public void setObstaculo(Obstaculo obstaculo) { this.obstaculo = obstaculo; }
+    public void setLocalizacao(Localizacao localizacao) { this.localizacao = localizacao; }
     public void setData(LocalDateTime data) { this.data = data; }
-    public void setEstado(String estado) { this.estado = estado; }
-    public void setComentario(String comentario) { this.comentario = comentario; }
+    public void setEstado(EstadoReporte estado) {
+    }
+    public void setComentario(String comentario) { this.Comentario = comentario; }
 
     // Getters e setters dos novos campos
     public String getTitulo() { return titulo; }
@@ -82,8 +83,9 @@ public class reporte {
     public void setCriadoEm(LocalDateTime criadoEm) { this.criadoEm = criadoEm; }
     public LocalDateTime getAtualizadoEm() { return atualizadoEm; }
     public void setAtualizadoEm(LocalDateTime atualizadoEm) { this.atualizadoEm = atualizadoEm; }
-    public List<Comentario> getComentarios() { return comentarios; }
-    public void setComentarios(List<Comentario> comentarios) { this.comentarios = comentarios; }
+    public List<comentario> getComentarios() { return comentarios; }
+    public void setComentarios(List<comentario> comentarios) {
+        this.comentarios = comentarios; }
     public List<Notificacao> getNotificacoes() { return notificacoes; }
     public void setNotificacoes(List<Notificacao> notificacoes) { this.notificacoes = notificacoes; }
 
@@ -97,12 +99,12 @@ public class reporte {
                 Objects.equals(localizacao, reporte.localizacao) &&
                 Objects.equals(data, reporte.data) &&
                 Objects.equals(estado, reporte.estado) &&
-                Objects.equals(comentario, reporte.comentario);
+                Objects.equals(Comentario, reporte.Comentario);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, utilizador, obstaculo, localizacao, data, estado, comentario);
+        return Objects.hash(id, utilizador, obstaculo, localizacao, data, estado, Comentario);
     }
 }
 

@@ -1,7 +1,6 @@
 package Controller;
 
-import aj.org.objectweb.asm.commons.Remapper;
-import com.waycare.waycare2.Model.obstaculo;
+import com.waycare.waycare2.Model.Obstaculo;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,22 +20,24 @@ public class ObstaculoController {
 
     // Listar todos os obstáculos
     @GetMapping
-    public ResponseEntity<List<obstaculo>> listarTodos() {
+    public ResponseEntity<List<Obstaculo>> listarTodos() {
         return ResponseEntity.ok(obstaculoService.listarTodos());
     }
 
     // Criar novo obstáculo
     @PostMapping
-    public ResponseEntity<obstaculo> criar(@RequestBody obstaculo obstaculo) {
-        obstaculo criado = obstaculoService.criar(obstaculo);
+    public ResponseEntity<Obstaculo> criar(@RequestBody Obstaculo obstaculo) {
+        Obstaculo criado = obstaculoService.criar(obstaculo);
         return new ResponseEntity<>(criado, HttpStatus.CREATED);
     }
 
     // Buscar obstáculo por ID
     @GetMapping("/{id}")
-    public ResponseEntity<Remapper> buscarPorId(@PathVariable Long id) {
-        Remapper obstaculo = obstaculoService.buscarPorId(id);
-        return ResponseEntity.ok(obstaculo);
+    public ResponseEntity<Obstaculo> buscarPorId(@PathVariable Long id) {
+        Obstaculo obstaculo = obstaculoService.buscarPorId(id);
+        return obstaculo != null
+                ? ResponseEntity.ok(obstaculo)
+                : ResponseEntity.notFound().build();
     }
 
     // Deletar obstáculo

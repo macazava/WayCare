@@ -2,39 +2,36 @@ package service;
 
 
 import Controller.ObstaculoController;
-import aj.org.objectweb.asm.commons.Remapper;
-import com.waycare.waycare2.Model.obstaculo;
+import com.waycare.waycare2.Model.Obstaculo;
 import com.waycare.waycare2.Repository.obstaculoRepository;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ObstaculoService {
 
-    private static obstaculo seive;
     private final obstaculoRepository obstaculoRepository;
 
     public ObstaculoService(obstaculoRepository obstaculoRepository) {
         this.obstaculoRepository = obstaculoRepository;
     }
 
-    public obstaculo criar(obstaculo obstaculo) {
-        obstaculo novo = ObstaculoService.seive(obstaculo);
+    public Obstaculo criar(Obstaculo obstaculo) {
+        Obstaculo novo = ObstaculoService.save(obstaculo);
         return ResponseEntity.ok(novo).getBody();
+
     }
 
-    public static obstaculo seive(obstaculo obstaculo) {
-        return obstaculo;
-    }
-
-    public List<obstaculo> listarTodos() {
+    public List<Obstaculo> listarTodos() {
         return obstaculoRepository.findAll();
     }
 
     public void apagar(Long id) {
     }
 
-    public Remapper buscarPorId(Long id) {
+    public Obstaculo buscarPorId(Long id) {
         return null;
     }
 
@@ -42,12 +39,13 @@ public class ObstaculoService {
         return null;
     }
 
-    public ObstaculoController save(ObstaculoController existente) {
+    public static Obstaculo save(Obstaculo existente) {
 
         return existente;
     }
 
     public void deletar(Long id) {
+        obstaculoRepository.deleteById(id);
     }
 
 

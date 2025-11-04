@@ -12,27 +12,22 @@ public class Notificacao {
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    @Getter
-    @Setter
     public class Comentario {
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
 
-        // Texto do comentário
         @Column(length = 2000)
         private String texto;
 
-        // Data de criação do comentário
         private LocalDateTime dataCriacao;
 
-        // Autor do comentário (opcional: pode ser um utilizador)
         @ManyToOne
         @JoinColumn(name = "utilizador_id")
         private Utilizador utilizador;
 
-        // Relacionamento ManyToOne para o reporte correspondente
+
         @ManyToOne
         @JoinColumn(name = "reporte_id")
         private reporte reporte;

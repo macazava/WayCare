@@ -45,7 +45,7 @@ public class Utilizador {
 
     // Um utilizador pode ter vários comentários
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Comentario> comentarios;
+    private List<comentario> comentarios;
 
     public Utilizador(String nome, String email, String password) {
     }
