@@ -2,30 +2,39 @@ package service;
 
 import com.waycare.waycare2.Model.Utilizador;
 import com.waycare.waycare2.Repository.UtilizadorRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-public interface UtilizadorService {
-    Utilizador registar(String nome, String email, String password);
+@RequiredArgsConstructor
+@Service
+public class UtilizadorService {
+    private UtilizadorRepository utilizadorRepository;
 
-    List<Utilizador> listarTodos();
+    public Utilizador criar(Utilizador utilizador) {
+        return utilizadorRepository.save(utilizador);
+    }
+    public Utilizador registar(String nome, String email, String password) {
+        Utilizador utilizador = new Utilizador();
+        utilizador.setNome(nome);
+        utilizador.setEmail(email);
+        utilizador.setPassword(password);
+        return utilizadorRepository.save(utilizador);
+    }
 
-    @Service
-    public class utilizadorService {
+    public List<Utilizador> listarTodos() {
+        return utilizadorRepository.findAll();
+    }
 
-        private final UtilizadorRepository utilizadorRepository;
+    public Optional<Utilizador> buscarPorId(Long id) {
+        return utilizadorRepository.findById(id);
+    }
 
-        public utilizadorService(UtilizadorRepository utilizadorRepository ){
-            this.utilizadorRepository = utilizadorRepository;
-        }
-
-        public Optional<Utilizador> buscarPorEmail(String email) {
-            return null;
-        }
-         }
-
+    public void apagar(Long id) {
+        utilizadorRepository.deleteById(id);
+    }
      }
 
 

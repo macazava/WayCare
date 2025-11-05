@@ -6,15 +6,16 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Table(name = "localizacao")
 public class Localizacao {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private double latitude;
+    private float latitude;
 
-    private double longitude;
+    private float longitude;
 
     private String rua;
 
@@ -22,18 +23,20 @@ public class Localizacao {
 
     private String distrito;
 
-    // Construtores
-    public Localizacao() {}
+
+    public Localizacao() {
+
+    }
 
     public Localizacao(double latitude, double longitude, String rua, String cidade, String distrito) {
-        this.latitude = latitude;
-        this.longitude = longitude;
+        this.latitude = (float) latitude;
+        this.longitude = (float) longitude;
         this.rua = rua;
         this.cidade = cidade;
         this.distrito = distrito;
     }
 
-    // Getters e Setters
+
     public Long getId() {
         return id;
     }
@@ -43,7 +46,7 @@ public class Localizacao {
     }
 
     public void setLatitude(double latitude) {
-        this.latitude = latitude;
+        this.latitude = (float) latitude;
     }
 
     public double getLongitude() {
@@ -51,7 +54,7 @@ public class Localizacao {
     }
 
     public void setLongitude(double longitude) {
-        this.longitude = longitude;
+        this.longitude = (float) longitude;
     }
 
     public String getRua() {

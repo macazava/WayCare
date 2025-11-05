@@ -2,20 +2,20 @@ package service;
 
 import com.waycare.waycare2.Model.Commentator;
 import com.waycare.waycare2.Model.Notificacao;
-import com.waycare.waycare2.Repository.comentarioRepository;
+import com.waycare.waycare2.Repository.ComentarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class comentarioService {
-    private comentarioRepository comentarioRepository;
+public class ComentarioService {
+    private ComentarioRepository comentarioRepository;
 
-    public void ComentarioService(comentarioRepository comentarioRepository) {
+    public void ComentarioService(ComentarioRepository comentarioRepository) {
         this.comentarioRepository = comentarioRepository;
     }
 
-    public comentarioService(comentarioRepository comentarioRepository) {
+    public ComentarioService(ComentarioRepository comentarioRepository) {
         this.comentarioRepository = comentarioRepository;
     }
 
@@ -24,20 +24,28 @@ public class comentarioService {
         return comentarioRepository.save(comentario);
     }
 
-    // Listar todos os comentários de um reporte
-    public List<comentarioRepository> listarPorReporte(Long reporteId) {
-        return comentarioRepository.findByReporte_Id(reporteId);
-    }
-
     // Listar todos os comentários de um utilizador
     public List<Notificacao.Comentario> listarPorUtilizador(Long utilizadorId) {
         return comentarioRepository.findByUtilizador_Id(utilizadorId);
     }
 
-    public void addCommentatorToReport(Long commentatorId, Long reportId) {
+    public Notificacao.Comentario criar(Notificacao.Comentario comentario) {
+        return comentarioRepository.save(comentario);
     }
 
-    public void save(Commentator commentator) {
+    public List<Notificacao.Comentario> listarTodos() {
+        return comentarioRepository.findAll();
+    }
+
+    public List<ComentarioRepository> listarPorReporte(Long reporteId) {
+        return comentarioRepository.findByReporte_Id(reporteId);
+    }
+
+    public List<Commentator> findByAffiliation_Id(Long affiliationId) {
+        return null;
+    }
+
+    public void addCommentatorToReport(Long commentatorId, Long reportId) {
     }
 
     public Commentator findById(Long commentatorId) {
@@ -52,14 +60,15 @@ public class comentarioService {
         return null;
     }
 
+    public void save(Commentator commentator) {
+    }
+
     public List<Commentator> findByReport_Id(Long reportId) {
         return null;
     }
-
-    public List<Commentator> findByAffiliation_Id(Long affiliationId) {
-        return null;
-    }
 }
+
+
 
 
 

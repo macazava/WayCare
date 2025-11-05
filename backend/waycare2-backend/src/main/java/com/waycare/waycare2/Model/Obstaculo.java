@@ -6,7 +6,7 @@ import lombok.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
+
 @Entity
 @Table(name = "obstaculo")
 @Data
@@ -27,8 +27,8 @@ public class Obstaculo {
     @JoinColumn(name = "utilizador_id")
     private Utilizador utilizador;
 
-    @OneToMany(mappedBy = "obstaculo")
-    private List<Notificacao.Comentario> comentarios;
+    @OneToMany(mappedBy = "obstaculo", cascade = CascadeType.ALL)
+    private List<Comentario> comentarios;
 
     @NotBlank
     private String descricao;

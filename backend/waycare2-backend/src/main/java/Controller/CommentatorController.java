@@ -1,11 +1,9 @@
 package Controller;
 
 import com.waycare.waycare2.Model.Commentator;
-import com.waycare.waycare2.Model.Notificacao;
-import com.waycare.waycare2.Model.comentario;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import service.comentarioService;
+import service.ComentarioService;
 
 import java.util.List;
 
@@ -13,9 +11,9 @@ import java.util.List;
 @RequestMapping("/commentators")
 public class CommentatorController {
 
-    private final comentarioService commentatorService;
+    private final ComentarioService commentatorService;
 
-    public CommentatorController(comentarioService commentatorService) {
+    public CommentatorController(ComentarioService commentatorService) {
         this.commentatorService = commentatorService;
     }
 
@@ -44,4 +42,5 @@ public class CommentatorController {
         return ok;
 
     }
+
      }

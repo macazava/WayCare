@@ -6,13 +6,15 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+@Entity
+@Table(name = "comentario")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Notificacao {
-    @Entity
-    @Table(name = "comentario")
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    public class Comentario {
+    
+        @ManyToOne
+        private Obstaculo obstaculo;
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,11 +30,13 @@ public class Notificacao {
         private Utilizador utilizador;
 
 
+
+
         @ManyToOne
         @JoinColumn(name = "reporte_id")
-        private reporte reporte;
+        private Reporte reporte;
 
-        // Getters e setters
+
         public Long getId() { return id; }
         public void setId(Long id) { this.id = id; }
 
@@ -45,8 +49,8 @@ public class Notificacao {
         public Utilizador getUtilizador() { return utilizador; }
         public void setUtilizador(Utilizador utilizador) { this.utilizador = utilizador; }
 
-        public reporte getReporte() { return reporte; }
-        public void setReporte(reporte reporte) { this.reporte = reporte; }
+        public Reporte getReporte() { return reporte; }
+        public void setReporte(Reporte reporte) { this.reporte = reporte; }
 
         @Override
         public boolean equals(Object o) {
@@ -60,5 +64,9 @@ public class Notificacao {
         public int hashCode() {
             return Objects.hash(id);
         }
+
+    public class Comentario {
+        public Object id;
     }
 }
+

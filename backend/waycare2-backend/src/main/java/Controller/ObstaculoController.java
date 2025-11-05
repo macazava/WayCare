@@ -46,4 +46,8 @@ public class ObstaculoController {
         obstaculoService.deletar(id);
         return ResponseEntity.noContent().build();
     }
+    @GetMapping("/categoria/{categoriaId}")
+    public List<Obstaculo> listarPorCategoria(@PathVariable Long categoriaId) {
+        return obstaculoService.listarPorCategoria(categoriaId);
+    }
 }

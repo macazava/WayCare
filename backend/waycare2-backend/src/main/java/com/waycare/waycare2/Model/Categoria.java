@@ -13,18 +13,18 @@ public class Categoria {
     private Long id;
 
     private String nome;
-
     private String descricao;
 
-    // Construtores
-    public Categoria() {}
+    public Categoria() {
+
+    }
 
     public Categoria(String nome, String descricao) {
         this.nome = nome;
         this.descricao = descricao;
     }
 
-    // Getters e Setters
+
     public Long getId() {
         return id;
     }

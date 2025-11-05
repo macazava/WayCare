@@ -14,7 +14,7 @@ import jakarta.persistence.*;
 
         @ManyToOne
         @JoinColumn(name = "report_id")
-        private reporte reporte;
+        private Reporte reporte;
 
         @ManyToOne
         @JoinColumn(name = "affiliation_id")
@@ -25,7 +25,7 @@ import jakarta.persistence.*;
 
         }
 
-        public Commentator(String nome, reporte reporte, Affiliation affiliation) {
+        public Commentator(String nome, Reporte reporte, Affiliation affiliation) {
             this.nome = nome;
             this.reporte = reporte;
             this.affiliation = affiliation;
@@ -44,11 +44,11 @@ import jakarta.persistence.*;
             this.nome = nome;
         }
 
-        public reporte getReporte() {
+        public Reporte getReporte() {
             return reporte;
         }
 
-        public void setReporte(reporte reporte) {
+        public void setReporte(Reporte reporte) {
             this.reporte = reporte;
         }
 
@@ -64,7 +64,7 @@ import jakarta.persistence.*;
         return null;
     }
 
-    public void setReport(reporte report) {
+    public void setReport(Reporte report) {
     }
 }
 

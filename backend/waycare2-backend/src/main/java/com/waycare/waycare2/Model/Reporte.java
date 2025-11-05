@@ -12,7 +12,9 @@ import java.util.Objects;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class reporte {
+public class Reporte {
+    private String fotografiaBase64;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -34,19 +36,19 @@ public class reporte {
     @Enumerated(EnumType.STRING)
     private EstadoReporte estado;
 
-    private String titulo; // novo campo
+    private String titulo;
 
     @Column(length = 2000)
-    private String descricao; // novo campo
+    private String descricao;
 
-    private LocalDateTime criadoEm; // novo campo
-    private LocalDateTime atualizadoEm; // novo campo
-
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporte")
-    private List<comentario> comentarios; // nova lista
+    private LocalDateTime criadoEm;
+    private LocalDateTime atualizadoEm;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporte")
-    private List<Notificacao> notificacoes; // nova lista
+    private List<Comentario> comentarios;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reporte")
+    private List<Notificacao> notificacoes;
 
     public enum EstadoReporte {
         PENDENTE,
@@ -83,8 +85,8 @@ public class reporte {
     public void setCriadoEm(LocalDateTime criadoEm) { this.criadoEm = criadoEm; }
     public LocalDateTime getAtualizadoEm() { return atualizadoEm; }
     public void setAtualizadoEm(LocalDateTime atualizadoEm) { this.atualizadoEm = atualizadoEm; }
-    public List<comentario> getComentarios() { return comentarios; }
-    public void setComentarios(List<comentario> comentarios) {
+    public List<Comentario> getComentarios() { return comentarios; }
+    public void setComentarios(List<Comentario> comentarios) {
         this.comentarios = comentarios; }
     public List<Notificacao> getNotificacoes() { return notificacoes; }
     public void setNotificacoes(List<Notificacao> notificacoes) { this.notificacoes = notificacoes; }
@@ -92,7 +94,7 @@ public class reporte {
     @Override
     public boolean equals(Object o) {
         if (o == null || getClass() != o.getClass()) return false;
-        reporte reporte = (reporte) o;
+        Reporte reporte = (Reporte) o;
         return Objects.equals(id, reporte.id) &&
                 Objects.equals(utilizador, reporte.utilizador) &&
                 Objects.equals(obstaculo, reporte.obstaculo) &&

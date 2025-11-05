@@ -3,7 +3,7 @@ package service;
 
 import Controller.ObstaculoController;
 import com.waycare.waycare2.Model.Obstaculo;
-import com.waycare.waycare2.Repository.obstaculoRepository;
+import com.waycare.waycare2.Repository.ObstaculoRepository;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -12,9 +12,9 @@ import java.util.List;
 @Service
 public class ObstaculoService {
 
-    private final obstaculoRepository obstaculoRepository;
+    private final ObstaculoRepository obstaculoRepository;
 
-    public ObstaculoService(obstaculoRepository obstaculoRepository) {
+    public ObstaculoService(ObstaculoRepository obstaculoRepository) {
         this.obstaculoRepository = obstaculoRepository;
     }
 
@@ -26,6 +26,10 @@ public class ObstaculoService {
 
     public List<Obstaculo> listarTodos() {
         return obstaculoRepository.findAll();
+
+    }
+    public List<Obstaculo> listarPorCategoria(Long categoriaId) {
+        return obstaculoRepository.findByCategoria_Id(categoriaId);
     }
 
     public void apagar(Long id) {

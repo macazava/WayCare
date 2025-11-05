@@ -1,10 +1,11 @@
 package com.waycare.waycare2.Model;
 
+import com.waycare.waycare2.dto.LoginRequest;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -12,11 +13,9 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Utilizador")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+public class Utilizador  {
 
-public class Utilizador {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,24 +32,30 @@ public class Utilizador {
 
     private String foto;
 
+
+
+
     @Column(name = "criado_em")
     private LocalDateTime criadoEm;
 
     @Column(name = "atualizado_em")
     private LocalDateTime atualizadoEm;
 
-    // Um utilizador pode ter vários reportes
-    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<reporte> reportes;
 
-    // Um utilizador pode ter vários comentários
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<comentario> comentarios;
+    private List<Reporte> reportes;
 
-    public Utilizador(String nome, String email, String password) {
+
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Comentario> comentarios;
+
+    public Utilizador(String cássia, String mail, String segura123) {
     }
 
-    // Define as datas automaticamente antes de criar/atualizar
+    public Utilizador() {
+
+    }
+
     @PrePersist
     protected void onCreate() {
         criadoEm = LocalDateTime.now();
@@ -110,5 +115,12 @@ public class Utilizador {
     public void setPassword(String password) {
         this.password = password;
     }
-}
+
+    public void setEmail(String email) {
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        return null;
+    }
+     }
 
