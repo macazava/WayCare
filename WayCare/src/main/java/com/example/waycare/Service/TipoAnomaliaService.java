@@ -41,7 +41,6 @@ public class TipoAnomaliaService {
         tipoAnomaliaRepository.deleteById(id);
     }
 
-    //  Metodo pra procurar tipos pelo nome, (tá a dar errado)
     public List<TipoAnomalia> procurarPorNome(String nome) {
         return tipoAnomaliaRepository.findByNomeContainingIgnoreCase(nome);
     }

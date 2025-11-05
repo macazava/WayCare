@@ -26,7 +26,7 @@ public class TipoAnomaliaController {
 
     //Procurar por tipo de anomalia
 
-    @GetMapping("/findbyid/{id}")
+    @GetMapping("/portipo/{id}")
     public ResponseEntity<Optional<TipoAnomalia>> procurarPorId(@PathVariable Long id) {
         try {
             return ResponseEntity.ok(tipoAnomaliaService.procurarPorId(id));

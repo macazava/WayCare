@@ -9,11 +9,16 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 @RestController
 @RequestMapping("/api/utilizadores")
 @CrossOrigin(origins = "*")
 public class UtilizadorController {
+    private Logger logger = LoggerFactory.getLogger(UtilizadorController.class);
+
 
     @Autowired
     private UtilizadorService utilizadorService;
@@ -36,14 +41,6 @@ public class UtilizadorController {
         }
     }
 
-    //Criar utilizador
-
-    @PostMapping
-    public ResponseEntity<Utilizador> criar(@RequestBody Utilizador utilizador) {
-        Utilizador novo = utilizadorService.criar(utilizador);
-        return ResponseEntity.ok(novo);
-    }
-
     //Atualizar utilizador
 
     @PutMapping("atualizar/{id}")
@@ -64,6 +61,34 @@ public class UtilizadorController {
             return ResponseEntity.noContent().build();
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
+        }
+    }
+
+    //Registar utilizador
+    @PostMapping(value = "/registar", consumes = "application/json")
+    public ResponseEntity<Utilizador> registar(@RequestBody Utilizador utilizador) {
+        logger.info("Registando utilizador: {}", utilizador);
+
+        try {
+            Utilizador novo = utilizadorService.registar(utilizador);
+            logger.info("Utilizador registado com sucesso: {}", novo);
+            return ResponseEntity.ok(novo);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().build();
+        }
+
+    }
+
+    //Login
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody Utilizador loginRequest) {
+        boolean autenticado = utilizadorService.autenticar(
+                loginRequest.getEmail(), loginRequest.getPassword());
+
+        if (autenticado) {
+            return ResponseEntity.ok("Login efetuado com sucesso!");
+        } else {
+            return ResponseEntity.status(401).body("Email ou password incorretos.");
         }
     }
 }

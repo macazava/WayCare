@@ -18,17 +18,17 @@ public class Utilizador {
     @Column(name = "uti_id")
     private Long id;
 
-    @Column(name = "uti_nome")
+    @Column(name = "uti_nome", nullable = false)
     private String nome;
 
-    @Column(name = "uti_email", unique = true)
+    @Column(name = "uti_email", unique = true, nullable = true)
     private String email;
 
-    @Column(name = "uti_password")
+    @Column(name = "uti_password", nullable = false)
     private String password;
 
-    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL)
-    @JsonManagedReference
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference("utilizador-reportes")
     private List<Reporte> reportes;
 }
 

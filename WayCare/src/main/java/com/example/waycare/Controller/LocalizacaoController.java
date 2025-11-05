@@ -18,14 +18,12 @@ public class LocalizacaoController {
     private LocalizacaoService localizacaoService;
 
     //Listar todas as localizações
-
     @GetMapping
     public ResponseEntity<List<Localizacao>> listarTodos() {
         return ResponseEntity.ok(localizacaoService.listarTodos());
     }
 
     //Procurar localizção por ID
-
     @GetMapping("procurar/{id}")
     public ResponseEntity<Optional<Localizacao>> procurarPorId(@PathVariable Long id) {
         try {
@@ -34,8 +32,8 @@ public class LocalizacaoController {
             return ResponseEntity.notFound().build();
         }
     }
-    //Criar localização
 
+    //Criar localização
     @PostMapping
     public ResponseEntity<Localizacao> criar(@RequestBody Localizacao localizacao) {
         Localizacao nova = localizacaoService.criar(localizacao);
@@ -43,7 +41,6 @@ public class LocalizacaoController {
     }
 
     //Atualizar localizção
-
     @PutMapping("atualizar/{id}")
     public ResponseEntity<Localizacao> atualizar(@PathVariable Long id, @RequestBody Localizacao localizacao) {
         try {
@@ -53,8 +50,8 @@ public class LocalizacaoController {
             return ResponseEntity.notFound().build();
         }
     }
-    //Eliaminar localização
 
+    //Eliaminar localização
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {

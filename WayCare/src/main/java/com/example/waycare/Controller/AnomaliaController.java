@@ -18,14 +18,12 @@ public class AnomaliaController {
     private AnomaliaService anomaliaService;
 
     //Listar todos as anomalias
-
     @GetMapping
     public ResponseEntity<List<Anomalia>> listarTodos() {
         return ResponseEntity.ok(anomaliaService.listarTodos());
     }
 
     //Procurar anomalia por id
-
     @GetMapping("procurar/{id}")
     public ResponseEntity<Optional<Anomalia>> procurarPorId(@PathVariable Long id) {
         try {
@@ -35,13 +33,14 @@ public class AnomaliaController {
         }
     }
 
+    //Criar anomalia
     @PostMapping
     public ResponseEntity<Anomalia> criar(@RequestBody Anomalia anomalia) {
         Anomalia novo = anomaliaService.criar(anomalia);
         return ResponseEntity.ok(novo);
     }
-    //Atualizar Anomalia
 
+    //Atualizar Anomalia
     @PutMapping("atualizar/{id}")
     public ResponseEntity<Anomalia> atualizar(@PathVariable Long id, @RequestBody Anomalia anomalia) {
         try {
@@ -51,8 +50,8 @@ public class AnomaliaController {
             return ResponseEntity.notFound().build();
         }
     }
-    //Eliminar Anomalia
 
+    //Eliminar Anomalia
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {

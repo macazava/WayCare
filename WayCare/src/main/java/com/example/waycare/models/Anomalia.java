@@ -20,9 +20,9 @@ public class Anomalia {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "tip_id")
-    @JsonBackReference
-    private TipoAnomalia tipoAnomalia; //Ligação ao tipo de anomalia
+    @JoinColumn(name = "tip_id", nullable = false)
+    @JsonBackReference("tipoAnomalia-anomalias")
+    private TipoAnomalia tipoAnomalia;
 
     @OneToMany(mappedBy = "anomalia", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("anomalia")

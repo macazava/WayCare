@@ -8,6 +8,8 @@ import com.example.waycare.models.Utilizador;
 import com.example.waycare.models.Anomalia;
 import com.example.waycare.models.Localizacao;
 import com.example.waycare.utils.GoogleMapsUtil;
+import com.example.waycare.exceptions.EnderecoNaoEncontradoException;
+import com.example.waycare.exceptions.GoogleMapsApiException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -64,8 +66,10 @@ public class ReporteService {
                             loc.getLongitude()
                     );
                     loc.setEndereco(morada);
+                } catch (EnderecoNaoEncontradoException | GoogleMapsApiException e) {
+                    throw e;
                 } catch (Exception e) {
-                    System.out.println("Erro ao obter morada do Google Maps: " + e.getMessage());
+                    throw new GoogleMapsApiException("Erro inesperado ao obter morada do Google Maps", e);
                 }
             }
             // Temos a morada e queremos obter as coordenadas
@@ -74,11 +78,17 @@ public class ReporteService {
                     double[] coords = googleMapsUtil.getCoordinatesFromAddress(loc.getEndereco());
                     loc.setLatitude(coords[0]);
                     loc.setLongitude(coords[1]);
+                } catch (EnderecoNaoEncontradoException | IllegalArgumentException | GoogleMapsApiException e) {
+                    throw e;
                 } catch (Exception e) {
-                    System.out.println("Erro ao obter coordenadas do Google Maps: " + e.getMessage());
+                    throw new GoogleMapsApiException("Erro inesperado ao obter coordenadas do Google Maps", e);
                 }
             }
 
+            // validação final da localização: se existir localizacao, tem de ter lat/long válidos
+            if ((loc.getLatitude() == null || loc.getLongitude() == null)) {
+                throw new EnderecoNaoEncontradoException("Localização inválida: latitude/longitude em falta");
+            }
             reporte.setLocalizacao(loc);
         }
         // Guardar na base de dados
@@ -96,13 +106,22 @@ public class ReporteService {
     }
     //Filtrar por texto (não está a dar certo)
     public List<Reporte> listarPorTipo(String tipo) {
-        return reporteRepository.findByAnomaliaDescricaoContainingIgnoreCase(tipo);
+        return reporteRepository.searchByTipoOrCustom(tipo);
     }
 
     public Reporte atualizarEstado(Long id, String novoEstado) {
+        if (novoEstado == null || novoEstado.isBlank()) {
+            throw new IllegalArgumentException("Estado inválido");
+        }
+        String estadoNormalizado = switch (novoEstado.trim().toLowerCase()) {
+            case "pendente" -> "Pendente";
+            case "resolvido", "resolvida" -> "Resolvido";
+            case "em análise", "em analise", "analise" -> "Em análise";
+            default -> throw new IllegalArgumentException("Estado desconhecido: " + novoEstado);
+        };
         Reporte reporte = reporteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Reporte não encontrado"));
-        reporte.setEstado(novoEstado);
+        reporte.setEstado(estadoNormalizado);
         return reporteRepository.save(reporte);
     }
 
@@ -115,5 +134,9 @@ public class ReporteService {
             throw new RuntimeException("Reporte não encontrado");
         }
         reporteRepository.deleteById(id);
+    }
+    public Reporte obterDetalhe(Long id) {
+        return  reporteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Reporte não encontrado"));
     }
 }

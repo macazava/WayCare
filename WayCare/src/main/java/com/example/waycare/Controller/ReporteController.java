@@ -50,8 +50,6 @@ public class ReporteController {
         return ResponseEntity.ok(reporteService.atualizarEstado(id, estado));
     }
 
-
-
     // Apagar reporte
     @DeleteMapping("apagar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
@@ -59,6 +57,7 @@ public class ReporteController {
         return ResponseEntity.noContent().build();
 
     }
+
     @GetMapping("/mapa")
     public ResponseEntity<List<Reporte>> listarParaMapa() {
         return ResponseEntity.ok(reporteService.listarTodos());
@@ -80,6 +79,17 @@ public class ReporteController {
                     }
                 })
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/detalhe/{id}")
+    public ResponseEntity<?> obterDetalhe (@PathVariable Long id) {
+        try {
+            Reporte reporte = reporteService.obterDetalhe(id);
+            return ResponseEntity.ok(reporte);
+        } catch (RuntimeException e) {
+            return ResponseEntity.status(404).body("Reporte não encontrado");
+        }
+
     }
 
 }

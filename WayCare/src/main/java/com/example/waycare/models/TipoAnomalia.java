@@ -21,9 +21,9 @@ public class TipoAnomalia {
     @Column(name = "tip_nome", nullable = false, unique = true)
     private String nome;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "tipoAnomalia", cascade = CascadeType.ALL)
-    private List<Anomalia> Anomalias;
+    @JsonManagedReference("tipoAnomalia-anomalias")
+    private List<Anomalia> anomalias;
 
     //Tipo de anomalia: Aparece no dropdown do report.
 }

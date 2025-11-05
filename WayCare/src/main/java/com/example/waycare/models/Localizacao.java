@@ -1,8 +1,10 @@
 package com.example.waycare.models;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -17,17 +19,17 @@ public class Localizacao {
     @Column(name = "loc_id")
     private Long id;
 
-    @Column(name = "loc_latitude")
+    @Column(name = "loc_latitude", nullable = false)
     private Double latitude;
 
-    @Column(name = "loc_longitude")
+    @Column(name = "loc_longitude", nullable = false)
     private Double longitude;
 
     @Column(name="loc_endereco")
     private String endereco;
 
-    @OneToMany(mappedBy = "localizacao")
-    @JsonBackReference
-    private List<Reporte> reporte;
+    @OneToMany(mappedBy = "localizacao", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties({"localizacao", "anomalia", "utilizador", "fotografias"})
+    private List<Reporte> reportes = new ArrayList<>();
 }
 

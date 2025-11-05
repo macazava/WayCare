@@ -19,6 +19,7 @@ public class FotografiaController {
     @Autowired
     private FotografiaService fotografiaService;
 
+    //Dar uplaod de fotografia no reporte
     @PostMapping("/reporte/{repId}")
     public ResponseEntity<?> uploadFoto(
             @PathVariable Long repId,
@@ -35,11 +36,13 @@ public class FotografiaController {
         }
     }
 
+    //Listar todas as fotografias
     @GetMapping
     public ResponseEntity<List<Fotografia>> listarTodos() {
         return ResponseEntity.ok(fotografiaService.listarTodos());
     }
 
+    //Procurar fotografias por ID
     @GetMapping("procurar/{id}")
     public ResponseEntity<Fotografia> procurarPorId(@PathVariable Long id) {
         Optional<Fotografia> foto = fotografiaService.procurarPorId(id);
@@ -47,12 +50,14 @@ public class FotografiaController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    //Criar fotografia
     @PostMapping
     public ResponseEntity<Fotografia> criar(@RequestBody Fotografia fotografia) {
         Fotografia nova = fotografiaService.criar(fotografia);
         return ResponseEntity.ok(nova);
     }
 
+    //Atualizar fotografia
     @PutMapping("atualizar/{id}")
     public ResponseEntity<Fotografia> atualizar(
             @PathVariable Long id, @RequestBody Fotografia fotografia) {
@@ -64,6 +69,7 @@ public class FotografiaController {
         }
     }
 
+    //Eliminar fotografia
     @DeleteMapping("eliminar/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
         try {

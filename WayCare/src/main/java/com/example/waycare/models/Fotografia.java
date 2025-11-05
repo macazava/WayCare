@@ -2,9 +2,7 @@ package com.example.waycare.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @Table(name = "fotografia")
@@ -26,8 +24,7 @@ public class Fotografia {
 
     @Column(name = "foto_caminho", nullable = false)
     private String caminho;
-
-    // Tipo MIME (ex: image/jpeg)
+    
     @Column(name = "foto_mime")
     private String mime;
 
@@ -36,7 +33,7 @@ public class Fotografia {
 
     @ManyToOne
     @JoinColumn(name = "foto_rep_id", nullable = false)
-    @JsonBackReference
+    @JsonBackReference("reporte-fotografias")
     private Reporte reporte;
 }
 
