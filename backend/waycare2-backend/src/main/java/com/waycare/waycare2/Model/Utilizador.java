@@ -1,9 +1,11 @@
 package com.waycare.waycare2.Model;
 
+import com.waycare.waycare2.dto.LoginRequest;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -11,24 +13,27 @@ import java.util.Objects;
 
 @Entity
 @Table(name = "Utilizador")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
+public class Utilizador  {
 
-public class Utilizador {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
     private String nome;
 
     @Column(unique = true, nullable = false)
     private String email;
 
+    @NotBlank
     private String password;
 
     private String foto;
+
+
+
 
     @Column(name = "criado_em")
     private LocalDateTime criadoEm;
@@ -36,15 +41,21 @@ public class Utilizador {
     @Column(name = "atualizado_em")
     private LocalDateTime atualizadoEm;
 
-    // Um utilizador pode ter vários reportes
-    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<reporte> reportes;
 
-    // Um utilizador pode ter vários comentários
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Reporte> reportes;
+
+
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comentario> comentarios;
 
-    // Define as datas automaticamente antes de criar/atualizar
+    public Utilizador(String cássia, String mail, String segura123) {
+    }
+
+    public Utilizador() {
+
+    }
+
     @PrePersist
     protected void onCreate() {
         criadoEm = LocalDateTime.now();
@@ -59,7 +70,7 @@ public class Utilizador {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof com.waycare.waycare2.Model.Utilizador that)) return false;
+        if (!(o instanceof Utilizador that)) return false;
         return Objects.equals(id, that.id) &&
                 Objects.equals(email, that.email);
     }
@@ -70,5 +81,46 @@ public class Utilizador {
 
     }
 
-}
+    public Object getId() {
+        return null;
+    }
+
+
+
+    public Object getNome() {
+        return nome;
+    }
+
+    public void setNome(Object nome) {
+        this.nome = nome.toString();
+    }
+
+    public Object getEmail() {
+        return null;
+    }
+    public Object getPassword() {
+        return password;
+
+    }
+   public void setId(Long id){
+        this.id = id;
+   }
+   public void setNome( String nome){
+        this.nome = nome;
+   }
+   public void selEmail(String email){
+        this.email = email;
+   }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setEmail(String email) {
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody LoginRequest request) {
+        return null;
+    }
+     }
 

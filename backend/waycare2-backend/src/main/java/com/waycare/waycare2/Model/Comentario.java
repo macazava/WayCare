@@ -7,19 +7,29 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-public class Comentario {
 
-
-    @Entity
     @Table(name = "comentario")
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    public class comentario {
+    @Entity
+    public class Comentario {
+
+        @ManyToOne
+        @JoinColumn(name = "utilizador_id")
+        private Utilizador utilizador;
+
+        @ManyToOne
+        @JoinColumn
+        private Obstaculo obstaculo;
+
+        @ManyToOne
+        @JoinColumn(name = "reporte_id")
+        private Reporte reporte;
 
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private Long id;
+        Long id;
 
         private String texto;
 
@@ -27,9 +37,6 @@ public class Comentario {
 
         private LocalDateTime atualizaEm; // data de atualização
 
-
-        @ManyToOne
-        @JoinColumn(name = "Utilizador_id")
-        private Utilizador Utilizador; //id_Utilizador
     }
-}
+
+
