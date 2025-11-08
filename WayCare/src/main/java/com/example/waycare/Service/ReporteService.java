@@ -21,6 +21,7 @@ import java.util.Optional;
 public class ReporteService {
 
     @Autowired
+
     private ReporteRepository reporteRepository;
 
     @Autowired
