@@ -213,8 +213,45 @@ fun ReportScreen(navController: NavController) {
 
         BotaoGradiente(
             texto = "Enviar Reporte",
-            onClick = {navController.navigate("home")}
+            onClick = {
+                val reporte = Reporte(
+                    rep_id = 0, // ou gerado pelo backend
+                    rep_uti_id = Utilizador(1, "Maria", "maria@email.com", "1234"),
+                    rep_ano_id = Anomalia(
+                        ano_id = 1,
+                        tip_id = TipoAnomalia(1, tipoAnomalia),
+                        ano_descricao = descricao,
+                        ano_grau_perigo = prioridade
+                    ),
+                    rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
+                    rep_loc_id = Localizacao(
+                        loc_id = 1,
+                        loc_latitude = 38.7169,
+                        loc_longitude = -9.1399,
+                        loc_endereco = "Rua da Liberdade, 123 Lisboa"
+                    ),
+                    fotografia = Fotografia(
+                        foto_id = 1,
+                        foto_nome = "imagem.jpg",
+                        foto_rep_id = 1,
+                        foto_url = imagemUri?.toString() ?: "",
+                        foto_caminho = "",
+                        foto_mime = "image/jpeg",
+                        foto_tamanho = 0
+                    ),
+                    rep_estado = "Pendente",
+                    rep_data = LocalDateTime.now().toString(),
+                    rep_descricao = descricao
+                )
+
+                // Envia o reporte para o backend
+                reporteViewModel.guardarReporte(reporte)
+
+                // Mostra o diálogo de sucesso
+                mostrarDialog = true
+            }
         )
+
     }
 }
 
