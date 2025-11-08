@@ -9,6 +9,6 @@ public class TestController {
 
     @GetMapping("/ping")
     public String ping() {
-        return "{\"status\": \"YAAAAAAAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\"}";
+        return "{\"status\": \"YAAAAAAiAAAAAAHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHHH\"}";
     }
 }
