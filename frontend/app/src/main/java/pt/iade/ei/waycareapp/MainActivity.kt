@@ -11,7 +11,7 @@ import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.navigation.AppNavHost
 import pt.iade.ei.waycareapp.ui.theme.WayCareTheme
-import pt.iade.ei.waycareapp.ui.viewmodel.ReporteViewModel
+import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 
 class MainActivity : ComponentActivity() {
     var devePedirPermissao = false
