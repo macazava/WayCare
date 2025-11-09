@@ -24,7 +24,7 @@ José Santana Manuel Paim - 20231013
 https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0-1&t=DExGPdhOVwYb2qfH-1
 # Palavras-Chave
  Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo.
-# Proposta Inicial do Projeto 
+# Segunda entrega do Projeto 
 ## Nome do Projeto 
  O nome **WayCare** resulta da junção das palavras Care (cuidado) e Way (caminho), refletindo o propósito central da aplicação.
 ## Enquadramento do Projeto
@@ -211,6 +211,8 @@ Plano de trabalho, WBS e Project Charter
 3. Tela da visualização do mapa interativo.
 
 ![Mockups 3 telas principais](Images/MOCKUPS%20WayCare%20-%20VersãoFinal.png)
+
+
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
 
