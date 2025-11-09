@@ -216,6 +216,79 @@ Plano de trabalho, WBS e Project Charter
 O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
 ![Diagrama de Classes](Images/Fotodiagramadeclasses.png)
 
+# Primeira versão da documentação REST 
+Base URL: http://localhost:8080/api
+### Utilizadores
+• **POST** /utilizadores
+Cria um utilizador.
+**Body (JSON)**
+{
+"nome": "Daniel Alexandre",
+"email": "daniel@example.com",
+"password": "1234",
+}
+
+#### 201 Created → objeto Utilizador.
+• **GET** /utilizadores
+Lista todos os utilizadores.
+• **GET** /utilizadores/{utiId}
+Devolve 404 se não existir nenhum utilizador com aquele ID.
+• **DELETE** /utilizadores/{utiId}
+204 sem conteúdo (bloqueia se tiver reportes).
+
+#### Tipos de Anomalia 
+• **GET** /TipoAnomalia
+Lista o catálogo: Rampas Inexistentes, Passeios Danificados, …, Outro.
+• **POST** /TipoAnomalia
+(opcional – mantêm fixo)
+{ "nome": "Novo Tipo" }
+• **DELETE** /tipos-anomalia/{id}
+Só se não houver anomalias a referenciá-lo
+
+#### Anomalia
+“Instância” de um tipo — metadados reusáveis (descrição, gravidade).
+• **POST** /anomalias
+{ "tipo": { "id": 5 },
+"descricao": "Buraco com ~30cm",
+ "gravidade": "Alto" }
+• **GET** /anomalias
+• **GET** /anomalias/{anoId}
+
+#### Localizações
+• **POST** /localizacoes
+{ "latitude": 38.716,
+"longitude": -9.141,
+"endereco": "Praça do Comércio, Lisboa" }
+
+#### Reportes
+• **POST** /reportes/utilizador/{utiId}/anomalia/{anoId}
+Cria um reporte. Back-end preenche estado=Pendente, data=hoje, resolve
+morada/coordenadas se existir GoogleMapsUtil.
+**Body (JSON)**
+{
+ "descricao": "Buraco grande dificulta travessia",
+ "tipoPersonalizado": null,
+ "localizacao": { "latitude": 38.716, "longitude": -9.141 }
+}
+Se o tipo escolhido no frontend for “Outro”, isto envia anoId que aponta à Anomalia do
+tipo “Outro” e preenche tipoPersonalizado com o texto do utilizador.
+• **GET** /reportes
+Lista todos (com joins).
+• **GET** /reportes/{repId}
+• **GET** /reportes/utilizador/{utiId}
+Lista por utilizador.
+• **PUT** /reportes/{repId}/estado?estado=Pendente( Atualiza estado)
+• **DELETE** /reportes/{repId}
+Apaga (cascata remove fotografias).
+
+#### Fotografia
+• **POST** /fotografias/upload/{repId} (multipart)
+Campo imagem (ficheiro). Lê EXIF (se existir) e guarda: fot_nome,
+fot_caminho, fot_mime, exif_latitude/longitude/data.
+• **GET** /fotografias?reporte={repId}
+Lista fotos do reporte
+
+
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
 
