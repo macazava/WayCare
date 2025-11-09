@@ -8,7 +8,7 @@
 # WayCare
 Uma cidade acessível começa contigo! 
 ## PROJETO MOBILE 
-### Relatório - 1ª Entrega 
+### Relatório - 2ª Entrega 
 ### Autores
 Maria Camila Zamorano Vargas - 20240999 
 
