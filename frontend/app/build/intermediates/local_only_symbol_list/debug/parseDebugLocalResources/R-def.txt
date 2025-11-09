@@ -77,3 +77,4 @@ string write_user_name
 style Theme.WayCareApp
 xml backup_rules
 xml data_extraction_rules
+xml network_security_config

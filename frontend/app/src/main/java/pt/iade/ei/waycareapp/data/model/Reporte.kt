@@ -1,5 +1,6 @@
 package pt.iade.ei.waycareapp.data.model
 
+import com.google.gson.annotations.SerializedName
 import java.time.LocalDate
 
 
@@ -12,5 +13,7 @@ data class Reporte(
     val fotografia: Fotografia,
     val rep_estado: String,
     val rep_data: String = LocalDate.now().toString(),
+    @SerializedName("descricao")
     val rep_descricao: String
+
 )

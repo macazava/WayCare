@@ -2,6 +2,7 @@ package pt.iade.ei.waycareapp.ui.screens.reporte
 
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
+import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.background
@@ -30,7 +31,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
-import pt.iade.ei.waycareapp.ui.viewmodel.ReporteViewModel
+import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 
 @Composable
@@ -214,11 +215,12 @@ fun ReportScreen(navController: NavController) {
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
+                Log.d("Botao", "Clique no botão detectado")
                 val reporte = Reporte(
-                    rep_id = 0, // ou gerado pelo backend
+                    rep_id = 0,
                     rep_uti_id = Utilizador(1, "Maria", "maria@email.com", "1234"),
                     rep_ano_id = Anomalia(
-                        ano_id = 1,
+                        ano_id = 2,
                         tip_id = TipoAnomalia(1, tipoAnomalia),
                         ano_descricao = descricao,
                         ano_grau_perigo = prioridade
@@ -243,14 +245,12 @@ fun ReportScreen(navController: NavController) {
                     rep_data = LocalDateTime.now().toString(),
                     rep_descricao = descricao
                 )
-
-                // Envia o reporte para o backend
                 reporteViewModel.guardarReporte(reporte)
-
-                // Mostra o diálogo de sucesso
+                reporteViewModel.enviarReporte()
                 mostrarDialog = true
             }
         )
+
 
     }
 }
