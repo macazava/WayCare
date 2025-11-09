@@ -219,7 +219,7 @@ O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenci
 # Primeira versão da documentação REST 
 Base URL: http://localhost:8080/api
 ### Utilizadores
-• **POST** /utilizadores
+- **POST** /utilizadores
 Cria um utilizador.
 **Body (JSON)**
 {
