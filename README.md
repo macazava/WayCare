@@ -219,8 +219,10 @@ O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenci
 # Primeira versão da documentação REST 
 Base URL: http://localhost:8080/api
 ### Utilizadores
+
 - **POST** /utilizadores
 Cria um utilizador.
+
 **Body (JSON)**
 {
 "nome": "Daniel Alexandre",
@@ -229,63 +231,79 @@ Cria um utilizador.
 }
 
 #### 201 Created → objeto Utilizador.
-• **GET** /utilizadores
+- **GET** /utilizadores
 Lista todos os utilizadores.
-• **GET** /utilizadores/{utiId}
+
+- **GET** /utilizadores/{utiId}
 Devolve 404 se não existir nenhum utilizador com aquele ID.
-• **DELETE** /utilizadores/{utiId}
+
+- **DELETE** /utilizadores/{utiId}
 204 sem conteúdo (bloqueia se tiver reportes).
 
 #### Tipos de Anomalia 
-• **GET** /TipoAnomalia
+- **GET** /TipoAnomalia
 Lista o catálogo: Rampas Inexistentes, Passeios Danificados, …, Outro.
-• **POST** /TipoAnomalia
+
+- **POST** /TipoAnomalia
 (opcional – mantêm fixo)
 { "nome": "Novo Tipo" }
-• **DELETE** /tipos-anomalia/{id}
+
+- **DELETE** /tipos-anomalia/{id}
 Só se não houver anomalias a referenciá-lo
 
 #### Anomalia
 “Instância” de um tipo — metadados reusáveis (descrição, gravidade).
-• **POST** /anomalias
+
+- **POST** /anomalias
 { "tipo": { "id": 5 },
 "descricao": "Buraco com ~30cm",
  "gravidade": "Alto" }
-• **GET** /anomalias
-• **GET** /anomalias/{anoId}
+
+- **GET** /anomalias
+  
+- **GET** /anomalias/{anoId}
 
 #### Localizações
-• **POST** /localizacoes
+- **POST** /localizacoes
+
 { "latitude": 38.716,
 "longitude": -9.141,
 "endereco": "Praça do Comércio, Lisboa" }
 
 #### Reportes
-• **POST** /reportes/utilizador/{utiId}/anomalia/{anoId}
+- **POST** /reportes/utilizador/{utiId}/anomalia/{anoId}
 Cria um reporte. Back-end preenche estado=Pendente, data=hoje, resolve
 morada/coordenadas se existir GoogleMapsUtil.
+
 **Body (JSON)**
 {
  "descricao": "Buraco grande dificulta travessia",
  "tipoPersonalizado": null,
  "localizacao": { "latitude": 38.716, "longitude": -9.141 }
 }
+
 Se o tipo escolhido no frontend for “Outro”, isto envia anoId que aponta à Anomalia do
 tipo “Outro” e preenche tipoPersonalizado com o texto do utilizador.
-• **GET** /reportes
+- **GET** /reportes
 Lista todos (com joins).
-• **GET** /reportes/{repId}
-• **GET** /reportes/utilizador/{utiId}
+
+- **GET** /reportes/{repId}
+  
+- **GET** /reportes/utilizador/{utiId}
 Lista por utilizador.
-• **PUT** /reportes/{repId}/estado?estado=Pendente( Atualiza estado)
-• **DELETE** /reportes/{repId}
+
+- **PUT** /reportes/{repId}/estado?estado=Pendente( Atualiza estado)
+  
+- **DELETE** /reportes/{repId}
 Apaga (cascata remove fotografias).
 
 #### Fotografia
-• **POST** /fotografias/upload/{repId} (multipart)
+
+- **POST** /fotografias/upload/{repId} (multipart)
 Campo imagem (ficheiro). Lê EXIF (se existir) e guarda: fot_nome,
 fot_caminho, fot_mime, exif_latitude/longitude/data.
-• **GET** /fotografias?reporte={repId}
+
+- **GET** /fotografias?reporte={repId}
 Lista fotos do reporte
 
 # Dicionário de Dados
@@ -302,73 +320,73 @@ administradores. São responsáveis por criar reportes, comentários e receber
 notificações.
 **Chave primária**: uti_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• uti_nome – Nome completo do utilizador (VARCHAR 255, NOT NULL).
-• uti_email – Endereço de email (VARCHAR 255, UNIQUE, NOT NULL).
-• uti_password – Palavra-passe encriptada (VARCHAR 255, NOT NULL).
+- uti_nome – Nome completo do utilizador (VARCHAR 255, NOT NULL).
+- uti_email – Endereço de email (VARCHAR 255, UNIQUE, NOT NULL).
+- uti_password – Palavra-passe encriptada (VARCHAR 255, NOT NULL).
 **Relações:**
-• 1 Utilizador → N Reporte (um utilizador pode criar vários reportes).
-• 1 Utilizador → N Comentário (pode comentar vários reportes).
-• 1 Utilizador → N Notificação (pode receber várias notificações).
+- 1 Utilizador → N Reporte (um utilizador pode criar vários reportes).
+- 1 Utilizador → N Comentário (pode comentar vários reportes).
+- 1 Utilizador → N Notificação (pode receber várias notificações).
 **Observações:**
-• O email deve ser único.
-• Recomenda-se guardar apenas o hash da password.
+- O email deve ser único.
+- Recomenda-se guardar apenas o hash da password.
 
 ### Tipo_Anomalia
 Representa as categorias gerais de anomalias possíveis (por exemplo, “Obra”, “Passeio
 danificado”, “Inundação”).
 **Chave primária:** tip_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• tip_nome – Nome da categoria de anomalia (VARCHAR 255, UNIQUE, NOT
+- tip_nome – Nome da categoria de anomalia (VARCHAR 255, UNIQUE, NOT
 NULL).
 **Relações:**
-• 1 Tipo_Anomalia → N Anomalia.
+- 1 Tipo_Anomalia → N Anomalia.
 **Observações:**
-• Esta entidade permite normalizar e agrupar tipos de anomalias.
+- Esta entidade permite normalizar e agrupar tipos de anomalias.
 
 ### Anomalia
 Descreve uma anomalia específica dentro de um tipo. Pode representar uma categoria
 concreta de problema urbano.
 **Chave primária:** ano_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• tip_id – Identificador do tipo de anomalia (BIGINT, FK → Tipo_Anomalia).
-• ano_descricao – Descrição da anomalia (VARCHAR 255).
-• ano_grau_perigo – Grau de perigo da anomalia (VARCHAR 255).
+- tip_id – Identificador do tipo de anomalia (BIGINT, FK → Tipo_Anomalia).
+- ano_descricao – Descrição da anomalia (VARCHAR 255).
+- ano_grau_perigo – Grau de perigo da anomalia (VARCHAR 255).
 **Relações:**
-• 1 Anomalia → N Reporte.
-• N Anomalia → 1 Tipo_Anomalia.
+- 1 Anomalia → N Reporte.
+- N Anomalia → 1 Tipo_Anomalia.
 **Observações:**
-• A coluna “ano_grau_perigo” pode ter valores como “baixo”, “médio” ou “alto”.
+- A coluna “ano_grau_perigo” pode ter valores como “baixo”, “médio” ou “alto”.
 
 ### Localização
 Armazena as coordenadas geográficas e o endereço textual da anomalia.
 Cada reporte está associado a uma localização.
 **Chave primária:** loc_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• loc_latitude – Latitude em formato decimal (DOUBLE).
-• loc_longitude – Longitude em formato decimal (DOUBLE).
-• loc_endereco – Endereço textual (VARCHAR 255).
+- loc_latitude – Latitude em formato decimal (DOUBLE).
+- loc_longitude – Longitude em formato decimal (DOUBLE).
+- loc_endereco – Endereço textual (VARCHAR 255).
 **Relações:**
-• 1 Localização → N Reporte.
+- 1 Localização → N Reporte.
 **Observações:**
-• Pode ser utilizada para consultas geográficas (latitude/longitude).
-• As coordenadas seguem o padrão WGS84.
+- Pode ser utilizada para consultas geográficas (latitude/longitude).
+- As coordenadas seguem o padrão WGS84.
 
 ### Reporte
 Regista os reportes submetidos pelos utilizadores, com informações sobre a anomalia, a
 localização e o estado de resolução.
 **Chave primária:** rep_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• rep_uti_id – Identificador do utilizador (BIGINT, FK → Utilizador).
-• rep_ano_id – Identificador da anomalia (BIGINT, FK → Anomalia).
-• rep_loc_id – Identificador da localização (BIGINT, FK → Localizacao).
-• rep_data – Data do reporte (DATE).
-• rep_estado – Estado atual (VARCHAR 255).
-• rep_descricao – Descrição textual (VARCHAR 255).
-• rep_tipo_personalizado – Tipo definido pelo utilizador (VARCHAR 255).
+- rep_uti_id – Identificador do utilizador (BIGINT, FK → Utilizador).
+- rep_ano_id – Identificador da anomalia (BIGINT, FK → Anomalia).
+- rep_loc_id – Identificador da localização (BIGINT, FK → Localizacao).
+- rep_data – Data do reporte (DATE).
+- rep_estado – Estado atual (VARCHAR 255).
+- rep_descricao – Descrição textual (VARCHAR 255).
+- rep_tipo_personalizado – Tipo definido pelo utilizador (VARCHAR 255).
 **Relações:**
-• 1 Reporte → N Fotografia.
-• 1 Reporte → N Comentário.
-• 1 Reporte → N Notificação.
+- 1 Reporte → N Fotografia.
+- 1 Reporte → N Comentário.
+- 1 Reporte → N Notificação.
 **Observação:**
 • O estado do reporte pode assumir valores como “pendente”, “em análise” ou
 “resolvido”.
@@ -378,16 +396,16 @@ Armazena as informações e metadados das imagens enviadas nos reportes.
 As fotografias são evidências visuais da anomalia.
 **Chave primária:** foto_id (BIGINT, AUTO_INCREMENT)
 **Atributos:**
-• foto_rep_id – Identificador do reporte associado (BIGINT, FK → Reporte).
-• foto_nome – Nome original do ficheiro (VARCHAR 255).
-• foto_caminho – Caminho de armazenamento (VARCHAR 255).
-• foto_mime – Tipo MIME (VARCHAR 255).
-• foto_tamanho – Tamanho do ficheiro em bytes (BIGINT).
-• foto_url – URL pública da imagem (VARCHAR 255).
+- foto_rep_id – Identificador do reporte associado (BIGINT, FK → Reporte).
+- foto_nome – Nome original do ficheiro (VARCHAR 255).
+- foto_caminho – Caminho de armazenamento (VARCHAR 255).
+- foto_mime – Tipo MIME (VARCHAR 255).
+- foto_tamanho – Tamanho do ficheiro em bytes (BIGINT).
+- foto_url – URL pública da imagem (VARCHAR 255).
 **Relações:**
-• N Fotografia → 1 Reporte.
+- N Fotografia → 1 Reporte.
 **Observação:**
-• Deve ser aplicada a regra ON DELETE CASCADE para remover fotos ao
+- Deve ser aplicada a regra ON DELETE CASCADE para remover fotos ao
 apagar o reporte.
 
 # Guia de Dados
