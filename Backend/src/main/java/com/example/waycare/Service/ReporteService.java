@@ -3,10 +3,7 @@ package com.example.waycare.Service;
 import com.example.waycare.Repository.ReporteRepository;
 import com.example.waycare.Repository.UtilizadorRepository;
 import com.example.waycare.Repository.AnomaliaRepository;
-import com.example.waycare.models.Reporte;
-import com.example.waycare.models.Utilizador;
-import com.example.waycare.models.Anomalia;
-import com.example.waycare.models.Localizacao;
+import com.example.waycare.models.*;
 import com.example.waycare.utils.GoogleMapsUtil;
 import com.example.waycare.exceptions.EnderecoNaoEncontradoException;
 import com.example.waycare.exceptions.GoogleMapsApiException;
@@ -34,32 +31,31 @@ public class ReporteService {
     private GoogleMapsUtil googleMapsUtil;
 
     public Reporte criar(Long utiId, Long anoId, Reporte reporte) {
-
+        // Buscar o utilizador
         Utilizador utilizador = utilizadorRepository.findById(utiId)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
-
         reporte.setUtilizador(utilizador);
+
+        // Estado e data
         reporte.setEstado("Pendente");
         reporte.setData(LocalDate.now());
 
+        // Anomalia ou tipo personalizado
         if (anoId != null && anoId > 0) {
             Anomalia anomalia = anomaliaRepository.findById(anoId)
                     .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
             reporte.setAnomalia(anomalia);
-            reporte.setTipoPersonalizado(null);
-        }
-        // "outro" isto ainda está em teste
-        else if (reporte.getTipoPersonalizado() != null && !reporte.getTipoPersonalizado().isEmpty()) {
+            // Mantém tipo personalizado se existir
+        } else if (reporte.getTipoPersonalizado() != null && !reporte.getTipoPersonalizado().isEmpty()) {
             reporte.setAnomalia(null);
-        }
-        else {
+        } else {
             throw new RuntimeException("Tipo de anomalia não especificado");
         }
+
         // Localização via Google Maps API
         if (reporte.getLocalizacao() != null) {
             Localizacao loc = reporte.getLocalizacao();
 
-            // há coordenadas e queremos morada obter morada
             if (loc.getLatitude() != null && loc.getLongitude() != null) {
                 try {
                     String morada = googleMapsUtil.getAddressFromCoordinates(
@@ -72,9 +68,7 @@ public class ReporteService {
                 } catch (Exception e) {
                     throw new GoogleMapsApiException("Erro inesperado ao obter morada do Google Maps", e);
                 }
-            }
-            // Temos a morada e queremos obter as coordenadas
-            else if (loc.getEndereco() != null) {
+            } else if (loc.getEndereco() != null) {
                 try {
                     double[] coords = googleMapsUtil.getCoordinatesFromAddress(loc.getEndereco());
                     loc.setLatitude(coords[0]);
@@ -86,15 +80,34 @@ public class ReporteService {
                 }
             }
 
-            // validação final da localização: se existir localizacao, tem de ter lat/long válidos
-            if ((loc.getLatitude() == null || loc.getLongitude() == null)) {
+            if (loc.getLatitude() == null || loc.getLongitude() == null) {
                 throw new EnderecoNaoEncontradoException("Localização inválida: latitude/longitude em falta");
             }
+
             reporte.setLocalizacao(loc);
         }
+
+        // Fotografia
+        if (reporte.getFotografias() != null && !reporte.getFotografias().isEmpty()) {
+            for (Fotografia foto : reporte.getFotografias()) {
+                foto.setReporte(reporte);
+            }
+            reporte.setFotografias(reporte.getFotografias());
+        }
+
+
+
+        // Descrição
+        if (reporte.getDescricao() != null && !reporte.getDescricao().isEmpty()) {
+            reporte.setDescricao(reporte.getDescricao());
+        }
+
+        // Tipo personalizado já está tratado acima
+
         // Guardar na base de dados
         return reporteRepository.save(reporte);
     }
+
     // Listar todos os reportes
     public List<Reporte> listarTodos() {
         return reporteRepository.findAll();

@@ -50,9 +50,5 @@ public class Reporte {
 
     @Column(name = "rep_descricao")
     private String descricao;
-
-
-
-
 }
 
