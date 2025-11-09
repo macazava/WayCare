@@ -207,10 +207,10 @@ Plano de trabalho, WBS e Project Charter
 # Mockups
  Foram escolhidas as três telas principais da App: 
 1. Tela de Reporte de Anomalia.
-2. Tela de Notificação de Proximidade.
-3. Tela da visualização do mapa interativo.
+2. Tela de Detalhes do Reporte na Visualização em Mapa.
+3. Tela da visualização do mapa interativo (com filtros).
 
-![Mockups 3 telas principais](Images/MOCKUPS%20WayCare%20-%20VersãoFinal.png)
+![Mockups 3 telas principais](Images/mockups_atualizados_reais(2entrega).png)
 
 # Esboço do Diagrama de Classes UML
 O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
