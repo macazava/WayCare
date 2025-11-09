@@ -390,6 +390,10 @@ As fotografias são evidências visuais da anomalia.
 • Deve ser aplicada a regra ON DELETE CASCADE para remover fotos ao
 apagar o reporte.
 
+# Guia de Dados
+[guia de dados em pdf](Documentos/Guia de dados (1).pdf)
+
+
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
 
