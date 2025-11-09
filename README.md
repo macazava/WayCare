@@ -212,6 +212,9 @@ Plano de trabalho, WBS e Project Charter
 
 ![Mockups 3 telas principais](Images/MOCKUPS%20WayCare%20-%20VersãoFinal.png)
 
+# Esboço do Diagrama de Classes UML
+O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
+
 
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
