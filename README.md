@@ -182,7 +182,7 @@ A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas p
 A camada de **frontend** (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O **backend** (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a **base de dados**. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
 ## Plano de Trabalho, Project Charter e WBS (Gráfico de Gantt) 
 Plano de trabalho, WBS e Project Charter 
-![Gráfico de Gantt](Images/GraficoDeGanttProjetoMobileWayCare.png)
+![Gráfico de Gantt 2ª entrega](Images/graficodegantt2entrega.png)
 
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare encontra-se:
