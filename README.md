@@ -288,6 +288,107 @@ fot_caminho, fot_mime, exif_latitude/longitude/data.
 • **GET** /fotografias?reporte={repId}
 Lista fotos do reporte
 
+# Dicionário de Dados
+### Base de Dados: WayCare (Versão Alfa)
+O presente dicionário de dados descreve detalhadamente as entidades, relações e regras
+da base de dados WayCare.
+Este modelo apoia a aplicação que permite reportar anomalias urbanas, associando
+utilizadores, localizações, tipos de anomalias, reportes e fotografias.
+
+## Entidades:
+### Utilizador
+Representa os utilizadores da aplicação WayCare — cidadãos, cuidadores ou
+administradores. São responsáveis por criar reportes, comentários e receber
+notificações.
+**Chave primária**: uti_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• uti_nome – Nome completo do utilizador (VARCHAR 255, NOT NULL).
+• uti_email – Endereço de email (VARCHAR 255, UNIQUE, NOT NULL).
+• uti_password – Palavra-passe encriptada (VARCHAR 255, NOT NULL).
+**Relações:**
+• 1 Utilizador → N Reporte (um utilizador pode criar vários reportes).
+• 1 Utilizador → N Comentário (pode comentar vários reportes).
+• 1 Utilizador → N Notificação (pode receber várias notificações).
+**Observações:**
+• O email deve ser único.
+• Recomenda-se guardar apenas o hash da password.
+
+### Tipo_Anomalia
+Representa as categorias gerais de anomalias possíveis (por exemplo, “Obra”, “Passeio
+danificado”, “Inundação”).
+**Chave primária:** tip_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• tip_nome – Nome da categoria de anomalia (VARCHAR 255, UNIQUE, NOT
+NULL).
+**Relações:**
+• 1 Tipo_Anomalia → N Anomalia.
+**Observações:**
+• Esta entidade permite normalizar e agrupar tipos de anomalias.
+
+### Anomalia
+Descreve uma anomalia específica dentro de um tipo. Pode representar uma categoria
+concreta de problema urbano.
+**Chave primária:** ano_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• tip_id – Identificador do tipo de anomalia (BIGINT, FK → Tipo_Anomalia).
+• ano_descricao – Descrição da anomalia (VARCHAR 255).
+• ano_grau_perigo – Grau de perigo da anomalia (VARCHAR 255).
+**Relações:**
+• 1 Anomalia → N Reporte.
+• N Anomalia → 1 Tipo_Anomalia.
+**Observações:**
+• A coluna “ano_grau_perigo” pode ter valores como “baixo”, “médio” ou “alto”.
+
+### Localização
+Armazena as coordenadas geográficas e o endereço textual da anomalia.
+Cada reporte está associado a uma localização.
+**Chave primária:** loc_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• loc_latitude – Latitude em formato decimal (DOUBLE).
+• loc_longitude – Longitude em formato decimal (DOUBLE).
+• loc_endereco – Endereço textual (VARCHAR 255).
+**Relações:**
+• 1 Localização → N Reporte.
+**Observações:**
+• Pode ser utilizada para consultas geográficas (latitude/longitude).
+• As coordenadas seguem o padrão WGS84.
+
+### Reporte
+Regista os reportes submetidos pelos utilizadores, com informações sobre a anomalia, a
+localização e o estado de resolução.
+**Chave primária:** rep_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• rep_uti_id – Identificador do utilizador (BIGINT, FK → Utilizador).
+• rep_ano_id – Identificador da anomalia (BIGINT, FK → Anomalia).
+• rep_loc_id – Identificador da localização (BIGINT, FK → Localizacao).
+• rep_data – Data do reporte (DATE).
+• rep_estado – Estado atual (VARCHAR 255).
+• rep_descricao – Descrição textual (VARCHAR 255).
+• rep_tipo_personalizado – Tipo definido pelo utilizador (VARCHAR 255).
+**Relações:**
+• 1 Reporte → N Fotografia.
+• 1 Reporte → N Comentário.
+• 1 Reporte → N Notificação.
+**Observação:**
+• O estado do reporte pode assumir valores como “pendente”, “em análise” ou
+“resolvido”.
+
+### Fotografia
+Armazena as informações e metadados das imagens enviadas nos reportes.
+As fotografias são evidências visuais da anomalia.
+**Chave primária:** foto_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+• foto_rep_id – Identificador do reporte associado (BIGINT, FK → Reporte).
+• foto_nome – Nome original do ficheiro (VARCHAR 255).
+• foto_caminho – Caminho de armazenamento (VARCHAR 255).
+• foto_mime – Tipo MIME (VARCHAR 255).
+• foto_tamanho – Tamanho do ficheiro em bytes (BIGINT).
+• foto_url – URL pública da imagem (VARCHAR 255).
+**Relações:**
+• N Fotografia → 1 Reporte.
+**Observação:**
+• Deve ser aplicada a regra ON DELETE CASCADE para remover fotos ao
+apagar o reporte.
 
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
