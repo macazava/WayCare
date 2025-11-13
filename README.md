@@ -8,7 +8,7 @@
 # WayCare
 Uma cidade acessível começa contigo! 
 ## PROJETO MOBILE 
-### Relatório - 1ª Entrega 
+### Relatório - 2ª Entrega 
 ### Autores
 Maria Camila Zamorano Vargas - 20240999 
 
@@ -24,7 +24,7 @@ José Santana Manuel Paim - 20231013
 https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0-1&t=DExGPdhOVwYb2qfH-1
 # Palavras-Chave
  Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo.
-# Proposta Inicial do Projeto 
+# Segunda entrega do Projeto 
 ## Nome do Projeto 
  O nome **WayCare** resulta da junção das palavras Care (cuidado) e Way (caminho), refletindo o propósito central da aplicação.
 ## Enquadramento do Projeto
@@ -66,34 +66,108 @@ WayCare posiciona-se como uma solução de Civic Tech, onde a inovação tecnol�
  Por outro lado, **WayCare** atua diretamente no espaço público urbano como ruas, passeios, passadeiras e zonas em obras, permitindo que qualquer cidadão possa reportar obstáculos à mobilidade de forma intuitiva e colaborativa. A aplicação não se destina apenas a pessoas com mobilidade reduzida, mas também a familiares, cuidadores e cidadãos solidários, promovendo uma rede de empatia urbana e envolvimento comunitário. 
 
 Entre as suas funcionalidades inovadoras destaca-se o sistema de notificações de proximidade, que alerta os utilizadores quando se encontram perto de zonas reportadas como inacessíveis, permitindo-lhes planear rotas alternativas e circular com maior segurança e autonomia. Ao disponibilizar dados geolocalizados e organizados por categoria, o WayCare apoia os serviços municipais na tomada de decisões mais eficazes e orientadas para a inclusão. 
-## Casos de Utilização
-### Core Case 
-#### Caso 1 - Reporte de obra sem aviso e desvio de rota 
- Maria, utilizadora de cadeira de rodas elétrica, sai de casa cedo todas as manhãs para ir trabalhar. O seu percurso habitual já está bem definido: ruas largas, passeios acessíveis e rampas que lhe permitem circular com segurança. No entanto, numa terça-feira, ao chegar ao cruzamento da Rua Central, depara-se com uma situação inesperada: uma obra tinha começado sem qualquer aviso prévio.  
+## Definição das Personas e Guiões
+### Personas 
+#### Maria Silva
+- **Idade:** 34 anos  
+- **Profissão:** Técnica administrativa  
+- **Mobilidade:** Utiliza cadeira de rodas elétrica  
+- **Localização:** Lisboa 
+- **Motivação:** Circular pela cidade com segurança e autonomia, evitando obstáculos que comprometam a acessibilidade.  
+- **Necessidades principais:**  
+  - Percursos acessíveis e atualizados  
+  - Alertas de obstáculos que impeçam a passagem  
+  - Possibilidade de reportar anomalias de forma rápida e intuitiva
 
-O passeio estava totalmente bloqueado. Para continuar, a Maria teria de descer para a estrada, mas o trânsito intenso tornava essa opção perigosa e praticamente impossível.  
+#### João Ferreira
+- **Idade:** 28 anos  
+- **Profissão:** Estudante universitário  
+- **Mobilidade:** Temporariamente reduzida (uso de muletas devido a fratura)  
+- **Localização:** Porto  
+- **Motivação:** Deslocar-se de forma segura até transportes e locais de estudo, evitando riscos.  
+- **Necessidades principais:**  
+  - Receber notificações de obstáculos próximos  
+  - Obter rotas alternativas seguras em tempo real  
+  - Visualizar facilmente fotos e descrições de anomalias
+ 
+#### Pedro Costa
+- **Idade:** 41 anos  
+- **Profissão:** Técnico municipal de obras públicas  
+- **Mobilidade:** Sem restrições, mas sensível a questões de segurança urbana  
+- **Localização:** Braga    
+- **Motivação:** Alertar a comunidade sobre riscos urbanos e contribuir para a segurança coletiva.  
+- **Necessidades principais:**  
+  - Reportar rapidamente obstáculos com fotografias  
+  - Enviar alertas de situações perigosas (ex: entulhos, quedas de árvores)  
+  - Garantir que a informação chegue aos outros utilizadores em tempo real  
 
-Então, pegou no telemóvel e abriu a aplicação WayCare; Selecionou a opção “Reportar Anomalia”; A app identificou de imediato a geolocalização da obra.  
+---
 
-Maria tirou uma fotografia clara ao bloqueio e escreveu a descrição: “Obra iniciada sem aviso. Passeio totalmente bloqueado, sem alternativa para cadeiras de rodas”. 
+### Guiões de Utilização (Cenários)
 
-Submeteu o alerta, e classificou-o como alta prioridade, por se tratar de um risco direto para a mobilidade. Ao terminar o reporte, Maria abriu o mapa da app para tentar perceber como poderia contornar o problema. O sistema sugeriu rotas alternativas baseadas nos relatórios de outros utilizadores.  
+#### Reporte de obra sem aviso e desvio de rota
+Persona: Maria Silva  
+##### Contexto
+Maria utiliza cadeira de rodas elétrica e realiza todos os dias o mesmo percurso até ao trabalho, em ruas acessíveis e seguras.  
 
-A opção sugerida foi: Um caminho mais longo, cerca de 10 minutos extra, mas totalmente acessível e já validado por outros cidadãos. 
-### Outros Casos
-#### Caso 2 - Notificação de anomalia próxima e planeamento de rota  
- João, um jovem que recuperava de uma fratura na perna e usava muletas, saiu de casa para apanhar o autocarro. No entanto, ao caminhar pela Rua da Liberdade, o seu telemóvel vibrou. A WayCare tinha enviado uma notificação: “Atenção! Foi reportada uma anomalia a 150 metros: entulho de obra a bloquear totalmente o passeio.”  
+##### Acontecimento
+Numa terça-feira de manhã, ao chegar ao cruzamento da Rua Central, encontra o passeio bloqueado por uma obra iniciada sem aviso. O único desvio possível é descer para a estrada, o que é perigoso devido ao trânsito intenso.
 
-João abriu a app e, no mapa interativo, viu o local exato do obstáculo, acompanhado da foto enviada por outro utilizador. A App sugeriu-lhe de imediato rotas alternativas seguras, com destaque para caminhos livres de obstáculos já reportados. Havia duas opções: 
-1. Um desvio de 5 minutos por ruas paralelas mais largas.  
-2. Um percurso um pouco mais longo, mas com acessibilidade garantida e rampas certificadas.  
-João escolheu a segunda opção. Ao chegar ao ponto de autocarro, pensou no quanto aquela pequena notificação tinha feito diferença: evitara riscos, perda de tempo e até uma possível queda. 
-#### Caso 3 - Pedro reporta os efeitos de um temporal através da WayCare 
- Na manhã seguinte a uma forte tempestade, Pedro precisava chegar ao trabalho, mas logo na rua de casa deparou-se com diversos transtornos: passeios inundados, pequenas árvores caídas e entulho espalhado, tornando a circulação extremamente perigosa, especialmente para pessoas com mobilidade reduzida, idosos ou quem tivesse carrinhos de bebé.  
+##### Ações na WayCare
+1. Abre a aplicação WayCare e seleciona “Reportar Anomalia”.  
+2. Maria tira uma fotografia do bloqueio e adiciona a descrição:
+ > “Obra iniciada sem aviso. Passeio totalmente bloqueado, sem alternativa para cadeiras de rodas.”
+3. A app identifica automaticamente a geolocalização da obra.  
+4. Classifica o reporte como Alta Prioridade.  
+5. Após submeter, consulta o mapa de rotas alternativas sugeridas pela aplicação.  
 
-Pedro sabia que qualquer descuido poderia causar acidentes graves. Pegou no telemóvel e abriu a WayCare, selecionando a opção “Reportar anomalia”. Seguiu os passos técnicos: Fotografou cuidadosamente cada obstáculo, incluindo uma árvore caída junto à passadeira e buracos inundados no passeio. A geolocalização automática registou a localização exata das ocorrências. Acrescentou uma descrição detalhada, alertando que a situação representava risco elevado para pedestres e exigia intervenção urgente.  
+O sistema sugere um caminho alternativo seguro, cerca de 10 minutos mais longo, mas totalmente acessível e validado por outros utilizadores.  
+Maria consegue chegar ao trabalho em segurança, sentindo que contribuiu para alertar outros cidadãos.
 
- Desta maneira Pedro contribuiu para que os outros utilizadores recebam notificações sobre situações prioritárias devido ao risco imediato à segurança. 
+---
+
+#### Notificação de anomalia próxima e planeamento de rota
+Persona: João Ferreira   
+##### Contexto
+João está a recuperar de uma fratura na perna e desloca-se de muletas até à paragem de autocarro.  
+
+##### Acontecimento
+Enquanto caminha pela Rua da Liberdade, o seu telemóvel vibra com uma notificação da WayCare:
+> “Atenção! Foi reportada uma anomalia a 150 metros: entulho de obra a bloquear totalmente o passeio.”
+
+##### Ações na WayCare
+1. João abre a notificação e visualiza o mapa interativo com o local exato do obstáculo.  
+2. A app mostra a fotografia enviada por outro utilizador.  
+3. O sistema sugere duas rotas alternativas seguras:
+   - Desvio de 5 minutos por ruas paralelas mais largas;  
+   - Percurso um pouco mais longo, mas com rampas certificadas e acessibilidade garantida.  
+4. João escolhe a segunda opção e segue o percurso sugerido.  
+
+Assim, o João evita um obstáculo perigoso e chega ao autocarro sem incidentes.  
+Reconhece a utilidade da WayCare como ferramenta preventiva de mobilidade segura.
+
+---
+
+#### Reporte de obstáculos após tempestade
+Persona: Pedro Costa   
+
+##### Contexto
+Após uma tempestade noturna, Pedro precisa deslocar-se ao trabalho.  
+Nas ruas encontra entulhos, árvores caídas e zonas inundadas, o que representa risco para peões.
+
+##### Ações na WayCare
+1. Abre a app e seleciona “**Reportar Anomalia**”.  
+2. Tira **várias fotografias**: árvores caídas, buracos inundados, passeios bloqueados.  
+3. A **geolocalização automática** regista os locais exatos.  
+4. Escreve a descrição:
+   > “Passeios bloqueados por entulho e árvores caídas. Risco elevado para pedestres. Intervenção urgente necessária.”  
+5. Classifica o alerta como **Prioridade Alta** e submete.  
+
+Os reportes de Pedro ficam visíveis para outros utilizadores, que recebem **notificações automáticas** sobre os obstáculos próximos.  
+A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas pedonais.
+
+--- 
+
 ## Enquadramento nas diversas Unidades Curriculares e Tecnologias Utilizadas 
  O desenvolvimento do projeto WayCare articula conhecimentos adquiridos em várias UC, permitindo aplicar competências técnicas, analíticas e comunicacionais de forma integrada: 
 - **Programação Orientada a Objetos**: Tratamos dos requisitos e arquitetura (MVC e REST) do código garantindo modularidade, reutilização e manutenção eficiente. Utilização da linguagem de programação Java, da tecnologia Spring Boot e VScode como editor de código.
@@ -108,7 +182,7 @@ Pedro sabia que qualquer descuido poderia causar acidentes graves. Pegou no tele
 A camada de **frontend** (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O **backend** (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a **base de dados**. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
 ## Plano de Trabalho, Project Charter e WBS (Gráfico de Gantt) 
 Plano de trabalho, WBS e Project Charter 
-![Gráfico de Gantt](Images/GraficoDeGanttProjetoMobileWayCare.png)
+![Gráfico de Gantt 2ª entrega](Images/graficodegantt2entrega.png)
 
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare encontra-se:
@@ -133,10 +207,210 @@ Plano de trabalho, WBS e Project Charter
 # Mockups
  Foram escolhidas as três telas principais da App: 
 1. Tela de Reporte de Anomalia.
-2. Tela de Notificação de Proximidade.
-3. Tela da visualização do mapa interativo.
+2. Tela de Detalhes do Reporte na Visualização em Mapa.
+3. Tela da visualização do mapa interativo (com filtros).
 
-![Mockups 3 telas principais](Images/MOCKUPS%20WayCare%20-%20VersãoFinal.png)
+![Mockups 3 telas principais](Images/mockups_atualizados_reais(2entrega).png)
+
+# Esboço do Diagrama de Classes UML
+O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
+![Diagrama de Classes](Images/Fotodiagramadeclasses.png)
+
+# Primeira versão da documentação REST 
+Base URL: http://localhost:8080/api
+### Utilizadores
+
+- **POST** /utilizadores
+Cria um utilizador.
+
+**Body (JSON)**
+{
+"nome": "Daniel Alexandre",
+"email": "daniel@example.com",
+"password": "1234",
+}
+
+#### 201 Created → objeto Utilizador.
+- **GET** /utilizadores
+Lista todos os utilizadores.
+
+- **GET** /utilizadores/{utiId}
+Devolve 404 se não existir nenhum utilizador com aquele ID.
+
+- **DELETE** /utilizadores/{utiId}
+204 sem conteúdo (bloqueia se tiver reportes).
+
+#### Tipos de Anomalia 
+- **GET** /TipoAnomalia
+Lista o catálogo: Rampas Inexistentes, Passeios Danificados, …, Outro.
+
+- **POST** /TipoAnomalia
+(opcional – mantêm fixo)
+{ "nome": "Novo Tipo" }
+
+- **DELETE** /tipos-anomalia/{id}
+Só se não houver anomalias a referenciá-lo
+
+#### Anomalia
+“Instância” de um tipo — metadados reusáveis (descrição, gravidade).
+
+- **POST** /anomalias
+{ "tipo": { "id": 5 },
+"descricao": "Buraco com ~30cm",
+ "gravidade": "Alto" }
+
+- **GET** /anomalias
+  
+- **GET** /anomalias/{anoId}
+
+#### Localizações
+- **POST** /localizacoes
+
+{ "latitude": 38.716,
+"longitude": -9.141,
+"endereco": "Praça do Comércio, Lisboa" }
+
+#### Reportes
+- **POST** /reportes/utilizador/{utiId}/anomalia/{anoId}
+Cria um reporte. Back-end preenche estado=Pendente, data=hoje, resolve
+morada/coordenadas se existir GoogleMapsUtil.
+
+**Body (JSON)**
+{
+ "descricao": "Buraco grande dificulta travessia",
+ "tipoPersonalizado": null,
+ "localizacao": { "latitude": 38.716, "longitude": -9.141 }
+}
+
+Se o tipo escolhido no frontend for “Outro”, isto envia anoId que aponta à Anomalia do
+tipo “Outro” e preenche tipoPersonalizado com o texto do utilizador.
+- **GET** /reportes
+Lista todos (com joins).
+
+- **GET** /reportes/{repId}
+  
+- **GET** /reportes/utilizador/{utiId}
+Lista por utilizador.
+
+- **PUT** /reportes/{repId}/estado?estado=Pendente( Atualiza estado)
+  
+- **DELETE** /reportes/{repId}
+Apaga (cascata remove fotografias).
+
+#### Fotografia
+
+- **POST** /fotografias/upload/{repId} (multipart)
+Campo imagem (ficheiro). Lê EXIF (se existir) e guarda: fot_nome,
+fot_caminho, fot_mime, exif_latitude/longitude/data.
+
+- **GET** /fotografias?reporte={repId}
+Lista fotos do reporte
+
+# Dicionário de Dados
+### Base de Dados: WayCare (Versão Alfa)
+O presente dicionário de dados descreve detalhadamente as entidades, relações e regras
+da base de dados WayCare.
+Este modelo apoia a aplicação que permite reportar anomalias urbanas, associando
+utilizadores, localizações, tipos de anomalias, reportes e fotografias.
+
+## Entidades:
+### Utilizador
+Representa os utilizadores da aplicação WayCare — cidadãos, cuidadores ou
+administradores. São responsáveis por criar reportes, comentários e receber
+notificações.
+**Chave primária**: uti_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- uti_nome – Nome completo do utilizador (VARCHAR 255, NOT NULL).
+- uti_email – Endereço de email (VARCHAR 255, UNIQUE, NOT NULL).
+- uti_password – Palavra-passe encriptada (VARCHAR 255, NOT NULL).
+**Relações:**
+- 1 Utilizador → N Reporte (um utilizador pode criar vários reportes).
+- 1 Utilizador → N Comentário (pode comentar vários reportes).
+- 1 Utilizador → N Notificação (pode receber várias notificações).
+**Observações:**
+- O email deve ser único.
+- Recomenda-se guardar apenas o hash da password.
+
+### Tipo_Anomalia
+Representa as categorias gerais de anomalias possíveis (por exemplo, “Obra”, “Passeio
+danificado”, “Inundação”).
+**Chave primária:** tip_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- tip_nome – Nome da categoria de anomalia (VARCHAR 255, UNIQUE, NOT
+NULL).
+**Relações:**
+- 1 Tipo_Anomalia → N Anomalia.
+**Observações:**
+- Esta entidade permite normalizar e agrupar tipos de anomalias.
+
+### Anomalia
+Descreve uma anomalia específica dentro de um tipo. Pode representar uma categoria
+concreta de problema urbano.
+**Chave primária:** ano_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- tip_id – Identificador do tipo de anomalia (BIGINT, FK → Tipo_Anomalia).
+- ano_descricao – Descrição da anomalia (VARCHAR 255).
+- ano_grau_perigo – Grau de perigo da anomalia (VARCHAR 255).
+**Relações:**
+- 1 Anomalia → N Reporte.
+- N Anomalia → 1 Tipo_Anomalia.
+**Observações:**
+- A coluna “ano_grau_perigo” pode ter valores como “baixo”, “médio” ou “alto”.
+
+### Localização
+Armazena as coordenadas geográficas e o endereço textual da anomalia.
+Cada reporte está associado a uma localização.
+**Chave primária:** loc_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- loc_latitude – Latitude em formato decimal (DOUBLE).
+- loc_longitude – Longitude em formato decimal (DOUBLE).
+- loc_endereco – Endereço textual (VARCHAR 255).
+**Relações:**
+- 1 Localização → N Reporte.
+**Observações:**
+- Pode ser utilizada para consultas geográficas (latitude/longitude).
+- As coordenadas seguem o padrão WGS84.
+
+### Reporte
+Regista os reportes submetidos pelos utilizadores, com informações sobre a anomalia, a
+localização e o estado de resolução.
+**Chave primária:** rep_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- rep_uti_id – Identificador do utilizador (BIGINT, FK → Utilizador).
+- rep_ano_id – Identificador da anomalia (BIGINT, FK → Anomalia).
+- rep_loc_id – Identificador da localização (BIGINT, FK → Localizacao).
+- rep_data – Data do reporte (DATE).
+- rep_estado – Estado atual (VARCHAR 255).
+- rep_descricao – Descrição textual (VARCHAR 255).
+- rep_tipo_personalizado – Tipo definido pelo utilizador (VARCHAR 255).
+**Relações:**
+- 1 Reporte → N Fotografia.
+- 1 Reporte → N Comentário.
+- 1 Reporte → N Notificação.
+**Observação:**
+• O estado do reporte pode assumir valores como “pendente”, “em análise” ou
+“resolvido”.
+
+### Fotografia
+Armazena as informações e metadados das imagens enviadas nos reportes.
+As fotografias são evidências visuais da anomalia.
+**Chave primária:** foto_id (BIGINT, AUTO_INCREMENT)
+**Atributos:**
+- foto_rep_id – Identificador do reporte associado (BIGINT, FK → Reporte).
+- foto_nome – Nome original do ficheiro (VARCHAR 255).
+- foto_caminho – Caminho de armazenamento (VARCHAR 255).
+- foto_mime – Tipo MIME (VARCHAR 255).
+- foto_tamanho – Tamanho do ficheiro em bytes (BIGINT).
+- foto_url – URL pública da imagem (VARCHAR 255).
+**Relações:**
+- N Fotografia → 1 Reporte.
+**Observação:**
+- Deve ser aplicada a regra ON DELETE CASCADE para remover fotos ao
+apagar o reporte.
+
+# Guia de Dados
+[guia de dados](Documentos/Guiadedados(1).pdf)
+
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
 
