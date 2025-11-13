@@ -17,10 +17,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation.NavController
+import androidx.navigation.compose.rememberNavController
 import com.google.android.gms.location.LocationServices
 import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
@@ -216,3 +218,32 @@ fun FilterDropdown(filtroSelecionado: String, onFiltroChange: (String) -> Unit) 
         }
     }
 }
+
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun MapaScreenPreview() {
+    val navController = rememberNavController()
+
+    Box(modifier = Modifier.fillMaxSize()) {
+        // Substitui o mapa real por uma caixa cinzenta
+        Box(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(Color.LightGray),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Mapa (preview)", color = Color.DarkGray)
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp),
+            verticalArrangement = Arrangement.Top,
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            MapaHeader(navController, filtroSelecionado = "Mostrar Tudo") { }
+        }
+    }
+}
+
