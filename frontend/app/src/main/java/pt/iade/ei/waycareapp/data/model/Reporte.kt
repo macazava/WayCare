@@ -15,5 +15,4 @@ data class Reporte(
     val rep_data: String = LocalDate.now().toString(),
     @SerializedName("descricao")
     val rep_descricao: String
-
 )

@@ -31,7 +31,9 @@ import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
 import pt.iade.ei.waycareapp.data.model.Reporte
 import pt.iade.ei.waycareapp.ui.component.CardObstaculo
-import pt.iade.ei.waycareapp.data.mock.mockReportes
+import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
+import androidx.compose.runtime.collectAsState
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @SuppressLint("MissingPermission")
@@ -41,6 +43,13 @@ fun MapaScreen(navController: NavController) {
     var userLocation by remember { mutableStateOf<GeoPoint?>(null) }
     var reporteSelecionado by remember { mutableStateOf<Reporte?>(null) }
     var filtroSelecionado by remember { mutableStateOf("Mostrar Tudo") }
+    val reporteViewModel: ReporteViewModel = androidx.lifecycle.viewmodel.compose.viewModel()
+    val reportes by reporteViewModel.reportes.collectAsState(initial = emptyList())
+
+    LaunchedEffect(Unit) {
+        reporteViewModel.carregarReportes()
+    }
+
 
     LaunchedEffect(Unit) {
         Configuration.getInstance().userAgentValue = context.packageName
@@ -78,7 +87,7 @@ fun MapaScreen(navController: NavController) {
                     }
                     overlays.add(marker)
 
-                    val reportesFiltrados = mockReportes.filter { reporte ->
+                    val reportesFiltrados = reportes.filter { reporte ->
                         when (filtroSelecionado) {
                             "Mostrar Tudo" -> true
                             "Prioridade Alta" -> reporte.rep_ano_id.ano_grau_perigo == "Alto"
@@ -246,4 +255,3 @@ fun MapaScreenPreview() {
         }
     }
 }
-
