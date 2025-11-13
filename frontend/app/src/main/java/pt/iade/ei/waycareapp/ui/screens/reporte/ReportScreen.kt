@@ -1,10 +1,12 @@
 package pt.iade.ei.waycareapp.ui.screens.reporte
 
+import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -20,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -41,8 +44,15 @@ fun ReportScreen(navController: NavController) {
     var descricao by remember { mutableStateOf("") }
     var detalhesLocalizacao by remember { mutableStateOf("") }
     var imagemUri by remember { mutableStateOf<Uri?>(null) }
+    var imagemBitmap by remember { mutableStateOf<Bitmap?>(null) }
 
     val context = LocalContext.current
+
+    val cameraLauncher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.TakePicturePreview()
+    ) { bitmap ->
+        imagemBitmap = bitmap
+    }
 
     val galeriaLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
@@ -50,16 +60,6 @@ fun ReportScreen(navController: NavController) {
         imagemUri = uri
     }
 
-    val cameraLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.TakePicturePreview()
-    ) { bitmap ->
-        imagemUri = bitmap?.let {
-            val drawable = BitmapDrawable(context.resources, it)
-            drawable.toBitmap().let { bmp ->
-                Uri.EMPTY // lógica de gravação pode ser adicionada aqui
-            }
-        }
-    }
 
     val tipos = listOf("Rampas Inexistentes", "Passeios Danificados", "Passadeiras mal Sinalizadas", "Zonas Perigosas", "Buraco na via", "Sinalização danificada", "Outro")
     val prioridades = listOf("Baixa", "Média", "Alta")
@@ -149,11 +149,11 @@ fun ReportScreen(navController: NavController) {
                 }
                 Text("Tirar foto ou escolher da galeria", color = Color.DarkGray)
 
-                imagemUri?.let {
+                imagemBitmap?.let {
                     Spacer(modifier = Modifier.height(12.dp))
-                    AsyncImage(
-                        model = ImageRequest.Builder(context).data(it).crossfade(true).build(),
-                        contentDescription = "Imagem selecionada",
+                    Image(
+                        bitmap = it.asImageBitmap(),
+                        contentDescription = "Imagem capturada",
                         modifier = Modifier.size(100.dp)
                     )
                 }
