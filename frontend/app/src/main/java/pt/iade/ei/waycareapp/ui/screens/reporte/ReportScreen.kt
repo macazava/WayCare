@@ -218,6 +218,7 @@ fun ReportScreen(navController: NavController) {
             texto = "Enviar Reporte",
             onClick = {
                 Log.d("Botao", "Clique no botão detectado")
+
                 val reporte = Reporte(
                     rep_id = 0,
                     rep_uti_id = Utilizador(1, "Maria", "maria@email.com", "1234"),
@@ -247,11 +248,11 @@ fun ReportScreen(navController: NavController) {
                     rep_data = LocalDateTime.now().toString(),
                     rep_descricao = descricao
                 )
-                reporteViewModel.guardarReporte(reporte)
-                reporteViewModel.enviarReporte()
+                reporteViewModel.enviarReporte(reporte)
                 mostrarDialog = true
             }
         )
+
 
 
     }
