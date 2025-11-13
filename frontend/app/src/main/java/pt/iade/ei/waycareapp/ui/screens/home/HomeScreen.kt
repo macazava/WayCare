@@ -86,5 +86,12 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
     }
 }
 
+@Preview(showBackground = true, showSystemUi = true)
+@Composable
+fun HomeScreenPreview() {
+    val navController = rememberNavController()
 
-
+    // Para o preview não precisamos da MainActivity real,
+    // passamos um "fake" simples só para compilar.
+    HomeScreen(navController = navController, activity = MainActivity())
+}
