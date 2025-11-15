@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName
 data class Utilizador(
 
     @SerializedName("id")
-    val uti_id: Long,
+    val uti_id: Long? = null,
 
     @SerializedName("nome")
     val uti_nome: String,

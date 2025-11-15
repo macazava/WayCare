@@ -115,20 +115,6 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
             }
         )
 
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            Text(
-                text = "É um utilizador com Mobilidade Reduzida?",
-                fontSize = 15.sp,
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Switch(
-                checked = isReducedMobility,
-                onCheckedChange = { isReducedMobility = it }
-            )
-        }
 
         // Botão de registo com gradiente
         BotaoGradiente(
