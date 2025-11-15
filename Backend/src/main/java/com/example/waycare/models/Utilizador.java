@@ -5,7 +5,6 @@ import lombok.*;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-
 @Entity
 @Table(name = "utilizador")
 @Data
@@ -21,14 +20,17 @@ public class Utilizador {
     @Column(name = "uti_nome", nullable = false)
     private String nome;
 
-    @Column(name = "uti_email", unique = true, nullable = true)
+    // Corrigido: email não pode ser nulo, senão o registo falha
+    @Column(name = "uti_email", unique = true, nullable = false)
     private String email;
 
     @Column(name = "uti_password", nullable = false)
     private String password;
 
+    // Relação com Reporte
     @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonManagedReference("utilizador-reportes")
     private List<Reporte> reportes;
 }
+
 
