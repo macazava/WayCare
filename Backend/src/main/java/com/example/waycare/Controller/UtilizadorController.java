@@ -65,7 +65,7 @@ public class UtilizadorController {
     }
 
     //Registar utilizador
-    @PostMapping(value = "/registar", consumes = "application/json")
+    @PostMapping("/registar")
     public ResponseEntity<Utilizador> registar(@RequestBody Utilizador utilizador) {
         logger.info("Registando utilizador: {}", utilizador);
 
@@ -76,8 +76,8 @@ public class UtilizadorController {
         } catch (Exception e) {
             return ResponseEntity.badRequest().build();
         }
-
     }
+
 
     //Login
     @PostMapping("/login")
