@@ -1,5 +1,6 @@
 package pt.iade.ei.waycareapp.data.remote
 
+import okhttp3.ResponseBody
 import pt.iade.ei.waycareapp.data.model.Utilizador
 import retrofit2.Response
 import retrofit2.http.Body
@@ -13,7 +14,7 @@ interface AuthApi {
 
     // Login de utilizador
     @POST("api/utilizadores/login")
-    suspend fun login(@Body user: Utilizador): Response<String>
+    suspend fun login(@Body user: Utilizador): Response<ResponseBody>
 }
 
 

@@ -28,19 +28,35 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val user = Utilizador(uti_id = 0, uti_nome = "", uti_email = email, uti_password = password)
+                val user = Utilizador(
+                    uti_id = null, // ← evita enviar ID
+                    uti_nome = "", // ← opcional, backend ignora no login
+                    uti_email = email,
+                    uti_password = password
+                )
+
                 val response = RetrofitInstance.authApi.login(user)
+
                 if (response.isSuccessful && response.body() != null) {
-                    _authState.value = AuthUiState.LoginSuccess(response.body()!!)
-                    Log.d("API", "Login ok: ${response.body()}")
+                    val respostaTexto = response.body()!!.string()
+                    Log.d("API", "Login ok: $respostaTexto")
+
+                    if (respostaTexto.contains("sucesso", ignoreCase = true)) {
+                        _authState.value = AuthUiState.LoginSuccess(respostaTexto)
+                    } else {
+                        _authState.value = AuthUiState.Error("Login falhou: $respostaTexto")
+                    }
+
                 } else {
                     _authState.value = AuthUiState.Error("Erro login: ${response.code()}")
                 }
+
             } catch (e: Exception) {
                 _authState.value = AuthUiState.Error("Falha login: ${e.message}")
             }
         }
     }
+
 
     // Função de registo
     fun register(nome: String, email: String, password: String) {
