@@ -63,19 +63,30 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val newUser = Utilizador(uti_id = 0, uti_nome = nome, uti_email = email, uti_password = password)
-                val response = RetrofitInstance.authApi.register(newUser)
+                val novoUser = Utilizador(
+                    uti_nome = nome,
+                    uti_email = email,
+                    uti_password = password
+                )
+
+                val response = RetrofitInstance.authApi.register(novoUser)
+
                 if (response.isSuccessful && response.body() != null) {
-                    _authState.value = AuthUiState.RegisterSuccess(response.body()!!)
-                    Log.d("API", "Registo ok: ${response.body()}")
+                    val utilizadorCriado = response.body()!!
+                    Log.d("API", "Registo ok: ${utilizadorCriado}")
+                    _authState.value = AuthUiState.RegisterSuccess(utilizadorCriado)
                 } else {
+                    Log.e("API", "Erro registo: ${response.code()}")
                     _authState.value = AuthUiState.Error("Erro registo: ${response.code()}")
                 }
+
             } catch (e: Exception) {
+                Log.e("API", "Falha registo: ${e.message}")
                 _authState.value = AuthUiState.Error("Falha registo: ${e.message}")
             }
         }
     }
+
 
     fun reset() {
         _authState.value = AuthUiState.Idle

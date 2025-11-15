@@ -15,4 +15,7 @@ data class Utilizador(
 
     @SerializedName("password")
     val uti_password: String,
+
+    @SerializedName("reportes")
+    val reportes: List<Reporte>? = null
 )
