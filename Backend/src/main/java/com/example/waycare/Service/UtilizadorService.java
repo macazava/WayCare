@@ -33,7 +33,7 @@ public class UtilizadorService {
 
     // Procurar por Email
     public Optional<Utilizador> procurarPorEmail(String email) {
-        return Optional.ofNullable(utilizadorRepository.findByEmail(email));
+        return utilizadorRepository.findByEmail(email);
     }
 
     // Atualizar utilizador
@@ -43,8 +43,8 @@ public class UtilizadorService {
                     u.setNome(novoUtilizador.getNome());
                     u.setEmail(novoUtilizador.getEmail());
 
-                    // só re-encripta se o utilizador mudou a password
-                    if (!novoUtilizador.getPassword().equals(u.getPassword())) {
+                    // só re-encripta se a password foi alterada
+                    if (!passwordEncoder.matches(novoUtilizador.getPassword(), u.getPassword())) {
                         u.setPassword(passwordEncoder.encode(novoUtilizador.getPassword()));
                     }
 
@@ -69,7 +69,7 @@ public class UtilizadorService {
 
     // Autenticar (login)
     public boolean autenticar(String email, String password) {
-        Optional<Utilizador> opt = Optional.ofNullable(utilizadorRepository.findByEmail(email));
+        Optional<Utilizador> opt = utilizadorRepository.findByEmail(email);
         if (opt.isEmpty()) return false;
 
         Utilizador u = opt.get();

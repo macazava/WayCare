@@ -9,10 +9,10 @@ public class CorsConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/**")                 // todas as rotas
-                .allowedOrigins("*")               // qualquer origem (Android, web, etc.)
+        registry.addMapping("/**") // todas as rotas
+                .allowedOrigins("*") // qualquer origem (Android, web, etc.)
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
-                .allowedHeaders("*");              // qualquer header (Authorization, Content-Type, etc.)
+                .allowedHeaders("*") // qualquer header (Authorization, Content-Type, etc.)
+                .allowCredentials(false); // não exige cookies/autenticação por sessão
     }
 }
-
