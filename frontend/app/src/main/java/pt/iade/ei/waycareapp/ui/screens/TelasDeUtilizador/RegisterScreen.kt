@@ -120,7 +120,7 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
         BotaoGradiente(
             texto = "Registar-me",
             onClick = {
-                viewModel.register(nome, email, password) // ✅ chama o backend
+                viewModel.register(nome, email, password) //chama o backend
             }
         )
 
