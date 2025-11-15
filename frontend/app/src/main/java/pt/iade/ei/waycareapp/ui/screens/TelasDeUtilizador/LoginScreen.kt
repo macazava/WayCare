@@ -29,14 +29,16 @@ import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.R
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
-
+import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
 
 
 @Composable
-fun LoginScreen(navController: NavController) {
-        var email by remember { mutableStateOf("") }
+fun LoginScreen(navController: NavController, viewModel: LoginViewModel = viewModel()) {
+    var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
+
+    val authState by viewModel.authState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -90,11 +92,11 @@ fun LoginScreen(navController: NavController) {
         Spacer(modifier = Modifier.height(15.dp))
 
         // Espaço para o Email
-        OutlinedTextField( //componente de input com borda visivel
-            value = email, //esta variavel guarda o texto que o utilizador escreve
-            onValueChange = { email = it }, //Define o que acontece quando o utilizador escreve algo. Sempre que o texto muda, atualiza a variável email com o novo valor (it).
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
             label = { Text("E-mail") },
-            placeholder = { Text("Maria123@gmail.com") }, //texto de exemplo
+            placeholder = { Text("Maria123@gmail.com") },
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         )
@@ -114,17 +116,6 @@ fun LoginScreen(navController: NavController) {
                     Icon(imageVector = icon, contentDescription = "Mostrar/Esconder")
                 }
             },
-            /*
-Este bloco de cima permite alternar entre mostrar e esconder a palavra-passe:
-- visualTransformation: define como o texto é exibido.
-    - Se passwordVisible for true → mostra o texto normalmente.
-    - Se for false → oculta o texto com bolinhas (PasswordVisualTransformation).
-- trailingIcon: adiciona um ícone à direita do campo.
-    - O ícone muda entre Visibility e VisibilityOff conforme o estado.
-    - IconButton permite que o utilizador clique para alternar o estado de visibilidade.
-    - O estado é guardado na variável passwordVisible, que é invertida ao clicar.
-Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
-*/
             modifier = Modifier.fillMaxWidth(),
             shape = RoundedCornerShape(12.dp)
         )
@@ -136,7 +127,7 @@ Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
             fontSize = 14.sp,
             modifier = Modifier
                 .align(Alignment.End)
-                .clickable { /*pode levar a uma tela para recuperar a palavra passe - pode não ser implementado*/ }
+                .clickable { /*pode levar a uma tela para recuperar a palavra passe - ainda não implementado*/ }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
@@ -144,7 +135,9 @@ Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
         // Botão de login com gradiente
         BotaoGradiente(
             texto = "Login",
-            onClick = { navController.navigate("home") }
+            onClick = {
+                viewModel.login(email, password) // ✅ chama o backend
+            }
         )
 
         Spacer(modifier = Modifier.height(16.dp))
@@ -169,6 +162,29 @@ Este comportamento melhora a usabilidade e segurança do campo de palavra-passe.
                     .size(40.dp)
                     .padding(8.dp),
             )
+        }
+
+        // Observa o estado da autenticação
+        when (authState) {
+            is AuthUiState.Loading -> {
+                CircularProgressIndicator()
+            }
+            is AuthUiState.LoginSuccess -> {
+                LaunchedEffect(Unit) {
+                    navController.navigate("home") {
+                        popUpTo("login") { inclusive = true }
+                    }
+                    viewModel.reset()
+                }
+            }
+            is AuthUiState.Error -> {
+                Text(
+                    text = (authState as AuthUiState.Error).message,
+                    color = Color.Red,
+                    fontSize = 14.sp
+                )
+            }
+            else -> {}
         }
     }
 }

@@ -1,7 +1,6 @@
 package pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,7 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -23,20 +21,24 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import org.w3c.dom.Text
 import pt.iade.ei.waycareapp.R
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
+import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
 
 @Composable
-fun RegisterScreen(navController: NavController) {
+fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = viewModel()) {
     var nome by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") }
+    var username by remember { mutableStateOf("") } // não usado no backend, mas mantive
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var passwordVisible by remember { mutableStateOf(false) }
     var isReducedMobility by remember { mutableStateOf(false) }
+
+    val authState by viewModel.authState.collectAsState()
 
     Column(
         modifier = Modifier
@@ -131,7 +133,9 @@ fun RegisterScreen(navController: NavController) {
         // Botão de registo com gradiente
         BotaoGradiente(
             texto = "Registar-me",
-            onClick = { navController.navigate("home") }
+            onClick = {
+                viewModel.register(nome, email, password) // ✅ chama o backend
+            }
         )
 
         Column (
@@ -164,6 +168,29 @@ fun RegisterScreen(navController: NavController) {
                     navController.navigate("login")
                 }
             )
+        }
+
+        // ✅ Observa o estado da autenticação
+        when (authState) {
+            is AuthUiState.Loading -> {
+                CircularProgressIndicator()
+            }
+            is AuthUiState.RegisterSuccess -> {
+                LaunchedEffect(Unit) {
+                    navController.navigate("login") {
+                        popUpTo("register") { inclusive = true }
+                    }
+                    viewModel.reset()
+                }
+            }
+            is AuthUiState.Error -> {
+                Text(
+                    text = (authState as AuthUiState.Error).message,
+                    color = Color.Red,
+                    fontSize = 14.sp
+                )
+            }
+            else -> {}
         }
     }
 }
