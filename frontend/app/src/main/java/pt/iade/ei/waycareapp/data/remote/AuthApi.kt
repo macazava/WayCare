@@ -8,11 +8,11 @@ import retrofit2.http.POST
 interface AuthApi {
 
     // Registo de utilizador
-    @POST("utilizadores/registar")
+    @POST("api/utilizadores/registar")
     suspend fun register(@Body user: Utilizador): Response<Utilizador>
 
     // Login de utilizador
-    @POST("utilizadores/login")
+    @POST("api/utilizadores/login")
     suspend fun login(@Body user: Utilizador): Response<String>
 }
 
