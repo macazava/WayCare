@@ -36,7 +36,7 @@ class ReporteViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val response = RetrofitInstance.api.criarReporte(
-                    utiId = reporte.rep_uti_id.uti_id,
+                    utiId = reporte.rep_uti_id.uti_id!!,
                     anoId = reporte.rep_ano_id.ano_id,
                     reporte = reporte
                 )

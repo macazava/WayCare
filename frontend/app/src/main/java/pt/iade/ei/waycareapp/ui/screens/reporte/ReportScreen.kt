@@ -221,7 +221,7 @@ fun ReportScreen(navController: NavController) {
 
                 val reporte = Reporte(
                     rep_id = 0,
-                    rep_uti_id = Utilizador(1, "Maria", "maria@email.com", "1234"),
+                    rep_uti_id = Utilizador(1,"Maria", "maria@email.com", "1234"),
                     rep_ano_id = Anomalia(
                         ano_id = 2,
                         tip_id = TipoAnomalia(1, tipoAnomalia),
