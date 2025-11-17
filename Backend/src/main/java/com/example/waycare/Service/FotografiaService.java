@@ -6,6 +6,7 @@ import com.example.waycare.models.Fotografia;
 import com.example.waycare.models.Localizacao;
 import com.example.waycare.models.Reporte;
 import com.example.waycare.utils.ExifUtil;
+import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
 
 @Service
 public class FotografiaService {
@@ -45,7 +47,10 @@ public class FotografiaService {
         existente.setMime(fotografia.getMime());
         existente.setTamanho(fotografia.getTamanho());
         existente.setNome(fotografia.getNome());
+        existente.setDescricao(fotografia.getDescricao());
         existente.setReporte(fotografia.getReporte());
+        existente.setUtilizador(fotografia.getUtilizador());
+        existente.setAnomalia(fotografia.getAnomalia());
         return fotografiaRepository.save(existente);
     }
 
@@ -65,7 +70,7 @@ public class FotografiaService {
         if (!dir.exists()) {
             dir.mkdirs();
         }
-
+        String uniqueName = System.currentTimeMillis() + "_" + file.getOriginalFilename();
         File destino = new File(dir, file.getOriginalFilename());
 
         file.transferTo(destino);

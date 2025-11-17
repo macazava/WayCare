@@ -57,6 +57,11 @@ public class ReporteController {
         return ResponseEntity.noContent().build();
 
     }
+    @GetMapping
+    public ResponseEntity<List<Reporte>> ListerTodos() {
+        List<Reporte> reportes = reporteService.listarTodos();
+        return ResponseEntity.ok(reportes);
+    }
 
     @GetMapping("/mapa")
     public ResponseEntity<List<Reporte>> listarParaMapa() {

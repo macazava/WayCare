@@ -83,7 +83,7 @@ public class UtilizadorController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestBody Utilizador loginRequest) {
         boolean autenticado = utilizadorService.autenticar(
-                loginRequest.getEmail(), loginRequest.getPassword());
+                (String) loginRequest.getEmail(), (String) loginRequest.getPassword());
 
         if (autenticado) {
             return ResponseEntity.ok("Login efetuado com sucesso!");

@@ -45,7 +45,7 @@ public class UtilizadorService {
 
                     // só re-encripta se o utilizador mudou a password
                     if (!novoUtilizador.getPassword().equals(u.getPassword())) {
-                        u.setPassword(passwordEncoder.encode(novoUtilizador.getPassword()));
+                        u.setPassword(passwordEncoder.encode(novoUtilizador.getPassword().toString()));
                     }
 
                     return utilizadorRepository.save(u);
@@ -63,7 +63,7 @@ public class UtilizadorService {
 
     // Registar
     public Utilizador registar(Utilizador utilizador) {
-        utilizador.setPassword(passwordEncoder.encode(utilizador.getPassword()));
+        utilizador.setPassword(passwordEncoder.encode((CharSequence) utilizador.getPassword()));
         return utilizadorRepository.save(utilizador);
     }
 
@@ -73,6 +73,6 @@ public class UtilizadorService {
         if (opt.isEmpty()) return false;
 
         Utilizador u = opt.get();
-        return passwordEncoder.matches(password, u.getPassword());
+        return passwordEncoder.matches(password, (String) u.getPassword());
     }
 }

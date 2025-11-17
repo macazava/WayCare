@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -19,19 +20,32 @@ public class Anomalia {
     @Column(name = "ano_id")
     private Long id;
 
+    @Column(name = "ano_descricao", nullable = false)
+    private String descricao;
+
+    @Column(name = "ano_data_detecao")
+    private LocalDate dataDetecao = LocalDate.now();
+
+    @Column(name = "ano_estado")
+    private String estado = "Pendente"; // valores: Pendente, Em análise, Resolvida
+
+    @Column(name = "ano_severidade")
+    private String severidade; // opcional: Leve, Moderado, Grave
+
+    // Relações
     @ManyToOne
-    @JoinColumn(name = "tip_id", nullable = false)
-    @JsonBackReference("tipoAnomalia-anomalias")
+    @JoinColumn(name = "ano_uti_id")
+    private Utilizador utilizador;
+
+    @ManyToOne
+    @JoinColumn(name = "ano_tipo_id")
     private TipoAnomalia tipoAnomalia;
 
+    @ManyToOne
+    @JoinColumn(name = "ano_loc_id")
+    private Localizacao localizacao;
+
     @OneToMany(mappedBy = "anomalia", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties("anomalia")
-    private List<Reporte> reportes;
+    private java.util.List<Fotografia> fotografias;
 
-    @Column(name = "ano_descricao")
-    private String descricao; // Local onde escrevemos a descrição do problema
-
-    @Column(name = "ano_grau_perigo")
-    private String grauPerigo;
-}
-
+     }

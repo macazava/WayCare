@@ -39,6 +39,12 @@ public class AnomaliaController {
         Anomalia novo = anomaliaService.criar(anomalia);
         return ResponseEntity.ok(novo);
     }
+    @PutMapping("/{id}/estado")
+    public ResponseEntity<Anomalia> atualizarEstado(@PathVariable Long id,
+                                                    @RequestParam String novoEstado) {
+        Anomalia atualizada = anomaliaService.atualizarEstado(id, novoEstado);
+        return ResponseEntity.ok(atualizada);
+    }
 
     //Atualizar Anomalia
     @PutMapping("atualizar/{id}")

@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Entity
 @Table(name = "fotografia")
 @Data
@@ -31,10 +33,24 @@ public class Fotografia {
     @Column(name = "foto_tamanho")
     private Long tamanho;
 
+    @Column(name = "fot_descricao")
+    private String descricao;
+
+    @Column(name = "fot_data_upload")
+    private LocalDateTime dataUpload = LocalDateTime.now();
+
     @ManyToOne
     @JoinColumn(name = "foto_rep_id", nullable = false)
     @JsonBackReference("reporte-fotografias")
     private Reporte reporte;
+
+    @ManyToOne
+    @JoinColumn(name = "fot_ano_id")
+    private Anomalia anomalia;
+
+    @ManyToOne
+    @JoinColumn(name = "fot_uti_id")
+    private Utilizador utilizador;
 }
 
 

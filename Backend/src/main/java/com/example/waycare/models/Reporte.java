@@ -33,6 +33,9 @@ public class Reporte {
     @Column(name = "rep_tipo_personalizado")
     private String tipoPersonalizado; //apenas para anomalias personalizadas
 
+    @Column(name = "rep_foto_url")
+    private String fotoUrl;
+
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rep_loc_id", nullable = true)
     @JsonIgnoreProperties({"reportes"})
@@ -50,5 +53,7 @@ public class Reporte {
 
     @Column(name = "rep_descricao")
     private String descricao;
-}
+
+    }
+
 
