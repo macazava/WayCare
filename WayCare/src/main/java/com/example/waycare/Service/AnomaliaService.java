@@ -2,9 +2,11 @@ package com.example.waycare.Service;
 
 import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.models.Anomalia;
+import com.example.waycare.models.Reporte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -39,3 +41,9 @@ public class AnomaliaService {
         anomaliaRepository.deleteById(id);
     }
 }
+
+
+
+
+
+
