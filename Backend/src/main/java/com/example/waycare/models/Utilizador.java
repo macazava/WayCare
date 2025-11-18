@@ -80,11 +80,11 @@ public class Utilizador {
         if (tentativasLogin == null) tentativasLogin = 0;
     }
 
-    public Object getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public Object getPassword() {
+    public String getPassword() {
         return password;
     }
 
@@ -96,11 +96,11 @@ public class Utilizador {
         return nome;
     }
 
-    public void setNome(Object nome) {
-        this.nome = nome.toString();
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void setEmail(Object email) {
-        this.email = email.toString();
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 }

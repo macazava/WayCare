@@ -7,15 +7,16 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/comentarios")
+@RequestMapping("/api/comentarios")
+
 @CrossOrigin(origins = "*")
 public class ComentarioController {
+
     @Autowired
     private ComentarioService comentarioService;
 
     @PostMapping
-    public ResponseEntity<Comentario> criar(@RequestBody Comentario comentario) {
-        Comentario novo = comentarioService.criarComentario(comentario);
-        return ResponseEntity.ok(novo);
+    public Comentario criarComentario(@RequestBody Comentario comentario) {
+        return comentarioService.criarComentario(comentario);
     }
 }

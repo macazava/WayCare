@@ -30,8 +30,9 @@ public class ReporteService {
     @Autowired
     private GoogleMapsUtil googleMapsUtil;
 
-    public Reporte criar(Long utiId, Long anoId, Reporte reporte) {
+    public Reporte criar(Reporte reporte) {
         // Buscar o utilizador
+        Long utiId = 0L;
         Utilizador utilizador = utilizadorRepository.findById(utiId)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
         reporte.setUtilizador(utilizador);
@@ -41,6 +42,7 @@ public class ReporteService {
         reporte.setData(LocalDate.now());
 
         // Anomalia ou tipo personalizado
+        Long anoId = 0L;
         if (anoId != null && anoId > 0) {
             Anomalia anomalia = anomaliaRepository.findById(anoId)
                     .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));

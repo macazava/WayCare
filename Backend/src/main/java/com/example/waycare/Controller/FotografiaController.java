@@ -3,6 +3,7 @@ package com.example.waycare.Controller;
 import com.example.waycare.Service.FotografiaService;
 import com.example.waycare.models.Fotografia;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -18,6 +19,13 @@ public class FotografiaController {
 
     @Autowired
     private FotografiaService fotografiaService;
+
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadFoto(@RequestParam("file") MultipartFile file,
+                                        @RequestParam("reporteId") Long reporteId) {
+        Fotografia foto = fotografiaService.salvar(file, reporteId);
+        return ResponseEntity.ok(foto);
+    }
 
     //Dar uplaod de fotografia no reporte
     @PostMapping("/reporte/{repId}")

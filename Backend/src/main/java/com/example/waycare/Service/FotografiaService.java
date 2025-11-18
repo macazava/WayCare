@@ -8,7 +8,11 @@ import com.example.waycare.models.Reporte;
 import com.example.waycare.utils.ExifUtil;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
@@ -26,6 +30,18 @@ public class FotografiaService {
 
     @Autowired
     private ReporteRepository reporteRepository;
+
+
+    @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<?> uploadFoto(@RequestParam("file") MultipartFile file,
+                                        @RequestParam("reporteId") Long reporteId) {
+        Fotografia foto = FotografiaService.salvar(file, reporteId);
+        return ResponseEntity.ok(foto);
+    }
+
+    public static Fotografia salvar(MultipartFile file, Long reporteId) {
+        return null;
+    }
 
     public List<Fotografia> listarTodos() {
         return fotografiaRepository.findAll();

@@ -18,16 +18,11 @@ public class ReporteController {
     private ReporteService reporteService;
 
     // Criar novo reporte
-    @PostMapping("/utilizador/{utiId}/{anoId}")
-    public ResponseEntity<Reporte> criar(@PathVariable Long utiId, @PathVariable Long anoId, @RequestBody Reporte reporte) {
-        return ResponseEntity.status(201).body(reporteService.criar(utiId, anoId, reporte));
+    @PostMapping
+    public Reporte criarReporte(@RequestBody Reporte reporte) {
+        return reporteService.criar(reporte);
     }
 
-    // Lista todos os reportes
-    @GetMapping
-    public ResponseEntity<List<Reporte>> listarTodos() {
-        return ResponseEntity.ok(reporteService.listarTodos());
-    }
 
     // Listar reportes por utilizador
     @GetMapping("listar/utilizador/{utiId}")

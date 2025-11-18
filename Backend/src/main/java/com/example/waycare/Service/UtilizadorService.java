@@ -40,7 +40,7 @@ public class UtilizadorService {
     public Utilizador atualizar(Long id, Utilizador novoUtilizador) {
         return utilizadorRepository.findById(id)
                 .map(u -> {
-                    u.setNome(novoUtilizador.getNome());
+                    u.setNome((String) novoUtilizador.getNome());
                     u.setEmail(novoUtilizador.getEmail());
 
                     // só re-encripta se o utilizador mudou a password
