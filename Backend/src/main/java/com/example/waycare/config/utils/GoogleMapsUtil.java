@@ -1,4 +1,4 @@
-package com.example.waycare.utils;
+package com.example.waycare.config.utils;
 
 import com.example.waycare.exceptions.EnderecoNaoEncontradoException;
 import com.example.waycare.exceptions.GoogleMapsApiException;

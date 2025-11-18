@@ -1,4 +1,4 @@
-package com.example.waycare.utils;
+package com.example.waycare.config.utils;
 
 import com.drew.imaging.ImageMetadataReader;
 import com.drew.metadata.Metadata;

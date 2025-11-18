@@ -7,6 +7,7 @@ import com.example.waycare.models.Notificacao;
 import com.example.waycare.models.Utilizador;
 import org.antlr.v4.runtime.tree.pattern.ParseTreePattern;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,14 @@ public class NotificacaoService {
 
     @Autowired
     private UtilizadorRepository utilizadorRepository;
+
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
+
+    public void enviarNotificacao(Notificacao notificacao) {
+        notificacaoRepository.save(notificacao);
+        messagingTemplate.convertAndSend("/notificacoes/fluxo", notificacao);
+    }
 
     @Autowired
     private NotificacaoRepository notificacaoRepository;

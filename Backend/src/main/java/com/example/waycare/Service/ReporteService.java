@@ -4,7 +4,7 @@ import com.example.waycare.Repository.ReporteRepository;
 import com.example.waycare.Repository.UtilizadorRepository;
 import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.models.*;
-import com.example.waycare.utils.GoogleMapsUtil;
+import com.example.waycare.config.utils.GoogleMapsUtil;
 import com.example.waycare.exceptions.EnderecoNaoEncontradoException;
 import com.example.waycare.exceptions.GoogleMapsApiException;
 import org.springframework.beans.factory.annotation.Autowired;

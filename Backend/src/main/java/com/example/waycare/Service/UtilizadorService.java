@@ -63,16 +63,12 @@ public class UtilizadorService {
 
     // Registar
     public Utilizador registar(Utilizador utilizador) {
-        utilizador.setPassword(passwordEncoder.encode((CharSequence) utilizador.getPassword()));
         return utilizadorRepository.save(utilizador);
     }
 
-    // Autenticar (login)
     public boolean autenticar(String email, String password) {
-        Optional<Utilizador> opt = Optional.ofNullable(utilizadorRepository.findByEmail(email));
-        if (opt.isEmpty()) return false;
-
-        Utilizador u = opt.get();
-        return passwordEncoder.matches(password, (String) u.getPassword());
+        Optional<Utilizador> user = Optional.ofNullable(utilizadorRepository.findByEmail(email));
+        return user.isPresent() && user.get().getPassword().equals(password);
     }
-}
+    }
+
