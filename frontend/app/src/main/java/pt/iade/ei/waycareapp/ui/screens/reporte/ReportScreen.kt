@@ -263,7 +263,7 @@ fun ReportScreen(navController: NavController) {
                     obterLocalizacaoAtual { lat, lng ->
                         val reporte = Reporte(
                             rep_id = 0, // backend gera
-                            rep_uti_id = utilizadorLogado, // ✅ utilizador autenticado
+                            rep_uti_id = utilizadorLogado, // utilizador autenticado
                             rep_ano_id = Anomalia(
                                 ano_id = 0, // backend gera
                                 tip_id = TipoAnomalia(
