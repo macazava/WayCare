@@ -13,7 +13,7 @@ import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
 sealed class AuthUiState {
     object Idle : AuthUiState()
     object Loading : AuthUiState()
-    data class LoginSuccess(val message: String) : AuthUiState()
+    data class LoginSuccess(val user: Utilizador) : AuthUiState()   // ← agora guarda o utilizador
     data class RegisterSuccess(val user: Utilizador) : AuthUiState()
     data class Error(val message: String) : AuthUiState()
 }
@@ -29,8 +29,8 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val user = Utilizador(
-                    uti_id = null, // ← evita enviar ID
-                    uti_nome = "", // ← opcional, backend ignora no login
+                    uti_id = null, // não enviar ID
+                    uti_nome = "", // opcional
                     uti_email = email,
                     uti_password = password
                 )
@@ -38,15 +38,10 @@ class LoginViewModel : ViewModel() {
                 val response = RetrofitInstance.authApi.login(user)
 
                 if (response.isSuccessful && response.body() != null) {
-                    val respostaTexto = response.body()!!.string()
-                    Log.d("API", "Login ok: $respostaTexto")
+                    val utilizadorLogado = response.body()!!   // ← backend devolve o objeto Utilizador
+                    Log.d("API", "Login ok: $utilizadorLogado")
 
-                    if (respostaTexto.contains("sucesso", ignoreCase = true)) {
-                        _authState.value = AuthUiState.LoginSuccess(respostaTexto)
-                    } else {
-                        _authState.value = AuthUiState.Error("Login falhou: $respostaTexto")
-                    }
-
+                    _authState.value = AuthUiState.LoginSuccess(utilizadorLogado)
                 } else {
                     _authState.value = AuthUiState.Error("Erro login: ${response.code()}")
                 }
@@ -56,7 +51,6 @@ class LoginViewModel : ViewModel() {
             }
         }
     }
-
 
     // Função de registo
     fun register(nome: String, email: String, password: String) {
@@ -73,7 +67,7 @@ class LoginViewModel : ViewModel() {
 
                 if (response.isSuccessful && response.body() != null) {
                     val utilizadorCriado = response.body()!!
-                    Log.d("API", "Registo ok: ${utilizadorCriado}")
+                    Log.d("API", "Registo ok: $utilizadorCriado")
                     _authState.value = AuthUiState.RegisterSuccess(utilizadorCriado)
                 } else {
                     Log.e("API", "Erro registo: ${response.code()}")
@@ -87,10 +81,7 @@ class LoginViewModel : ViewModel() {
         }
     }
 
-
     fun reset() {
         _authState.value = AuthUiState.Idle
     }
 }
-
-

@@ -42,6 +42,8 @@ import com.google.android.gms.location.LocationServices
 import com.google.android.gms.location.Priority
 import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
+import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 
@@ -247,46 +249,59 @@ fun ReportScreen(navController: NavController) {
         }
 
         val reporteViewModel: ReporteViewModel = viewModel()
+        val loginViewModel: LoginViewModel = viewModel()
+        val authState by loginViewModel.authState.collectAsState()
 
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
                 Log.d("Botao", "Clique no botão detectado")
-                obterLocalizacaoAtual { lat, lng ->
-                    val reporte = Reporte(
-                        rep_id = 0,
-                        rep_uti_id = Utilizador(1,"Maria", "maria@email.com", "1234"),
-                        rep_ano_id = Anomalia(
-                            ano_id = 2,
-                            tip_id = TipoAnomalia(1, tipoAnomalia),
-                            ano_descricao = descricao,
-                            ano_grau_perigo = prioridade
-                        ),
-                        rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
-                        rep_loc_id = Localizacao(
-                            loc_id = 0, // backend gera ID
-                            loc_latitude = lat,
-                            loc_longitude = lng,
-                            loc_endereco = detalhesLocalizacao
-                        ),
-                        fotografia = Fotografia(
-                            foto_id = 1,
-                            foto_nome = "imagem.jpg",
-                            foto_rep_id = 1,
-                            foto_url = imagemUri?.toString() ?: "",
-                            foto_caminho = "",
-                            foto_mime = "image/jpeg",
-                            foto_tamanho = 0
-                        ),
-                        rep_estado = "Pendente",
-                        rep_data = LocalDateTime.now().toString(),
-                        rep_descricao = descricao
-                    )
-                    reporteViewModel.enviarReporte(reporte)
-                    mostrarDialog = true
+
+                if (authState is AuthUiState.LoginSuccess) {
+                    val utilizadorLogado = (authState as AuthUiState.LoginSuccess).user
+
+                    obterLocalizacaoAtual { lat, lng ->
+                        val reporte = Reporte(
+                            rep_id = 0, // backend gera
+                            rep_uti_id = utilizadorLogado, // ✅ utilizador autenticado
+                            rep_ano_id = Anomalia(
+                                ano_id = 0, // backend gera
+                                tip_id = TipoAnomalia(
+                                    tip_id = 0, // backend gera
+                                    tip_nome = tipoAnomalia
+                                ),
+                                ano_descricao = descricao,
+                                ano_grau_perigo = prioridade
+                            ),
+                            rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
+                            rep_loc_id = Localizacao(
+                                loc_id = 0, // backend gera
+                                loc_latitude = lat,
+                                loc_longitude = lng,
+                                loc_endereco = detalhesLocalizacao
+                            ),
+                            fotografia = Fotografia(
+                                foto_id = 0, // backend gera
+                                foto_nome = "imagem.jpg",
+                                foto_rep_id = 0, // backend gera
+                                foto_url = imagemUri?.toString() ?: "",
+                                foto_caminho = "",
+                                foto_mime = "image/jpeg",
+                                foto_tamanho = 0
+                            ),
+                            rep_estado = "Pendente",
+                            rep_data = LocalDateTime.now().toString(),
+                            rep_descricao = descricao
+                        )
+                        reporteViewModel.enviarReporte(reporte)
+                        mostrarDialog = true
+                    }
+                } else {
+                    Log.e("Reporte", "Utilizador não autenticado — não é possível enviar reporte")
                 }
             }
         )
+
     }
 }
 

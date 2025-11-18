@@ -14,7 +14,7 @@ interface AuthApi {
 
     // Login de utilizador
     @POST("api/utilizadores/login")
-    suspend fun login(@Body user: Utilizador): Response<ResponseBody>
+    suspend fun login(@Body user: Utilizador): Response<Utilizador>
 }
 
 
