@@ -1,7 +1,8 @@
-package com.example.waycare.Controller;
+package DTO;
 
 import com.example.waycare.Service.UtilizadorService;
 import com.example.waycare.models.Utilizador;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +22,10 @@ public class AuthController {
 
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody Utilizador utilizador) {
-        Utilizador novo = utilizadorService.registar(utilizador);
-        return ResponseEntity.ok(novo);
+    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequestDTO dto) {
+        Utilizador novo = utilizadorService.registarNovoUtilizador(dto);
+        return ResponseEntity.status(201).body(novo);
+
     }
 
     @PostMapping("/login")

@@ -38,7 +38,7 @@ public class Anomalia {
     private Utilizador utilizador;
 
     @ManyToOne
-    @JoinColumn(name = "ano_tipo_id")
+    @JsonBackReference
     private TipoAnomalia tipoAnomalia;
 
     @ManyToOne

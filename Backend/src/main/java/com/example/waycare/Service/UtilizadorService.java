@@ -1,7 +1,10 @@
 package com.example.waycare.Service;
 
+import DTO.RegisterRequestDTO;
 import com.example.waycare.models.Utilizador;
 import com.example.waycare.Repository.UtilizadorRepository;
+import com.fasterxml.jackson.core.JsonPointer;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -63,12 +66,37 @@ public class UtilizadorService {
 
     // Registar
     public Utilizador registar(Utilizador utilizador) {
+        utilizador.setPassword(passwordEncoder.encode(utilizador.getPassword()));
         return utilizadorRepository.save(utilizador);
     }
 
     public boolean autenticar(String email, String password) {
-        Optional<Utilizador> user = Optional.ofNullable(utilizadorRepository.findByEmail(email));
-        return user.isPresent() && user.get().getPassword().equals(password);
+        Utilizador utilizador = utilizadorRepository.findByEmail(email);
+
+        if (utilizador == null) {
+            return false;
+        }
+
+        return passwordEncoder.matches(password, utilizador.getPassword());
     }
+
+    public Utilizador registarNovoUtilizador(RegisterRequestDTO dto) {
+        if (utilizadorRepository.findByEmail(dto.getEmail()) != null) {
+            throw new RuntimeException("Email já está registado");
+        }
+
+        Utilizador utilizador = new Utilizador();
+        utilizador.setNome(dto.getNome());
+        utilizador.setEmail(dto.getEmail());
+        utilizador.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        return utilizadorRepository.save(utilizador);
+
     }
+}
+
+
+
+
+
 

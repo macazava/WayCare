@@ -50,7 +50,9 @@ public class Fotografia {
 
     @ManyToOne
     @JoinColumn(name = "fot_uti_id")
+    @JsonBackReference
     private Utilizador utilizador;
+
 }
 
 

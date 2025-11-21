@@ -32,8 +32,9 @@ public class Utilizador {
     private String password;
 
     @ManyToOne
-    @JoinColumn(name = "loc_id")
+    @JoinColumn(name = "loc_id", nullable = true)
     private Localizacao localizacao;
+
 
     @Column(name = "uti_nome", nullable = false)
     private String nome;
@@ -69,9 +70,10 @@ public class Utilizador {
     private List<Comentario> comentarios;
 
 
-    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonManagedReference("utilizador-fotos")
+    @OneToMany(mappedBy = "utilizador", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Fotografia> fotografias;
+
 
     @PrePersist
     protected void onCreate() {
@@ -92,7 +94,7 @@ public class Utilizador {
         this.password = password;
     }
 
-    public Object getNome() {
+    public String getNome() {
         return nome;
     }
 

@@ -1,6 +1,5 @@
 package com.example.waycare.models;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,8 +27,7 @@ public class Localizacao {
     @Column(name="loc_endereco")
     private String endereco;
 
-    @OneToMany(mappedBy = "localizacao", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "localizacao", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties({"localizacao", "anomalia", "utilizador", "fotografias"})
     private List<Reporte> reportes = new ArrayList<>();
 }
-

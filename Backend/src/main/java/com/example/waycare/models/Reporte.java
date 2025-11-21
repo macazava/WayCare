@@ -1,12 +1,12 @@
 package com.example.waycare.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalDate;
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "reporte")
@@ -31,19 +31,19 @@ public class Reporte {
     private Anomalia anomalia;
 
     @Column(name = "rep_tipo_personalizado")
-    private String tipoPersonalizado; //apenas para anomalias personalizadas
+    private String tipoPersonalizado; // apenas para anomalias personalizadas
 
     @Column(name = "rep_foto_url")
     private String fotoUrl;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "rep_loc_id", nullable = true)
     @JsonIgnoreProperties({"reportes"})
     private Localizacao localizacao;
 
     @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonIgnoreProperties("reporte")
-    private List<Fotografia> fotografias;
+    private List<Fotografia> fotografias = new ArrayList<>();
 
     @Column(name = "rep_estado")
     private String estado = "Pendente";
@@ -53,7 +53,6 @@ public class Reporte {
 
     @Column(name = "rep_descricao")
     private String descricao;
-
-    }
+}
 
 
