@@ -7,8 +7,5 @@ data class TipoAnomalia(
     val tip_id: Long,
 
     @SerializedName("nome")
-    val tip_nome: String,
-
-    @SerializedName("anomalias")
-    val anomalias: List<Anomalia> = emptyList()
+    val tip_nome: String
 )

@@ -6,19 +6,19 @@ import java.time.LocalDate
 
 data class Reporte(
     @SerializedName("id")
-    val rep_id: Long,
+    val rep_id: Long = 0,
 
     @SerializedName("utilizador")
-    val rep_uti_id: Utilizador,
+    val rep_uti_id: Utilizador? = null,
 
     @SerializedName("anomalia")
-    val rep_ano_id: Anomalia?,
+    val rep_ano_id: Anomalia? = null,
 
     @SerializedName("tipoPersonalizado")
-    val rep_tipo_personalizado: String?,
+    val rep_tipo_personalizado: String? = null,
 
     @SerializedName("localizacao")
-    val rep_loc_id: Localizacao?,
+    val rep_loc_id: Localizacao? = null,
 
     @SerializedName("fotografias")
     val fotografias: List<Fotografia> = emptyList(),
@@ -32,3 +32,4 @@ data class Reporte(
     @SerializedName("descricao")
     val rep_descricao: String
 )
+

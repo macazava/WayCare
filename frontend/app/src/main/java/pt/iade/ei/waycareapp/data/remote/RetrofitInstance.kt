@@ -28,4 +28,10 @@ object RetrofitInstance {
         retrofit.create(TipoAnomaliaApi::class.java)
     }
 
+    //API para anomalias
+    val anomaliaApi: AnomaliaApi by lazy {
+        retrofit.create(AnomaliaApi::class.java)
+    }
+
+
 }

@@ -1,6 +1,7 @@
 package pt.iade.ei.waycareapp.navigation
 
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -31,6 +32,9 @@ fun AppNavHost(
         composable("profile") { ProfileScreen(navController) }
         composable("report") { ReportScreen(navController) }
         composable("mapView") { MapaScreen(navController) }
+        composable("reportescreen") {
+            ReportScreen(navController = navController, reporteViewModel = viewModel())
+        }
     }
 }
 

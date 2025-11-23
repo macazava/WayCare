@@ -59,7 +59,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             // Reportado por
             Text(
-                text = "Reportado por: ${reporte.rep_uti_id.uti_nome} - ${reporte.rep_uti_id.uti_id} reporte(s)",
+                text = "Reportado por: ${reporte.rep_uti_id?.uti_nome ?: "Desconhecido"} - ${reporte.rep_uti_id?.uti_id ?: "?"} reporte(s)",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF3F51B5)

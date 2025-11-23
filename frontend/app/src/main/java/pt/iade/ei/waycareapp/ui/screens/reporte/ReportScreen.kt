@@ -48,8 +48,9 @@ import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 import pt.iade.ei.waycareapp.data.session.SessionManager
 
+
 @Composable
-fun ReportScreen(navController: NavController) {
+fun ReportScreen(navController: NavController,     reporteViewModel: ReporteViewModel = viewModel()) {
     var tipoAnomalia by remember { mutableStateOf("") }
     var prioridade by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
@@ -57,6 +58,14 @@ fun ReportScreen(navController: NavController) {
     var imagemUri by remember { mutableStateOf<Uri?>(null) }
     var imagemBitmap by remember { mutableStateOf<Bitmap?>(null) }
     var tipoSelecionado by remember { mutableStateOf<TipoAnomalia?>(null) }
+
+    val listaDeAnomalias by reporteViewModel.anomalias.collectAsState()
+
+    LaunchedEffect(Unit) {
+        reporteViewModel.carregarAnomalias()
+    }
+
+
 
     val context = LocalContext.current
     val fusedLocationClient = remember {
@@ -278,36 +287,28 @@ fun ReportScreen(navController: NavController) {
                 shape = RoundedCornerShape(16.dp)
             )
         }
-
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
                 Log.d("Botao", "Clique no botão detectado ✅")
 
-                // Ir buscar diretamente o utilizador autenticado à sessão
                 val utilizadorLogado = SessionManager.utilizadorLogado
+                val anomaliaSelecionada = listaDeAnomalias.find { it.tip_id == tipoSelecionado }
+                Log.d("Anomalia", "Selecionada: $anomaliaSelecionada")
 
-                if (utilizadorLogado != null) {
+                if (utilizadorLogado != null && anomaliaSelecionada != null && anomaliaSelecionada.ano_id != 0L) {
                     Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
                     obterLocalizacaoAtual { lat, lng ->
                         Log.d("Localizacao", "Lat: $lat, Lng: $lng")
 
                         val reporte = Reporte(
-                            rep_id = 0, // backend gera
-                            rep_uti_id = utilizadorLogado, // objeto completo
-                            rep_ano_id = Anomalia(
-                                ano_id = 0, // backend gera
-                                tip_id = TipoAnomalia(
-                                    tip_id = tipoSelecionado?.tip_id ?: 0, // usa o ID real se existir, senão mantém 0
-                                    tip_nome = tipoSelecionado?.tip_nome ?: tipoAnomalia // mantém tua lógica de texto
-                                ),
-                                ano_descricao = descricao,
-                                ano_grau_perigo = prioridade
-                            ),
+                            rep_id = 0,
+                            rep_uti_id = utilizadorLogado,
+                            rep_ano_id = anomaliaSelecionada, // agora com ano_id válido
                             rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
                             rep_loc_id = Localizacao(
-                                loc_id = 0, // backend gera
+                                loc_id = 0,
                                 loc_latitude = lat,
                                 loc_longitude = lng,
                                 loc_endereco = detalhesLocalizacao
@@ -330,11 +331,12 @@ fun ReportScreen(navController: NavController) {
 
                         Log.d("Reporte", "Objeto preparado para envio: $reporte")
 
-                        reporteViewModel.enviarReporte(reporte)
+                        val reporteBody = reporte.copy(rep_uti_id = null, rep_ano_id = null)
+                        reporteViewModel.enviarReporte(reporteBody)
                         mostrarDialog = true
                     }
                 } else {
-                    Log.e("Reporte", "❌ Utilizador não autenticado — não é possível enviar reporte")
+                    Log.e("Reporte", "❌ Utilizador ou anomalia inválidos — não é possível enviar reporte")
                 }
             }
         )
