@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 data class Localizacao(
     @SerializedName("id")
-    val loc_id: Long,
+    val loc_id: Long? = null,
 
     @SerializedName("latitude")
     val loc_latitude: Double,

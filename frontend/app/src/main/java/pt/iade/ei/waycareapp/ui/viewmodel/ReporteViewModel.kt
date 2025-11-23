@@ -6,9 +6,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import pt.iade.ei.waycareapp.data.model.Anomalia
-import pt.iade.ei.waycareapp.data.model.Reporte
-import pt.iade.ei.waycareapp.data.model.TipoAnomalia
+import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
 import retrofit2.Response
 
@@ -38,6 +36,7 @@ class ReporteViewModel : ViewModel() {
             }
         }
     }
+
     fun carregarReportes() {
         viewModelScope.launch {
             try {
@@ -70,29 +69,21 @@ class ReporteViewModel : ViewModel() {
         }
     }
 
-    fun enviarReporte(reporte: Reporte) {
+    fun enviarReporte(utiId: Long, anoId: Long, reporte: ReporteDTO) {
         viewModelScope.launch {
-            val utiId = reporte.rep_uti_id?.uti_id
-            val anoId = reporte.rep_ano_id?.ano_id
-
             Log.d("ReporteAPI", "🧾 utiId: $utiId")
             Log.d("ReporteAPI", "🧾 anoId: $anoId")
 
-            if (utiId == null || anoId == null || anoId == 0L) {
+            if (utiId == 0L || anoId == 0L) {
                 Log.e("ReporteAPI", "❌ utiId ou anoId inválidos — não é possível enviar")
                 return@launch
             }
 
             try {
-                val reporteBody = reporte.copy(
-                    rep_uti_id = null,
-                    rep_ano_id = null
-                )
-
                 Log.d("ReporteAPI", "📤 A enviar reporte com utiId=$utiId e anoId=$anoId")
-                Log.d("ReporteAPI", "📦 Body: $reporteBody")
+                Log.d("ReporteAPI", "📦 Body: $reporte")
 
-                val response = RetrofitInstance.api.criarReporte(utiId, anoId, reporteBody)
+                val response = RetrofitInstance.api.criarReporte(utiId, anoId, reporte)
 
                 if (response.isSuccessful) {
                     Log.d("ReporteAPI", "✅ Sucesso: ${response.body()}")
@@ -105,4 +96,3 @@ class ReporteViewModel : ViewModel() {
         }
     }
 }
-

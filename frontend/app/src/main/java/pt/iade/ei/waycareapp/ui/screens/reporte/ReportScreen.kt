@@ -47,6 +47,8 @@ import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 import pt.iade.ei.waycareapp.data.session.SessionManager
+import pt.iade.ei.waycareapp.data.model.ReporteDTO
+
 
 
 @Composable
@@ -74,28 +76,23 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
 
     @SuppressLint("MissingPermission")
     fun obterLocalizacaoAtual(onReady: (Double, Double) -> Unit) {
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            if (location != null) {
-                onReady(location.latitude, location.longitude)
-            } else {
-                val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000)
-                    .setWaitForAccurateLocation(true)
-                    .setMaxUpdates(1)
-                    .build()
+        val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000)
+            .setWaitForAccurateLocation(true)
+            .setMaxUpdates(1)
+            .build()
 
-                val callback = object : LocationCallback() {
-                    override fun onLocationResult(result: LocationResult) {
-                        val loc = result.lastLocation
-                        if (loc != null) {
-                            onReady(loc.latitude, loc.longitude)
-                        }
-                        fusedLocationClient.removeLocationUpdates(this)
-                    }
+        val callback = object : LocationCallback() {
+            override fun onLocationResult(result: LocationResult) {
+                val loc = result.lastLocation
+                if (loc != null) {
+                    onReady(loc.latitude, loc.longitude)
                 }
-                fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
+                fusedLocationClient.removeLocationUpdates(this)
             }
         }
+        fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
     }
+
 
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
@@ -293,50 +290,34 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 Log.d("Botao", "Clique no botão detectado ✅")
 
                 val utilizadorLogado = SessionManager.utilizadorLogado
-                val anomaliaSelecionada = Anomalia(
-                    ano_id = 5, // usa um ID válido do backend
-                    tip_id = TipoAnomalia(tip_id = 5, tip_nome = "Buraco na Via"),
-                    ano_descricao = descricao,
-                    ano_grau_perigo = prioridade
-                )
 
-                if (utilizadorLogado != null) {
+                if (utilizadorLogado?.uti_id != null) {
                     Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
                     obterLocalizacaoAtual { lat, lng ->
                         Log.d("Localizacao", "Lat: $lat, Lng: $lng")
 
-                        val reporte = Reporte(
-                            rep_id = 0,
-                            rep_uti_id = utilizadorLogado,
-                            rep_ano_id = anomaliaSelecionada,
-                            rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
-                            rep_loc_id = Localizacao(
-                                loc_id = 0,
+                        val reporteBody = ReporteDTO(
+                            tipoPersonalizado = null,
+                            localizacao = Localizacao(
                                 loc_latitude = lat,
                                 loc_longitude = lng,
                                 loc_endereco = detalhesLocalizacao
                             ),
-                            fotografias = listOf(
-                                Fotografia(
-                                    foto_id = 0,
-                                    foto_nome = "imagem.jpg",
-                                    foto_rep_id = 0,
-                                    foto_url = imagemUri?.toString() ?: "",
-                                    foto_caminho = "",
-                                    foto_mime = "image/jpeg",
-                                    foto_tamanho = 0
-                                )
-                            ),
-                            rep_estado = "Pendente",
-                            rep_data = LocalDateTime.now().toString(),
-                            rep_descricao = descricao
+                            fotografias = null,
+                            estado = "Pendente",
+                            data = LocalDateTime.now().toString(),
+                            descricao = descricao
                         )
 
-                        Log.d("Reporte", "Objeto preparado para envio: $reporte")
+                        val anoId = 5.toLong() // ou anomaliaSelecionada.ano_id
 
-                        // 👉 envia diretamente sem apagar os campos
-                        reporteViewModel.enviarReporte(reporte)
+                        reporteViewModel.enviarReporte(
+                            utiId = utilizadorLogado.uti_id,
+                            anoId = anoId,
+                            reporte = reporteBody
+                        )
+
                         mostrarDialog = true
                     }
                 } else {
@@ -344,7 +325,6 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 }
             }
         )
-
 
 
     }
