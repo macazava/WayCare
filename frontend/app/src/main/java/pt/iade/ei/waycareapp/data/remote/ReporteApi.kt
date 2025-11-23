@@ -13,7 +13,7 @@ interface ReporteApi {
     suspend fun getReportes(): Response<List<Reporte>>
 
     // POST: criar um novo reporte
-    @POST("reportes/utilizador/{utiId}/{anoId}")
+    @POST("api/reportes/utilizador/{utiId}/{anoId}")
     suspend fun criarReporte(
         @Path("utiId") utiId: Long,
         @Path("anoId") anoId: Long,

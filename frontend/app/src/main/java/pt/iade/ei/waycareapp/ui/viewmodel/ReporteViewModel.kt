@@ -73,6 +73,7 @@ class ReporteViewModel : ViewModel() {
                 Log.d("ReporteAPI", "📤 A enviar reporte com utiId=$utiId e anoId=$anoId")
                 Log.d("ReporteAPI", "📦 Conteúdo do reporte: $reporte")
 
+                // 🚨 CORREÇÃO: rota correta inclui "api/reportes/utilizador/{utiId}/{anoId}"
                 val response: Response<Reporte> = RetrofitInstance.api.criarReporte(
                     utiId = utiId,
                     anoId = anoId,
@@ -90,5 +91,3 @@ class ReporteViewModel : ViewModel() {
         }
     }
 }
-
-

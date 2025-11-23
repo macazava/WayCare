@@ -6,15 +6,17 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import pt.iade.ei.waycareapp.data.model.LoginRequest
 import pt.iade.ei.waycareapp.data.model.Utilizador
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
 import pt.iade.ei.waycareapp.data.session.SessionManager
+import com.google.gson.Gson
 
 // Estados possíveis da autenticação
 sealed class AuthUiState {
     object Idle : AuthUiState()
     object Loading : AuthUiState()
-    data class LoginSuccess(val user: Utilizador) : AuthUiState()   // ← agora guarda o utilizador
+    data class LoginSuccess(val user: Utilizador) : AuthUiState()
     data class RegisterSuccess(val user: Utilizador) : AuthUiState()
     data class Error(val message: String) : AuthUiState()
 }
@@ -29,23 +31,28 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val user = Utilizador(
-                    uti_email = email,
-                    uti_password = password
-                )
+                val request = LoginRequest(email = email, password = password)
+                Log.d("Login", "JSON enviado (login): ${Gson().toJson(request)}")
 
-                val response = RetrofitInstance.authApi.login(user)
+                val response = RetrofitInstance.authApi.login(request)
 
-                if (response.isSuccessful && response.body() != null) {
-                    val utilizadorLogado = response.body()!!
-                    Log.d("API", "Login ok: $utilizadorLogado")
-
-                    SessionManager.utilizadorLogado = utilizadorLogado
-                    _authState.value = AuthUiState.LoginSuccess(utilizadorLogado)
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+                        Log.d("API", "Login ok: $body")
+                        SessionManager.utilizadorLogado = body
+                        _authState.value = AuthUiState.LoginSuccess(body)
+                    } else {
+                        Log.e("API", "Login: resposta sem corpo")
+                        _authState.value = AuthUiState.Error("Resposta sem corpo")
+                    }
                 } else {
+                    val errorMsg = response.errorBody()?.string().orEmpty()
+                    Log.e("API", "Erro login: ${response.code()} - $errorMsg")
                     _authState.value = AuthUiState.Error("Erro login: ${response.code()}")
                 }
             } catch (e: Exception) {
+                Log.e("API", "Falha login: ${e.message}")
                 _authState.value = AuthUiState.Error("Falha login: ${e.message}")
             }
         }
@@ -56,22 +63,27 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val novoUser = Utilizador(
-                    uti_nome = nome,
-                    uti_email = email,
-                    uti_password = password
-                )
+                val request = Utilizador(uti_nome = nome, uti_email = email, password = password)
+                Log.d("Register", "JSON enviado (registo): ${Gson().toJson(request)}")
 
-                val response = RetrofitInstance.authApi.register(novoUser)
+                val response = RetrofitInstance.authApi.register(request)
 
-                if (response.isSuccessful && response.body() != null) {
-                    val utilizadorCriado = response.body()!!
-                    Log.d("API", "Registo ok: $utilizadorCriado")
-                    _authState.value = AuthUiState.RegisterSuccess(utilizadorCriado)
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    if (body != null) {
+                        Log.d("API", "Registo ok: $body")
+                        _authState.value = AuthUiState.RegisterSuccess(body)
+                    } else {
+                        Log.e("API", "Registo: resposta sem corpo")
+                        _authState.value = AuthUiState.Error("Resposta sem corpo")
+                    }
                 } else {
+                    val errorMsg = response.errorBody()?.string().orEmpty()
+                    Log.e("API", "Erro registo: ${response.code()} - $errorMsg")
                     _authState.value = AuthUiState.Error("Erro registo: ${response.code()}")
                 }
             } catch (e: Exception) {
+                Log.e("API", "Falha registo: ${e.message}")
                 _authState.value = AuthUiState.Error("Falha registo: ${e.message}")
             }
         }
@@ -81,4 +93,5 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Idle
     }
 }
+
 

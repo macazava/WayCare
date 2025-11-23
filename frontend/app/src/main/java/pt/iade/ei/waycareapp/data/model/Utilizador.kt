@@ -12,5 +12,8 @@ data class Utilizador(
     @SerializedName("uti_email")
     val uti_email: String? = null,
 
-    val uti_password: String? = null // só usado no envio, não vem na resposta
+    @SerializedName("password")
+    val password: String? = null
 )
+
+
