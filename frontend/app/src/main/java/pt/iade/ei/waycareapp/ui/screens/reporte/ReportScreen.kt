@@ -293,20 +293,18 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 Log.d("Botao", "Clique no botão detectado ✅")
 
                 val utilizadorLogado = SessionManager.utilizadorLogado
+                val anomaliaSelecionada = Anomalia(
+                    ano_id = 5, // usa um ID válido do backend
+                    tip_id = TipoAnomalia(tip_id = 5, tip_nome = "Buraco na Via"),
+                    ano_descricao = descricao,
+                    ano_grau_perigo = prioridade
+                )
 
                 if (utilizadorLogado != null) {
                     Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
                     obterLocalizacaoAtual { lat, lng ->
                         Log.d("Localizacao", "Lat: $lat, Lng: $lng")
-
-                        // Criar anomalia mínima com ID fixo (exemplo: 1)
-                        val anomaliaSelecionada = Anomalia(
-                            ano_id = 1, // usa um ID válido do backend
-                            tip_id = tipoSelecionado ?: TipoAnomalia(tip_id = 1, tip_nome = "Outro"),
-                            ano_descricao = descricao,
-                            ano_grau_perigo = prioridade
-                        )
 
                         val reporte = Reporte(
                             rep_id = 0,
@@ -337,8 +335,8 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
 
                         Log.d("Reporte", "Objeto preparado para envio: $reporte")
 
-                        val reporteBody = reporte.copy(rep_uti_id = null, rep_ano_id = null)
-                        reporteViewModel.enviarReporte(reporteBody)
+                        // 👉 envia diretamente sem apagar os campos
+                        reporteViewModel.enviarReporte(reporte)
                         mostrarDialog = true
                     }
                 } else {
@@ -346,6 +344,7 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 }
             }
         )
+
 
 
     }
