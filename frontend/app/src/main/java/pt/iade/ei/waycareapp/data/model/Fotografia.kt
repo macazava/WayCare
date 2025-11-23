@@ -22,6 +22,6 @@ data class Fotografia(
     val foto_tamanho: Long,
 
     @SerializedName("reporte")
-    val foto_rep_id: Reporte
+    val foto_rep_id: Long
 )
 

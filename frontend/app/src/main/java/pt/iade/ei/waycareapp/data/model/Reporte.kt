@@ -21,7 +21,7 @@ data class Reporte(
     val rep_loc_id: Localizacao?,
 
     @SerializedName("fotografias")
-    val fotografia: List<Fotografia> = emptyList(),
+    val fotografias: List<Fotografia> = emptyList(),
 
     @SerializedName("estado")
     val rep_estado: String = "Pendente",

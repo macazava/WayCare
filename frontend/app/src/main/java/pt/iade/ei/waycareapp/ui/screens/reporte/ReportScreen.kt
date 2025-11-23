@@ -56,6 +56,7 @@ fun ReportScreen(navController: NavController) {
     var detalhesLocalizacao by remember { mutableStateOf("") }
     var imagemUri by remember { mutableStateOf<Uri?>(null) }
     var imagemBitmap by remember { mutableStateOf<Bitmap?>(null) }
+    var tipoSelecionado by remember { mutableStateOf<TipoAnomalia?>(null) }
 
     val context = LocalContext.current
     val fusedLocationClient = remember {
@@ -99,8 +100,18 @@ fun ReportScreen(navController: NavController) {
         imagemUri = uri
     }
 
+    // ViewModels existentes (mantidos)
+    val reporteViewModel: ReporteViewModel = viewModel()
+    val loginViewModel: LoginViewModel = viewModel()
+    val authState by loginViewModel.authState.collectAsState()
 
-    val tipos = listOf("Rampas Inexistentes", "Passeios Danificados", "Passadeiras mal Sinalizadas", "Zonas Perigosas", "Buraco na via", "Sinalização danificada", "Outro")
+    // Tipos de anomalia dinâmicos do backend (acréscimo, sem alterar layout)
+    val tiposBackend = reporteViewModel.tiposAnomalia.collectAsState().value
+    LaunchedEffect(Unit) {
+        reporteViewModel.carregarTiposAnomalia()
+    }
+
+    // Prioridades (mantidas)
     val prioridades = listOf("Baixa", "Média", "Alta")
 
     Column(
@@ -139,8 +150,27 @@ fun ReportScreen(navController: NavController) {
             }
         }
 
-        // Tipo e Prioridade
-        DropdownField("Selecione o Tipo de Anomalia", tipos, tipoAnomalia) { tipoAnomalia = it }
+        // Tipo e Prioridade (mantendo teu layout)
+        DropdownField(
+            label = "Selecione o Tipo de Anomalia",
+            options = if (tiposBackend.isNotEmpty()) tiposBackend.map { it.tip_nome } else listOf(
+                "Rampas Inexistentes",
+                "Passeios Danificados",
+                "Passadeiras mal Sinalizadas",
+                "Zonas Perigosas",
+                "Buraco na via",
+                "Sinalização danificada",
+                "Outro"
+            ),
+            selected = tipoSelecionado?.tip_nome ?: tipoAnomalia,
+            onSelect = { nome ->
+                // Mantém tua lógica original baseada em String
+                tipoAnomalia = nome
+                // Acrescento a seleção do objeto real do backend (se existir)
+                tipoSelecionado = tiposBackend.find { it.tip_nome == nome }
+            }
+        )
+
         DropdownField("Selecione a Prioridade", prioridades, prioridade) { prioridade = it }
 
         // Descrição
@@ -249,10 +279,6 @@ fun ReportScreen(navController: NavController) {
             )
         }
 
-        val reporteViewModel: ReporteViewModel = viewModel()
-        val loginViewModel: LoginViewModel = viewModel()
-        val authState by loginViewModel.authState.collectAsState()
-
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
@@ -269,12 +295,12 @@ fun ReportScreen(navController: NavController) {
 
                         val reporte = Reporte(
                             rep_id = 0, // backend gera
-                            rep_uti_id = utilizadorLogado, // ✅ objeto completo
+                            rep_uti_id = utilizadorLogado, // objeto completo
                             rep_ano_id = Anomalia(
                                 ano_id = 0, // backend gera
                                 tip_id = TipoAnomalia(
-                                    tip_id = 0, // backend gera
-                                    tip_nome = tipoAnomalia
+                                    tip_id = tipoSelecionado?.tip_id ?: 0, // usa o ID real se existir, senão mantém 0
+                                    tip_nome = tipoSelecionado?.tip_nome ?: tipoAnomalia // mantém tua lógica de texto
                                 ),
                                 ano_descricao = descricao,
                                 ano_grau_perigo = prioridade
@@ -286,14 +312,16 @@ fun ReportScreen(navController: NavController) {
                                 loc_longitude = lng,
                                 loc_endereco = detalhesLocalizacao
                             ),
-                            fotografia = Fotografia(
-                                foto_id = 0, // backend gera
-                                foto_nome = "imagem.jpg",
-                                foto_rep_id = 0, // backend gera
-                                foto_url = imagemUri?.toString() ?: "",
-                                foto_caminho = "",
-                                foto_mime = "image/jpeg",
-                                foto_tamanho = 0
+                            fotografias = listOf(
+                                Fotografia(
+                                    foto_id = 0,
+                                    foto_nome = "imagem.jpg",
+                                    foto_rep_id = 0,
+                                    foto_url = imagemUri?.toString() ?: "",
+                                    foto_caminho = "",
+                                    foto_mime = "image/jpeg",
+                                    foto_tamanho = 0
+                                )
                             ),
                             rep_estado = "Pendente",
                             rep_data = LocalDateTime.now().toString(),
@@ -310,7 +338,6 @@ fun ReportScreen(navController: NavController) {
                 }
             }
         )
-
     }
 }
 
@@ -363,4 +390,5 @@ fun ReportScreenPreview() {
     val navController = rememberNavController()
     ReportScreen(navController = navController)
 }
+
 

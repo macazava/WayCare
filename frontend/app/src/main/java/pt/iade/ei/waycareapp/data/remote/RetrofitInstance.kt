@@ -22,4 +22,10 @@ object RetrofitInstance {
     val authApi: AuthApi by lazy {
         retrofit.create(AuthApi::class.java)
     }
+
+    //API para tipoanomalia
+    val tipoAnomaliaApi: TipoAnomaliaApi by lazy {
+        retrofit.create(TipoAnomaliaApi::class.java)
+    }
+
 }
