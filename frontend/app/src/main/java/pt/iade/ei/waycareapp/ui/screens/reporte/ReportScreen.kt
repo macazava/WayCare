@@ -340,7 +340,6 @@ fun ReportScreen(navController: NavController) {
         )
     }
 }
-
 @Composable
 fun DropdownField(
     label: String,

@@ -3,19 +3,14 @@ package pt.iade.ei.waycareapp.data.model
 import com.google.gson.annotations.SerializedName
 
 data class Utilizador(
-
-    @SerializedName("id")
+    @SerializedName("uti_id")
     val uti_id: Long? = null,
 
-    @SerializedName("nome")
-    val uti_nome: String,
+    @SerializedName("uti_nome")
+    val uti_nome: String? = null,
 
-    @SerializedName("email")
-    val uti_email: String,
+    @SerializedName("uti_email")
+    val uti_email: String? = null,
 
-    @SerializedName("password")
-    val uti_password: String,
-
-    @SerializedName("reportes")
-    val reportes: List<Reporte>? = null
+    val uti_password: String? = null // só usado no envio, não vem na resposta
 )

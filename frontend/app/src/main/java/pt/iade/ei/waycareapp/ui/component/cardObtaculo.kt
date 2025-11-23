@@ -30,7 +30,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             // Título principal
             Text(
-                text = reporte.rep_ano_id.tip_id.tip_nome,
+                text = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo desconhecido",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF000000)
@@ -40,8 +40,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             // Localização
             Text(
-                text = reporte.rep_loc_id.loc_endereco,
-                fontSize = 16.sp,
+                text = reporte.rep_loc_id?.loc_endereco ?: "Localização não disponível",                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF555555)
             )

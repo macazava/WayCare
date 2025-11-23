@@ -30,8 +30,6 @@ class LoginViewModel : ViewModel() {
         viewModelScope.launch {
             try {
                 val user = Utilizador(
-                    uti_id = null, // não enviar ID
-                    uti_nome = "", // opcional
                     uti_email = email,
                     uti_password = password
                 )
@@ -39,18 +37,14 @@ class LoginViewModel : ViewModel() {
                 val response = RetrofitInstance.authApi.login(user)
 
                 if (response.isSuccessful && response.body() != null) {
-                    val utilizadorLogado = response.body()!!   // ← backend devolve o objeto Utilizador
+                    val utilizadorLogado = response.body()!!
                     Log.d("API", "Login ok: $utilizadorLogado")
 
-                    // guardar utilizador autenticado na sessão
-                    SessionManager.utilizadorLogado = utilizadorLogado   // ✅ guarda o utilizador na sessão
-
-
+                    SessionManager.utilizadorLogado = utilizadorLogado
                     _authState.value = AuthUiState.LoginSuccess(utilizadorLogado)
                 } else {
                     _authState.value = AuthUiState.Error("Erro login: ${response.code()}")
                 }
-
             } catch (e: Exception) {
                 _authState.value = AuthUiState.Error("Falha login: ${e.message}")
             }
@@ -75,12 +69,9 @@ class LoginViewModel : ViewModel() {
                     Log.d("API", "Registo ok: $utilizadorCriado")
                     _authState.value = AuthUiState.RegisterSuccess(utilizadorCriado)
                 } else {
-                    Log.e("API", "Erro registo: ${response.code()}")
                     _authState.value = AuthUiState.Error("Erro registo: ${response.code()}")
                 }
-
             } catch (e: Exception) {
-                Log.e("API", "Falha registo: ${e.message}")
                 _authState.value = AuthUiState.Error("Falha registo: ${e.message}")
             }
         }
@@ -90,3 +81,4 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Idle
     }
 }
+

@@ -90,22 +90,25 @@ fun MapaScreen(navController: NavController) {
                     val reportesFiltrados = reportes.filter { reporte ->
                         when (filtroSelecionado) {
                             "Mostrar Tudo" -> true
-                            "Prioridade Alta" -> reporte.rep_ano_id.ano_grau_perigo == "Alto"
-                            "Prioridade Média" -> reporte.rep_ano_id.ano_grau_perigo == "Médio"
-                            "Prioridade Baixa" -> reporte.rep_ano_id.ano_grau_perigo == "Baixo"
-                            "Mostrar Rampas Inexistentes" -> reporte.rep_ano_id.tip_id.tip_nome.contains("Rampa", ignoreCase = true)
-                            "Mostrar Passeios Danificados" -> reporte.rep_ano_id.tip_id.tip_nome.contains("Passeio", ignoreCase = true)
-                            "Mostrar passadeiras Mal sinalizadas" -> reporte.rep_ano_id.tip_id.tip_nome.contains("Passadeira", ignoreCase = true)
-                            "Mostrar Zonas Perigosas" -> reporte.rep_ano_id.tip_id.tip_nome.contains("Zonas", ignoreCase = true)
+                            "Prioridade Alta" -> reporte.rep_ano_id?.ano_grau_perigo == "Alto"
+                            "Prioridade Média" -> reporte.rep_ano_id?.ano_grau_perigo == "Médio"
+                            "Prioridade Baixa" -> reporte.rep_ano_id?.ano_grau_perigo == "Baixo"
+                            "Mostrar Rampas Inexistentes" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Rampa", ignoreCase = true) == true
+                            "Mostrar Passeios Danificados" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Passeio", ignoreCase = true) == true
+                            "Mostrar passadeiras Mal sinalizadas" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Passadeira", ignoreCase = true) == true
+                            "Mostrar Zonas Perigosas" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Zonas", ignoreCase = true) == true
                             else -> true
                         }
                     }
 
                     reportesFiltrados.forEach { reporte ->
                         val pin = Marker(this).apply {
-                            position = GeoPoint(reporte.rep_loc_id.loc_latitude, reporte.rep_loc_id.loc_longitude)
-                            title = reporte.rep_ano_id.tip_id.tip_nome
-                            subDescription = reporte.rep_descricao
+                            position = GeoPoint(
+                                reporte.rep_loc_id?.loc_latitude ?: 0.0,
+                                reporte.rep_loc_id?.loc_longitude ?: 0.0
+                            )
+                            title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo desconhecido"
+                            subDescription = reporte.rep_descricao ?: "Sem descrição"
                             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                             setOnMarkerClickListener { _, _ ->
                                 reporteSelecionado = reporte
