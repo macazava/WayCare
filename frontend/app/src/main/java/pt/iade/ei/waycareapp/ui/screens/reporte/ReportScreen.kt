@@ -293,19 +293,25 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 Log.d("Botao", "Clique no botão detectado ✅")
 
                 val utilizadorLogado = SessionManager.utilizadorLogado
-                val anomaliaSelecionada = listaDeAnomalias.find { it.tip_id == tipoSelecionado }
-                Log.d("Anomalia", "Selecionada: $anomaliaSelecionada")
 
-                if (utilizadorLogado != null && anomaliaSelecionada != null && anomaliaSelecionada.ano_id != 0L) {
+                if (utilizadorLogado != null) {
                     Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
                     obterLocalizacaoAtual { lat, lng ->
                         Log.d("Localizacao", "Lat: $lat, Lng: $lng")
 
+                        // Criar anomalia mínima com ID fixo (exemplo: 1)
+                        val anomaliaSelecionada = Anomalia(
+                            ano_id = 1, // usa um ID válido do backend
+                            tip_id = tipoSelecionado ?: TipoAnomalia(tip_id = 1, tip_nome = "Outro"),
+                            ano_descricao = descricao,
+                            ano_grau_perigo = prioridade
+                        )
+
                         val reporte = Reporte(
                             rep_id = 0,
                             rep_uti_id = utilizadorLogado,
-                            rep_ano_id = anomaliaSelecionada, // agora com ano_id válido
+                            rep_ano_id = anomaliaSelecionada,
                             rep_tipo_personalizado = if (tipoAnomalia == "Outro") descricao else "",
                             rep_loc_id = Localizacao(
                                 loc_id = 0,
@@ -336,10 +342,12 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                         mostrarDialog = true
                     }
                 } else {
-                    Log.e("Reporte", "❌ Utilizador ou anomalia inválidos — não é possível enviar reporte")
+                    Log.e("Reporte", "❌ Utilizador inválido — não é possível enviar reporte")
                 }
             }
         )
+
+
     }
 }
 @Composable
