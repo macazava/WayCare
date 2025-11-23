@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import pt.iade.ei.waycareapp.data.model.Utilizador
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
+import pt.iade.ei.waycareapp.data.session.SessionManager
 
 // Estados possíveis da autenticação
 sealed class AuthUiState {
@@ -40,6 +41,10 @@ class LoginViewModel : ViewModel() {
                 if (response.isSuccessful && response.body() != null) {
                     val utilizadorLogado = response.body()!!   // ← backend devolve o objeto Utilizador
                     Log.d("API", "Login ok: $utilizadorLogado")
+
+                    // guardar utilizador autenticado na sessão
+                    SessionManager.utilizadorLogado = utilizadorLogado   // ✅ guarda o utilizador na sessão
+
 
                     _authState.value = AuthUiState.LoginSuccess(utilizadorLogado)
                 } else {

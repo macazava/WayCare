@@ -5,14 +5,30 @@ import java.time.LocalDate
 
 
 data class Reporte(
+    @SerializedName("id")
     val rep_id: Long,
+
+    @SerializedName("utilizador")
     val rep_uti_id: Utilizador,
-    val rep_ano_id: Anomalia,
-    val rep_tipo_personalizado: String,
-    val rep_loc_id: Localizacao,
-    val fotografia: Fotografia,
-    val rep_estado: String,
+
+    @SerializedName("anomalia")
+    val rep_ano_id: Anomalia?,
+
+    @SerializedName("tipoPersonalizado")
+    val rep_tipo_personalizado: String?,
+
+    @SerializedName("localizacao")
+    val rep_loc_id: Localizacao?,
+
+    @SerializedName("fotografias")
+    val fotografia: List<Fotografia> = emptyList(),
+
+    @SerializedName("estado")
+    val rep_estado: String = "Pendente",
+
+    @SerializedName("data")
     val rep_data: String = LocalDate.now().toString(),
+
     @SerializedName("descricao")
     val rep_descricao: String
 )

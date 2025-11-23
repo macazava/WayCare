@@ -46,6 +46,7 @@ import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
 import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
+import pt.iade.ei.waycareapp.data.session.SessionManager
 
 @Composable
 fun ReportScreen(navController: NavController) {
@@ -255,15 +256,20 @@ fun ReportScreen(navController: NavController) {
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
-                Log.d("Botao", "Clique no botão detectado")
+                Log.d("Botao", "Clique no botão detectado ✅")
 
-                if (authState is AuthUiState.LoginSuccess) {
-                    val utilizadorLogado = (authState as AuthUiState.LoginSuccess).user
+                // Ir buscar diretamente o utilizador autenticado à sessão
+                val utilizadorLogado = SessionManager.utilizadorLogado
+
+                if (utilizadorLogado != null) {
+                    Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
                     obterLocalizacaoAtual { lat, lng ->
+                        Log.d("Localizacao", "Lat: $lat, Lng: $lng")
+
                         val reporte = Reporte(
                             rep_id = 0, // backend gera
-                            rep_uti_id = utilizadorLogado, // utilizador autenticado
+                            rep_uti_id = utilizadorLogado, // ✅ objeto completo
                             rep_ano_id = Anomalia(
                                 ano_id = 0, // backend gera
                                 tip_id = TipoAnomalia(
@@ -293,11 +299,14 @@ fun ReportScreen(navController: NavController) {
                             rep_data = LocalDateTime.now().toString(),
                             rep_descricao = descricao
                         )
+
+                        Log.d("Reporte", "Objeto preparado para envio: $reporte")
+
                         reporteViewModel.enviarReporte(reporte)
                         mostrarDialog = true
                     }
                 } else {
-                    Log.e("Reporte", "Utilizador não autenticado — não é possível enviar reporte")
+                    Log.e("Reporte", "❌ Utilizador não autenticado — não é possível enviar reporte")
                 }
             }
         )

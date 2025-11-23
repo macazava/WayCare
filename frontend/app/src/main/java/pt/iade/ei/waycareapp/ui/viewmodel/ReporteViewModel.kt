@@ -34,21 +34,37 @@ class ReporteViewModel : ViewModel() {
     //Função única para enviar um reporte
     fun enviarReporte(reporte: Reporte) {
         viewModelScope.launch {
+            val utiId = reporte.rep_uti_id?.uti_id
+            val anoId = reporte.rep_ano_id?.ano_id
+
+            Log.d("ReporteAPI", "utiId do utilizador logado: $utiId")
+            Log.d("ReporteAPI", "anoId da anomalia selecionada: $anoId")
+
+            if (utiId == null || anoId == null) {
+                Log.e("ReporteAPI", "❌ utiId ou anoId estão nulos — não é possível enviar reporte")
+                return@launch
+            }
+
             try {
+                Log.d("ReporteAPI", "📤 A enviar reporte com utiId=$utiId e anoId=$anoId")
+                Log.d("ReporteAPI", "Conteúdo do reporte: $reporte")
+
                 val response = RetrofitInstance.api.criarReporte(
-                    utiId = reporte.rep_uti_id.uti_id!!,
-                    anoId = reporte.rep_ano_id.ano_id,
+                    utiId = utiId,
+                    anoId = anoId,
                     reporte = reporte
                 )
+
                 if (response.isSuccessful) {
-                    Log.d("API", "Reporte enviado com sucesso: ${response.body()}")
+                    Log.d("ReporteAPI", "✅ Reporte enviado com sucesso: ${response.body()}")
                 } else {
-                    Log.e("API", "Erro ao enviar reporte: ${response.code()}")
+                    Log.e("ReporteAPI", "❌ Erro ao enviar reporte: ${response.code()} - ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
-                Log.e("API", "Falha na ligação: ${e.message}")
+                Log.e("ReporteAPI", "❌ Falha na ligação: ${e.message}")
             }
         }
     }
+
 }
 
