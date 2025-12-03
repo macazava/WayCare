@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -14,38 +15,39 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Anomalia {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ano_id")
     private Long id;
 
-    @Column(name = "ano_descricao", nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "tipo_id")
+    private TipoAnomalia tipo;
+
+    @Column(name = "ano_descricao")
     private String descricao;
 
     @Column(name = "ano_data_detecao")
-    private LocalDate dataDetecao = LocalDate.now();
+    private LocalDate dataDetecao;
 
     @Column(name = "ano_estado")
-    private String estado = "Pendente"; // valores: Pendente, Em análise, Resolvida
+    private String estado;
 
     @Column(name = "ano_severidade")
-    private String severidade; // opcional: Leve, Moderado, Grave
+    private String severidade;
 
-    // Relações
+    @Column(name = "ano_grau_perigo")
+    @Enumerated(EnumType.STRING)
+    private GrauPerigo grauPerigo;
+
     @ManyToOne
     @JoinColumn(name = "ano_uti_id")
     private Utilizador utilizador;
 
     @ManyToOne
-    @JsonBackReference
-    private TipoAnomalia tipoAnomalia;
-
-    @ManyToOne
     @JoinColumn(name = "ano_loc_id")
     private Localizacao localizacao;
 
-    @OneToMany(mappedBy = "anomalia", cascade = CascadeType.ALL)
-    private java.util.List<Fotografia> fotografias;
-
-     }
+    @Column(name = "data_registo")
+    private LocalDateTime dataRegisto;
+}

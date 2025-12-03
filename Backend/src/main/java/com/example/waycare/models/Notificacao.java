@@ -22,18 +22,23 @@ public class Notificacao {
     private String mensagem;
 
     @Column(name = "not_tipo")
-    private String tipo; // Informa, Alerta, Atualização
+    private String tipo;
 
-    @Column(name = "not_data_envio")
-    private LocalDateTime dataEnvio = LocalDateTime.now();
-
-    @Column(name = "not_lida")
-    private boolean lida = false;
+    @ManyToOne
+    @JoinColumn(name = "ano_id")
+    private Anomalia anomalia;
 
     @ManyToOne
     @JoinColumn(name = "not_uti_id")
     private Utilizador utilizador;
 
-    public void setLida(boolean b) {
-    }
+    @ManyToOne
+    @JoinColumn(name = "loc_id")
+    private Localizacao localizacao;
+
+    @Column(name = "not_lida")
+    private Boolean lida = false;
+
+    @Column(name = "not_data_envio")
+    private LocalDateTime dataEnvio;
 }

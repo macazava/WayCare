@@ -8,35 +8,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/auth")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
     private UtilizadorService utilizadorService;
 
-    @GetMapping("/ping")
-    public ResponseEntity<String> ping() {
-        return ResponseEntity.ok("API está ativa");
-    }
-
-
     @PostMapping("/register")
-    public ResponseEntity<?> register(@Valid @RequestBody RegisterRequestDTO dto) {
+    public ResponseEntity<Utilizador> register(@RequestBody RegisterRequestDTO dto) {
         Utilizador novo = utilizadorService.registarNovoUtilizador(dto);
-        return ResponseEntity.status(201).body(novo);
-
+        return ResponseEntity.ok(novo);
     }
-
-    @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Utilizador utilizador) {
-        boolean autenticado = utilizadorService.autenticar(utilizador.getEmail(), utilizador.getPassword());
-
-        if (autenticado) {
-            return ResponseEntity.ok(true);
-        } else {
-            return ResponseEntity.status(401).body(false);
-        }
-    }
-
 }

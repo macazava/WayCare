@@ -9,15 +9,20 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/notificacoes")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/notificacoes")
 public class NotificacaoController {
+
     @Autowired
     private NotificacaoService notificacaoService;
 
-    @GetMapping("/utilizador/{utilizadorId}")
-    public ResponseEntity<List<Notificacao>> listarPorUtilizador(@PathVariable Long utilizadorId) {
-        return ResponseEntity.ok(notificacaoService.listarPorUtilizador(utilizadorId));
+    @GetMapping
+    public List<Notificacao> listarTodas() {
+        return notificacaoService.listarTodas();
+    }
+
+    @GetMapping("/utilizador/{utiId}")
+    public List<Notificacao> listarPorUtilizador(@PathVariable Long utiId) {
+        return notificacaoService.listarPorUtilizador(utiId);
     }
 
     @PostMapping
@@ -26,13 +31,8 @@ public class NotificacaoController {
     }
 
     @PutMapping("/{id}/lida")
-    public ResponseEntity<Notificacao> marcarComoLida(@PathVariable Long id) {
-        return ResponseEntity.ok(notificacaoService.marcarComoLida(id));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        notificacaoService.eliminar(id);
+    public ResponseEntity<Void> marcarComoLida(@PathVariable Long id) {
+        notificacaoService.marcarComoLida(id);
         return ResponseEntity.noContent().build();
     }
 }

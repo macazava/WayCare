@@ -3,68 +3,44 @@ package com.example.waycare.Controller;
 import com.example.waycare.Service.AnomaliaService;
 import com.example.waycare.models.Anomalia;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/anomalia")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/anomalias")
 public class AnomaliaController {
 
     @Autowired
     private AnomaliaService anomaliaService;
 
-    //Listar todos as anomalias
     @GetMapping
-    public ResponseEntity<List<Anomalia>> listarTodos() {
-        return ResponseEntity.ok(anomaliaService.listarTodos());
+    public List<Anomalia> listarTodas() {
+        return anomaliaService.listarTodas();
     }
 
-    //Procurar anomalia por id
-    @GetMapping("procurar/{id}")
-    public ResponseEntity<Optional<Anomalia>> procurarPorId(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(anomaliaService.procurarPorId(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<Anomalia> procurarPorId(@PathVariable Long id) {
+        return anomaliaService.procurarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    //Criar anomalia
     @PostMapping
     public ResponseEntity<Anomalia> criar(@RequestBody Anomalia anomalia) {
-        Anomalia novo = anomaliaService.criar(anomalia);
-        return ResponseEntity.ok(novo);
-    }
-    @PutMapping("/{id}/estado")
-    public ResponseEntity<Anomalia> atualizarEstado(@PathVariable Long id,
-                                                    @RequestParam String novoEstado) {
-        Anomalia atualizada = anomaliaService.atualizarEstado(id, novoEstado);
-        return ResponseEntity.ok(atualizada);
+        return ResponseEntity.ok(anomaliaService.criar(anomalia));
     }
 
-    //Atualizar Anomalia
-    @PutMapping("atualizar/{id}")
-    public ResponseEntity<Anomalia> atualizar(@PathVariable Long id, @RequestBody Anomalia anomalia) {
-        try {
-            Anomalia atualizado = anomaliaService.atualizar(id, anomalia);
-            return ResponseEntity.ok(atualizado);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PutMapping("/{id}")
+    public ResponseEntity<Anomalia> atualizar(@PathVariable Long id, @RequestBody Anomalia novosDados) {
+        return ResponseEntity.ok(anomaliaService.atualizar(id, novosDados));
     }
 
-    //Eliminar Anomalia
-    @DeleteMapping("eliminar/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        try {
-            anomaliaService.eliminar(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        anomaliaService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 }

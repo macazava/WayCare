@@ -7,63 +7,56 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/TipoAnomalia")
-@CrossOrigin(origins = "*")
+@RequestMapping("/api/tipos-anomalia")
 public class TipoAnomaliaController {
 
     @Autowired
     private TipoAnomaliaService tipoAnomaliaService;
 
-    //Listar Tipos de anomalia
-
+    // GET /api/tipos-anomalia
     @GetMapping
-    public ResponseEntity<List<TipoAnomalia>> listarTodos() {
-        return ResponseEntity.ok(tipoAnomaliaService.listarTodos());
+    public List<TipoAnomalia> listarTodos() {
+        return tipoAnomaliaService.listarTodos();
     }
 
-    //Procurar por tipo de anomalia
-
-    @GetMapping("/portipo/{id}")
-    public ResponseEntity<Optional<TipoAnomalia>> procurarPorId(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(tipoAnomaliaService.procurarPorId(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    // GET /api/tipos-anomalia/{id}
+    @GetMapping("/{id}")
+    public ResponseEntity<TipoAnomalia> procurarPorId(@PathVariable Long id) {
+        return tipoAnomaliaService.procurarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    //Criar tipo de anomalia
-
+    // POST /api/tipos-anomalia
     @PostMapping
-    public ResponseEntity<TipoAnomalia> criar(@RequestBody TipoAnomalia tipoAnomalia) {
-        TipoAnomalia nova = tipoAnomaliaService.criar(tipoAnomalia);
-        return ResponseEntity.ok(nova);
+    public ResponseEntity<TipoAnomalia> criar(@RequestBody TipoAnomalia tipo) {
+        TipoAnomalia novo = tipoAnomaliaService.criar(tipo);
+        return ResponseEntity.ok(novo);
     }
 
-    //Atualizar tipo anomalia
-
-    @PutMapping("atualizar/{id}")
-    public ResponseEntity<TipoAnomalia> atualizar(@PathVariable Long id, @RequestBody TipoAnomalia tipoAnomalia) {
+    // PUT /api/tipos-anomalia/{id}
+    @PutMapping("/{id}")
+    public ResponseEntity<TipoAnomalia> atualizar(@PathVariable Long id, @RequestBody TipoAnomalia novosDados) {
         try {
-            TipoAnomalia atualizada = tipoAnomaliaService.atualizar(id, tipoAnomalia);
-            return ResponseEntity.ok(atualizada);
+            TipoAnomalia atualizado = tipoAnomaliaService.atualizar(id, novosDados);
+            return ResponseEntity.ok(atualizado);
         } catch (RuntimeException e) {
             return ResponseEntity.notFound().build();
         }
     }
 
-    //Eliaminar tipo anomalia
-
-    @DeleteMapping("eliminar/{id}")
+    // DELETE /api/tipos-anomalia/{id}
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        try {
-            tipoAnomaliaService.eliminar(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        tipoAnomaliaService.eliminar(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    // GET /api/tipos-anomalia/search?nome=...
+    @GetMapping("/search")
+    public List<TipoAnomalia> procurarPorNome(@RequestParam String nome) {
+        return tipoAnomaliaService.procurarPorNome(nome);
     }
 }

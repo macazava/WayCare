@@ -1,31 +1,53 @@
 package com.example.waycare.Service;
 
+
+import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.Repository.ComentarioRepository;
+
+import com.example.waycare.Repository.UtilizadorRepository;
+import com.example.waycare.models.Anomalia;
 import com.example.waycare.models.Comentario;
+
+import com.example.waycare.models.Utilizador;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+
 @Service
 public class ComentarioService {
+
     @Autowired
     private ComentarioRepository comentarioRepository;
 
     @Autowired
-    private NotificacaoService notificacaoService;
+    private UtilizadorRepository utilizadorRepository;
 
-    public Comentario criarComentario(Comentario comentario) {
-        Comentario novo = comentarioRepository.save(comentario);
+    @Autowired
+    private AnomaliaRepository anomaliaRepository;
 
-        if (novo.getReporte() != null && novo.getReporte().getLocalizacao() != null) {
-            notificacaoService.criarNotificacaoParaProximos(
-                    novo.getReporte().getLocalizacao(),
-                    "O reporte '" + novo.getReporte().getDescricao() + "' recebeu um novo comentário.",
-                    "Atualização",
-                    3.0
-            );
-        }
+    public Comentario criar(Comentario comentario) {
+        Utilizador u = utilizadorRepository.findById(comentario.getUtilizador().getId())
+                .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
+        Anomalia a = anomaliaRepository.findById(comentario.getAnomalia().getId())
+                .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
 
-        return novo;
+        comentario.setUtilizador(u);
+        comentario.setAnomalia(a);
+
+        return comentarioRepository.save(comentario);
     }
 
+    public List<Comentario> listarTodos() {
+        return comentarioRepository.findAll();
+    }
+
+    public List<Comentario> listarPorAnomalia(Long anoId) {
+        return comentarioRepository.findByAnomaliaId(anoId);
+    }
+
+    public List<Comentario> listarPorUtilizador(Long utiId) {
+        return comentarioRepository.findByUtilizadorId(utiId);
+    }
 }

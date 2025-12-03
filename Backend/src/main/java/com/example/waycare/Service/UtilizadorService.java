@@ -3,7 +3,6 @@ package com.example.waycare.Service;
 import DTO.RegisterRequestDTO;
 import com.example.waycare.models.Utilizador;
 import com.example.waycare.Repository.UtilizadorRepository;
-import com.fasterxml.jackson.core.JsonPointer;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,83 +14,49 @@ import java.util.Optional;
 @Service
 public class UtilizadorService {
 
-    private final UtilizadorRepository utilizadorRepository;
-    private final PasswordEncoder passwordEncoder;
-
     @Autowired
-    public UtilizadorService(UtilizadorRepository utilizadorRepository, PasswordEncoder passwordEncoder) {
-        this.utilizadorRepository = utilizadorRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
+    private UtilizadorRepository utilizadorRepository;
 
-    // Listar todos
     public List<Utilizador> listarTodos() {
         return utilizadorRepository.findAll();
     }
 
-    // Procurar por ID
     public Optional<Utilizador> procurarPorId(Long id) {
         return utilizadorRepository.findById(id);
     }
 
-    // Procurar por Email
-    public Optional<Utilizador> procurarPorEmail(String email) {
-        return Optional.ofNullable(utilizadorRepository.findByEmail(email));
+    public Utilizador criar(Utilizador utilizador) {
+        return utilizadorRepository.save(utilizador);
     }
 
-    // Atualizar utilizador
-    public Utilizador atualizar(Long id, Utilizador novoUtilizador) {
-        return utilizadorRepository.findById(id)
-                .map(u -> {
-                    u.setNome((String) novoUtilizador.getNome());
-                    u.setEmail(novoUtilizador.getEmail());
-
-                    // só re-encripta se o utilizador mudou a password
-                    if (!novoUtilizador.getPassword().equals(u.getPassword())) {
-                        u.setPassword(passwordEncoder.encode(novoUtilizador.getPassword().toString()));
-                    }
-
-                    return utilizadorRepository.save(u);
-                })
+    public Utilizador atualizar(Long id, Utilizador novosDados) {
+        Utilizador u = utilizadorRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
+        u.setNome(novosDados.getNome());
+        u.setEmail(novosDados.getEmail());
+        u.setPassword(novosDados.getPassword());
+        return utilizadorRepository.save(u);
     }
 
-    // Eliminar utilizador
     public void eliminar(Long id) {
         if (!utilizadorRepository.existsById(id)) {
             throw new RuntimeException("Utilizador não encontrado");
         }
         utilizadorRepository.deleteById(id);
-    }
 
-    // Registar
-    public Utilizador registar(Utilizador utilizador) {
-        utilizador.setPassword(passwordEncoder.encode(utilizador.getPassword()));
-        return utilizadorRepository.save(utilizador);
     }
 
     public boolean autenticar(String email, String password) {
-        Utilizador utilizador = utilizadorRepository.findByEmail(email);
-
-        if (utilizador == null) {
-            return false;
-        }
-
-        return passwordEncoder.matches(password, utilizador.getPassword());
+        return false;
     }
-
     public Utilizador registarNovoUtilizador(RegisterRequestDTO dto) {
-        if (utilizadorRepository.findByEmail(dto.getEmail()) != null) {
-            throw new RuntimeException("Email já está registado");
-        }
-
         Utilizador utilizador = new Utilizador();
         utilizador.setNome(dto.getNome());
         utilizador.setEmail(dto.getEmail());
-        utilizador.setPassword(passwordEncoder.encode(dto.getPassword()));
+        utilizador.setPassword(dto.getPassword());
+
 
         return utilizadorRepository.save(utilizador);
-
     }
 }
 

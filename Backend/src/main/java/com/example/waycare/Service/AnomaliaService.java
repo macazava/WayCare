@@ -1,5 +1,6 @@
 package com.example.waycare.Service;
 
+
 import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.models.Anomalia;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,7 @@ public class AnomaliaService {
     @Autowired
     private AnomaliaRepository anomaliaRepository;
 
-    @Autowired
-    private NotificacaoService notificacaoService;
-
-    public List<Anomalia> listarTodos() {
+    public List<Anomalia> listarTodas() {
         return anomaliaRepository.findAll();
     }
 
@@ -29,36 +27,16 @@ public class AnomaliaService {
         return anomaliaRepository.save(anomalia);
     }
 
-    public Anomalia atualizar(Long id, Anomalia anomalia) {
-        Anomalia existente = anomaliaRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Obstáculo não encontrado"));
-        String novoEstado = new String();
-        anomalia.setEstado(novoEstado);
-        anomaliaRepository.save(anomalia);
-
-        // Enviar notificação para utilizadores próximos
-        if (anomalia.getLocalizacao() != null) {
-            String mensagem = "Nova anomalia perto de si: " + anomalia.getDescricao();
-            String tipo = "Alerta";
-            double raioKm = 5.0;
-
-            notificacaoService.criarNotificacaoParaProximos(
-                    anomalia.getLocalizacao(),
-                    mensagem,
-                    tipo,
-                    raioKm
-            );
-        }
-
-        return anomalia;
+    public Anomalia atualizar(Long id, Anomalia novosDados) {
+        Anomalia a = anomaliaRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
+        a.setDescricao(novosDados.getDescricao());
+        a.setEstado(novosDados.getEstado());
+        return anomaliaRepository.save(a);
     }
 
     public void eliminar(Long id) {
         anomaliaRepository.deleteById(id);
-    }
-
-    public Anomalia atualizarEstado(Long id, String novoEstado) {
-        return null;
     }
 }
 

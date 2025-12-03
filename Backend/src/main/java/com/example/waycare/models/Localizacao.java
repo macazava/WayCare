@@ -12,22 +12,20 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Localizacao {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "loc_id")
     private Long id;
 
-    @Column(name = "loc_latitude", nullable = false)
+    @Column(name = "loc_latitude")
     private Double latitude;
 
-    @Column(name = "loc_longitude", nullable = false)
+    @Column(name = "loc_longitude")
     private Double longitude;
 
-    @Column(name="loc_endereco")
-    private String endereco;
+    @Column(name = "loc_descricao")
+    private String descricao;
 
-    @OneToMany(mappedBy = "localizacao", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties({"localizacao", "anomalia", "utilizador", "fotografias"})
-    private List<Reporte> reportes = new ArrayList<>();
-}
+    @Column(name = "loc_endereco")
+    private String endereco;
+     }

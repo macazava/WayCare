@@ -15,69 +15,39 @@ import org.slf4j.LoggerFactory;
 
 @RestController
 @RequestMapping("/api/utilizadores")
-@CrossOrigin(origins = "*")
 public class UtilizadorController {
-    private Logger logger = LoggerFactory.getLogger(UtilizadorController.class);
-
 
     @Autowired
     private UtilizadorService utilizadorService;
 
-    //Lista todos os utilizadores
-
     @GetMapping
-    public ResponseEntity<List<Utilizador>> listarTodos() {
-        return ResponseEntity.ok(utilizadorService.listarTodos());
+    public List<Utilizador> listarTodos() {
+        return utilizadorService.listarTodos();
     }
 
-    //Procurar por ID
-
-    @GetMapping("procurar/{id}")
-    public ResponseEntity<Optional<Utilizador>> procurarPorId(@PathVariable Long id) {
-        try {
-            return ResponseEntity.ok(utilizadorService.procurarPorId(id));
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @GetMapping("/{id}")
+    public ResponseEntity<Utilizador> procurarPorId(@PathVariable Long id) {
+        return utilizadorService.procurarPorId(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 
-    //Atualizar utilizador
-
-    @PutMapping("atualizar/{id}")
-    public ResponseEntity<Utilizador> atualizar(@PathVariable Long id, @RequestBody Utilizador utilizador) {
-        try {
-            Utilizador atualizado = utilizadorService.atualizar(id, utilizador);
-            return ResponseEntity.ok(atualizado);
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+    @PostMapping
+    public ResponseEntity<Utilizador> criar(@RequestBody Utilizador utilizador) {
+        return ResponseEntity.ok(utilizadorService.criar(utilizador));
     }
-    //Eliminar Utilizador
 
-    @DeleteMapping("apagar/{id}")
+    @PutMapping("/{id}")
+    public ResponseEntity<Utilizador> atualizar(@PathVariable Long id, @RequestBody Utilizador novosDados) {
+        return ResponseEntity.ok(utilizadorService.atualizar(id, novosDados));
+    }
+
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> eliminar(@PathVariable Long id) {
-        try {
-            utilizadorService.eliminar(id);
-            return ResponseEntity.noContent().build();
-        } catch (RuntimeException e) {
-            return ResponseEntity.notFound().build();
-        }
+        utilizadorService.eliminar(id);
+        return ResponseEntity.noContent().build();
     }
 
-    //Registar utilizador
-    @PostMapping(value = "/registar", consumes = "application/json")
-    public ResponseEntity<Utilizador> registar(@RequestBody Utilizador utilizador) {
-        logger.info("Registando utilizador: {}", utilizador);
-
-        try {
-            Utilizador novo = utilizadorService.registar(utilizador);
-            logger.info("Utilizador registado com sucesso: {}", novo);
-            return ResponseEntity.ok(novo);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
-
-    }
 
     //Login
     @PostMapping("/login")

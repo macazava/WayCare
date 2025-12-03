@@ -11,6 +11,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 @Component
 public class GoogleMapsUtil {
@@ -87,5 +88,9 @@ public class GoogleMapsUtil {
             if (e instanceof EnderecoNaoEncontradoException || e instanceof IllegalArgumentException) throw e;
             throw new GoogleMapsApiException("Erro inesperado ao processar endereço", e);
         }
+    }
+
+    public List<double[]> getRoute(double origemLat, double origemLon, double destinoLat, double destinoLon) {
+        return null;
     }
 }

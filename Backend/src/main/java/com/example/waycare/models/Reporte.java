@@ -1,12 +1,11 @@
 package com.example.waycare.models;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 import lombok.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.time.LocalDate;
+
+import java.time.LocalDateTime;
+
 
 @Entity
 @Table(name = "reporte")
@@ -14,45 +13,38 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Reporte {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "rep_id")
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "rep_uti_id", nullable = false)
-    @JsonBackReference("utilizador-reportes")
+    @JoinColumn(name = "rep_uti_id")
     private Utilizador utilizador;
 
     @ManyToOne
-    @JoinColumn(name = "rep_ano_id", nullable = true)
-    @JsonIgnoreProperties("reportes")
+    @JoinColumn(name = "rep_ano_id")
     private Anomalia anomalia;
 
-    @Column(name = "rep_tipo_personalizado")
-    private String tipoPersonalizado; // apenas para anomalias personalizadas
+    @ManyToOne
+    @JoinColumn(name = "rep_loc_id")
+    private Localizacao localizacao;
 
     @Column(name = "rep_foto_url")
     private String fotoUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "rep_loc_id", nullable = true)
-    @JsonIgnoreProperties({"reportes"})
-    private Localizacao localizacao;
-
-    @OneToMany(mappedBy = "reporte", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("reporte")
-    private List<Fotografia> fotografias = new ArrayList<>();
-
     @Column(name = "rep_estado")
-    private String estado = "Pendente";
-
-    @Column(name = "rep_data")
-    private LocalDate data = LocalDate.now();
+    private String estado;
 
     @Column(name = "rep_descricao")
     private String descricao;
+
+    @Column(name = "rep_tipo_personalizado")
+    private String tipoPersonalizado;
+
+    @Column(name = "data_registo")
+    private LocalDateTime dataRegisto;
 }
+
 
 
