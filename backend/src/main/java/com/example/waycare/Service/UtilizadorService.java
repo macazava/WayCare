@@ -60,7 +60,7 @@ public class UtilizadorService {
     }
 
 
-    public String autenticar(LoginDTO dto) {
+    public Utilizador autenticar(LoginDTO dto) {
 
         Utilizador u = utilizadorRepository.findByEmail(dto.getEmail())
                 .orElseThrow(() -> new RuntimeException("Email não encontrado."));
@@ -87,7 +87,7 @@ public class UtilizadorService {
         u.setTentativasLogin(0);
         utilizadorRepository.save(u);
 
-        return "Login efetuado com sucesso!";
+        return u;
     }
 
 
