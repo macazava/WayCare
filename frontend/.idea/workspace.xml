@@ -54,7 +54,9 @@
       <change beforePath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/last-build.bin" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/kotlin/compileDebugKotlin/cacheable/last-build.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreenKt.class" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/tmp/kotlin-classes/debug/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreenKt.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteResponseDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteResponseDTO.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreen.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/viewmodel/ReporteViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/viewmodel/ReporteViewModel.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

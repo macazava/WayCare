@@ -177,7 +177,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
                     val request = ReporteRequest(
                         utilizadorId = userId,
-                        anomaliaId = tipoSelecionado!!.tip_id!!,
+                        tipoId = tipoSelecionado!!.tip_id!!,
                         descricao = descricao,
                         fotoUrl = null,
                         tipoPersonalizado = null,

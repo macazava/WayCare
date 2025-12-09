@@ -1,3 +1,5 @@
+
+
 data class ReporteResponseDTO(
     val id: Long,
     val utilizadorId: Long?,
