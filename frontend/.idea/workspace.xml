@@ -11,9 +11,7 @@
   <component name="ChangeListManager">
     <list default="true" id="d85de13b-74cb-401a-9f11-8b93d96773b3" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/pt/iade/ei/waycareapp/data/remote/ReporteApi.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/pt/iade/ei/waycareapp/data/remote/ReporteApi.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/pt/iade/ei/waycareapp/data/remote/TipoAnomaliaApi.dex" beforeDir="false" afterPath="$PROJECT_DIR$/app/build/intermediates/project_dex_archive/debug/dexBuilderDebug/out/pt/iade/ei/waycareapp/data/remote/TipoAnomaliaApi.dex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/TipoAnomaliaApi.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/TipoAnomaliaApi.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/Utilizador.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/Utilizador.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreen.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/screens/reporte/ReportScreen.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

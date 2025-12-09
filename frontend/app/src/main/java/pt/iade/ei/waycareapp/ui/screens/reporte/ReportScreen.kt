@@ -53,7 +53,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
     var tipoSelecionado by remember { mutableStateOf<TipoAnomalia?>(null) }
 
     val context = LocalContext.current
-    val tiposBackend = reporteViewModel.tiposAnomalia.collectAsState().value
+    val tiposBackend by reporteViewModel.tiposAnomalia.collectAsState()
     LaunchedEffect(Unit) {
         reporteViewModel.carregarTiposAnomalia()
     }
@@ -135,18 +135,15 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         }
 
         // TIPO
-        val tiposBackend by reporteViewModel.tiposAnomalia.collectAsState()
-
         DropdownField(
             label = "Selecione o Tipo de Anomalia",
-            options = tiposBackend.map { it.tip_nome }, // sem if/else
+            options = tiposBackend.map { it.tip_nome },
             selected = tipoSelecionado?.tip_nome ?: tipoAnomalia,
             onSelect = { nome ->
                 tipoAnomalia = nome
                 tipoSelecionado = tiposBackend.find { it.tip_nome == nome }
             }
         )
-
 
         DropdownField("Selecione o Grau de Perigo", prioridades, prioridade) { prioridade = it }
 
@@ -215,13 +212,12 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
-
+                // --- PASSO 1: confirmar utilizador logado ---
                 val utilizadorLogado = SessionManager.utilizadorLogado
+                Log.d("Reporte", "Utilizador logado: $utilizadorLogado")
 
-                if (utilizadorLogado?.uti_id == null) {
-                    Toast.makeText(context, "Faça login primeiro", Toast.LENGTH_SHORT).show()
-                    return@BotaoGradiente
-                }
+                // Agora podes assumir que existe e continuar com o envio
+                val userId = SessionManager.utilizadorLogado?.id ?: 0
 
                 if (tipoSelecionado == null) {
                     Toast.makeText(context, "Selecione o tipo", Toast.LENGTH_SHORT).show()
@@ -229,14 +225,12 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                 }
 
                 obterLocalizacaoAtual { lat, lng, endereco ->
-
-                    // --- Aqui criamos o ReporteRequest compatível com backend
                     val request = ReporteRequest(
-                        utilizadorId = utilizadorLogado.uti_id,
-                        anomaliaId = tipoSelecionado!!.tip_id, // tipo selecionado
-                        localizacaoId = 1, // usar ID fixo ou selecionar existente (backend já trata)
+                        utilizadorId = userId,
+                        anomaliaId = tipoSelecionado!!.tip_id!!,
+                        localizacaoId = 1,
                         descricao = descricao,
-                        fotoUrl = null, // opcional, depois podes adicionar imagem
+                        fotoUrl = null,
                         tipoPersonalizado = null,
                         zona = detalhesLocalizacao,
                         grauPerigo = prioridade
@@ -244,7 +238,6 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
                     Log.d("Reporte", "Enviando reporte: $request")
 
-                    // chama ViewModel que já tem função enviarReporte(request: ReporteRequest)
                     reporteViewModel.enviarReporte(request)
 
                     Toast.makeText(context, "Reporte enviado!", Toast.LENGTH_LONG).show()
@@ -252,6 +245,9 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                 }
             }
         )
+
+
+
     }
 }
 
@@ -300,4 +296,3 @@ fun ReportScreenPreview() {
     val navController = rememberNavController()
     ReportScreen(navController = navController)
 }
-
