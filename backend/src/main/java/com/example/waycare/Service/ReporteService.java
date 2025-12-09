@@ -91,6 +91,7 @@ public class ReporteService {
         a.setDescricao(dto.getDescricao());
         a.setGrauPerigo(dto.getGrauPerigo());
         a.setDataRegisto(LocalDateTime.now());
+        a.setEstado("PENDENTE");
         anomaliaRepository.save(a);
 
         // 4️⃣ Criar Localizacao automaticamente
