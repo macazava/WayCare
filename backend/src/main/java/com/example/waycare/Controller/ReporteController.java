@@ -50,9 +50,11 @@ public class ReporteController {
     }
 
     @PostMapping("/criar")
-    public ResponseEntity<ReporteResponseDTO> criarReporte(@Valid @RequestBody ReporteCreateDTO dto) {
-        return ResponseEntity.ok(reporteService.criarDesdeDTO(dto));
+    public ResponseEntity<ReporteResponseDTO> criarReporte(@RequestBody @Valid ReporteCreateDTO dto) {
+        ReporteResponseDTO response = reporteService.criarDesdeDTO(dto);
+        return ResponseEntity.ok(response);
     }
+
 
     @PutMapping("/{id}")
     public ResponseEntity<ReporteResponseDTO> atualizar(

@@ -15,9 +15,6 @@ public class ReporteCreateDTO {
     @NotNull(message = "O ID da anomalia é obrigatório")
     private Long anomaliaId;
 
-    @NotNull(message = "O ID da localização é obrigatório")
-    private Long localizacaoId;
-
     @Size(min = 5, message = "Descrição deve ter no mínimo 5 caracteres")
     private String descricao;
 
@@ -30,4 +27,13 @@ public class ReporteCreateDTO {
 
     @NotNull(message = "O Grau de Perigo é obrigatório")
     private GrauPerigo grauPerigo;
+
+    @NotNull(message = "Latitude é obrigatória")
+    private Double latitude;
+
+    @NotNull(message = "Longitude é obrigatória")
+    private Double longitude;
+
+    private String endereco; // Opcional
 }
+

@@ -41,15 +41,13 @@ public class ReporteService {
                 .map(this::mapToDTO);
     }
 
-
     public List<ReporteResponseDTO> listarPorEstado(String estado) {
-        EstadoReporte estadoEnum = EstadoReporte.valueOf(estado); // converte String para Enum
+        EstadoReporte estadoEnum = EstadoReporte.valueOf(estado);
         return reporteRepository.findByEstadoReporte(estadoEnum)
                 .stream()
                 .map(this::mapToDTO)
                 .toList();
     }
-
 
     public List<ReporteResponseDTO> listarPorUtilizador(Long utiId) {
         return reporteRepository.findByUtilizadorId(utiId)
@@ -72,21 +70,29 @@ public class ReporteService {
                 .toList();
     }
 
+    // ================= NOVO MÉTODO =================
     public ReporteResponseDTO criarDesdeDTO(ReporteCreateDTO dto) {
 
+        // 1️⃣ Buscar Utilizador
         Utilizador u = utilizadorRepository.findById(dto.getUtilizadorId())
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
 
+        // 2️⃣ Buscar Anomalia
         Anomalia a = anomaliaRepository.findById(dto.getAnomaliaId())
                 .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
 
-        Localizacao loc = localizacaoRepository.findById(dto.getLocalizacaoId())
-                .orElseThrow(() -> new RuntimeException("Localização inválida"));
+        // 3️⃣ Criar Localizacao automaticamente com latitude e longitude do DTO
+        Localizacao loc = new Localizacao();
+        loc.setLatitude(dto.getLatitude());
+        loc.setLongitude(dto.getLongitude());
+        loc.setEndereco(dto.getEndereco() != null ? dto.getEndereco() : "Endereço não disponível");
+        localizacaoRepository.save(loc);
 
+        // 4️⃣ Criar o Reporte
         Reporte r = new Reporte();
         r.setUtilizador(u);
         r.setAnomalia(a);
-        r.setLocalizacao(loc);
+        r.setLocalizacao(loc); // associação com a localização recém-criada
         r.setDescricao(dto.getDescricao());
         r.setFotoUrl(dto.getFotoUrl());
         r.setTipoPersonalizado(dto.getTipoPersonalizado());
@@ -96,9 +102,10 @@ public class ReporteService {
         r.setGrauPerigo(dto.getGrauPerigo());
 
         r = reporteRepository.save(r);
+
         return mapToDTO(r);
     }
-
+    // ================================================
 
     public ReporteResponseDTO atualizar(Long id, Reporte novosDados) {
         Reporte r = reporteRepository.findById(id)
@@ -114,14 +121,12 @@ public class ReporteService {
         return mapToDTO(r);
     }
 
-
     public void eliminar(Long id) {
         if (!reporteRepository.existsById(id))
             throw new RuntimeException("ID inválido");
 
         reporteRepository.deleteById(id);
     }
-
 
     private ReporteResponseDTO mapToDTO(Reporte r) {
         ReporteResponseDTO dto = new ReporteResponseDTO();
@@ -160,5 +165,6 @@ public class ReporteService {
         return dto;
     }
 }
+
 
 
