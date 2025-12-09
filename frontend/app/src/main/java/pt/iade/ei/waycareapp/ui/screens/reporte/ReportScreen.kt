@@ -177,14 +177,15 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
                     val request = ReporteRequest(
                         utilizadorId = userId,
-                        anomaliaId = tipoSelecionado!!.tip_id!!,
+                        tipoId = tipoSelecionado!!.tip_id!!,
                         localizacaoId = 1,
                         descricao = descricao,
                         fotoUrl = null,
                         tipoPersonalizado = null,
-                        zona = zonaEnum.name,
-                        grauPerigo = grauEnum.name
+                        zona = zonaEnum,
+                        grauPerigo = grauEnum
                     )
+
 
                     Log.d("Reporte", "Enviando reporte: $request")
                     reporteViewModel.enviarReporte(request)
