@@ -9,7 +9,55 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d85de13b-74cb-401a-9f11-8b93d96773b3" name="Changes" comment="" />
+    <list default="true" id="d85de13b-74cb-401a-9f11-8b93d96773b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/.idea/compiler.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/.idea/encodings.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/.idea/jarRepositories.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/HELP.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/out/production/waycare2/com/waycare/waycare2/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/out/production/waycare2/com/waycare/waycare2/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/out/production/waycare2/com/waycare/waycare2/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/out/production/waycare2/com/waycare/waycare2/waycare2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/src/main/java/com/waycare/waycare2/waycare2.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Config/TimezoneConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Config/WebConfig.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/Comentario$comentario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/Comentario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/Notificacao$Comentario.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/Notificacao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/Utilizador.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/categoria.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/localizacao.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/obstaculo$CategoriaObstaculo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/obstaculo$GrauPerigo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/obstaculo.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/reporte$EstadoReporte.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Model/reporte.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/SpringBootApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/UtilizadorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/Waycareaplication$UtilizadorRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/Waycareaplication$WaycareApplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/Waycareaplication.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/categoriaRepository$CategoriaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/categoriaRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/localizacaoRepository$LocalizacaoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/localizacaoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/obstaculoRepository$ObstaculoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/obstaculoRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/reporteRepository$ReporteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Repository/reporteRepository.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/com/waycare/waycare2/Waycare2Application.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/classes/reporte.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/test-classes/com/waycare/waycare2/Waycare2ApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/test-classes/com/waycare/waycare2/waycare/waycare2$WaycareApplicationTests.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backend/waycare2-backend/target/test-classes/com/waycare/waycare2/waycare/waycare2.class" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -55,18 +103,18 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "macazava"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;macazava&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/macazava/WayCare.git",
-    "accountId": "77130680-cc88-49f5-afcf-7dde7645c709"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/macazava/WayCare.git&quot;,
+    &quot;accountId&quot;: &quot;77130680-cc88-49f5-afcf-7dde7645c709&quot;
   }
-}]]></component>
+}</component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/app/build.gradle.kts" root0="FORCE_HIGHLIGHTING" />
   </component>
