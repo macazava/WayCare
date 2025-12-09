@@ -3,6 +3,7 @@ package pt.iade.ei.waycareapp.ui.screens.reporte
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.graphics.drawable.BitmapDrawable
+import android.location.Geocoder
 import android.net.Uri
 import android.util.Log
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -48,7 +49,7 @@ import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.time.LocalDateTime
 import pt.iade.ei.waycareapp.data.session.SessionManager
 import pt.iade.ei.waycareapp.data.model.ReporteDTO
-
+import java.util.Locale
 
 
 @Composable
@@ -67,15 +68,13 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
         reporteViewModel.carregarAnomalias()
     }
 
-
-
     val context = LocalContext.current
     val fusedLocationClient = remember {
         LocationServices.getFusedLocationProviderClient(context)
     }
 
     @SuppressLint("MissingPermission")
-    fun obterLocalizacaoAtual(onReady: (Double, Double) -> Unit) {
+    fun obterLocalizacaoAtual(onReady: (Double, Double, String) -> Unit) {
         val request = LocationRequest.Builder(Priority.PRIORITY_HIGH_ACCURACY, 2000)
             .setWaitForAccurateLocation(true)
             .setMaxUpdates(1)
@@ -85,13 +84,24 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
             override fun onLocationResult(result: LocationResult) {
                 val loc = result.lastLocation
                 if (loc != null) {
-                    onReady(loc.latitude, loc.longitude)
+                    val geocoder = Geocoder(context, Locale.getDefault())
+                    val addresses = geocoder.getFromLocation(loc.latitude, loc.longitude, 1)
+
+                    val endereco = if (!addresses.isNullOrEmpty()) {
+                        addresses[0].getAddressLine(0)
+                    } else {
+                        "Endereço não disponível"
+                    }
+
+
+                    onReady(loc.latitude, loc.longitude, endereco)
                 }
                 fusedLocationClient.removeLocationUpdates(this)
             }
         }
         fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
     }
+
 
 
     val cameraLauncher = rememberLauncherForActivityResult(
@@ -237,13 +247,18 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
 
         // Localização
         Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
+            var endereco by remember { mutableStateOf("") }
+
             Text("Localização Automática:", fontSize = 16.sp)
-            Text("Rua da Liberdade, 123, Lisboa, Portugal", color = Color.Gray)
-            OutlinedTextField(
-                value = detalhesLocalizacao,
-                onValueChange = { detalhesLocalizacao = it },
-                label = { Text("Detalhes adicionais da Localização", fontSize = 13.sp) },
-                modifier = Modifier.fillMaxWidth()
+            Text(endereco, color = Color.Gray)
+
+
+            DropdownField(
+                label = "Escolha a zona",
+                options = listOf("Lisboa", "Margem Sul"),
+                selected = detalhesLocalizacao,
+                onSelect = { detalhesLocalizacao = it }
             )
         }
 
@@ -294,15 +309,15 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
                 if (utilizadorLogado?.uti_id != null) {
                     Log.d("Botao", "Utilizador autenticado: ${utilizadorLogado.uti_id} - ${utilizadorLogado.uti_email}")
 
-                    obterLocalizacaoAtual { lat, lng ->
-                        Log.d("Localizacao", "Lat: $lat, Lng: $lng")
+                    obterLocalizacaoAtual { lat, lng, endereco ->
+                        Log.d("Localizacao", "Lat: $lat, Lng: $lng, Endereço: $endereco")
 
                         val reporteBody = ReporteDTO(
                             tipoPersonalizado = null,
                             localizacao = Localizacao(
                                 loc_latitude = lat,
                                 loc_longitude = lng,
-                                loc_endereco = detalhesLocalizacao
+                                loc_endereco = endereco
                             ),
                             fotografias = null,
                             estado = "Pendente",
