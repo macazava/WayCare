@@ -59,9 +59,6 @@ public class Reporte {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "rota_id")
     private RotaAlternativa rotaAlternativa;
-
-
-
 }
 
 
