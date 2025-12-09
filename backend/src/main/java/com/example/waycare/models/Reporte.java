@@ -37,7 +37,7 @@ public class Reporte {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "rep_estado", nullable = false)
-    private String estadoReporte;
+    private EstadoReporte estadoReporte;
 
     @Column(name = "rep_descricao")
     private String descricao;

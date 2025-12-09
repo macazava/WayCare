@@ -6,10 +6,7 @@ import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.Repository.LocalizacaoRepository;
 import com.example.waycare.Repository.ReporteRepository;
 import com.example.waycare.Repository.UtilizadorRepository;
-import com.example.waycare.models.Anomalia;
-import com.example.waycare.models.Localizacao;
-import com.example.waycare.models.Reporte;
-import com.example.waycare.models.Utilizador;
+import com.example.waycare.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -46,11 +43,13 @@ public class ReporteService {
 
 
     public List<ReporteResponseDTO> listarPorEstado(String estado) {
-        return reporteRepository.findByEstado(estado)
+        EstadoReporte estadoEnum = EstadoReporte.valueOf(estado); // converte String para Enum
+        return reporteRepository.findByEstadoReporte(estadoEnum)
                 .stream()
                 .map(this::mapToDTO)
                 .toList();
     }
+
 
     public List<ReporteResponseDTO> listarPorUtilizador(Long utiId) {
         return reporteRepository.findByUtilizadorId(utiId)
@@ -91,7 +90,7 @@ public class ReporteService {
         r.setDescricao(dto.getDescricao());
         r.setFotoUrl(dto.getFotoUrl());
         r.setTipoPersonalizado(dto.getTipoPersonalizado());
-        r.setEstadoReporte("PENDENTE");
+        r.setEstadoReporte(EstadoReporte.PENDENTE);
         r.setDataRegisto(LocalDateTime.now());
         r.setZona(dto.getZona());
         r.setGrauPerigo(dto.getGrauPerigo());
@@ -148,7 +147,7 @@ public class ReporteService {
         }
 
         dto.setFotoUrl(r.getFotoUrl());
-        dto.setEstadoReporte(r.getEstadoReporte());
+        dto.setEstadoReporte(r.getEstadoReporte().name());
         dto.setDescricao(r.getDescricao());
         dto.setTipoPersonalizado(r.getTipoPersonalizado());
         dto.setDataRegisto(r.getDataRegisto());
