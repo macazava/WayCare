@@ -5,6 +5,7 @@ import DTO.ReporteResponseDTO;
 import com.example.waycare.Repository.AnomaliaRepository;
 import com.example.waycare.Repository.LocalizacaoRepository;
 import com.example.waycare.Repository.ReporteRepository;
+import com.example.waycare.Repository.TipoAnomaliaRepository;
 import com.example.waycare.Repository.UtilizadorRepository;
 import com.example.waycare.models.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,9 @@ public class ReporteService {
 
     @Autowired
     private LocalizacaoRepository localizacaoRepository;
+
+    @Autowired
+    private TipoAnomaliaRepository tipoAnomaliaRepository;
 
     public List<ReporteResponseDTO> listarTodosDTO() {
         return reporteRepository.findAll()
@@ -70,28 +74,36 @@ public class ReporteService {
                 .toList();
     }
 
-    // ================= NOVO MÉTODO =================
+    // ================= CRIAR REPORT COM TIPO ANOMALIA =================
     public ReporteResponseDTO criarDesdeDTO(ReporteCreateDTO dto) {
 
         // 1️⃣ Buscar Utilizador
         Utilizador u = utilizadorRepository.findById(dto.getUtilizadorId())
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
 
-        // 2️⃣ Buscar Anomalia
-        Anomalia a = anomaliaRepository.findById(dto.getAnomaliaId())
-                .orElseThrow(() -> new RuntimeException("Anomalia não encontrada"));
+        // 2️⃣ Buscar Tipo de Anomalia
+        TipoAnomalia tipo = tipoAnomaliaRepository.findById(dto.getTipoId())
+                .orElseThrow(() -> new RuntimeException("Tipo de anomalia não encontrado"));
 
-        // 3️⃣ Criar Localizacao automaticamente com latitude e longitude do DTO
+        // 3️⃣ Criar Anomalia automaticamente
+        Anomalia a = new Anomalia();
+        a.setTipo(tipo);
+        a.setDescricao(dto.getDescricao());
+        a.setGrauPerigo(dto.getGrauPerigo());
+        a.setDataRegisto(LocalDateTime.now());
+        anomaliaRepository.save(a);
+
+        // 4️⃣ Criar Localizacao automaticamente
         Localizacao loc = new Localizacao();
         loc.setLatitude(dto.getLatitude());
         loc.setLongitude(dto.getLongitude());
         loc.setEndereco(dto.getEndereco() != null ? dto.getEndereco() : "Endereço não disponível");
         localizacaoRepository.save(loc);
 
-        // 4️⃣ Criar o Reporte
+        // 5️⃣ Criar o Reporte
         Reporte r = new Reporte();
         r.setUtilizador(u);
-        r.setAnomalia(a);
+        r.setAnomalia(a); // associação com a anomalia recém-criada
         r.setLocalizacao(loc); // associação com a localização recém-criada
         r.setDescricao(dto.getDescricao());
         r.setFotoUrl(dto.getFotoUrl());
@@ -105,7 +117,7 @@ public class ReporteService {
 
         return mapToDTO(r);
     }
-    // ================================================
+    // ================================================================
 
     public ReporteResponseDTO atualizar(Long id, Reporte novosDados) {
         Reporte r = reporteRepository.findById(id)
@@ -165,6 +177,3 @@ public class ReporteService {
         return dto;
     }
 }
-
-
-

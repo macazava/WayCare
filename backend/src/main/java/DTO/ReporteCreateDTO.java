@@ -12,8 +12,8 @@ public class ReporteCreateDTO {
     @NotNull(message = "O ID do utilizador é obrigatório")
     private Long utilizadorId;
 
-    @NotNull(message = "O ID da anomalia é obrigatório")
-    private Long anomaliaId;
+    @NotNull(message = "O ID do tipo de anomalia é obrigatório")
+    private Long tipoId; // substitui anomaliaId
 
     @Size(min = 5, message = "Descrição deve ter no mínimo 5 caracteres")
     private String descricao;
@@ -34,6 +34,8 @@ public class ReporteCreateDTO {
     @NotNull(message = "Longitude é obrigatória")
     private Double longitude;
 
-    private String endereco; // Opcional
+    @NotNull(message = "Endereço é obrigatório")
+    private String endereco; // agora obrigatório
 }
+
 
