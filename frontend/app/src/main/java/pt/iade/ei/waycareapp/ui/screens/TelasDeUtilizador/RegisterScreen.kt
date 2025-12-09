@@ -3,7 +3,9 @@ package pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Visibility
@@ -29,30 +31,37 @@ import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = viewModel()) {
     var nome by remember { mutableStateOf("") }
-    var username by remember { mutableStateOf("") } // não usado no backend, mas mantive
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
+    var confirmarPassword by remember { mutableStateOf("") }
+    var dataNascimento by remember { mutableStateOf("") }
+    var genero by remember { mutableStateOf("") }
+    var telemovel by remember { mutableStateOf("") }
+
     var passwordVisible by remember { mutableStateOf(false) }
-    var isReducedMobility by remember { mutableStateOf(false) }
+    var confirmarPasswordVisible by remember { mutableStateOf(false) }
+    var expanded by remember { mutableStateOf(false) }
+    val generos = listOf("MASCULINO", "FEMININO", "OUTRO")
 
     val authState by viewModel.authState.collectAsState()
 
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(start = 24.dp, end = 24.dp, bottom = 24.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+            .verticalScroll(rememberScrollState())
+            .padding(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(15.dp))
-        //arrowback para login screen
+        // Header
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(bottom = 16.dp),
+                .padding(bottom = 8.dp),
             verticalAlignment = Alignment.CenterVertically
         ) {
             Icon(
@@ -60,7 +69,7 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
                 contentDescription = "Voltar",
                 modifier = Modifier
                     .clickable { navController.navigate("login") }
-                    .size(32.dp),
+                    .size(28.dp),
                 tint = Color(0xFF2196F3)
             )
             Image(
@@ -68,44 +77,45 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
                 contentDescription = "Logo",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(160.dp),
+                    .height(120.dp),
                 contentScale = ContentScale.FillWidth
             )
         }
+
         Text(
             text = "Faça o seu registo!",
-            fontSize = 28.sp,
+            fontSize = 22.sp,
             fontWeight = FontWeight.Bold,
             color = Color(0xFFF7A2CC),
-            modifier = Modifier
-                .fillMaxWidth()
-                .align(Alignment.Start)
+            modifier = Modifier.fillMaxWidth()
         )
+
+        // Campos
         OutlinedTextField(
             value = nome,
             onValueChange = { nome = it },
-            label = { Text("Digite o seu Nome") },
+            label = { Text("Nome") },
             placeholder = { Text("Maria Carvalho") },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(8.dp)
         )
 
         OutlinedTextField(
             value = email,
             onValueChange = { email = it },
-            label = { Text("Digite o seu E-mail") },
-            placeholder = { Text("Maria123@gmail.com") },
+            label = { Text("E-mail") },
+            placeholder = { Text("maria@gmail.com") },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp)
+            shape = RoundedCornerShape(8.dp)
         )
 
         OutlinedTextField(
             value = password,
             onValueChange = { password = it },
-            label = { Text("Escreva a sua Palavra-passe") },
+            label = { Text("Palavra-passe") },
             placeholder = { Text("••••••••") },
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(12.dp),
+            shape = RoundedCornerShape(8.dp),
             visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
             trailingIcon = {
                 val icon = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
@@ -115,52 +125,94 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
             }
         )
 
+        OutlinedTextField(
+            value = confirmarPassword,
+            onValueChange = { confirmarPassword = it },
+            label = { Text("Confirmar Palavra-passe") },
+            placeholder = { Text("••••••••") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp),
+            visualTransformation = if (confirmarPasswordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+            trailingIcon = {
+                val icon = if (confirmarPasswordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff
+                IconButton(onClick = { confirmarPasswordVisible = !confirmarPasswordVisible }) {
+                    Icon(imageVector = icon, contentDescription = "Mostrar/Esconder")
+                }
+            }
+        )
 
-        // Botão de registo com gradiente
+        OutlinedTextField(
+            value = dataNascimento,
+            onValueChange = { dataNascimento = it },
+            label = { Text("Data de Nascimento") },
+            placeholder = { Text("2000-05-12") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp)
+        )
+
+        // Dropdown de género
+        ExposedDropdownMenuBox(
+            expanded = expanded,
+            onExpandedChange = { expanded = !expanded }
+        ) {
+            OutlinedTextField(
+                value = genero,
+                onValueChange = { genero = it },
+                readOnly = true,
+                label = { Text("Género") },
+                placeholder = { Text("Selecione") },
+                modifier = Modifier
+                    .menuAnchor()
+                    .fillMaxWidth(),
+                shape = RoundedCornerShape(8.dp),
+                trailingIcon = {
+                    ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
+                }
+            )
+            ExposedDropdownMenu(
+                expanded = expanded,
+                onDismissRequest = { expanded = false }
+            ) {
+                generos.forEach { option ->
+                    DropdownMenuItem(
+                        text = { Text(option) },
+                        onClick = {
+                            genero = option
+                            expanded = false
+                        }
+                    )
+                }
+            }
+        }
+
+        OutlinedTextField(
+            value = telemovel,
+            onValueChange = { telemovel = it },
+            label = { Text("Telemóvel") },
+            placeholder = { Text("912345678") },
+            modifier = Modifier.fillMaxWidth(),
+            shape = RoundedCornerShape(8.dp)
+        )
+
+        // Botão
         BotaoGradiente(
             texto = "Registar-me",
             onClick = {
-                viewModel.register(nome, email, password) //chama o backend
-            }
-        )
-
-        Column (
-            horizontalAlignment = Alignment.CenterHorizontally
-        ){
-            Text("Ou registe-se com", color = Color.Gray)
-            Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                Image(
-                    painter = painterResource(id = pt.iade.ei.waycareapp.R.drawable.ic_google),
-                    contentDescription = "Google",
-                    modifier = Modifier
-                        .size(40.dp)
-                        .padding(8.dp),
+                viewModel.register(
+                    nome,
+                    email,
+                    password,
+                    confirmarPassword,
+                    dataNascimento,
+                    genero,
+                    telemovel
                 )
             }
-        }
-        Divider(
-            color = Color.LightGray,
-            thickness = 1.dp
         )
-        Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.Center
-        ) {
-            Text("Já tem uma conta? ")
-            Text(
-                text = "Faça Login agora",
-                color = Color.Blue,
-                modifier = Modifier.clickable {
-                    navController.navigate("login")
-                }
-            )
-        }
 
-        // ✅ Observa o estado da autenticação
+        // Estado da autenticação
         when (authState) {
-            is AuthUiState.Loading -> {
-                CircularProgressIndicator()
-            }
+            is AuthUiState.Loading -> CircularProgressIndicator()
             is AuthUiState.RegisterSuccess -> {
                 LaunchedEffect(Unit) {
                     navController.navigate("login") {

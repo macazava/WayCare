@@ -11,6 +11,7 @@ import pt.iade.ei.waycareapp.data.model.Utilizador
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
 import pt.iade.ei.waycareapp.data.session.SessionManager
 import com.google.gson.Gson
+import pt.iade.ei.waycareapp.data.model.RegisterRequest
 
 // Estados possíveis da autenticação
 sealed class AuthUiState {
@@ -59,31 +60,41 @@ class LoginViewModel : ViewModel() {
     }
 
     // Função de registo
-    fun register(nome: String, email: String, password: String) {
+    fun register(
+        nome: String,
+        email: String,
+        password: String,
+        confirmarPassword: String,
+        dataNascimento: String,
+        genero: String,
+        telemovel: String
+    ) {
         _authState.value = AuthUiState.Loading
         viewModelScope.launch {
             try {
-                val request = Utilizador(uti_nome = nome, uti_email = email, password = password)
-                Log.d("Register", "JSON enviado (registo): ${Gson().toJson(request)}")
+                val request = RegisterRequest(
+                    nome = nome,
+                    email = email,
+                    password = password,
+                    confirmarPassword = confirmarPassword,
+                    dataNascimento = dataNascimento,
+                    genero = genero,
+                    telemovel = telemovel
+                )
 
                 val response = RetrofitInstance.authApi.register(request)
 
                 if (response.isSuccessful) {
                     val body = response.body()
                     if (body != null) {
-                        Log.d("API", "Registo ok: $body")
                         _authState.value = AuthUiState.RegisterSuccess(body)
                     } else {
-                        Log.e("API", "Registo: resposta sem corpo")
                         _authState.value = AuthUiState.Error("Resposta sem corpo")
                     }
                 } else {
-                    val errorMsg = response.errorBody()?.string().orEmpty()
-                    Log.e("API", "Erro registo: ${response.code()} - $errorMsg")
                     _authState.value = AuthUiState.Error("Erro registo: ${response.code()}")
                 }
             } catch (e: Exception) {
-                Log.e("API", "Falha registo: ${e.message}")
                 _authState.value = AuthUiState.Error("Falha registo: ${e.message}")
             }
         }

@@ -4,41 +4,7 @@
             "outputFile": "pt.iade.ei.waycareapp-mergeDebugResources-49:/values-ka/values-ka.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\d1d5008162b28a4dd2570404d1756b4c\\transformed\\play-services-basement-18.1.0\\res\\values-ka\\values.xml",
-                    "from": {
-                        "startLines": "4",
-                        "startColumns": "0",
-                        "startOffsets": "195",
-                        "endColumns": "138",
-                        "endOffsets": "333"
-                    },
-                    "to": {
-                        "startLines": "20",
-                        "startColumns": "4",
-                        "startOffsets": "2106",
-                        "endColumns": "142",
-                        "endOffsets": "2244"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\5e9309609e2e7f61ac2f1eb017b62017\\transformed\\core-1.17.0\\res\\values-ka\\values-ka.xml",
-                    "from": {
-                        "startLines": "2,3,4,5,6,7,8,9",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "55,151,253,352,451,557,661,779",
-                        "endColumns": "95,101,98,98,105,103,117,100",
-                        "endOffsets": "146,248,347,446,552,656,774,875"
-                    },
-                    "to": {
-                        "startLines": "3,4,5,6,7,8,9,101",
-                        "startColumns": "4,4,4,4,4,4,4,4",
-                        "startOffsets": "190,286,388,487,586,692,796,10798",
-                        "endColumns": "95,101,98,98,105,103,117,100",
-                        "endOffsets": "281,383,482,581,687,791,909,10894"
-                    }
-                },
-                {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\4df6d0b1643557c2136609da55e0ca42\\transformed\\ui-release\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\a921c5b89208033c91d783c35bf1721a\\transformed\\ui-release\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -55,7 +21,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\dda1b214eb1d5c28675131403fe0fa2c\\transformed\\play-services-base-18.1.0\\res\\values-ka\\values.xml",
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\a3440b40540f3ba1f7c86a8bee6dd33b\\transformed\\play-services-base-18.1.0\\res\\values-ka\\values.xml",
                     "from": {
                         "startLines": "4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20",
                         "startColumns": "0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0",
@@ -72,7 +38,24 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\47d92e8423681d21689a488916ff1a2b\\transformed\\material3-release\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\94205ca71a58e77a8cabf2b1aa55d606\\transformed\\core-1.17.0\\res\\values-ka\\values-ka.xml",
+                    "from": {
+                        "startLines": "2,3,4,5,6,7,8,9",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "55,151,253,352,451,557,661,779",
+                        "endColumns": "95,101,98,98,105,103,117,100",
+                        "endOffsets": "146,248,347,446,552,656,774,875"
+                    },
+                    "to": {
+                        "startLines": "3,4,5,6,7,8,9,101",
+                        "startColumns": "4,4,4,4,4,4,4,4",
+                        "startOffsets": "190,286,388,487,586,692,796,10798",
+                        "endColumns": "95,101,98,98,105,103,117,100",
+                        "endOffsets": "281,383,482,581,687,791,909,10894"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\456b9798280701167c13940954a2509f\\transformed\\material3-release\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58",
                         "startColumns": "4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4,4",
@@ -89,7 +72,7 @@
                     }
                 },
                 {
-                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\c130e86fc02c87665a15ca01128c2486\\transformed\\foundation-release\\res\\values-ka\\values-ka.xml",
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\63b76b24bcbfc0a8abd8c8b849cc6e71\\transformed\\foundation-release\\res\\values-ka\\values-ka.xml",
                     "from": {
                         "startLines": "2,3,4",
                         "startColumns": "4,4,4",
@@ -103,6 +86,23 @@
                         "startOffsets": "105,11169,11257",
                         "endColumns": "84,87,90",
                         "endOffsets": "185,11252,11343"
+                    }
+                },
+                {
+                    "source": "C:\\Users\\macaz\\.gradle\\caches\\8.13\\transforms\\b01c6b76474188a663fbdb134469033c\\transformed\\play-services-basement-18.1.0\\res\\values-ka\\values.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "0",
+                        "startOffsets": "195",
+                        "endColumns": "138",
+                        "endOffsets": "333"
+                    },
+                    "to": {
+                        "startLines": "20",
+                        "startColumns": "4",
+                        "startOffsets": "2106",
+                        "endColumns": "142",
+                        "endOffsets": "2244"
                     }
                 }
             ]

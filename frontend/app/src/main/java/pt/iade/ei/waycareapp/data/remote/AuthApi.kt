@@ -2,6 +2,7 @@ package pt.iade.ei.waycareapp.data.remote
 
 import okhttp3.ResponseBody
 import pt.iade.ei.waycareapp.data.model.LoginRequest
+import pt.iade.ei.waycareapp.data.model.RegisterRequest
 import pt.iade.ei.waycareapp.data.model.Utilizador
 import retrofit2.Response
 import retrofit2.http.Body
@@ -11,7 +12,7 @@ interface AuthApi {
 
     // Registo de utilizador
     @POST("api/utilizadores/registar")
-    suspend fun register(@Body user: Utilizador): Response<Utilizador>
+    suspend fun register(@Body request: RegisterRequest): Response<Utilizador>
 
     // Login de utilizador
     @POST("api/utilizadores/login")
