@@ -136,7 +136,7 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = viewMo
         BotaoGradiente(
             texto = "Login",
             onClick = {
-                viewModel.login(email, password) // ✅ chama o backend
+                viewModel.login(email, password) // Chama o backend
             }
         )
 
@@ -196,3 +196,4 @@ fun LoginScreenPreview() {
         LoginScreen(navController = rememberNavController())
     }
 }
+
