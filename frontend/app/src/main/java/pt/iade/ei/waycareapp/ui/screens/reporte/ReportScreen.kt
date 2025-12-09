@@ -44,9 +44,9 @@ import java.util.Locale
 fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewModel = viewModel()) {
 
     var tipoAnomalia by remember { mutableStateOf("") }
-    var prioridade by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
-    var detalhesLocalizacao by remember { mutableStateOf("") }
+    var detalhesLocalizacao by remember { mutableStateOf(Zona.LISBOA.name) }
+    var prioridade by remember { mutableStateOf(GrauPerigo.BAIXA.name) }
     var imagemUri by remember { mutableStateOf<Uri?>(null) }
     var imagemBitmap by remember { mutableStateOf<Bitmap?>(null) }
     var tipoSelecionado by remember { mutableStateOf<TipoAnomalia?>(null) }
@@ -80,16 +80,16 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
     }
 
-    val cameraLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.TakePicturePreview()
-    ) { bitmap -> imagemBitmap = bitmap }
+    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
+        imagemBitmap = bitmap
+    }
 
-    val galeriaLauncher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.GetContent()
-    ) { uri -> imagemUri = uri }
+    val galeriaLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        imagemUri = uri
+    }
 
     val prioridades = GrauPerigo.values().map { it.name }
-    val zonas = Zona.values().map { if (it == Zona.MARGEM_SUL) "MARGEM_SUL" else it.name }
+    val zonas = Zona.values().map { it.name }
 
     Column(
         modifier = Modifier.fillMaxSize().padding(24.dp),
@@ -173,7 +173,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
                 obterLocalizacaoAtual { lat, lng, endereco ->
                     val grauEnum = GrauPerigo.valueOf(prioridade)
-                    val zonaEnum = Zona.valueOf(detalhesLocalizacao.replace(" ", "_"))
+                    val zonaEnum = Zona.valueOf(detalhesLocalizacao)
 
                     val request = ReporteRequest(
                         utilizadorId = userId,
@@ -182,7 +182,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                         descricao = descricao,
                         fotoUrl = null,
                         tipoPersonalizado = null,
-                        zona = zonaEnum.name, //envia como string
+                        zona = zonaEnum.name,
                         grauPerigo = grauEnum.name
                     )
 
@@ -197,12 +197,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 }
 
 @Composable
-fun DropdownField(
-    label: String,
-    options: List<String>,
-    selected: String,
-    onSelect: (String) -> Unit
-) {
+fun DropdownField(label: String, options: List<String>, selected: String, onSelect: (String) -> Unit) {
     var expanded by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxWidth()) {
@@ -212,8 +207,7 @@ fun DropdownField(
             label = { Text(label) },
             readOnly = true,
             trailingIcon = {
-                Icon(Icons.Default.ArrowDropDown, contentDescription = "",
-                    modifier = Modifier.clickable { expanded = !expanded })
+                Icon(Icons.Default.ArrowDropDown, contentDescription = "", modifier = Modifier.clickable { expanded = !expanded })
             },
             modifier = Modifier.fillMaxWidth()
         )
@@ -231,7 +225,6 @@ fun DropdownField(
         }
     }
 }
-
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
