@@ -6,6 +6,6 @@ import retrofit2.Response
 
 
 interface TipoAnomaliaApi {
-    @GET("api/TipoAnomalia")
+    @GET("tipos-anomalia")
     suspend fun listarTipos(): Response<List<TipoAnomalia>>
 }

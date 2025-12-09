@@ -135,15 +135,18 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         }
 
         // TIPO
+        val tiposBackend by reporteViewModel.tiposAnomalia.collectAsState()
+
         DropdownField(
             label = "Selecione o Tipo de Anomalia",
-            options = if (tiposBackend.isNotEmpty()) tiposBackend.map { it.tip_nome } else listOf(),
+            options = tiposBackend.map { it.tip_nome }, // sem if/else
             selected = tipoSelecionado?.tip_nome ?: tipoAnomalia,
             onSelect = { nome ->
                 tipoAnomalia = nome
                 tipoSelecionado = tiposBackend.find { it.tip_nome == nome }
             }
         )
+
 
         DropdownField("Selecione o Grau de Perigo", prioridades, prioridade) { prioridade = it }
 
