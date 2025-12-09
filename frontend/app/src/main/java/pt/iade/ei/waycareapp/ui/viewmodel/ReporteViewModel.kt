@@ -69,21 +69,12 @@ class ReporteViewModel : ViewModel() {
         }
     }
 
-    fun enviarReporte(utiId: Long, anoId: Long, reporte: ReporteDTO) {
+    fun enviarReporte(request: ReporteRequest) {
         viewModelScope.launch {
-            Log.d("ReporteAPI", "🧾 utiId: $utiId")
-            Log.d("ReporteAPI", "🧾 anoId: $anoId")
-
-            if (utiId == 0L || anoId == 0L) {
-                Log.e("ReporteAPI", "❌ utiId ou anoId inválidos — não é possível enviar")
-                return@launch
-            }
-
             try {
-                Log.d("ReporteAPI", "📤 A enviar reporte com utiId=$utiId e anoId=$anoId")
-                Log.d("ReporteAPI", "📦 Body: $reporte")
+                Log.d("ReporteAPI", "📤 A enviar reporte: $request")
 
-                val response = RetrofitInstance.api.criarReporte(utiId, anoId, reporte)
+                val response = RetrofitInstance.reporteApi.criarReporte(request)
 
                 if (response.isSuccessful) {
                     Log.d("ReporteAPI", "✅ Sucesso: ${response.body()}")
@@ -95,4 +86,5 @@ class ReporteViewModel : ViewModel() {
             }
         }
     }
+
 }

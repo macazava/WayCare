@@ -187,7 +187,7 @@ fun ReportScreen(navController: NavController,     reporteViewModel: ReporteView
             }
         )
 
-        DropdownField("Selecione a Prioridade", prioridades, prioridade) { prioridade = it }
+        DropdownField("Selecione o Grau de Perigo", prioridades, prioridade) { prioridade = it }
 
         // Descrição
         OutlinedTextField(
@@ -393,5 +393,3 @@ fun ReportScreenPreview() {
     val navController = rememberNavController()
     ReportScreen(navController = navController)
 }
-
-//mensagem para teste de commit

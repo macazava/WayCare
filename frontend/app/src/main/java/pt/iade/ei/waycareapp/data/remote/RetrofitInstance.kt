@@ -32,6 +32,4 @@ object RetrofitInstance {
     val anomaliaApi: AnomaliaApi by lazy {
         retrofit.create(AnomaliaApi::class.java)
     }
-
-
 }
