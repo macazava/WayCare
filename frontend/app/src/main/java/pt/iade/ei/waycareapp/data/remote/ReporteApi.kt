@@ -1,5 +1,6 @@
 package pt.iade.ei.waycareapp.data.remote
 
+import ReporteResponseDTO
 import pt.iade.ei.waycareapp.data.model.Reporte
 import pt.iade.ei.waycareapp.data.model.ReporteRequest
 import retrofit2.Response
@@ -12,6 +13,6 @@ interface ReporteApi {
     suspend fun getReportes(): Response<List<Reporte>>
 
     @POST("reportes/criar")
-    suspend fun criarReporte(@Body request: ReporteRequest): Response<Reporte>
+    suspend fun criarReporte(@Body request: ReporteRequest): Response<ReporteResponseDTO>
 }
 

@@ -74,7 +74,7 @@ class ReporteViewModel : ViewModel() {
             try {
                 Log.d("ReporteAPI", "📤 A enviar reporte: $request")
 
-                val response = RetrofitInstance.reporteApi.criarReporte(request)
+                val response = RetrofitInstance.api.criarReporte(request)
 
                 if (response.isSuccessful) {
                     Log.d("ReporteAPI", "✅ Sucesso: ${response.body()}")

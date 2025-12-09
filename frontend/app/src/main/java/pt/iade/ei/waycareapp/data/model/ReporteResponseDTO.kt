@@ -1,0 +1,20 @@
+data class ReporteResponseDTO(
+    val id: Long,
+    val utilizadorId: Long?,
+    val nomeUtilizador: String?,
+    val anomaliaId: Long?,
+    val nomeAnomalia: String?,
+    val localizacaoId: Long?,
+    val endereco: String?,
+    val latitude: Double?,
+    val longitude: Double?,
+    val descricaoLocalizacao: String?,
+    val fotoUrl: String?,
+    val estadoReporte: String?,
+    val descricao: String?,
+    val tipoPersonalizado: String?,
+    val dataRegisto: String?,
+    val zona: String?,
+    val grauPerigo: String?,
+    val rotaAlternativaId: Long?
+)
