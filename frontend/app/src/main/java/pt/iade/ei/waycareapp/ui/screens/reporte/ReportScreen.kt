@@ -38,7 +38,6 @@ import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.data.session.SessionManager
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
-import java.time.LocalDateTime
 import java.util.Locale
 
 @Composable
@@ -54,9 +53,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
     val context = LocalContext.current
     val tiposBackend by reporteViewModel.tiposAnomalia.collectAsState()
-    LaunchedEffect(Unit) {
-        reporteViewModel.carregarTiposAnomalia()
-    }
+    LaunchedEffect(Unit) { reporteViewModel.carregarTiposAnomalia() }
 
     val fusedLocationClient = remember {
         LocationServices.getFusedLocationProviderClient(context)
@@ -68,16 +65,13 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
             .setWaitForAccurateLocation(true)
             .setMaxUpdates(1)
             .build()
-
         val callback = object : LocationCallback() {
             override fun onLocationResult(result: LocationResult) {
                 val loc = result.lastLocation
                 if (loc != null) {
                     val geocoder = Geocoder(context, Locale.getDefault())
                     val addresses = geocoder.getFromLocation(loc.latitude, loc.longitude, 1)
-                    val endereco = if (!addresses.isNullOrEmpty()) {
-                        addresses[0].getAddressLine(0)
-                    } else "Endereço não disponível"
+                    val endereco = if (!addresses.isNullOrEmpty()) addresses[0].getAddressLine(0) else "Endereço não disponível"
                     onReady(loc.latitude, loc.longitude, endereco)
                 }
                 fusedLocationClient.removeLocationUpdates(this)
@@ -86,41 +80,31 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
     }
 
-    // camera
     val cameraLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.TakePicturePreview()
     ) { bitmap -> imagemBitmap = bitmap }
 
-    // galeria
     val galeriaLauncher = rememberLauncherForActivityResult(
         contract = ActivityResultContracts.GetContent()
     ) { uri -> imagemUri = uri }
 
-    val prioridades = listOf("Baixa", "Média", "Alta")
+    val prioridades = GrauPerigo.values().map { it.name }
+    val zonas = Zona.values().map { if (it == Zona.MARGEM_SUL) "MARGEM_SUL" else it.name }
 
     Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(24.dp),
+        modifier = Modifier.fillMaxSize().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
         // HEADER
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(80.dp)
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))
-                    ),
-                    shape = RoundedCornerShape(13.dp)
-                ),
+            modifier = Modifier.fillMaxWidth().height(80.dp).background(
+                brush = Brush.horizontalGradient(colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))),
+                shape = RoundedCornerShape(13.dp)
+            ),
             contentAlignment = Alignment.CenterStart
         ) {
             Row(
-                modifier = Modifier
-                    .fillMaxSize()
-                    .padding(horizontal = 16.dp),
+                modifier = Modifier.fillMaxSize().padding(horizontal = 16.dp),
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 IconButton(onClick = { navController.navigate("home") }) {
@@ -134,7 +118,6 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
             }
         }
 
-        // TIPO
         DropdownField(
             label = "Selecione o Tipo de Anomalia",
             options = tiposBackend.map { it.tip_nome },
@@ -151,80 +134,47 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
             value = descricao,
             onValueChange = { if (it.length <= 1000) descricao = it },
             label = { Text("Descreva o Problema") },
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(100.dp),
+            modifier = Modifier.fillMaxWidth().height(100.dp),
             maxLines = 6
         )
 
-        // FOTO
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(180.dp)
-                .background(
-                    brush = Brush.horizontalGradient(
-                        colors = listOf(Color(0x663F51B5), Color(0x66E91E63))
-                    ),
-                    shape = RoundedCornerShape(12.dp)
-                ),
+            modifier = Modifier.fillMaxWidth().height(180.dp).background(
+                brush = Brush.horizontalGradient(colors = listOf(Color(0x663F51B5), Color(0x66E91E63))),
+                shape = RoundedCornerShape(12.dp)
+            ),
             contentAlignment = Alignment.Center
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Row(horizontalArrangement = Arrangement.spacedBy(24.dp)) {
-                    Icon(
-                        imageVector = Icons.Default.CameraAlt,
-                        contentDescription = "camera",
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clickable { cameraLauncher.launch(null) }
-                    )
-                    Icon(
-                        imageVector = Icons.Default.PhotoLibrary,
-                        contentDescription = "galeria",
-                        modifier = Modifier
-                            .size(32.dp)
-                            .clickable { galeriaLauncher.launch("image/*") }
-                    )
+                    Icon(Icons.Default.CameraAlt, contentDescription = "camera",
+                        modifier = Modifier.size(32.dp).clickable { cameraLauncher.launch(null) })
+                    Icon(Icons.Default.PhotoLibrary, contentDescription = "galeria",
+                        modifier = Modifier.size(32.dp).clickable { galeriaLauncher.launch("image/*") })
                 }
                 imagemBitmap?.let {
                     Spacer(modifier = Modifier.height(12.dp))
-                    Image(
-                        bitmap = it.asImageBitmap(),
-                        contentDescription = "",
-                        modifier = Modifier.size(100.dp)
-                    )
+                    Image(bitmap = it.asImageBitmap(), contentDescription = "", modifier = Modifier.size(100.dp))
                 }
             }
         }
 
-        // LOCAL
         Text("Localização Automática:", fontSize = 16.sp)
+        DropdownField("Escolha a zona", zonas, detalhesLocalizacao) { detalhesLocalizacao = it }
 
-        DropdownField(
-            label = "Escolha a zona",
-            options = listOf("Lisboa", "Margem Sul"),
-            selected = detalhesLocalizacao,
-            onSelect = { detalhesLocalizacao = it }
-        )
-
-        // BOTÃO
         BotaoGradiente(
             texto = "Enviar Reporte",
             onClick = {
-                // --- PASSO 1: confirmar utilizador logado ---
-                val utilizadorLogado = SessionManager.utilizadorLogado
-                Log.d("Reporte", "Utilizador logado: $utilizadorLogado")
-
-                // Agora podes assumir que existe e continuar com o envio
                 val userId = SessionManager.utilizadorLogado?.id ?: 0
-
                 if (tipoSelecionado == null) {
                     Toast.makeText(context, "Selecione o tipo", Toast.LENGTH_SHORT).show()
                     return@BotaoGradiente
                 }
 
                 obterLocalizacaoAtual { lat, lng, endereco ->
+                    val grauEnum = GrauPerigo.valueOf(prioridade)
+                    val zonaEnum = Zona.valueOf(detalhesLocalizacao.replace(" ", "_"))
+
                     val request = ReporteRequest(
                         utilizadorId = userId,
                         anomaliaId = tipoSelecionado!!.tip_id!!,
@@ -232,22 +182,17 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                         descricao = descricao,
                         fotoUrl = null,
                         tipoPersonalizado = null,
-                        zona = detalhesLocalizacao,
-                        grauPerigo = prioridade
+                        zona = zonaEnum.name, //envia como string
+                        grauPerigo = grauEnum.name
                     )
 
                     Log.d("Reporte", "Enviando reporte: $request")
-
                     reporteViewModel.enviarReporte(request)
-
                     Toast.makeText(context, "Reporte enviado!", Toast.LENGTH_LONG).show()
                     navController.navigate("home")
                 }
             }
         )
-
-
-
     }
 }
 
@@ -267,11 +212,8 @@ fun DropdownField(
             label = { Text(label) },
             readOnly = true,
             trailingIcon = {
-                Icon(
-                    imageVector = Icons.Default.ArrowDropDown,
-                    contentDescription = "",
-                    modifier = Modifier.clickable { expanded = true }
-                )
+                Icon(Icons.Default.ArrowDropDown, contentDescription = "",
+                    modifier = Modifier.clickable { expanded = !expanded })
             },
             modifier = Modifier.fillMaxWidth()
         )
@@ -289,6 +231,7 @@ fun DropdownField(
         }
     }
 }
+
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
