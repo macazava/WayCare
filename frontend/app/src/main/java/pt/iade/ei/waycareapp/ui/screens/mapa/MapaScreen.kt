@@ -3,6 +3,7 @@ package pt.iade.ei.waycareapp.ui.screens.mapa
 import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -87,7 +88,8 @@ fun MapaScreen(navController: NavController) {
                 map.controller.setZoom(15.0)
                 map.controller.setCenter(startPoint)
 
-                map.overlays.clear()
+                // REMOVE APENAS MARKERS ❗
+                map.overlays.removeAll(map.overlays.filterIsInstance<Marker>())
 
                 // marcador do utilizador 👤
                 val userMarker = Marker(map).apply {
@@ -100,36 +102,45 @@ fun MapaScreen(navController: NavController) {
                 val reportesFiltrados = reportes.filter { reporte ->
                     when (filtroSelecionado) {
                         "Mostrar Tudo" -> true
-                        "Prioridade Alta" -> reporte.rep_ano_id?.ano_grau_perigo == "Alto"
-                        "Prioridade Média" -> reporte.rep_ano_id?.ano_grau_perigo == "Médio"
-                        "Prioridade Baixa" -> reporte.rep_ano_id?.ano_grau_perigo == "Baixo"
+                        "Prioridade Alta" -> reporte.rep_grau_perigo == "ALTA"
+                        "Prioridade Média" -> reporte.rep_grau_perigo == "MEDIA"
+                        "Prioridade Baixa" -> reporte.rep_grau_perigo == "BAIXA"
+                        "Mostrar Rampas Inexistentes" -> reporte.rep_nome_anomalia?.contains("Rampa", ignoreCase = true) == true
+                        "Mostrar Passeios Danificados" -> reporte.rep_nome_anomalia?.contains("Passeio", ignoreCase = true) == true
+                        "Mostrar passadeiras Mal sinalizadas" -> reporte.rep_nome_anomalia?.contains("Passadeira", ignoreCase = true) == true
+                        "Mostrar Zonas Perigosas" -> reporte.rep_nome_anomalia?.contains("Zona", ignoreCase = true) == true
                         else -> true
                     }
                 }
 
-                // desenhar os pins
+
+                android.util.Log.d("MAPA", "🔍 Total recebidos do backend=${reportes.size}")
+                android.util.Log.d("MAPA", "📍 Após filtro=${reportesFiltrados.size}")
+
+                // desenhar pins
                 reportesFiltrados.forEach { reporte ->
+                    Log.d("MAPA", "📌 adicionando marker ${reporte.rep_id} lat=${reporte.rep_latitude} lon=${reporte.rep_longitude}")
+
                     val marker = Marker(map).apply {
                         position = GeoPoint(
-                            reporte.rep_loc_id?.loc_latitude ?: 0.0,
-                            reporte.rep_loc_id?.loc_longitude ?: 0.0
+                            reporte.rep_latitude ?: 0.0,
+                            reporte.rep_longitude ?: 0.0
                         )
-                        title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo"
-                        subDescription = reporte.rep_descricao ?: ""
+                        title = reporte.rep_nome_anomalia ?: "Tipo"
+                        subDescription = reporte.rep_descricao
                         setOnMarkerClickListener { _, _ ->
                             reporteSelecionado = reporte
                             true
                         }
                     }
                     map.overlays.add(marker)
+
                 }
 
                 map.invalidate()
             }
 
         )
-
-
 
         Column(
             modifier = Modifier

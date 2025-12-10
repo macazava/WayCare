@@ -30,7 +30,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             // Título principal
             Text(
-                text = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo desconhecido",
+                text = reporte.rep_nome_anomalia ?: "Tipo desconhecido",
                 fontSize = 22.sp,
                 fontWeight = FontWeight.Bold,
                 color = Color(0xFF000000)
@@ -39,8 +39,14 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
             Spacer(modifier = Modifier.height(8.dp))
 
             // Localização
+            val endereco = if (reporte.rep_latitude != null && reporte.rep_longitude != null) {
+                "Lat: ${reporte.rep_latitude}, Lon: ${reporte.rep_longitude}"
+            } else {
+                "Localização não disponível"
+            }
             Text(
-                text = reporte.rep_loc_id?.loc_endereco ?: "Localização não disponível",                fontSize = 16.sp,
+                text = endereco,
+                fontSize = 16.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF555555)
             )
@@ -59,7 +65,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             // Reportado por
             Text(
-                text = "Reportado por: ${reporte.rep_uti_id?.nome ?: "Desconhecido"} - ${reporte.rep_uti_id?.id ?: "?"} reporte(s)",
+                text = "Reportado por: ${reporte.rep_uti_id ?: "Desconhecido"}",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Medium,
                 color = Color(0xFF3F51B5)
@@ -75,4 +81,5 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
         }
     }
 }
+
 
