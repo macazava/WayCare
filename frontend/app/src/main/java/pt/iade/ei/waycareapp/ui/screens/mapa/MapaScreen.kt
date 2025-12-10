@@ -75,54 +75,51 @@ fun MapaScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
                 MapView(ctx).apply {
-                    // gera id dinamicamente (evita precisar de R.id.map)
                     id = View.generateViewId()
                     setTileSource(TileSourceFactory.MAPNIK)
                     setMultiTouchControls(true)
                 }
             },
             update = { map ->
+
                 val startPoint = userLocation ?: GeoPoint(38.7169, -9.1399)
 
                 map.controller.setZoom(15.0)
                 map.controller.setCenter(startPoint)
 
+                // limpa os pins para redesenhar
                 map.overlays.clear()
 
-                // === USER PIN ===
+
+                // pin do utilizador
                 val userMarker = Marker(map).apply {
                     position = startPoint
                     title = "📍 Está aqui"
-                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                    // nap tenho o drawable ic_my_location em res/drawable (por qnquanto)
-                    /*val drawable = ContextCompat.getDrawable(context, R.drawable.ic_my_location)
-                    if (drawable != null) icon = drawable*/
                 }
                 map.overlays.add(userMarker)
 
-                // === PINS REPORTES ===
-                reportes.forEach { reporte ->
-                    val lat = reporte.rep_loc_id?.loc_latitude ?: 0.0
-                    val lon = reporte.rep_loc_id?.loc_longitude ?: 0.0
-                    // evita adicionar pins inválidos
-                    if (lat == 0.0 && lon == 0.0) return@forEach
 
-                    val pin = Marker(map).apply {
-                        position = GeoPoint(lat, lon)
-                        title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Sem tipo"
+                // agora sim! desenhar reportes aqui
+                reportes.forEach { reporte ->
+                    val marker = Marker(map).apply {
+                        position = GeoPoint(
+                            reporte.rep_loc_id?.loc_latitude ?: 0.0,
+                            reporte.rep_loc_id?.loc_longitude ?: 0.0
+                        )
+                        title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo"
                         subDescription = reporte.rep_descricao ?: ""
-                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
                         setOnMarkerClickListener { _, _ ->
                             reporteSelecionado = reporte
                             true
                         }
                     }
-                    map.overlays.add(pin)
+                    map.overlays.add(marker)
                 }
 
                 map.invalidate()
             }
         )
+
 
 
         Column(
