@@ -40,7 +40,7 @@ fun ProfileScreen(navController: NavController) {
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        // Topo com gradiente e título
+        // Topo com gradiente e título e icone
         Box(
             modifier = Modifier
                 .fillMaxWidth()
@@ -96,7 +96,7 @@ fun ProfileScreen(navController: NavController) {
                         .size(60.dp)
                 )
             }
-            Text(nome, fontSize = 20.sp)
+            Text(nome, fontSize = 20.sp) 
             Text(email, fontSize = 16.sp, color = Color.Gray)
             Text("Tipo de utilizador: Pessoa com mobilidade reduzida", fontSize = 14.sp, color = Color.DarkGray)
 
@@ -209,7 +209,7 @@ fun ProfileScreen(navController: NavController) {
             Text(
                 text = "Apagar conta",
                 color = Color.Red,
-                modifier = Modifier.clickable { /* ação de apagar conta */ }
+                modifier = Modifier.clickable { /* ação de apagar conta - ainda não implementada mas o back já tem a logica*/ }
             )
         }
     }
