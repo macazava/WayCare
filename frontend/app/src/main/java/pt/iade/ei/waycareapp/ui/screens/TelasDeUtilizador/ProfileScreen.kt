@@ -105,7 +105,7 @@ fun ProfileScreen(navController: NavController) {
                 shape = RoundedCornerShape(12.dp),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF3F51B5))
             ) {
-                Text("4 Reportes", color = Color.White)
+                Text("Reporta habitualmente", color = Color.White)
             }
         }
 
