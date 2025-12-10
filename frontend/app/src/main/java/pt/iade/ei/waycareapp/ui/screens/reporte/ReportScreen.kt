@@ -1,7 +1,6 @@
 package pt.iade.ei.waycareapp.ui.screens.reporte
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.graphics.Bitmap
 import android.location.Geocoder
 import android.net.Uri
@@ -92,7 +91,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
     ) { bitmap ->
         imagemBitmap = bitmap
         bitmap?.let { tempBitmap ->
-            val uri = Utils.bitmapToUri(context, tempBitmap) // Usa agora Utils correto
+            val uri = Utils.bitmapToUri(context, tempBitmap)
             imagemUri = uri
             uri?.let { reporteViewModel.uploadFoto(it, context) } // envia para Cloudinary
         }
@@ -113,7 +112,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         modifier = Modifier.fillMaxSize().padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        // HEADER
+        //header
         Box(
             modifier = Modifier.fillMaxWidth().height(80.dp).background(
                 brush = Brush.horizontalGradient(colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))),
@@ -209,10 +208,8 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                     Log.d("Reporte", "Enviando reporte: $request")
                     reporteViewModel.enviarReporte(request)
 
-                    // Salvar foto no backend se necessário
                     reporteViewModel.fotoUrl.value?.let { url ->
-                        // reporteViewModel.salvarFotografia(reporteId, url)
-                        // se tiver o id do reporte do backend, pode chamar aqui
+
                     }
 
                     Toast.makeText(context, "Reporte enviado!", Toast.LENGTH_LONG).show()
