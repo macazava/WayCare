@@ -35,7 +35,6 @@ import pt.iade.ei.waycareapp.ui.component.CardObstaculo
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import androidx.compose.runtime.collectAsState
 import android.view.View
-import androidx.core.content.ContextCompat
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -88,17 +87,17 @@ fun MapaScreen(navController: NavController) {
                 map.controller.setZoom(15.0)
                 map.controller.setCenter(startPoint)
 
-                // REMOVE APENAS MARKERS ❗
+                // remove apenas os markers
                 map.overlays.removeAll(map.overlays.filterIsInstance<Marker>())
 
-                // marcador do utilizador 👤
+                // marker do utilizador (localização)
                 val userMarker = Marker(map).apply {
                     position = startPoint
                     title = "Encontra-se aqui"
                 }
                 map.overlays.add(userMarker)
 
-                // aplicar filtro!!
+                // aplicar filtro
                 val reportesFiltrados = reportes.filter { reporte ->
                     when (filtroSelecionado) {
                         "Mostrar Tudo" -> true
@@ -112,14 +111,13 @@ fun MapaScreen(navController: NavController) {
                         else -> true
                     }
                 }
-
-
-                android.util.Log.d("MAPA", "🔍 Total recebidos do backend=${reportes.size}")
-                android.util.Log.d("MAPA", "📍 Após filtro=${reportesFiltrados.size}")
+                 //logs para perceber se os reportes foram carregados
+                android.util.Log.d("MAPA", "Total recebidos do backend=${reportes.size}")
+                android.util.Log.d("MAPA", "Após filtro=${reportesFiltrados.size}")
 
                 // desenhar pins
                 reportesFiltrados.forEach { reporte ->
-                    Log.d("MAPA", "📌 adicionando marker ${reporte.rep_id} lat=${reporte.rep_latitude} lon=${reporte.rep_longitude}")
+                    Log.d("MAPA", "adicionando marker ${reporte.rep_id} lat=${reporte.rep_latitude} lon=${reporte.rep_longitude}") //log para saber se foram adicionados os markers
 
                     val marker = Marker(map).apply {
                         position = GeoPoint(
