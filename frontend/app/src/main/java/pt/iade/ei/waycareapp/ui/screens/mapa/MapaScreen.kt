@@ -94,7 +94,7 @@ fun MapaScreen(navController: NavController) {
                 // marcador do utilizador 👤
                 val userMarker = Marker(map).apply {
                     position = startPoint
-                    title = "📍 Você está aqui"
+                    title = "Encontra-se aqui"
                 }
                 map.overlays.add(userMarker)
 
