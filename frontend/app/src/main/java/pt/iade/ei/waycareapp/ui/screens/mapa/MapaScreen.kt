@@ -33,6 +33,8 @@ import pt.iade.ei.waycareapp.data.model.Reporte
 import pt.iade.ei.waycareapp.ui.component.CardObstaculo
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import androidx.compose.runtime.collectAsState
+import android.view.View
+import androidx.core.content.ContextCompat
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,53 +75,55 @@ fun MapaScreen(navController: NavController) {
             modifier = Modifier.fillMaxSize(),
             factory = { ctx ->
                 MapView(ctx).apply {
+                    // gera id dinamicamente (evita precisar de R.id.map)
+                    id = View.generateViewId()
                     setTileSource(TileSourceFactory.MAPNIK)
                     setMultiTouchControls(true)
-
-                    val startPoint = userLocation ?: GeoPoint(38.7169, -9.1399)
-                    controller.setZoom(15.0)
-                    controller.setCenter(startPoint)
-
-                    val marker = Marker(this).apply {
-                        position = startPoint
-                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                        title = "Encontra-se aqui"
-                    }
-                    overlays.add(marker)
-
-                    val reportesFiltrados = reportes.filter { reporte ->
-                        when (filtroSelecionado) {
-                            "Mostrar Tudo" -> true
-                            "Prioridade Alta" -> reporte.rep_ano_id?.ano_grau_perigo == "Alto"
-                            "Prioridade Média" -> reporte.rep_ano_id?.ano_grau_perigo == "Médio"
-                            "Prioridade Baixa" -> reporte.rep_ano_id?.ano_grau_perigo == "Baixo"
-                            "Mostrar Rampas Inexistentes" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Rampa", ignoreCase = true) == true
-                            "Mostrar Passeios Danificados" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Passeio", ignoreCase = true) == true
-                            "Mostrar passadeiras Mal sinalizadas" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Passadeira", ignoreCase = true) == true
-                            "Mostrar Zonas Perigosas" -> reporte.rep_ano_id?.tip_id?.tip_nome?.contains("Zonas", ignoreCase = true) == true
-                            else -> true
-                        }
-                    }
-
-                    reportesFiltrados.forEach { reporte ->
-                        val pin = Marker(this).apply {
-                            position = GeoPoint(
-                                reporte.rep_loc_id?.loc_latitude ?: 0.0,
-                                reporte.rep_loc_id?.loc_longitude ?: 0.0
-                            )
-                            title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Tipo desconhecido"
-                            subDescription = reporte.rep_descricao ?: "Sem descrição"
-                            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
-                            setOnMarkerClickListener { _, _ ->
-                                reporteSelecionado = reporte
-                                true
-                            }
-                        }
-                        overlays.add(pin)
-                    }
                 }
+            },
+            update = { map ->
+                val startPoint = userLocation ?: GeoPoint(38.7169, -9.1399)
+
+                map.controller.setZoom(15.0)
+                map.controller.setCenter(startPoint)
+
+                map.overlays.clear()
+
+                // === USER PIN ===
+                val userMarker = Marker(map).apply {
+                    position = startPoint
+                    title = "📍 Está aqui"
+                    setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                    // nap tenho o drawable ic_my_location em res/drawable (por qnquanto)
+                    /*val drawable = ContextCompat.getDrawable(context, R.drawable.ic_my_location)
+                    if (drawable != null) icon = drawable*/
+                }
+                map.overlays.add(userMarker)
+
+                // === PINS REPORTES ===
+                reportes.forEach { reporte ->
+                    val lat = reporte.rep_loc_id?.loc_latitude ?: 0.0
+                    val lon = reporte.rep_loc_id?.loc_longitude ?: 0.0
+                    // evita adicionar pins inválidos
+                    if (lat == 0.0 && lon == 0.0) return@forEach
+
+                    val pin = Marker(map).apply {
+                        position = GeoPoint(lat, lon)
+                        title = reporte.rep_ano_id?.tip_id?.tip_nome ?: "Sem tipo"
+                        subDescription = reporte.rep_descricao ?: ""
+                        setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+                        setOnMarkerClickListener { _, _ ->
+                            reporteSelecionado = reporte
+                            true
+                        }
+                    }
+                    map.overlays.add(pin)
+                }
+
+                map.invalidate()
             }
         )
+
 
         Column(
             modifier = Modifier
