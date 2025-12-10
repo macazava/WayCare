@@ -33,6 +33,10 @@ public class ReporteService {
     @Autowired
     private TipoAnomaliaRepository tipoAnomaliaRepository;
 
+    @Autowired
+    private FotografiaService fotografiaService;
+
+
     public List<ReporteResponseDTO> listarTodosDTO() {
         return reporteRepository.findAll()
                 .stream()
@@ -104,8 +108,8 @@ public class ReporteService {
         // 5️⃣ Criar o Reporte
         Reporte r = new Reporte();
         r.setUtilizador(u);
-        r.setAnomalia(a); // associação com a anomalia recém-criada
-        r.setLocalizacao(loc); // associação com a localização recém-criada
+        r.setAnomalia(a);
+        r.setLocalizacao(loc);
         r.setDescricao(dto.getDescricao());
         r.setFotoUrl(dto.getFotoUrl());
         r.setTipoPersonalizado(dto.getTipoPersonalizado());
@@ -116,8 +120,19 @@ public class ReporteService {
 
         r = reporteRepository.save(r);
 
+        // 6️⃣ Criar Fotografia automaticamente, se houver fotoUrl
+        if (dto.getFotoUrl() != null && !dto.getFotoUrl().isEmpty()) {
+            Fotografia foto = new Fotografia();
+            foto.setUrl(dto.getFotoUrl());
+            foto.setNome("Foto do Reporte " + r.getId());
+            foto.setDescricao("Foto associada ao reporte " + r.getId());
+            foto.setReporte(r); // associa o reporte
+            // não precisa setar utilizador e anomalia manualmente, o serviço cuida disso
+            fotografiaService.criar(foto);
+        }
         return mapToDTO(r);
     }
+
     // ================================================================
 
     public ReporteResponseDTO atualizar(Long id, Reporte novosDados) {
