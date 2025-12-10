@@ -87,20 +87,28 @@ fun MapaScreen(navController: NavController) {
                 map.controller.setZoom(15.0)
                 map.controller.setCenter(startPoint)
 
-                // limpa os pins para redesenhar
                 map.overlays.clear()
 
-
-                // pin do utilizador
+                // marcador do utilizador 👤
                 val userMarker = Marker(map).apply {
                     position = startPoint
-                    title = "📍 Está aqui"
+                    title = "📍 Você está aqui"
                 }
                 map.overlays.add(userMarker)
 
+                // aplicar filtro!!
+                val reportesFiltrados = reportes.filter { reporte ->
+                    when (filtroSelecionado) {
+                        "Mostrar Tudo" -> true
+                        "Prioridade Alta" -> reporte.rep_ano_id?.ano_grau_perigo == "Alto"
+                        "Prioridade Média" -> reporte.rep_ano_id?.ano_grau_perigo == "Médio"
+                        "Prioridade Baixa" -> reporte.rep_ano_id?.ano_grau_perigo == "Baixo"
+                        else -> true
+                    }
+                }
 
-                // agora sim! desenhar reportes aqui
-                reportes.forEach { reporte ->
+                // desenhar os pins
+                reportesFiltrados.forEach { reporte ->
                     val marker = Marker(map).apply {
                         position = GeoPoint(
                             reporte.rep_loc_id?.loc_latitude ?: 0.0,
@@ -118,6 +126,7 @@ fun MapaScreen(navController: NavController) {
 
                 map.invalidate()
             }
+
         )
 
 
