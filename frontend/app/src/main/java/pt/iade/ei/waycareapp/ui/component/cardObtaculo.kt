@@ -73,7 +73,7 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Botão de ação
+            // Botão voltar ao mapa
             BotaoGradiente(
                 texto = "Voltar ao Mapa",
                 onClick = onClose

@@ -37,5 +37,4 @@ object RetrofitInstance {
     val fotografiaApi: FotografiaApi by lazy {
         retrofit.create(FotografiaApi::class.java)
     }
-
 }

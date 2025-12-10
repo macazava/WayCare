@@ -34,7 +34,7 @@ fun BotaoGradiente(
                 ),
                 shape = RoundedCornerShape(50.dp)
             )
-            .clickable(onClick = onClick),//correçao
+            .clickable(onClick = onClick),
         contentAlignment = Alignment.Center,
         ) {
         Text(

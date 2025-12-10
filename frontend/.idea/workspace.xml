@@ -21,6 +21,12 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/FotografiaRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/FotografiaRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/RegisterRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/RegisterRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteRequest.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteRequest.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteResponseDTO.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/model/ReporteResponseDTO.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/RetrofitInstance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/RetrofitInstance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/component/BotaoGradiente.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/component/BotaoGradiente.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/component/cardObtaculo.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/ui/component/cardObtaculo.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
