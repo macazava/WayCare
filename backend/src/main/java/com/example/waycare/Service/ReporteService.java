@@ -89,21 +89,26 @@ public class ReporteService {
         TipoAnomalia tipo = tipoAnomaliaRepository.findById(dto.getTipoId())
                 .orElseThrow(() -> new RuntimeException("Tipo de anomalia não encontrado"));
 
-        // 3️⃣ Criar Anomalia automaticamente
+        // 3️⃣ Criar Localizacao automaticamente
+        Localizacao loc = new Localizacao();
+        loc.setLatitude(dto.getLatitude());
+        loc.setLongitude(dto.getLongitude());
+        loc.setEndereco(dto.getEndereco() != null ? dto.getEndereco() : "Endereço não disponível");
+        localizacaoRepository.save(loc);
+
+        // 4️⃣ Criar Anomalia automaticamente e associar utilizador e localizacao
         Anomalia a = new Anomalia();
         a.setTipo(tipo);
         a.setDescricao(dto.getDescricao());
         a.setGrauPerigo(dto.getGrauPerigo());
         a.setDataRegisto(LocalDateTime.now());
         a.setEstado("PENDENTE");
-        anomaliaRepository.save(a);
 
-        // 4️⃣ Criar Localizacao automaticamente
-        Localizacao loc = new Localizacao();
-        loc.setLatitude(dto.getLatitude());
-        loc.setLongitude(dto.getLongitude());
-        loc.setEndereco(dto.getEndereco() != null ? dto.getEndereco() : "Endereço não disponível");
-        localizacaoRepository.save(loc);
+        // ✅ Associa utilizador e localização
+        a.setUtilizador(u);
+        a.setLocalizacao(loc);
+
+        anomaliaRepository.save(a);
 
         // 5️⃣ Criar o Reporte
         Reporte r = new Reporte();
@@ -193,3 +198,4 @@ public class ReporteService {
         return dto;
     }
 }
+
