@@ -11,23 +11,22 @@ object CloudinaryHelper {
 
     fun init(context: Context) {
         val config = mapOf(
-            "cloud_name" to "dn511niyi",        // teu CLOUD_NAME
-            "api_key" to "",                     // unsigned
-            "api_secret" to ""                   // unsigned
+            "cloud_name" to "dn511niyi",
+            "api_key" to "",
+            "api_secret" to ""
         )
         MediaManager.init(context, config)
     }
 
     fun uploadImage(uri: Uri, onResult: (url: String?) -> Unit) {
         MediaManager.get().upload(uri)
-            .unsigned("waycare_unsigned")   // teu UPLOAD_PRESET
+            .unsigned("waycare_unsigned")
             .callback(object : UploadCallback {
                 override fun onStart(requestId: String?) {
                     Log.d("Cloudinary", "Upload iniciado")
                 }
 
                 override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {
-                    // opcional: progresso do upload
                 }
 
                 override fun onSuccess(requestId: String?, resultData: Map<*, *>?) {
