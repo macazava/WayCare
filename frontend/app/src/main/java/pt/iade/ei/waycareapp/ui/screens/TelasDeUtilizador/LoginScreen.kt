@@ -1,7 +1,6 @@
 package pt.iade.ei.waycareapp.ui.screens.TelasDeUtilizador
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,7 +12,6 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
@@ -127,16 +125,16 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = viewMo
             fontSize = 14.sp,
             modifier = Modifier
                 .align(Alignment.End)
-                .clickable { /*pode levar a uma tela para recuperar a palavra passe - ainda não implementado*/ }
+                .clickable { /*pode levar a recuperar a palavra passe - ainda não implementado*/ }
         )
 
         Spacer(modifier = Modifier.height(32.dp))
 
-        // Botão de login com gradiente
+        // Botão de login
         BotaoGradiente(
             texto = "Login",
             onClick = {
-                viewModel.login(email, password) // Chama o backend
+                viewModel.login(email, password)
             }
         )
 

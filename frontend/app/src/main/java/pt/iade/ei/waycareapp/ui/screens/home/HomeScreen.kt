@@ -5,28 +5,22 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import pt.iade.ei.waycareapp.R
-import androidx.compose.material3.Text
-import androidx.compose.material3.Button
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import pt.iade.ei.waycareapp.MainActivity
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
-import pt.iade.ei.waycareapp.ui.screens.reporte.ReportScreen
 
 
 @Composable
@@ -41,7 +35,7 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
             .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(32.dp)
     ) {
-        // Topo: Logo grande + ícone de perfil azul alinhado verticalmente
+        // Topo: Logo + ícone de perfil
         Row(
             modifier = Modifier.fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
@@ -72,13 +66,11 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
 
         Spacer(modifier = Modifier.height(55.dp))
 
-        // Botão: Fazer Reporte
+        // Botões
         BotaoGradiente(
             texto = "Fazer Reporte",
             onClick = { navController.navigate("report") }
         )
-
-        // Botão: Mapa
         BotaoGradiente(
             texto = "Mapa",
             onClick = { navController.navigate("mapView") }
@@ -90,8 +82,5 @@ fun HomeScreen(navController: NavController, activity: MainActivity) {
 @Composable
 fun HomeScreenPreview() {
     val navController = rememberNavController()
-
-    // Para o preview não precisamos da MainActivity real,
-    // passamos um "fake" simples só para compilar.
     HomeScreen(navController = navController, activity = MainActivity())
 }
