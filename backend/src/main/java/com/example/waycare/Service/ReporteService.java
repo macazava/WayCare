@@ -78,39 +78,35 @@ public class ReporteService {
                 .toList();
     }
 
-    // ================= CRIAR REPORT COM TIPO ANOMALIA =================
     public ReporteResponseDTO criarDesdeDTO(ReporteCreateDTO dto) {
 
-        // 1️⃣ Buscar Utilizador
+        //Buscar Utilizador
         Utilizador u = utilizadorRepository.findById(dto.getUtilizadorId())
                 .orElseThrow(() -> new RuntimeException("Utilizador não encontrado"));
 
-        // 2️⃣ Buscar Tipo de Anomalia
+        //Buscar Tipo de Anomalia
         TipoAnomalia tipo = tipoAnomaliaRepository.findById(dto.getTipoId())
                 .orElseThrow(() -> new RuntimeException("Tipo de anomalia não encontrado"));
 
-        // 3️⃣ Criar Localizacao automaticamente
+        //Criar Localizacao automaticamente (para preencher a tabela de localização)
         Localizacao loc = new Localizacao();
         loc.setLatitude(dto.getLatitude());
         loc.setLongitude(dto.getLongitude());
         loc.setEndereco(dto.getEndereco() != null ? dto.getEndereco() : "Endereço não disponível");
         localizacaoRepository.save(loc);
 
-        // 4️⃣ Criar Anomalia automaticamente e associar utilizador e localizacao
+        //Criar Anomalia automaticamente (para preencher a tabela de anomalia)
         Anomalia a = new Anomalia();
         a.setTipo(tipo);
         a.setDescricao(dto.getDescricao());
         a.setGrauPerigo(dto.getGrauPerigo());
         a.setDataRegisto(LocalDateTime.now());
         a.setEstado("PENDENTE");
-
-        // ✅ Associa utilizador e localização
         a.setUtilizador(u);
         a.setLocalizacao(loc);
-
         anomaliaRepository.save(a);
 
-        // 5️⃣ Criar o Reporte
+        //Criar o Reporte
         Reporte r = new Reporte();
         r.setUtilizador(u);
         r.setAnomalia(a);
@@ -122,23 +118,20 @@ public class ReporteService {
         r.setDataRegisto(LocalDateTime.now());
         r.setZona(dto.getZona());
         r.setGrauPerigo(dto.getGrauPerigo());
-
         r = reporteRepository.save(r);
 
-        // 6️⃣ Criar Fotografia automaticamente, se houver fotoUrl
+        //Criar Fotografia automaticamente, se houver fotoUrl (para preencher a tabela fotografia - ficam a faltar três colunas)
         if (dto.getFotoUrl() != null && !dto.getFotoUrl().isEmpty()) {
             Fotografia foto = new Fotografia();
             foto.setUrl(dto.getFotoUrl());
             foto.setNome("Foto do Reporte " + r.getId());
             foto.setDescricao("Foto associada ao reporte " + r.getId());
-            foto.setReporte(r); // associa o reporte
+            foto.setReporte(r);
             // não precisa setar utilizador e anomalia manualmente, o serviço cuida disso
             fotografiaService.criar(foto);
         }
         return mapToDTO(r);
     }
-
-    // ================================================================
 
     public ReporteResponseDTO atualizar(Long id, Reporte novosDados) {
         Reporte r = reporteRepository.findById(id)
