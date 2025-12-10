@@ -1,6 +1,7 @@
 package pt.iade.ei.waycareapp.ui.screens.reporte
 
 import android.annotation.SuppressLint
+import android.content.Context
 import android.graphics.Bitmap
 import android.location.Geocoder
 import android.net.Uri
@@ -37,6 +38,8 @@ import com.google.android.gms.location.*
 import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.data.session.SessionManager
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
+import pt.iade.ei.waycareapp.utils.CloudinaryHelper
+import pt.iade.ei.waycareapp.utils.Utils
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.util.Locale
 
@@ -53,7 +56,11 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
 
     val context = LocalContext.current
     val tiposBackend by reporteViewModel.tiposAnomalia.collectAsState()
-    LaunchedEffect(Unit) { reporteViewModel.carregarTiposAnomalia() }
+
+    LaunchedEffect(Unit) {
+        reporteViewModel.carregarTiposAnomalia()
+        CloudinaryHelper.init(context) //inicializa a cloudinary
+    }
 
     val fusedLocationClient = remember {
         LocationServices.getFusedLocationProviderClient(context)
@@ -80,12 +87,23 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
         fusedLocationClient.requestLocationUpdates(request, callback, context.mainLooper)
     }
 
-    val cameraLauncher = rememberLauncherForActivityResult(ActivityResultContracts.TakePicturePreview()) { bitmap ->
+    val cameraLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.TakePicturePreview()
+    ) { bitmap ->
         imagemBitmap = bitmap
+        bitmap?.let { tempBitmap ->
+            val uri = Utils.bitmapToUri(context, tempBitmap) // Usa agora Utils correto
+            imagemUri = uri
+            uri?.let { reporteViewModel.uploadFoto(it, context) } // envia para Cloudinary
+        }
     }
 
-    val galeriaLauncher = rememberLauncherForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+
+    val galeriaLauncher = rememberLauncherForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri ->
         imagemUri = uri
+        uri?.let { reporteViewModel.uploadFoto(it, context) }
     }
 
     val prioridades = GrauPerigo.values().map { it.name }
@@ -159,7 +177,7 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
             }
         }
 
-        Text("Localização Automática:", fontSize = 16.sp)
+        Text("A localização é obtida automaticamente.", fontSize = 16.sp)
         DropdownField("Escolha a zona", zonas, detalhesLocalizacao) { detalhesLocalizacao = it }
 
         BotaoGradiente(
@@ -179,19 +197,24 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                         utilizadorId = userId,
                         tipoId = tipoSelecionado!!.tip_id!!,
                         descricao = descricao,
-                        fotoUrl = null,
+                        fotoUrl = reporteViewModel.fotoUrl.value,
                         tipoPersonalizado = null,
                         zona = zonaEnum,
                         grauPerigo = grauEnum,
-                        latitude = lat,      // da localização atual
-                        longitude = lng,    // da localização atual
-                        endereco = endereco       // opcional
+                        latitude = lat,
+                        longitude = lng,
+                        endereco = endereco
                     )
-
-
 
                     Log.d("Reporte", "Enviando reporte: $request")
                     reporteViewModel.enviarReporte(request)
+
+                    // Salvar foto no backend se necessário
+                    reporteViewModel.fotoUrl.value?.let { url ->
+                        // reporteViewModel.salvarFotografia(reporteId, url)
+                        // se tiver o id do reporte do backend, pode chamar aqui
+                    }
+
                     Toast.makeText(context, "Reporte enviado!", Toast.LENGTH_LONG).show()
                     navController.navigate("home")
                 }

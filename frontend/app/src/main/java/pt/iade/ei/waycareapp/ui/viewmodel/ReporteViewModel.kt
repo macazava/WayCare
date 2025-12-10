@@ -1,5 +1,7 @@
 package pt.iade.ei.waycareapp.viewmodel
 
+import android.content.Context
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,7 +10,9 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
+import pt.iade.ei.waycareapp.utils.CloudinaryHelper
 import retrofit2.Response
+import java.io.File
 
 class ReporteViewModel : ViewModel() {
 
@@ -20,6 +24,59 @@ class ReporteViewModel : ViewModel() {
 
     private val _anomalias = MutableStateFlow<List<Anomalia>>(emptyList())
     val anomalias: StateFlow<List<Anomalia>> = _anomalias
+
+    private val _fotoUrl = MutableStateFlow<String?>(null)
+    val fotoUrl: StateFlow<String?> = _fotoUrl
+
+    // Instância da FotografiaApi via Retrofit
+    private val fotografiaApi = RetrofitInstance.fotografiaApi
+
+    /** Metodo para subir foto via Cloudinary */
+    fun uploadFoto(uri: Uri, context: Context) {
+        CloudinaryHelper.uploadImage(uri) { url ->
+            if (url != null) {
+                _fotoUrl.value = url
+                Log.d("ReporteVM", "Foto enviada com sucesso: $url")
+            } else {
+                Log.e("ReporteVM", "Erro ao enviar foto")
+            }
+        }
+    }
+
+    /** Metodo para criar fotografia no backend */
+    fun salvarFotografia(reporteId: Long, url: String) {
+        viewModelScope.launch {
+            try {
+                // Para fins de integração, valores fictícios de mime e tamanho
+                val request = FotografiaRequest(
+                    nome = "Foto do reporte",
+                    mime = "image/jpeg",
+                    tamanho = 0L,
+                    url = url,
+                    reporteId = reporteId
+                )
+
+                val response = fotografiaApi.criarFotografia(request)
+                if (response.isSuccessful) {
+                    Log.d("ReporteVM", "Fotografia registrada no backend")
+                } else {
+                    Log.e("ReporteVM", "Erro ao salvar foto: ${response.code()}")
+                }
+            } catch (e: Exception) {
+                Log.e("ReporteVM", "Falha ao salvar foto: ${e.message}")
+            }
+        }
+    }
+
+    // Metodo para integrar ao envio do reporte
+    fun enviarReporteComFoto(request: ReporteRequest) {
+        viewModelScope.launch {
+            val url = _fotoUrl.value
+            val requestComFoto = request.copy(fotoUrl = url)
+            enviarReporte(requestComFoto)
+        }
+    }
+
 
     fun carregarAnomalias() {
         viewModelScope.launch {
@@ -87,3 +144,4 @@ class ReporteViewModel : ViewModel() {
         }
     }
 }
+
