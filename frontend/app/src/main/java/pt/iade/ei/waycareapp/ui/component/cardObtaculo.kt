@@ -10,11 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import pt.iade.ei.waycareapp.data.model.TipoAnomalia
-import pt.iade.ei.waycareapp.data.model.Localizacao
-import pt.iade.ei.waycareapp.data.model.Anomalia
 import pt.iade.ei.waycareapp.data.model.Reporte
-import pt.iade.ei.waycareapp.data.model.Utilizador
 
 @Composable
 fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
@@ -82,4 +78,22 @@ fun CardObstaculo(reporte: Reporte, onClose: () -> Unit) {
     }
 }
 
+@Preview(showBackground = true)
+@Composable
+fun CardObstaculoPreview() {
+    val fakeReporte = Reporte(
+        rep_id = 1,
+        rep_uti_id = 123,
+        rep_ano_id = 10,
+        rep_latitude = 38.7169,
+        rep_longitude = -9.1396,
+        rep_descricao = "Há um buraco grande no meio da calçada que pode causar acidentes.",
+        rep_grau_perigo = "ALTO",
+        rep_nome_anomalia = "Buraco na Rua"
+    )
 
+    CardObstaculo(
+        reporte = fakeReporte,
+        onClose = { /* sem ação */ }
+    )
+}
