@@ -220,18 +220,6 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
                 }
             }
         )
-
-        BotaoGradiente(
-            texto = "Testar Upload Cloudinary",
-            onClick = {
-                imagemUri?.let { uri ->
-                    reporteViewModel.uploadFoto(uri, context)
-                } ?: run {
-                    Toast.makeText(context, "Escolha ou tire uma foto primeiro", Toast.LENGTH_SHORT).show()
-                }
-            }
-        )
-
     }
 }
 
