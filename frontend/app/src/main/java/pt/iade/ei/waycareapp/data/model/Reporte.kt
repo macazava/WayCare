@@ -1,7 +1,6 @@
 package pt.iade.ei.waycareapp.data.model
 
 import com.google.gson.annotations.SerializedName
-import java.time.LocalDate
 
 data class Reporte(
     @SerializedName("id")

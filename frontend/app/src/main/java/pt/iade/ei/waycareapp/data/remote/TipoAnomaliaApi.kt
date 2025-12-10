@@ -4,7 +4,6 @@ import pt.iade.ei.waycareapp.data.model.TipoAnomalia
 import retrofit2.http.GET
 import retrofit2.Response
 
-
 interface TipoAnomaliaApi {
     @GET("tipos-anomalia")
     suspend fun listarTipos(): Response<List<TipoAnomalia>>
