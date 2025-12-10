@@ -21,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import pt.iade.ei.waycareapp.data.session.SessionManager
 
 @Composable
 fun ProfileScreen(navController: NavController) {
@@ -28,6 +29,10 @@ fun ProfileScreen(navController: NavController) {
     var proximityNotifications by remember { mutableStateOf(true) }
     var locationAccess by remember { mutableStateOf(true) }
     var userType by remember { mutableStateOf("mobilidade") }
+
+    // Pegar nome e email do utilizador logado
+    val nome = SessionManager.utilizadorLogado?.nome ?: "Nome Desconhecido"
+    val email = SessionManager.utilizadorLogado?.email ?: "Email Desconhecido"
 
     Column(
         modifier = Modifier
@@ -91,8 +96,8 @@ fun ProfileScreen(navController: NavController) {
                         .size(60.dp)
                 )
             }
-            Text("Maria Carvalho", fontSize = 20.sp)
-            Text("@maria123", fontSize = 16.sp, color = Color.Gray)
+            Text(nome, fontSize = 20.sp)
+            Text(email, fontSize = 16.sp, color = Color.Gray)
             Text("Tipo de utilizador: Pessoa com mobilidade reduzida", fontSize = 14.sp, color = Color.DarkGray)
 
             Button(
@@ -103,9 +108,10 @@ fun ProfileScreen(navController: NavController) {
                 Text("4 Reportes", color = Color.White)
             }
         }
+
         // Opções de perfil
         Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
@@ -138,7 +144,7 @@ fun ProfileScreen(navController: NavController) {
                     contentDescription = "Ir para edição",
                     modifier = Modifier
                         .size(24.dp)
-                        .clickable { /* escolher as opções de idioma (pode ser espanhol, ingles, alemão, etc...) */ },
+                        .clickable { /* escolher as opções de idioma */ },
                     tint = Color.Gray
                 )
             }
@@ -182,8 +188,8 @@ fun ProfileScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 modifier = Modifier.fillMaxWidth()
             ) {
-                    Text("Tipo de Utilizador:", fontSize = 16.sp)
-                    Spacer(modifier = Modifier.width(20.dp))
+                Text("Tipo de Utilizador:", fontSize = 16.sp)
+                Spacer(modifier = Modifier.width(20.dp))
                 Text(
                     text = "Pessoa com Mobilidade Reduzida",
                     fontSize = 16.sp,
@@ -194,6 +200,7 @@ fun ProfileScreen(navController: NavController) {
                 )
             }
         }
+
         Spacer(modifier = Modifier.height(5.dp))
         Column (
             horizontalAlignment = Alignment.CenterHorizontally,
@@ -205,9 +212,8 @@ fun ProfileScreen(navController: NavController) {
                 modifier = Modifier.clickable { /* ação de apagar conta */ }
             )
         }
-      }
     }
-
+}
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
