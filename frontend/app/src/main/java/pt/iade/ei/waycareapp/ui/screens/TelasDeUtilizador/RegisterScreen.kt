@@ -194,7 +194,7 @@ fun RegisterScreen(navController: NavController, viewModel: LoginViewModel = vie
             shape = RoundedCornerShape(8.dp)
         )
 
-        // Botão
+        // Botão de registo
         BotaoGradiente(
             texto = "Registar-me",
             onClick = {
