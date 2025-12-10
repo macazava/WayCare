@@ -12,7 +12,6 @@ import pt.iade.ei.waycareapp.data.model.*
 import pt.iade.ei.waycareapp.data.remote.RetrofitInstance
 import pt.iade.ei.waycareapp.utils.CloudinaryHelper
 import retrofit2.Response
-import java.io.File
 
 class ReporteViewModel : ViewModel() {
 
@@ -28,10 +27,10 @@ class ReporteViewModel : ViewModel() {
     private val _fotoUrl = MutableStateFlow<String?>(null)
     val fotoUrl: StateFlow<String?> = _fotoUrl
 
-    // Instância da FotografiaApi via Retrofit
     private val fotografiaApi = RetrofitInstance.fotografiaApi
 
-    /** Metodo para subir foto via Cloudinary */
+
+    //Metodo para subir foto via Cloudinary
     fun uploadFoto(uri: Uri, context: Context) {
         CloudinaryHelper.uploadImage(uri) { url ->
             if (url != null) {
@@ -43,69 +42,18 @@ class ReporteViewModel : ViewModel() {
         }
     }
 
-    /** Metodo para criar fotografia no backend */
-    fun salvarFotografia(reporteId: Long, url: String) {
-        viewModelScope.launch {
-            try {
-                // Para fins de integração, valores fictícios de mime e tamanho
-                val request = FotografiaRequest(
-                    nome = "Foto do reporte",
-                    mime = "image/jpeg",
-                    tamanho = 0L,
-                    url = url,
-                    reporteId = reporteId
-                )
-
-                val response = fotografiaApi.criarFotografia(request)
-                if (response.isSuccessful) {
-                    Log.d("ReporteVM", "Fotografia registrada no backend")
-                } else {
-                    Log.e("ReporteVM", "Erro ao salvar foto: ${response.code()}")
-                }
-            } catch (e: Exception) {
-                Log.e("ReporteVM", "Falha ao salvar foto: ${e.message}")
-            }
-        }
-    }
-
-    // Metodo para integrar ao envio do reporte
-    fun enviarReporteComFoto(request: ReporteRequest) {
-        viewModelScope.launch {
-            val url = _fotoUrl.value
-            val requestComFoto = request.copy(fotoUrl = url)
-            enviarReporte(requestComFoto)
-        }
-    }
-
-
-    fun carregarAnomalias() {
-        viewModelScope.launch {
-            try {
-                val response = RetrofitInstance.anomaliaApi.listarAnomalias()
-                if (response.isSuccessful) {
-                    _anomalias.value = response.body().orEmpty()
-                    Log.d("ReporteVM", "✅ Anomalias carregadas: ${_anomalias.value.size}")
-                } else {
-                    Log.e("ReporteVM", "❌ Erro ao buscar anomalias: ${response.code()}")
-                }
-            } catch (e: Exception) {
-                Log.e("ReporteVM", "❌ Falha ao buscar anomalias: ${e.message}")
-            }
-        }
-    }
-
     fun carregarReportes() {
         viewModelScope.launch {
             try {
                 val response: Response<List<Reporte>> = RetrofitInstance.api.getReportes()
                 if (response.isSuccessful) {
                     _reportes.value = response.body().orEmpty()
-                    Log.d("ReporteVM", "✅ Reportes carregados: ${_reportes.value.size}")
+                    Log.d("ReporteVM", "Reportes carregados: ${_reportes.value.size}")
                 } else {
-                    Log.e("ReporteVM", "❌ Erro ao buscar reportes: ${response.code()}")
+                    Log.e("ReporteVM", "Erro ao buscar reportes: ${response.code()}")
                 }
             } catch (e: Exception) {
-                Log.e("ReporteVM", "❌ Falha ao buscar reportes: ${e.message}")
+                Log.e("ReporteVM", "Falha ao buscar reportes: ${e.message}")
             }
         }
     }
@@ -116,12 +64,12 @@ class ReporteViewModel : ViewModel() {
                 val response: Response<List<TipoAnomalia>> = RetrofitInstance.tipoAnomaliaApi.listarTipos()
                 if (response.isSuccessful) {
                     _tiposAnomalia.value = response.body().orEmpty()
-                    Log.d("ReporteVM", "✅ Tipos de anomalia carregados: ${_tiposAnomalia.value.size}")
+                    Log.d("ReporteVM", "Tipos de anomalia carregados: ${_tiposAnomalia.value.size}")
                 } else {
-                    Log.e("ReporteVM", "❌ Erro ao buscar tipos: ${response.code()}")
+                    Log.e("ReporteVM", "Erro ao buscar tipos: ${response.code()}")
                 }
             } catch (e: Exception) {
-                Log.e("ReporteVM", "❌ Falha ao buscar tipos: ${e.message}")
+                Log.e("ReporteVM", "Falha ao buscar tipos: ${e.message}")
             }
         }
     }
@@ -129,17 +77,17 @@ class ReporteViewModel : ViewModel() {
     fun enviarReporte(request: ReporteRequest) {
         viewModelScope.launch {
             try {
-                Log.d("ReporteAPI", "📤 A enviar reporte: $request")
+                Log.d("ReporteAPI", "A enviar reporte: $request")
 
                 val response = RetrofitInstance.api.criarReporte(request)
 
                 if (response.isSuccessful) {
-                    Log.d("ReporteAPI", "✅ Sucesso: ${response.body()}")
+                    Log.d("ReporteAPI", "Sucesso: ${response.body()}")
                 } else {
-                    Log.e("ReporteAPI", "❌ Erro: ${response.code()} - ${response.errorBody()?.string()}")
+                    Log.e("ReporteAPI", "Erro: ${response.code()} - ${response.errorBody()?.string()}")
                 }
             } catch (e: Exception) {
-                Log.e("ReporteAPI", "❌ Falha: ${e.message}")
+                Log.e("ReporteAPI", "Falha: ${e.message}")
             }
         }
     }

@@ -104,5 +104,3 @@ class LoginViewModel : ViewModel() {
         _authState.value = AuthUiState.Idle
     }
 }
-
-
