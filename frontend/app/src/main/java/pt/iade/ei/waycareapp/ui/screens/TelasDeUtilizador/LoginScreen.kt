@@ -28,6 +28,8 @@ import pt.iade.ei.waycareapp.R
 import pt.iade.ei.waycareapp.ui.component.BotaoGradiente
 import pt.iade.ei.waycareapp.ui.viewmodel.LoginViewModel
 import pt.iade.ei.waycareapp.ui.viewmodel.AuthUiState
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 
 
 @Composable
@@ -41,11 +43,12 @@ fun LoginScreen(navController: NavController, viewModel: LoginViewModel = viewMo
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
             .padding(24.dp),
         verticalArrangement = Arrangement.Top,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        // Voltar atrás (ícone)
+    // Voltar atrás (ícone)
         Row(
             modifier = Modifier
                 .fillMaxWidth()
