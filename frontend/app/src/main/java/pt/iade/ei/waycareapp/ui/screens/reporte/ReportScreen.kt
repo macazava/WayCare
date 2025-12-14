@@ -41,9 +41,13 @@ import pt.iade.ei.waycareapp.utils.CloudinaryHelper
 import pt.iade.ei.waycareapp.utils.Utils
 import pt.iade.ei.waycareapp.viewmodel.ReporteViewModel
 import java.util.Locale
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+
 
 @Composable
 fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewModel = viewModel()) {
+
 
     var tipoAnomalia by remember { mutableStateOf("") }
     var descricao by remember { mutableStateOf("") }
@@ -109,10 +113,13 @@ fun ReportScreen(navController: NavController, reporteViewModel: ReporteViewMode
     val zonas = Zona.values().map { it.name }
 
     Column(
-        modifier = Modifier.fillMaxSize().padding(24.dp),
+        modifier = Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState())
+            .padding(24.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp)
     ) {
-        //header
+    //header
         Box(
             modifier = Modifier.fillMaxWidth().height(80.dp).background(
                 brush = Brush.horizontalGradient(colors = listOf(Color(0xFF3F51B5), Color(0xFFE91E63))),

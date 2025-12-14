@@ -6,7 +6,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 object RetrofitInstance {
 
     //testar no telemovel
-    private const val BASE_URL = "http://10.208.195.222:8080/api/"
+    private const val BASE_URL = "http://192.168.1.3:8080/api/"
 
     //testar no emulador
     //private const val BASE_URL = "http://10.0.2.2:8080/api/"
