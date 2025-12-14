@@ -226,9 +226,9 @@ Estas funcionalidades permanecem como potenciais melhorias futuras, bastando a i
 
 # Esboço do Diagrama de Classes UML
 O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
-![Diagrama de Classes](Images/Fotodiagramadeclasses.png)
+![Diagrama de Classes](Images/ImagensBD/DiagramaDeClasses(versaofinal).jpeg)
 
-# Primeira versão da documentação REST 
+# Versão final da documentação REST 
 Base URL: http://localhost:8080/api
 ### Utilizadores
 
