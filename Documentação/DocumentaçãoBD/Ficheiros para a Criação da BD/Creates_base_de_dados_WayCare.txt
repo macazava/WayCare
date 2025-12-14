@@ -1,0 +1,205 @@
+1. UTILIZADOR
+CREATE TABLE utilizador (
+    uti_id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome                VARCHAR(60)   NOT NULL,
+    email               VARCHAR(100)  NOT NULL UNIQUE,
+    password            VARCHAR(255)  NOT NULL,
+    data_nascimento     DATE,
+    genero              VARCHAR(10),
+    estado              BOOLEAN       NOT NULL DEFAULT TRUE,
+    role                ENUM('USER','ADMIN') NOT NULL DEFAULT 'USER',
+    verificado          BOOLEAN       NOT NULL DEFAULT FALSE,
+    telemovel           VARCHAR(9),
+    token_recuperacao   VARCHAR(255),
+    ultimo_login        DATETIME,
+    tentativas_login    TINYINT       NOT NULL DEFAULT 0
+) ENGINE=InnoDB;
+
+
+2. TIPO_ANOMALIA
+CREATE TABLE tipo_anomalia (
+    tipo_id     BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tipo_nome   VARCHAR(255) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+
+3. LOCALIZACAO
+CREATE TABLE localizacao (
+    loc_id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    loc_latitude    DOUBLE       NOT NULL,
+    loc_longitude   DOUBLE       NOT NULL,
+    loc_endereco    VARCHAR(255) NOT NULL,
+    loc_descricao   VARCHAR(255)
+) ENGINE=InnoDB;
+
+
+4. ANOMALIA
+CREATE TABLE anomalia (
+    ano_id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    tipo_id             BIGINT       NOT NULL,
+    ano_descricao       VARCHAR(500) NOT NULL,
+    ano_data_detecao    DATE         DEFAULT (CURRENT_DATE),
+    ano_estado          VARCHAR(50)  NOT NULL,
+    ano_severidade      VARCHAR(50),
+    ano_grau_perigo     ENUM('BAIXA','MEDIA','ALTA'),
+    ano_uti_id          BIGINT,
+    ano_loc_id          BIGINT,
+    data_registo        DATETIME     DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_anomalia_tipo
+        FOREIGN KEY (tipo_id)
+        REFERENCES tipo_anomalia (tipo_id)
+        ON UPDATE CASCADE,
+
+    CONSTRAINT fk_anomalia_utilizador
+        FOREIGN KEY (ano_uti_id)
+        REFERENCES utilizador (uti_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_anomalia_localizacao
+        FOREIGN KEY (ano_loc_id)
+        REFERENCES localizacao (loc_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+
+5. ROTA_ALTERNATIVA
+CREATE TABLE rota_alternativa (
+    id                      BIGINT AUTO_INCREMENT PRIMARY KEY,
+    nome                    VARCHAR(255) NOT NULL,
+    latitude_inicio         DOUBLE NOT NULL,
+    longitude_inicio        DOUBLE NOT NULL,
+    latitude_destino        DOUBLE NOT NULL,
+    longitude_destino       DOUBLE NOT NULL,
+    pontos_intermedios_json LONGTEXT
+) ENGINE=InnoDB;
+
+
+6. REPORTE
+CREATE TABLE reporte (
+    rep_id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    rep_uti_id          BIGINT NOT NULL,
+    rep_ano_id          BIGINT NOT NULL,
+    rep_loc_id          BIGINT,
+    rep_foto_url        VARCHAR(255),
+    rep_estado          ENUM('PENDENTE','EM_ANALISE','RESOLVIDO') NOT NULL,
+    rep_descricao       VARCHAR(500),
+    rep_tipo_personalizado VARCHAR(255),
+    data_registo        DATETIME DEFAULT CURRENT_TIMESTAMP,
+    rep_zona            ENUM('LISBOA','MARGEM_SUL') NOT NULL,
+    rep_grau_perigo     ENUM('BAIXA','MEDIA','ALTA') NOT NULL,
+    rota_id             BIGINT UNIQUE,
+
+    CONSTRAINT fk_reporte_utilizador
+        FOREIGN KEY (rep_uti_id)
+        REFERENCES utilizador (uti_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_reporte_anomalia
+        FOREIGN KEY (rep_ano_id)
+        REFERENCES anomalia (ano_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_reporte_localizacao
+        FOREIGN KEY (rep_loc_id)
+        REFERENCES localizacao (loc_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_reporte_rota
+        FOREIGN KEY (rota_id)
+        REFERENCES rota_alternativa (id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+
+7. FOTOGRAFIA
+CREATE TABLE fotografia (
+    foto_id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    foto_nome       VARCHAR(100),
+    foto_caminho    VARCHAR(255),
+    foto_mime       VARCHAR(50),
+    foto_tamanho    BIGINT,
+    foto_descricao  VARCHAR(255),
+    fot_data_upload DATETIME DEFAULT CURRENT_TIMESTAMP,
+    foto_url        VARCHAR(255),
+    fot_rep_id      BIGINT,
+    fot_ano_id      BIGINT,
+    fot_uti_id      BIGINT,
+
+    CONSTRAINT fk_fotografia_reporte
+        FOREIGN KEY (fot_rep_id)
+        REFERENCES reporte (rep_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_fotografia_anomalia
+        FOREIGN KEY (fot_ano_id)
+        REFERENCES anomalia (ano_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_fotografia_utilizador
+        FOREIGN KEY (fot_uti_id)
+        REFERENCES utilizador (uti_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+) ENGINE=InnoDB;
+
+
+8. COMENTARIO
+CREATE TABLE comentario (
+    com_id        BIGINT AUTO_INCREMENT PRIMARY KEY,
+    uti_id        BIGINT NOT NULL,
+    rep_id        BIGINT NOT NULL,
+    com_texto     VARCHAR(255) NOT NULL,
+    data_criacao  DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_comentario_utilizador
+        FOREIGN KEY (uti_id)
+        REFERENCES utilizador (uti_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE,
+
+    CONSTRAINT fk_comentario_reporte
+        FOREIGN KEY (rep_id)
+        REFERENCES reporte (rep_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+
+9. NOTIFICACAO
+CREATE TABLE notificacao (
+    not_id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    not_mensagem    VARCHAR(255) NOT NULL,
+    not_tipo        VARCHAR(50),
+    ano_id          BIGINT,
+    not_uti_id      BIGINT,
+    loc_id          BIGINT,
+    not_lida        BOOLEAN NOT NULL DEFAULT FALSE,
+    not_data_envio  DATETIME DEFAULT CURRENT_TIMESTAMP,
+
+    CONSTRAINT fk_notificacao_anomalia
+        FOREIGN KEY (ano_id)
+        REFERENCES anomalia (ano_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_notificacao_utilizador
+        FOREIGN KEY (not_uti_id)
+        REFERENCES utilizador (uti_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL,
+
+    CONSTRAINT fk_notificacao_localizacao
+        FOREIGN KEY (loc_id)
+        REFERENCES localizacao (loc_id)
+        ON UPDATE CASCADE
+        ON DELETE SET NULL
+) ENGINE=InnoDB;
