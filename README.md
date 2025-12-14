@@ -26,7 +26,7 @@ https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0
 https://www.youtube.com/watch?v=iwS8fHoZi3s
 # Palavras-Chave
  Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo; AppMobile; Base de Dados; Programação Mobile; Programação Orientada a Objetos; Frontend; Backend; AndroidStudio; IntelliJ IDEA; mySQL; Springboot; Kotlin; Java; SQL.
-# Segunda entrega do Projeto 
+# Entrega Final de Projeto (3a Entrega) 
 ## Nome do Projeto 
  O nome **WayCare** resulta da junção das palavras Care (cuidado) e Way (caminho), refletindo o propósito central da aplicação.
 ## Enquadramento do Projeto
@@ -182,9 +182,10 @@ A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas p
  A solução tem como base uma arquitetura em três camadas (frontend, backend e base de dados).  
 
 A camada de **frontend** (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O **backend** (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a **base de dados**. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
-## Plano de Trabalho, Project Charter e WBS (Gráfico de Gantt) 
-Plano de trabalho, WBS e Project Charter 
-![Gráfico de Gantt 2ª entrega](Images/graficodegantt2entrega.png)
+## Planeamento, Calendarização e Distribuição de tarefas (Tabela)
+A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso, para a visualização em calendário, e ainda uma tabela com os nomes de todos os participantes e o que cada uma realizou ao longo do semeste para a conclusão do Projeto Mobile: 
+- https://app.clickup.com/90151677947/v/o/s/90156930935
+- [Ver tabela de tarefas realizadas por cada participante do grupo](Documentação/tabeladetarefas.pdf)
 
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare encontra-se:
