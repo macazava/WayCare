@@ -237,7 +237,9 @@ O presente dicionário de dados descreve a estrutura da base de dados WayCare, d
 [Dicionário de dados](Documentação/DocumentaçãoBD/DicionárioDeDados(versãofinal).pdf)
 
 # Guia de Dados (BD-Versão Final)
-[guia de dados](Documentos/Guiadedados(1).pdf)
+A seguir apresentamos a Guia de Dados, com o objetivo de fornecer uma visão estruturada e detalhada sobre os principais elementos de informação utilizados no projeto. 
+Esta secção descreve os modelos de dados, os campos que os compõem, os tipos e restrições associados, bem como as relações estabelecidas entre entidades. 
+[Guia de Dados](Documentação/DocumentaçãoBD/GuiaDeDados(versaofinal).pdf)
 
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
@@ -251,6 +253,7 @@ Para além dos aspetos funcionais, este projeto permitiu-nos articular e aplicar
  Outro aspeto relevante foi a experiência de trabalho em equipa, que exigiu gestão de tempo, divisão de responsabilidades, coordenação e capacidade de resolver problemas de forma colaborativa. Estas competências, importantes quanto a componente técnica, reforçaram o caráter multidisciplinar do projeto e mostraram-nos a importância de alinhar diferentes perspetivas em torno de um objetivo comum. 
 
 Em suma, a WayCare não deve ser vista apenas como uma aplicação tecnológica, mas como uma ferramenta de transformação social. Ao unir inovação, empatia e responsabilidade coletiva, o projeto contribui para a construção de cidades mais humanas, inclusivas e seguras, onde todos têm o direito de se mover com dignidade. 
+
 # Bibliografia
 AccessNow. (2023). Accessibility mapping and reporting tools for inclusive cities. AccessNow. 
 
