@@ -180,7 +180,7 @@ A camada de **frontend** (Camada de Apresentação) corresponde à interface da 
 ## Planeamento, Calendarização e Distribuição de tarefas (Tabela)
 A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso, para a visualização em calendário, e ainda uma tabela com os nomes de todos os participantes e o que cada uma realizou ao longo do semeste para a conclusão do Projeto Mobile: 
 - https://app.clickup.com/90151677947/v/o/s/90156930935
-- [Ver tabela de tarefas realizadas por cada participante do grupo](Documentação/tabeladetarefas.pdf)
+- [Tabela de tarefas realizadas por cada participante do grupo](Documentação/tabeladetarefas.pdf)
 
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare para a entrega final encontra-se:
@@ -236,6 +236,12 @@ O presente dicionário de dados descreve a estrutura da base de dados WayCare, d
 A seguir apresentamos a Guia de Dados, com o objetivo de fornecer uma visão estruturada e detalhada sobre os principais elementos de informação utilizados no projeto. 
 Esta secção descreve os modelos de dados, os campos que os compõem, os tipos e restrições associados, bem como as relações estabelecidas entre entidades. 
 - [Guia de Dados](Documentação/DocumentaçãoBD/GuiaDeDados(versaofinal).pdf)
+
+# Manual de Utilizador 
+O Manual de Utilizador foi elaborado com o objetivo de orientar de forma simples e clara a utilização da aplicação WayCare. Esta secção descreve os principais passos que o utilizador deve seguir para reportar anomalias, consultar o mapa interativo e aceder às funcionalidades disponíveis. 
+A intenção é garantir que qualquer pessoa, independentemente do seu nível de experiência tecnológica, consiga utilizar a aplicação de forma intuitiva e eficaz.
+- [Manual de Utilizador]()
+
 
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
