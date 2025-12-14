@@ -1,0 +1,141 @@
+
+
+1) Listar todos os reportes com o nome do utilizador e tipo de anomalia
+SELECT
+    r.rep_id              AS id_reporte,
+    u.nome                AS utilizador,
+    ta.tipo_nome          AS tipo_anomalia,
+    a.ano_descricao       AS descricao_anomalia,
+    r.rep_estado          AS estado_reporte,
+    r.data_registo        AS data_reporte,
+    l.loc_endereco        AS localizacao
+FROM reporte r
+LEFT JOIN utilizador    u  ON r.rep_uti_id = u.uti_id
+LEFT JOIN anomalia      a  ON r.rep_ano_id = a.ano_id
+LEFT JOIN tipo_anomalia ta ON a.tipo_id    = ta.tipo_id
+LEFT JOIN localizacao   l  ON r.rep_loc_id = l.loc_id
+ORDER BY r.data_registo DESC;
+
+
+2) Contar quantos reportes existem por tipo de anomalia
+SELECT
+    ta.tipo_nome       AS tipo_anomalia,
+    COUNT(r.rep_id)    AS total_reportes
+FROM reporte r
+LEFT JOIN anomalia      a  ON r.rep_ano_id = a.ano_id
+LEFT JOIN tipo_anomalia ta ON a.tipo_id    = ta.tipo_id
+GROUP BY ta.tipo_nome
+ORDER BY total_reportes DESC;
+
+
+3) Listar quantidade de reportes por estado (PENDENTE, EM_ANALISE, RESOLVIDO)
+SELECT
+    r.rep_estado    AS estado_reporte,
+    COUNT(*)        AS quantidade
+FROM reporte r
+GROUP BY r.rep_estado;
+
+
+4) Obter todos os reportes feitos por um utilizador específico (ex: 'Cássia Baptista')
+
+SELECT
+    r.rep_id,
+    r.rep_descricao,
+    ta.tipo_nome       AS tipo_anomalia,
+    r.rep_estado,
+    r.data_registo
+FROM reporte r
+JOIN anomalia      a  ON r.rep_ano_id = a.ano_id
+JOIN tipo_anomalia ta ON a.tipo_id    = ta.tipo_id
+JOIN utilizador    u  ON r.rep_uti_id = u.uti_id
+WHERE u.nome = 'Cássia Baptista'
+ORDER BY r.data_registo DESC;
+
+
+5) Verificar localizações e coordenadas de todas as anomalias reportadas
+SELECT
+    r.rep_id,
+    l.loc_endereco,
+    l.loc_latitude,
+    l.loc_longitude,
+    ta.tipo_nome       AS tipo_anomalia,
+    r.rep_estado
+FROM reporte r
+JOIN localizacao   l  ON r.rep_loc_id = l.loc_id
+JOIN anomalia      a  ON r.rep_ano_id = a.ano_id
+JOIN tipo_anomalia ta ON a.tipo_id    = ta.tipo_id
+ORDER BY r.data_registo DESC;
+
+
+6) Obter as fotografias associadas a cada reporte
+SELECT
+    r.rep_id           AS id_reporte,
+    u.nome             AS utilizador,
+    f.foto_nome        AS nome_fotografia,
+    f.foto_url         AS url,
+    f.foto_caminho     AS caminho
+FROM fotografia f
+JOIN reporte    r ON f.fot_rep_id = r.rep_id
+JOIN utilizador u ON r.rep_uti_id = u.uti_id
+ORDER BY r.rep_id;
+
+
+7) Estatística: Quantos reportes por utilizador
+SELECT
+    u.nome           AS utilizador,
+    COUNT(r.rep_id)  AS total_reportes
+FROM utilizador u
+LEFT JOIN reporte r ON u.uti_id = r.rep_uti_id
+GROUP BY u.nome
+ORDER BY total_reportes DESC;
+
+
+8) Filtrar reportes recentes (últimos 7 dias)
+SELECT
+    r.rep_id,
+    u.nome           AS utilizador,
+    ta.tipo_nome     AS tipo_anomalia,
+    r.data_registo   AS data_reporte,
+    r.rep_estado
+FROM reporte r
+JOIN utilizador    u  ON r.rep_uti_id = u.uti_id
+JOIN anomalia      a  ON r.rep_ano_id = a.ano_id
+JOIN tipo_anomalia ta ON a.tipo_id    = ta.tipo_id
+WHERE r.data_registo >= DATE_SUB(CURDATE(), INTERVAL 7 DAY)
+ORDER BY r.data_registo DESC;
+
+
+9) Listar reportes agrupados por zona (ENUM rep_zona)
+SELECT
+    r.rep_zona          AS zona,
+    COUNT(r.rep_id)     AS total_reportes
+FROM reporte r
+GROUP BY r.rep_zona
+ORDER BY total_reportes DESC;
+
+
+10) Listar comentários por anomalia com nome do utilizador
+-- (comentário liga-se ao REPORTE, que por sua vez liga à ANOMALIA)
+SELECT
+    a.ano_id            AS id_anomalia,
+    a.ano_descricao     AS descricao_anomalia,
+    u.nome              AS autor_comentario,
+    c.com_texto         AS comentario,
+    c.data_criacao      AS data_comentario
+FROM comentario c
+JOIN utilizador u ON c.uti_id = u.uti_id
+JOIN reporte   r ON c.rep_id = r.rep_id
+JOIN anomalia  a ON r.rep_ano_id = a.ano_id
+ORDER BY c.data_criacao DESC;
+
+
+11) Verificar as fotografias associadas às anomalias
+SELECT
+    a.ano_id            AS id_anomalia,
+    a.ano_descricao     AS descricao_anomalia,
+    f.foto_nome         AS nome_fotografia,
+    f.foto_url          AS url,
+    f.foto_caminho      AS caminho
+FROM fotografia f
+JOIN anomalia a ON f.fot_ano_id = a.ano_id
+ORDER BY a.ano_id, f.foto_id;
