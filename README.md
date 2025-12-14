@@ -177,8 +177,9 @@ A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas p
  A solução tem como base uma arquitetura em três camadas (frontend, backend e base de dados).  
 
 A camada de **frontend** (Camada de Apresentação) corresponde à interface da aplicação movel que o utilizador vê e interage, permitindo reportar obstáculos, visualizar o mapa e receber alertas. O **backend** (Camada Lógica / Servidor) trata da lógica da aplicação sendo responsável pelo processamento dos dados e regras de negócio, e ainda da comunicação entre o frontend e a **base de dados**. Por fim, a base de dados (Camada de Armazenamento) armazena os reportes de forma segura e organizada. A aplicação recorre ainda a APIs de geolocalização, garantindo uma experiência interativa e precisa na navegação urbana. 
-## Planeamento, Calendarização e Distribuição de tarefas (Tabela)
-A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso, para a visualização em calendário, e ainda uma tabela com os nomes de todos os participantes e o que cada uma realizou ao longo do semeste para a conclusão do Projeto Mobile: 
+## Planeamento, Calendarização e Distribuição de tarefas (Quadro e Gráfico de Gantt)
+A seguir é apresentado o grafico de Gantt, no entanto também foi colocado o link direto ao ClickUp, que o professor tem acesso, para a melhor visualização em calendário ou tabela, e ainda um quadro com os nomes de todos os participantes e o que cada um realizou ao longo do semeste para a conclusão do Projeto Mobile: 
+![Grafico de Gantt 3a Entrega](Images/Imagensgraficosdeganttdecadaentrega/graficoDeGantt(3aEntrega).png)
 - https://app.clickup.com/90151677947/v/o/s/90156930935
 - [Quadro de tarefas realizadas por cada participante do grupo](Documentação/quadrodetarefas.pdf)
 
