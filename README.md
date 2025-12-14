@@ -222,7 +222,7 @@ Estas funcionalidades permanecem como potenciais melhorias futuras, bastando a i
 2. Tela de Detalhes do Reporte na Visualização em Mapa.
 3. Tela da visualização do mapa interativo (com filtros).
 
-![Mockups 3 telas principais](Images/mockups de cada entrega/mockups_atualizados_3aEntrega.png)
+![Mockups 3 telas principais](Images/mockupsdecadaentrega/mockups_atualizados_3aEntrega.png)
 
 # Esboço do Diagrama de Classes UML
 O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenciando as principais classes e as relações lógicas da base de dados WayCare
