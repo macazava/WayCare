@@ -113,7 +113,7 @@ Persona: Maria Silva
 Maria utiliza cadeira de rodas elétrica e realiza todos os dias o mesmo percurso até ao trabalho, em ruas acessíveis e seguras.  
 
 ##### Acontecimento
-Numa terça-feira de manhã, ao chegar ao cruzamento da Rua Central, encontra o passeio bloqueado por uma obra iniciada sem aviso. O único desvio possível é descer para a estrada, o que é perigoso devido ao trânsito intenso.
+Numa terça-feira de manhã, ao chegar ao cruzamento da Rua Central, encontra o passeio bloqueado por uma obra iniciada sem aviso. A Maria é consciente que não só lhe afeta a ela como também pode afetar a outros usuários, então procede a abrir a WayCare.
 
 ##### Ações na WayCare
 1. Abre a aplicação WayCare e seleciona “Reportar Anomalia”.  
@@ -121,32 +121,27 @@ Numa terça-feira de manhã, ao chegar ao cruzamento da Rua Central, encontra o 
  > “Obra iniciada sem aviso. Passeio totalmente bloqueado, sem alternativa para cadeiras de rodas.”
 3. A app identifica automaticamente a geolocalização da obra.  
 4. Classifica o reporte como Alta Prioridade.  
-5. Após submeter, consulta o mapa de rotas alternativas sugeridas pela aplicação.  
+5. Após submeter, consulta o mapa e vê refletido o seu reporte.  
 
-O sistema sugere um caminho alternativo seguro, cerca de 10 minutos mais longo, mas totalmente acessível e validado por outros utilizadores.  
-Maria consegue chegar ao trabalho em segurança, sentindo que contribuiu para alertar outros cidadãos.
+Para além do seu reporte, no mapa também aparecem os reportes dos outros utilizadores da App, então a Maria analiza um caminho alternativo seguro por onde não tem obstáculos, cerca de 10 minutos mais longo, mas totalmente acessível e validado por outros utilizadores.
+Maria consegue chegar ao trabalho em segurança, sentindo uma satisfação enorme pois contribuiu para alertar outros cidadãos.
 
 ---
 
-#### Notificação de anomalia próxima e planeamento de rota
+#### Consulta de anomalia reportada
 Persona: João Ferreira   
 ##### Contexto
 João está a recuperar de uma fratura na perna e desloca-se de muletas até à paragem de autocarro.  
 
 ##### Acontecimento
-Enquanto caminha pela Rua da Liberdade, o seu telemóvel vibra com uma notificação da WayCare:
-> “Atenção! Foi reportada uma anomalia a 150 metros: entulho de obra a bloquear totalmente o passeio.”
+Enquanto caminha pela Rua da Liberdade, João abre a aplicação WayCare para verificar se existem anomalias reportadas na sua zona.
 
 ##### Ações na WayCare
-1. João abre a notificação e visualiza o mapa interativo com o local exato do obstáculo.  
-2. A app mostra a fotografia enviada por outro utilizador.  
-3. O sistema sugere duas rotas alternativas seguras:
-   - Desvio de 5 minutos por ruas paralelas mais largas;  
-   - Percurso um pouco mais longo, mas com rampas certificadas e acessibilidade garantida.  
-4. João escolhe a segunda opção e segue o percurso sugerido.  
+1. João acede ao mapa interativo e identifica um obstáculo previamente registado por outro utilizador.
+2. A app mostra a fotografia e a descrição da anomalia.
+3. Assim, João utiliza a informação disponível (mapa e descrição) para decidir o percurso mais seguro até à paragem.  
 
-Assim, o João evita um obstáculo perigoso e chega ao autocarro sem incidentes.  
-Reconhece a utilidade da WayCare como ferramenta preventiva de mobilidade segura.
+João consegue evitar o obstáculo graças às informações partilhadas pela comunidade. Reconhece o potencial da WayCare como ferramenta preventiva de mobilidade seguras.
 
 ---
 
@@ -154,18 +149,18 @@ Reconhece a utilidade da WayCare como ferramenta preventiva de mobilidade segura
 Persona: Pedro Costa   
 
 ##### Contexto
-Após uma tempestade noturna, Pedro precisa deslocar-se ao trabalho.  
+Após uma tempestade noturna, Pedro, usuário da App mas não é condicionado pela mobilidade reduzida, precisa deslocar-se ao trabalho.  
 Nas ruas encontra entulhos, árvores caídas e zonas inundadas, o que representa risco para peões.
 
 ##### Ações na WayCare
 1. Abre a app e seleciona “**Reportar Anomalia**”.  
-2. Tira **várias fotografias**: árvores caídas, buracos inundados, passeios bloqueados.  
-3. A **geolocalização automática** regista os locais exatos.  
+2. Tira uma fotografia que reflete o estado da situação: árvores caídas, buracos inundados, passeios bloqueados.  
+3. A **geolocalização automática** regista o local exato.  
 4. Escreve a descrição:
    > “Passeios bloqueados por entulho e árvores caídas. Risco elevado para pedestres. Intervenção urgente necessária.”  
 5. Classifica o alerta como **Prioridade Alta** e submete.  
 
-Os reportes de Pedro ficam visíveis para outros utilizadores, que recebem **notificações automáticas** sobre os obstáculos próximos.  
+Os reportes de Pedro ficam visíveis para outros utilizadores.  
 A ação de Pedro ajuda a evitar acidentes e a melhorar a segurança nas rotas pedonais.
 
 --- 
