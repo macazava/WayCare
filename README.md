@@ -195,7 +195,7 @@ A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso
 - Permitir que os utilizadores filtrem os obstáculos por tipo ou gravidade; 
 - (opcional) Sugestão de rotas com boa acessibilidade.
 #### Funcionalidades não expostas ao utilizador
-Apesar dos avanços alcançados no desenvolvimento do projeto, algumas funcionalidades previstas inicialmente não se encontram disponíveis para o utilizador, uma vez que, embora a lógica esteja totalmente implementada no backend, não foi realizada a integração com o frontend:
+Apesar dos avanços alcançados no desenvolvimento do projeto, algumas funcionalidades previstas inicialmente não se encontram disponíveis para o utilizador, uma vez que, embora a lógica esteja totalmente implementada no backend, não foi realizada a integração com o frontend. Esta situação resultou sobretudo da limitação de tempo e da distribuição desigual da carga de trabalho ao longo da equipa, o que condicionou a conclusão destas partes da aplicação.
 
 - **Notificações de proximidade**: a lógica de geolocalização e deteção de pontos de interesse foi desenvolvida e encontra-se operacional no backend. No entanto, não foi criada a camada de interface que permitisse ao utilizador receber notificações visuais ou sonoras no frontend.
 - **Sugestão de rotas alternativas**: os algoritmos de cálculo de rotas e análise de trajetos foram implementados no backend, garantindo a capacidade de gerar diferentes opções de percurso. Contudo, a funcionalidade não foi ligada ao frontend, impedindo que o utilizador visualize ou selecione essas alternativas diretamente na aplicação.
