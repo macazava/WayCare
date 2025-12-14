@@ -231,7 +231,7 @@ O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenci
 # Versão final da documentação REST 
 A seguir é apresentada a documentação REST, que foi elaborada com o objetivo de descrever de forma estruturada os endpoints disponibilizados pelo backend da aplicação.
 
-- ![WayCare – Api REST Backend](Documentação/DocumentaçãoRest(versaofinal).pdf)
+- [WayCare – Api REST Backend](Documentação/DocumentaçãoRest(versaofinal).pdf)
 
 # Dicionário de Dados (BD-Versão Final)
 O presente dicionário de dados descreve a estrutura da base de dados WayCare, de acordo com o novo modelo lógico implementado. Esta base de dados suporta uma aplicação de reporte de anomalias urbanas, incluindo utilizadores, anomalias, localizações,reportes, fotografias, comentários, notificações e rotas alternativas.
