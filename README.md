@@ -25,7 +25,7 @@ https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0
 # Link do Video Promocional
 https://www.youtube.com/watch?v=iwS8fHoZi3s
 # Palavras-Chave
- Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo.
+ Acessibilidade; Mobilidade Urbana; Cidadania Ativa; Tecnologia Cívica; Empatia; Segurança; Autonomia; Reporte Colaborativo; AppMobile; Base de Dados; Programação Mobile; Programação Orientada a Objetos; Frontend; Backend; AndroidStudio; IntelliJ IDEA; mySQL; Springboot; Kotlin; Java; SQL.
 # Segunda entrega do Projeto 
 ## Nome do Projeto 
  O nome **WayCare** resulta da junção das palavras Care (cuidado) e Way (caminho), refletindo o propósito central da aplicação.
