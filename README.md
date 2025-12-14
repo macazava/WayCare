@@ -180,7 +180,7 @@ A camada de **frontend** (Camada de Apresentação) corresponde à interface da 
 ## Planeamento, Calendarização e Distribuição de tarefas (Tabela)
 A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso, para a visualização em calendário, e ainda uma tabela com os nomes de todos os participantes e o que cada uma realizou ao longo do semeste para a conclusão do Projeto Mobile: 
 - https://app.clickup.com/90151677947/v/o/s/90156930935
-- [Tabela de tarefas realizadas por cada participante do grupo](Documentação/tabeladetarefas.pdf)
+- [Quadro de tarefas realizadas por cada participante do grupo](Documentação/quadrodetarefas.pdf)
 
 ### Requisitos Funcionais
  Dentro dos requisitos funcionais da WayCare para a entrega final encontra-se:
