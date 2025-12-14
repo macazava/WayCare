@@ -9,7 +9,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d85de13b-74cb-401a-9f11-8b93d96773b3" name="Changes" comment="" />
+    <list default="true" id="d85de13b-74cb-401a-9f11-8b93d96773b3" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/RetrofitInstance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/pt/iade/ei/waycareapp/data/remote/RetrofitInstance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/xml/network_security_config.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -200,12 +204,12 @@
       <map>
         <entry key="pt.iade.ei.waycareapp">
           <value>
-            <CheckInfo lastCheckTimestamp="1765537719601" />
+            <CheckInfo lastCheckTimestamp="1765725456146" />
           </value>
         </entry>
         <entry key="pt.iade.ei.waycareapp.test">
           <value>
-            <CheckInfo lastCheckTimestamp="1765537719600" />
+            <CheckInfo lastCheckTimestamp="1765725456145" />
           </value>
         </entry>
       </map>
