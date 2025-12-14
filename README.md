@@ -188,17 +188,25 @@ A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso
 - [Ver tabela de tarefas realizadas por cada participante do grupo](Documentação/tabeladetarefas.pdf)
 
 ### Requisitos Funcionais
- Dentro dos requisitos funcionais da WayCare encontra-se:
+ Dentro dos requisitos funcionais da WayCare para a entrega final encontra-se:
 - Permitir que qualquer cidadão reporte obstáculos urbanos (Ex: rampas inexistentes, passeios danificados);
 - Capturar e anexar fotografias ao reporte;
 - Registar a localização automática do obstáculo via GPS;
-- (opcional) Permitir ajustar manualmente a localização no mapa;
+- (opcional) Permitir ajustar manualmente a localização;
 - Categorizar o tipo de obstáculo (ex: obras, acessos, sinalização);
 - Enviar o reporte para uma base de dados acessível;  
 - Visualizar os obstáculos reportados num mapa interativo;
 - Receber notificações quando o utilizador se aproxima de uma zona reportada;
 - Permitir que os utilizadores filtrem os obstáculos por tipo ou gravidade; 
-- (opcional) Sugestão de rotas com boa acessibilidade. 
+- (opcional) Sugestão de rotas com boa acessibilidade.
+#### Funcionalidades não expostas ao utilizador
+Apesar dos avanços alcançados no desenvolvimento do projeto, algumas funcionalidades previstas inicialmente não se encontram disponíveis para o utilizador, uma vez que, embora a lógica esteja totalmente implementada no backend, não foi realizada a integração com o frontend:
+
+- **Notificações de proximidade**: a lógica de geolocalização e deteção de pontos de interesse foi desenvolvida e encontra-se operacional no backend. No entanto, não foi criada a camada de interface que permitisse ao utilizador receber notificações visuais ou sonoras no frontend.
+- **Sugestão de rotas alternativas**: os algoritmos de cálculo de rotas e análise de trajetos foram implementados no backend, garantindo a capacidade de gerar diferentes opções de percurso. Contudo, a funcionalidade não foi ligada ao frontend, impedindo que o utilizador visualize ou selecione essas alternativas diretamente na aplicação.
+
+Estas funcionalidades permanecem como potenciais melhorias futuras, bastando a integração da lógica já existente no backend com o frontend para que possam ser disponibilizadas ao utilizador.
+
 ### Requisitos Não Funcionais 
  Dentro dos requisitos funcionais da WayCare tem-se:
 - A aplicação deve ser intuitiva e fácil de usar por qualquer cidadão; 
@@ -207,6 +215,7 @@ A seguir é apresentado o **link direto ao ClickUp**, que o professor tem acesso
 - A aplicação deve estar disponível 24/7, com alta fiabilidade; 
 - Deve permitir atualizações regulares sem comprometer a experiência do utilizador; 
 - O sistema deve ser escalável para suportar um número crescente de utilizadores e reportes. 
+
 # Mockups
  Foram escolhidas as três telas principais da App: 
 1. Tela de Reporte de Anomalia.
