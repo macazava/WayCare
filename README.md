@@ -240,8 +240,7 @@ Esta secção descreve os modelos de dados, os campos que os compõem, os tipos 
 # Manual de Utilizador 
 O Manual de Utilizador foi elaborado com o objetivo de orientar de forma simples e clara a utilização da aplicação WayCare. Esta secção descreve os principais passos que o utilizador deve seguir para reportar anomalias, consultar o mapa interativo e aceder às funcionalidades disponíveis. 
 A intenção é garantir que qualquer pessoa, independentemente do seu nível de experiência tecnológica, consiga utilizar a aplicação de forma intuitiva e eficaz.
-- [Manual de Utilizador]()
-
+- [Manual de Utilizador](Documentação/ManualDeUtilizador-waycare.pdf)
 
 # Conclusão
 O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.
