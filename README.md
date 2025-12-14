@@ -19,7 +19,7 @@ Daniel Alexandre Mbeya Paulo - 20240992
 José Santana Manuel Paim - 20231013
 
 # Link para Repositório no GitHub
- https://github.com/macazava/ProjetoMobile-G06.git
+https://github.com/macazava/ProjetoMobile-G06.git
 # Link para Mockups no Figma
 https://www.figma.com/design/sJB2fHMr9FtRiUO07BaGlh/MOCKUPS-FUNCIONAIS?node-id=0-1&t=DExGPdhOVwYb2qfH-1
 # Link do Video Promocional
@@ -230,16 +230,17 @@ O diagrama abaixo representa a estrutura conceptual do sistema WayCare, evidenci
 
 # Versão final da documentação REST 
 A seguir é apresentada a documentação REST, que foi elaborada com o objetivo de descrever de forma estruturada os endpoints disponibilizados pelo backend da aplicação.
-![WayCare – Api REST Backend](Documentação/DocumentaçãoRest(versaofinal).pdf)
+
+- ![WayCare – Api REST Backend](Documentação/DocumentaçãoRest(versaofinal).pdf)
 
 # Dicionário de Dados (BD-Versão Final)
 O presente dicionário de dados descreve a estrutura da base de dados WayCare, de acordo com o novo modelo lógico implementado. Esta base de dados suporta uma aplicação de reporte de anomalias urbanas, incluindo utilizadores, anomalias, localizações,reportes, fotografias, comentários, notificações e rotas alternativas.
-[Dicionário de dados](Documentação/DocumentaçãoBD/DicionárioDeDados(versãofinal).pdf)
+- [Dicionário de dados](Documentação/DocumentaçãoBD/DicionárioDeDados(versãofinal).pdf)
 
 # Guia de Dados (BD-Versão Final)
 A seguir apresentamos a Guia de Dados, com o objetivo de fornecer uma visão estruturada e detalhada sobre os principais elementos de informação utilizados no projeto. 
 Esta secção descreve os modelos de dados, os campos que os compõem, os tipos e restrições associados, bem como as relações estabelecidas entre entidades. 
-[Guia de Dados](Documentação/DocumentaçãoBD/GuiaDeDados(versaofinal).pdf)
+- [Guia de Dados](Documentação/DocumentaçãoBD/GuiaDeDados(versaofinal).pdf)
 
 # Conclusão
  O projeto WayCare permite refletir sobre como a tecnologia pode ser colocada ao serviço da inclusão social e da melhoria da qualidade de vida nas cidades. Este trabalho partiu da constatação de que, em muitas localidades, a acessibilidade continua a ser um desafio diário para milhares de pessoas. Barreiras físicas como passeios danificados, rampas inexistentes, obras mal sinalizadas ou obstáculos temporários comprometem o direito básico de circular em segurança e autonomia.  
